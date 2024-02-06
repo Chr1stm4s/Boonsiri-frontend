@@ -42,6 +42,9 @@
                 <div class="col">
                     <h1 class="mb-0">Products</h1>
                 </div>
+                <div class="col-auto">
+                    <button type="button" class="btn btn-primary" id="Export">Export</button>
+                </div>
             </div>
             <div class="row">
                 <div class="col">
@@ -230,6 +233,49 @@
                     ]
                 ]
             });
+        });
+
+        $("#Export").click(function() {
+            Swal.fire({
+                title: 'กำลังดำเนินการ...',
+                showDenyButton: false,
+                showConfirmButton: false,
+                showCancelButton: false,
+                allowOutsideClick: false,
+                didOpen: () => {
+                    Swal.showLoading();
+                }
+            });
+
+            $.post(
+                "./generate-products.php", 
+                function(response) {
+                    const data = JSON.parse(response);
+
+                    if (data.response == "success") {
+                        Swal.fire({
+                            title: 'สร้างรายงานสำเร็จ',
+                            icon: 'success',
+                            showCancelButton: false,
+                            showDenyButton: false,
+                            confirmButtonColor: '#3085d6',
+                            confirmButtonText: 'ดาวน์โหลด'
+                        }).then((result) => {
+                            if (result.isConfirmed) {
+                                window.location.href = `./report/${data.file}`; // Replace with your link
+                            }
+                        })
+                    } else {
+                        Swal.fire(
+                            'สร้างรายงานไม่สำเร็จ',
+                            'กรุณาติดต่อเจ้าหน้าที่',
+                            'error'
+                        );
+
+                        console.log(data)
+                    }
+                }
+            )
         });
 
         const EditProductModal = document.getElementById('EditProductModal')

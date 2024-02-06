@@ -38,11 +38,12 @@
         if ($DataSaleChartAPI['responseCode'] == "000") {
             $DataSaleChart = $DataSaleChartAPI['salesChartViewModels'];
         } else {
-            for ($i=1; $i <= 12; $i++) { 
-                $DataSaleChart = [
-                    "month" => $i, 
-                    "totalOrders" => 0, 
-                    "totalIncome" => 0
+            for ($month = 1; $month <= 12; $month++) {
+                $DataSaleChart[$month] = [
+                    "month" => $month,
+                    "monthName" => thai_month($month),
+                    "totalOrders" => "0",
+                    "totalIncome" => "0"
                 ];
             }
         }
@@ -67,7 +68,7 @@
                 "title" => "-", 
                 "products" => [
                     "title" => "-", 
-                    "amount" => 0
+                    "amount" => "0"
                 ]
             ];
         }
