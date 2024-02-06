@@ -1,0 +1,264 @@
+RewriteEngine On
+
+php_flag opcache.enable Off
+
+Header add RCACHE "0"
+
+#API - Login
+RewriteCond %{THE_REQUEST} \s/action\/login\.php\s [NC]
+RewriteRule ^ /action/login/? [R=301,L]
+RewriteRule ^action/login/$ /action/login.php [L]
+
+#API - Logout
+RewriteCond %{THE_REQUEST} \s/action\/logout\.php\s [NC]
+RewriteRule ^ /action/logout/? [R=301,L]
+RewriteRule ^action/logout/$ /action/logout.php [L]
+
+#API - Set default address
+RewriteCond %{THE_REQUEST} \s/action\/set-address\.php\s [NC]
+RewriteRule ^ /action/set-address/? [R=301,L]
+RewriteRule ^action/set-address/$ /action/set-address.php [L]
+
+#API - Register
+RewriteCond %{THE_REQUEST} \s/action\/register\.php\s [NC]
+RewriteRule ^ /action/register/? [R=301,L]
+RewriteRule ^action/register/$ /action/register.php [L]
+
+#API - Update profile
+RewriteCond %{THE_REQUEST} \s/action\/update-profile\.php\s [NC]
+RewriteRule ^ /action/update-profile/? [R=301,L]
+RewriteRule ^action/update-profile/$ /action/update-profile.php [L]
+
+#API - Update password
+RewriteCond %{THE_REQUEST} \s/action\/update-password\.php\s [NC]
+RewriteRule ^ /action/update-password/? [R=301,L]
+RewriteRule ^action/update-password/$ /action/update-password.php [L]
+
+#API - Check login
+RewriteCond %{THE_REQUEST} \s/action\/check-login\.php\s [NC]
+RewriteRule ^ /action/check-login/? [R=301,L]
+RewriteRule ^action/check-login/$ /action/check-login.php [L]
+
+#API - Create Payment
+RewriteCond %{THE_REQUEST} \s/action\/create-payment\.php\s [NC]
+RewriteRule ^ /action/create-payment/? [R=301,L]
+RewriteRule ^action/create-payment/$ /action/create-payment.php [L]
+
+#API - Check Payment
+RewriteCond %{THE_REQUEST} \s/action\/check-payment\.php\s [NC]
+RewriteRule ^ /action/check-payment/? [R=301,L]
+RewriteRule ^action/check-payment/$ /action/check-payment.php [L]
+
+#API - Insert Address
+RewriteCond %{THE_REQUEST} \s/action\/insert-address\.php\s [NC]
+RewriteRule ^ /action/insert-address/? [R=301,L]
+RewriteRule ^action/insert-address/$ /action/insert-address.php [L]
+
+#API - Delete Address
+RewriteCond %{THE_REQUEST} \s/action\/delete-address\.php\s [NC]
+RewriteRule ^ /action/delete-address/? [R=301,L]
+RewriteRule ^action/delete-address/$ /action/delete-address.php [L]
+
+#API - Shopping Bag
+RewriteCond %{THE_REQUEST} \s/action\/shopping-bag\.php\s [NC]
+RewriteRule ^ /action/shopping-bag/? [R=301,L]
+RewriteRule ^action/shopping-bag/$ /action/shopping-bag.php [L]
+
+#API - Add to cart
+RewriteCond %{THE_REQUEST} \s/action\/add-to-cart\.php\s [NC]
+RewriteRule ^ /action/add-to-cart/? [R=301,L]
+RewriteRule ^action/add-to-cart/$ /action/add-to-cart.php [L]
+
+#API - Check cart
+RewriteCond %{THE_REQUEST} \s/action\/check-cart\.php\s [NC]
+RewriteRule ^ /action/check-cart/? [R=301,L]
+RewriteRule ^action/check-cart/$ /action/check-cart.php [L]
+
+#API - Update cart
+RewriteCond %{THE_REQUEST} \s/action\/update-cart\.php\s [NC]
+RewriteRule ^ /action/update-cart/? [R=301,L]
+RewriteRule ^action/update-cart/$ /action/update-cart.php [L]
+
+#API - Pre Order
+RewriteCond %{THE_REQUEST} \s/action\/pre-order\.php\s [NC]
+RewriteRule ^ /action/pre-order/? [R=301,L]
+RewriteRule ^action/pre-order/$ /action/pre-order.php [L]
+
+#API - Purchase
+RewriteCond %{THE_REQUEST} \s/action\/purchase\.php\s [NC]
+RewriteRule ^ /action/purchase/? [R=301,L]
+RewriteRule ^action/purchase/$ /action/purchase.php [L]
+
+#API - Remove cart
+RewriteCond %{THE_REQUEST} \s/action\/remove-cart\.php\s [NC]
+RewriteRule ^ /action/remove-cart/? [R=301,L]
+RewriteRule ^action/remove-cart/$ /action/remove-cart.php [L]
+
+#API - Apply Job
+RewriteCond %{THE_REQUEST} \s/action\/apply-job\.php\s [NC]
+RewriteRule ^ /action/apply-job/? [R=301,L]
+RewriteRule ^action/apply-job/$ /action/apply-job.php [L]
+
+#API - Send Review
+RewriteCond %{THE_REQUEST} \s/action\/send-review\.php\s [NC]
+RewriteRule ^ /action/send-review/? [R=301,L]
+RewriteRule ^action/send-review/$ /action/send-review.php [L]
+
+#API - Send Claim
+RewriteCond %{THE_REQUEST} \s/action\/send-claim\.php\s [NC]
+RewriteRule ^ /action/send-claim/? [R=301,L]
+RewriteRule ^action/send-claim/$ /action/send-claim.php [L]
+
+#API - Send Claim Message
+RewriteCond %{THE_REQUEST} \s/action\/send-claim-message\.php\s [NC]
+RewriteRule ^ /action/send-claim-message/? [R=301,L]
+RewriteRule ^action/send-claim-message/$ /action/send-claim-message.php [L]
+
+#Fetch Product
+RewriteCond %{THE_REQUEST} \s/fetch-products\.php\s [NC]
+RewriteRule ^ /fetch-products/? [R=301,L]
+RewriteRule ^fetch-products/$ /fetch-products.php [L]
+
+#Search Product
+RewriteCond %{THE_REQUEST} \s/search-products\.php\s [NC]
+RewriteRule ^ /search-products/? [R=301,L]
+RewriteRule ^search-products/$ /search-products.php [L]
+
+#login
+RewriteCond %{THE_REQUEST} \s/login\.php\s [NC]
+RewriteRule ^ /ลงชื่อเข้าใช้งาน/? [R=301,L]
+RewriteRule ^ลงชื่อเข้าใช้งาน/$ /login.php [L]
+
+#register
+RewriteCond %{THE_REQUEST} \s/register\.php\s [NC]
+RewriteRule ^ /สมัครสมาชิก/? [R=301,L]
+RewriteRule ^สมัครสมาชิก/$ /register.php [L]
+
+#forgot
+RewriteCond %{THE_REQUEST} \s/forgot\.php\s [NC]
+RewriteRule ^ /ลืมรหัสผ่าน/? [R=301,L]
+RewriteRule ^ลืมรหัสผ่าน/$ /forgot.php [L]
+
+#contact
+RewriteCond %{THE_REQUEST} \s/contact\.php\s [NC]
+RewriteRule ^ /ติดต่อเรา/? [R=301,L]
+RewriteRule ^ติดต่อเรา/$ /contact.php [L]
+
+#members
+RewriteCond %{THE_REQUEST} \s/members\/index\.php\s [NC]
+RewriteRule ^ /สมาชิก/? [R=301,L]
+RewriteRule ^สมาชิก/$ /members/index.php [L]
+
+#info
+RewriteCond %{THE_REQUEST} \s/members\/info\.php\s [NC]
+RewriteRule ^ /ข้อมูลสมาชิก/? [R=301,L]
+RewriteRule ^ข้อมูลสมาชิก/$ /members/info.php [L]
+
+#address
+RewriteCond %{THE_REQUEST} \s/members\/address\.php\s [NC]
+RewriteRule ^ /ที่อยู่จัดส่ง/? [R=301,L]
+RewriteRule ^ที่อยู่จัดส่ง/$ /members/address.php [L]
+
+#settings
+RewriteCond %{THE_REQUEST} \s/members\/settings\.php\s [NC]
+RewriteRule ^ /ตั้งค่าบัญชี/? [R=301,L]
+RewriteRule ^ตั้งค่าบัญชี/$ /members/settings.php [L]
+
+#Orders
+RewriteCond %{THE_REQUEST} \s/members\/orders\.php\s [NC]
+RewriteRule ^ /คำสั่งซื้อ/? [R=301,L]
+RewriteRule ^คำสั่งซื้อ/$ /members/orders.php [L]
+
+#Order details
+RewriteRule ^รายเอียดคำสั่งซื้อ/([0-9]+)/$ members/order-details.php?id=$1 [L]
+RewriteRule ^รายเอียดคำสั่งซื้อ/([0-9]+)$ /รายเอียดคำสั่งซื้อ/$1/ [L]
+
+#Order claim
+RewriteRule ^แจ้งเคลมสินค้า/([0-9]+)/$ members/order-claim.php?id=$1 [L]
+RewriteRule ^แจ้งเคลมสินค้า/([0-9]+)$ /แจ้งเคลมสินค้า/$1/ [L]
+
+#Case Claim
+RewriteRule ^สถานะการเคลม/([0-9]+)/$ members/case-claim.php?id=$1 [L]
+RewriteRule ^สถานะการเคลม/([0-9]+)$ /สถานะการเคลม/$1/ [L]
+
+#Cart
+RewriteCond %{THE_REQUEST} \s/cart\.php\s [NC]
+RewriteRule ^ /ตะกร้าสินค้า/? [R=301,L]
+RewriteRule ^ตะกร้าสินค้า/$ /cart.php [L]
+
+#Confirm order
+RewriteRule ^ยืนยันคำสั่งซื้อ/([0-9]+)/$ confirm-order.php?id=$1 [L]
+RewriteRule ^ยืนยันคำสั่งซื้อ/([0-9]+)$ /ยืนยันคำสั่งซื้อ/$1/ [L]
+
+#Payment
+RewriteRule ^ชำระเงิน/([0-9]+)/$ payment.php?id=$1 [L]
+RewriteRule ^ชำระเงิน/([0-9]+)$ /ชำระเงิน/$1/ [L]
+
+#Thank you
+RewriteCond %{THE_REQUEST} \s/thank-you\.php\s [NC]
+RewriteRule ^ /ขอบคุณสำหรับคำสั่งซื้อ/? [R=301,L]
+RewriteRule ^ขอบคุณสำหรับคำสั่งซื้อ/$ /thank-you.php [L]
+
+#About
+RewriteCond %{THE_REQUEST} \s/about\.php\s [NC]
+RewriteRule ^ /เกี่ยวกับบุญศิริ/? [R=301,L]
+RewriteRule ^เกี่ยวกับบุญศิริ/$ /about.php [L]
+
+#Policy
+RewriteCond %{THE_REQUEST} \s/local-policy\.php\s [NC]
+RewriteRule ^ /เงื่อนไขการสั่งซื้อและจัดส่ง/? [R=301,L]
+RewriteRule ^เงื่อนไขการสั่งซื้อและจัดส่ง/$ /local-policy.php [L]
+
+#jobs
+RewriteCond %{THE_REQUEST} \s/jobs\.php\s [NC]
+RewriteRule ^ /ร่วมงานกับเรา/? [R=301,L]
+RewriteRule ^ร่วมงานกับเรา/$ /jobs.php [L]
+
+#jobs detail
+RewriteRule ^ร่วมงานกับเรา/(.*)/([0-9]+)/$ job-details.php?title=$1&id=$2 [L]
+RewriteRule ^ร่วมงานกับเรา/(.*)/([0-9]+)$ /ร่วมงานกับเรา/$2/$1/ [L]
+
+#Products 
+RewriteCond %{THE_REQUEST} \s/products\.php\s [NC]
+RewriteRule ^ /หมวดหมู่สินค้าทั้งหมด/? [R=301,L]
+RewriteRule ^หมวดหมู่สินค้าทั้งหมด/$ /products.php [L]
+
+#Products All
+RewriteCond %{THE_REQUEST} \s/all-products\.php\s [NC]
+RewriteRule ^ /สินค้าทั้งหมดของบุญศิริ/? [R=301,L]
+RewriteRule ^สินค้าทั้งหมดของบุญศิริ/$ /all-products.php [L]
+
+#Product Search
+RewriteCond %{THE_REQUEST} \s/product-search\.php\s [NC]
+RewriteRule ^ /ค้นหาสินค้าบุญศิริ/? [R=301,L]
+RewriteRule ^ค้นหาสินค้าบุญศิริ/$ /product-search.php [L]
+
+#Product Category
+RewriteRule ^หมวดหมู่สินค้าบุญศิริ/(.*)/([0-9]+)/$ product-category.php?title=$1&id=$2 [L]
+RewriteRule ^หมวดหมู่สินค้าบุญศิริ/(.*)/([0-9]+)$ /หมวดหมู่สินค้าบุญศิริ/$2/$1/ [L]
+
+#Product Category ID
+RewriteRule ^สินค้าบุญศิริ/(.*)/([0-9]+)/$ product-category-id.php?title=$2&id=$1 [L]
+RewriteRule ^สินค้าบุญศิริ/(.*)/([0-9]+)$ /สินค้าบุญศิริ/$2/$1/ [L]
+
+#Product details
+RewriteRule ^ข้อมูลสินค้าบุญศิริ/([0-9]+)/(.*)/$ product.php?id=$1&title=$2 [L]
+RewriteRule ^ข้อมูลสินค้าบุญศิริ/([0-9]+)/(.*)$ /สินค้าบุญศิริ/$1/$2/ [L]
+
+#Branches
+RewriteCond %{THE_REQUEST} \s/branches\.php\s [NC]
+RewriteRule ^ /สาขาบุญศิริ/? [R=301,L]
+RewriteRule ^สาขาบุญศิริ/$ /branches.php [L]
+
+#Articles
+RewriteCond %{THE_REQUEST} \s/articles\.php\s [NC]
+RewriteRule ^ /ข่าวสารและกิจกรรม/? [R=301,L]
+RewriteRule ^ข่าวสารและกิจกรรม/$ /articles.php [L]
+
+#Articles Category
+RewriteRule ^ข่าวสารและกิจกรรม/หมวดหมู่/(.*)/$ articles-category.php?category=$1 [L]
+RewriteRule ^ข่าวสารและกิจกรรม/หมวดหมู่/(.*)$ /ข่าวสารและกิจกรรม/หมวดหมู่/$1/ [L]
+
+#Article
+RewriteRule ^ข่าวสารและกิจกรรม/([0-9]+)/(.*)/$ article.php?id=$1&url=$2 [L]
+RewriteRule ^ข่าวสารและกิจกรรม/([0-9]+)/(.*)$ /ข่าวสารและกิจกรรม/$1/$2/ [L]

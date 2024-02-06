@@ -1,0 +1,10 @@
+version: "2"
+services:
+  myxampp:
+    image: tomsik68/xampp:8
+    volumes:
+      # - ./web:/www
+      - ./web:/opt/lampp/htdocs
+    ports:
+      - 41061:22
+      - 80:80

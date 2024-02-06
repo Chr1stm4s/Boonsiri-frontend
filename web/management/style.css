@@ -1,0 +1,62 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Thai:wght@100;200;300;400;500;600;700;800;900&display=swap');
+
+* {
+    font-family: 'Noto Sans Thai', sans-serif;
+}
+
+.table td.fit,
+.table th.fit {
+    white-space: nowrap;
+    width: 1%;
+}
+
+th,
+td {
+    vertical-align: middle !important;
+}
+
+.text-overflow {
+    text-overflow: ellipsis;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 1;
+}
+
+.overflow-2 {
+    -webkit-line-clamp: 2;
+}
+
+.overflow-3 {
+    -webkit-line-clamp: 3;
+}
+
+.overflow-4 {
+    -webkit-line-clamp: 4;
+}
+
+.overflow-5 {
+    -webkit-line-clamp: 5;
+}
+
+.f-shadow {
+    text-shadow: 2px 2px 4px #000000;
+}
+
+.header-logo {
+    height: 50px;
+}
+
+.dataTables_length {
+    margin-bottom: 1.5rem;
+}
+
+#PreviewThumbnailModal .btn-close {
+    position: absolute;
+    top: 1.5rem;
+    right: 1.5rem;
+}
+
+.article-thumbnail {
+    height: 60px;
+}

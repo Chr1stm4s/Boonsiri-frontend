@@ -1,0 +1,82 @@
+@media only screen and (max-width: 576px) {
+    .map-markers {
+        height: 70vw;
+    }
+
+    .article-details {
+        scroll-margin-top: 140px;
+    }
+
+    #CardFilter .card-body {
+        height: auto;
+        overflow-y: none;
+    }
+
+    .products-card h5.card-title {
+        font-size: 14px;
+    }
+
+    .products-card button {
+        font-size: 15px;
+    }
+
+    #ProductList {
+        scroll-margin-top: 100px;
+    }
+
+    .btn-product-details {
+        border-top-right-radius: 0;
+        border-top-left-radius: 0;
+    }
+
+    .input-group.pagination>* {
+        font-size: 12px;
+    }
+
+    .card-member-form img.step-1-element {
+        height: 25vh;
+    }
+
+    .home-products-promotion .card p span.price-discount,
+    .home-products-promotion .card p.price-preorder {
+        font-size: 12px;
+    }
+
+    .col-cart.cart-price-each {
+        flex: 1 0 0%;
+        width: 100%;
+    }
+
+    .col-cart.cart-tool {
+        flex: 0 0 auto;
+        width: 100%;
+    }
+
+    .col-cart.cart-tool > .btn {
+        width: calc(50% - 3px);
+        display: inline-block;
+    }
+
+    #PriceTotalMobileBottom > p {
+        font-weight: 300;
+        font-size: 14px;
+        line-height: 14px;
+    }
+
+    #PriceTotalMobileBottom > p > span {
+        font-weight: 500;
+    }
+
+    #PriceTotalMobileBottom > small {
+        font-weight: 300;
+        font-size: 12px;
+    }
+
+    #PriceTotalMobileBottom > small > span {
+        font-weight: 500;
+    }
+
+    .logo-login {
+        height: auto;
+    }
+}

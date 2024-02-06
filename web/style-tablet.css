@@ -1,0 +1,28 @@
+@media only screen and (max-width: 1280px) {
+    .mobile-menu {
+        position: fixed;
+        bottom: -1px;
+        width: 100%;
+        background-color: white;
+        z-index: 1000;
+    }
+
+    #CardFilter .card-body {
+        max-height: fit-content;
+        overflow-y: unset;
+    }
+
+    body.member-form {
+        background-image: url('./images/login-bg-mobile.jpg');
+    }
+
+    .card-member-form {
+        width: 90%;
+        margin: auto;
+        left: 0;
+    }
+
+    .card-member-form img.step-1-element {
+        height: 50vh;
+    }
+}

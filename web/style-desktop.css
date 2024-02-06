@@ -1,0 +1,444 @@
+.bg-header {
+    background-color: #286698;
+}
+
+.switch-language {
+    transition: ease 0.3s;
+    color: white;
+    opacity: 0.5;
+    padding-left: 0.25rem;
+    padding-right: 0.25rem;
+}
+
+.switch-language img {
+    height: 30px;
+}
+
+.switch-language.active,
+.switch-language:hover {
+    color: white;
+    opacity: 1;
+}
+
+#HeaderMenu {
+    transition: ease 0s !important;
+    background-color: var(--color-theme-5);
+}
+
+#HeaderMenuLogo {
+    height: 70px;
+}
+
+#HeaderMenu #HeaderNavbar .navbar-nav .nav-link {
+    color: white;
+    transition: ease 0.3s;
+    font-weight: 300;
+}
+
+#HeaderMenu #HeaderNavbar .navbar-nav .nav-link.active,
+#HeaderMenu #HeaderNavbar .navbar-nav .show>.nav-link,
+#HeaderMenu #HeaderNavbar .navbar-nav .nav-link:hover {
+    font-weight: 700;
+}
+
+#HeaderMenu #HeaderNavbar .navbar-nav .dropdown-menu {
+    max-height: 40vh;
+    overflow-y: scroll;
+}
+
+#HeaderMenu #HeaderNavbar .dropdown-toggle::after,
+.dropdown-notification::after {
+    display: none;
+}
+
+.home-products-recommended img {
+    height: 200px;
+    object-fit: cover;
+    object-position: center;
+}
+
+.map-markers {
+    width: 100%;
+    height: 100%;
+}
+
+.footer-map {
+    width: 100%;
+    height: 100%;
+}
+
+#ModalMember .btn-close {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+}
+
+#ModalLoginTabContent {
+    padding: 1rem;
+    border-left: solid #dee2e6 1px;
+    border-right: solid #dee2e6 1px;
+    border-bottom: solid #dee2e6 1px;
+    border-radius: 0 0 5px 5px;
+}
+
+.header-about {
+    background-image: linear-gradient(to bottom, #6d98acd2 0%, #6d98acd2 100%), url('https://img.freepik.com/free-photo/supermarket-worker-arranging-frozen-fish-sale_342744-1070.jpg?w=1380&t=st=1690372615~exp=1690373215~hmac=e15a7a92a19446fd5ee43f548761ca03a6ff0a56b50d7525dcca90a0797aa821');
+    background-size: cover;
+    background-position: center;
+}
+
+.product-category-list {
+    list-style: none;
+    margin-bottom: 0;
+    padding: 0;
+}
+
+.product-category-list li {
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.product-category-list li>a {
+    color: black;
+    transition: ease 0.3s;
+}
+
+.product-category-list li.active>a,
+.product-category-list li:hover>a {
+    color: black;
+    font-weight: bold;
+}
+
+#CardFilter {
+    position: sticky;
+    position: -webkit-sticky;
+    top: 130px;
+}
+
+#CardFilter .card-body {
+    max-height: 68vh;
+    overflow-y: auto;
+}
+
+.products-card {
+    height: 100%;
+}
+
+.products-card>img {
+    height: 200px;
+    object-fit: cover;
+}
+
+.products-card>img.thumbnail-placeholder {
+    object-fit: contain;
+    object-position: center;
+}
+
+.articles-list>img {
+    height: 200px;
+    object-fit: cover;
+}
+
+.header-contact {
+    height: calc(100vh - 102px);
+    background-image: linear-gradient(to bottom, #6d98acd2 0%, #6d98acd2 100%), url('https://img.freepik.com/free-photo/industrial-park-factory-building-warehouse_1417-1928.jpg?w=1380&t=st=1690465834~exp=1690466434~hmac=d77181709c0f47f623a46c6a7c4d3f4994672f79d8ba6aa9e34f192a95a0066f');
+    background-size: cover;
+    background-position: center;
+    position: relative;
+    display: flex;
+}
+
+.header-jobs {
+    background-image: linear-gradient(to bottom, #6d98acd2 0%, #6d98acd2 100%), url('https://img.freepik.com/free-photo/hr-handshaking-successful-candidate-getting-hired-new-job-closeup_1163-4688.jpg?w=1380&t=st=1690642659~exp=1690643259~hmac=97ba854a23f228202321481238f6c7f30c0aca81d96ad44f10a3be129876e0c7');
+    background-size: cover;
+    background-position: center;
+}
+
+.index-list {
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+    transition: all 0.2s;
+}
+
+.index-list a {
+    transition: all 0.2s;
+    color: black;
+    text-decoration: none;
+}
+
+.index-list:hover,
+.index-list:hover a {
+    font-weight: bold;
+    color: var(--color-theme-1);
+}
+
+.article-details {
+    scroll-margin-top: 100px;
+}
+
+.table-jobs th {
+    vertical-align: top !important;
+}
+
+.btn-tooltip {
+    width: fit-content;
+}
+
+.shoping-bag-icon>span {
+    font-size: 10px;
+}
+
+.shoping-bag-icon>i {
+    transition: ease 0.3s;
+}
+
+.shoping-bag-icon:hover>i {
+    transform: scale(1.3);
+}
+
+.product-thumbnail {
+    height: 50px;
+    cursor: pointer;
+}
+
+#PreviewThumbnailModal .btn-close {
+    position: absolute;
+    top: 1.5rem;
+    right: 1.5rem;
+}
+
+select#amount {
+    width: auto;
+}
+
+#map {
+    min-height: calc(100vh - 134px);
+}
+
+.branches-list {
+    scroll-margin-top: 90px;
+}
+
+.card-member-form {
+    color: white;
+    width: 50%;
+    margin-left: auto;
+    margin-top: auto;
+    margin-bottom: auto;
+    right: 2rem;
+    background-color: var(--color-theme-1);
+    transition: ease 0.2s;
+}
+
+.card-member-form img.member-form-image {
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+    width: 100%;
+    height: 40vh;
+    object-fit: contain;
+    object-position: center;
+}
+
+#RegisterFormWizard p {
+    margin-bottom: 0.5rem;
+    text-wrap: nowrap;
+}
+
+#RegisterFormWizard img.step-1-element {
+    height: 25vh;
+}
+
+#RegisterFormWizard .steps span.step-number {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: darkblue;
+}
+
+#RegisterFormWizard .steps p,
+#RegisterFormWizard .steps span.step-number {
+    opacity: 0.5;
+}
+
+#RegisterFormWizard .steps .active p,
+#RegisterFormWizard .steps .active span.step-number {
+    opacity: 1;
+}
+
+#RegisterFormWizard input.input-otp {
+    background-color: var(--color-theme-2);
+    text-align: center;
+    font-size: 1.5rem;
+    color: white;
+    width: 60%;
+}
+
+#RegisterFormWizard input::placeholder {
+    color: var(--color-theme-3);
+    opacity: 1;
+    /* Firefox */
+}
+
+#RegisterFormWizard input::-ms-input-placeholder {
+    /* Edge 12 -18 */
+    color: var(--color-theme-3);
+}
+
+body.member-form {
+    height: 100vh;
+    background-image: url('./images/login-bg.jpg');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
+
+.home-category p {
+    font-size: 12px;
+}
+
+.list-lead-form>li.icon-facebook,
+.list-lead-form>li.icon-line,
+.list-lead-form>li.icon-phone {
+    background-position: left center;
+    background-size: auto 100%;
+    background-repeat: no-repeat;
+    padding-left: 3rem;
+}
+
+.list-lead-form>li.icon-facebook {
+    background-image: url('./images/icon-facebook.svg');
+}
+
+.list-lead-form>li.icon-line {
+    background-image: url('./images/icon-line.svg');
+}
+
+.list-lead-form>li.icon-phone {
+    background-image: url('./images/icon-phone.svg');
+}
+
+.home-feature .card img {
+    height: 100px;
+    width: 100px;
+    padding: 1rem;
+    object-fit: contain;
+    object-position: center;
+    background-color: var(--color-theme-3);
+}
+
+.home-feature .card h5 {
+    font-size: 14px;
+}
+
+.home-feature .card p {
+    font-size: 14px;
+}
+
+.home-products-promotion .card img {
+    padding: 0.5rem;
+    height: 120px;
+    object-fit: contain;
+}
+
+.home-products-promotion .card h5 {
+    font-size: 12px;
+    font-weight: normal;
+    height: 50px;
+}
+
+.home-products-promotion .card p {
+    font-size: 10px;
+    font-weight: normal;
+}
+
+.home-products-promotion .swiper {
+    padding-bottom: 3rem;
+}
+
+.home-products-promotion .card p.price-preorder {
+    font-size: 18px;
+    text-align: center;
+}
+
+.home-products-promotion .card p span.price-discount {
+    font-size: 18px;
+}
+
+.member-icon-nav {
+    height: 100px;
+    object-fit: contain;
+    transition: ease 0.3s;
+}
+
+.member-icon-nav:hover {
+    transform: scale(1.1);
+}
+
+.col-cart {
+    flex: 0 0 auto;
+}
+
+.col-cart.cart-number {
+    width: 80px;
+}
+
+.col-cart.cart-image {
+    width: 100px;
+}
+
+.col-cart.cart-title {
+    flex: 1 0 0;
+    width: 100%;
+}
+
+.col-cart.cart-amount {
+    width: 140px;
+}
+
+.col-cart.cart-price-each {
+    width: 170px;
+}
+
+.col-cart.cart-price-total {
+    width: 120px;
+}
+
+.col-cart.cart-tool {
+    width: 120px;
+}
+
+.btn-item-size {
+    border: solid var(--color-theme-5) 1px;
+}
+
+.btn-item-size.active, .btn-item-size:hover {
+    background-color: var(--color-theme-5);
+    color: white;
+}
+
+div.pdpa {
+    width: 100%;
+    position: fixed;
+    z-index: 2000;
+    bottom: 0;
+}
+
+.products-card .btn-weight {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+}
+
+.logo-login {
+    height: 200px;
+    width: 100%;
+    object-fit: contain;
+    object-position: center;
+}
