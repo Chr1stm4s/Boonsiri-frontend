@@ -14,6 +14,32 @@
             height: 60px;
             padding: 0.5rem;
         }
+
+        .rating {
+            display: flex;
+            flex-direction: row-reverse;
+        }
+
+        .rating input {
+            display: none;
+        }
+
+        .rating label {
+            font-size: 30px;
+            color: #aaa;
+            cursor: pointer;
+        }
+
+        .rating label:hover,
+        .rating label:hover ~ label,
+        .rating input:checked ~ label {
+            color: #ffcc00;
+        }
+
+        .rating input:checked ~ label:hover,
+        .rating input:checked ~ label:hover ~ label {
+            color: #ccc;
+        }
     </style>
 
 </head>
@@ -264,18 +290,62 @@
                     </div>
                     <div class="modal-body">
                         <input type="hidden" name="purchaseId" id="purchaseId">
+                        <label for="quality" class="col-form-label">คุณภาพสินค้า:</label>
+                        <div class="row mb-3">
+                            <div class="col-auto">
+                                <div class="rating">
+                                    <input type="radio" id="QualityStar5" name="quality" value="5"><label for="QualityStar5"><i class="fas fa-star"></i></label>
+                                    <input type="radio" id="QualityStar4" name="quality" value="4"><label for="QualityStar4"><i class="fas fa-star"></i></label>
+                                    <input type="radio" id="QualityStar3" name="quality" value="3"><label for="QualityStar3"><i class="fas fa-star"></i></label>
+                                    <input type="radio" id="QualityStar2" name="quality" value="2"><label for="QualityStar2"><i class="fas fa-star"></i></label>
+                                    <input type="radio" id="QualityStar1" name="quality" value="1"><label for="QualityStar1"><i class="fas fa-star"></i></label>
+                                </div>
+                            </div>
+                        </div>
+                        <label for="quality" class="col-form-label">บริการผู้ขาย:</label>
+                        <div class="row mb-3">
+                            <div class="col-auto">
+                                <div class="rating">
+                                    <input type="radio" id="ServicesStar5" name="services" value="5"><label for="ServicesStar5"><i class="fas fa-star"></i></label>
+                                    <input type="radio" id="ServicesStar4" name="services" value="4"><label for="ServicesStar4"><i class="fas fa-star"></i></label>
+                                    <input type="radio" id="ServicesStar3" name="services" value="3"><label for="ServicesStar3"><i class="fas fa-star"></i></label>
+                                    <input type="radio" id="ServicesStar2" name="services" value="2"><label for="ServicesStar2"><i class="fas fa-star"></i></label>
+                                    <input type="radio" id="ServicesStar1" name="services" value="1"><label for="ServicesStar1"><i class="fas fa-star"></i></label>
+                                </div>
+                            </div>
+                        </div>
+                        <label for="quality" class="col-form-label">บริการผู้ส่ง:</label>
+                        <div class="row mb-3">
+                            <div class="col-auto">
+                                <div class="rating">
+                                    <input type="radio" id="DeliveryStar5" name="delivery" value="5"><label for="DeliveryStar5"><i class="fas fa-star"></i></label>
+                                    <input type="radio" id="DeliveryStar4" name="delivery" value="4"><label for="DeliveryStar4"><i class="fas fa-star"></i></label>
+                                    <input type="radio" id="DeliveryStar3" name="delivery" value="3"><label for="DeliveryStar3"><i class="fas fa-star"></i></label>
+                                    <input type="radio" id="DeliveryStar2" name="delivery" value="2"><label for="DeliveryStar2"><i class="fas fa-star"></i></label>
+                                    <input type="radio" id="DeliveryStar1" name="delivery" value="1"><label for="DeliveryStar1"><i class="fas fa-star"></i></label>
+                                </div>
+                            </div>
+                        </div>
                         <div class="mb-3">
                             <label for="message" class="col-form-label">ข้อความ:</label>
                             <textarea class="form-control" id="message" name="message" required aria-required="true"></textarea>
                         </div>
                         <div class="mb-3">
-                            <label for="review" class="form-label">อัปโหลด รูปภาพ</label>
+                            <label for="image" class="form-label">อัปโหลดรูปภาพ</label>
                             <div class="input-group">
-                                <input type="file" class="form-control" name="review[]" id="image" multiple required aria-required="true" accept="image/*">
-                                <label class="input-group-text" for="review">Upload</label>
+                                <input type="file" class="form-control" name="review[]" id="image" multiple accept="image/*">
+                                <label class="input-group-text" for="image">เลือกรูปภาพ</label>
                             </div>
                         </div>
-                        <div class="gallery"></div>
+                        <div class="gallery mb-4"></div>
+                        <div class="mb-3">
+                            <label for="video" class="form-label">อัปโหลดวิดีโอ (รองรับเฉพาะ .MP4 ไม่เกิน 30 วินาที)</label>
+                            <div class="input-group">
+                                <input type="file" class="form-control" name="video" id="video" accept="video/mp4">
+                                <label class="input-group-text" for="video">เลือกวิดีโอ</label>
+                            </div>
+                        </div>
+                        <p class="my-3 text-danger">หากรีวิวคำสั่งซื้อแล้ว จะไม่สามารถกดเคลมสินค้าได้ กรุณาตรวจสอบสินค้าก่อนรีวิวคำสั่งซื้อ</p>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">ยกเลิก</button>
@@ -526,18 +596,24 @@
                             'กรุณาติดต่อเจ้าหน้าที่',
                             'error'
                         );
+
+                        console.log(response)
                     } else if (response == "upload") {
                         Swal.fire(
                             'ไม่สามารถส่งไฟล์ได้!',
                             'กรุณาติดต่อเจ้าหน้าที่',
                             'error'
                         );
+
+                        console.log(response)
                     } else {
                         Swal.fire(
                             'ส่งข้อมูลล้มเหลว!',
                             'กรุณาติดต่อเจ้าหน้าที่',
                             'error'
                         );
+
+                        console.log(response)
                     }
                 },
                 error: function(e) {
@@ -546,6 +622,8 @@
                         'กรุณาติดต่อเจ้าหน้าที่',
                         'error'
                     );
+
+                    console.log(e)
                 }
             });
         });

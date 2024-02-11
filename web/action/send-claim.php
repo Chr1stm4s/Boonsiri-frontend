@@ -42,7 +42,7 @@
                     $message_file = "message-$messageId-$key.$ext";
         
                     $requestData = [
-                        "messageId" => $caseId,
+                        "messageId" => $messageId,
                         "file" => $message_file,
                     ];
                 

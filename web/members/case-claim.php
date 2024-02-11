@@ -122,6 +122,8 @@
                                         "docx" => '<i class="mx-2 fs-3 fa-solid fa-file-word text-primary"></i>', 
                                         "xlsx" => '<i class="mx-2 fs-3 fa-solid fa-file-excel text-success"></i>', 
                                         "xls" => '<i class="mx-2 fs-3 fa-solid fa-file-excel text-success"></i>', 
+                                        "mp4" => '<i class="mx-2 fs-3 fa-solid fa-file-video text-warning"></i>', 
+                                        "m4v" => '<i class="mx-2 fs-3 fa-solid fa-file-video text-warning"></i>', 
                                         "csv" => '<i class="mx-2 fs-3 fa-solid fa-file-csv text-success"></i>'
                                     ];
 
@@ -147,6 +149,8 @@
                         </div>
 
                         <?php
+                            } else {
+                                var_dump($MessageFileAPIRequest);
                             }
                         ?>
 

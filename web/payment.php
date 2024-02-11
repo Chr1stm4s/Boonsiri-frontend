@@ -80,7 +80,7 @@
             <div class="row">
                 <div class="col text-center">
                     <h5>ชื่อบัญชี: <?=$PaymentData['bankAccount']['bankName'];?></h5>
-                    <h5>เลขที่บัญชี: <span id="BankNumber"><?=$PaymentData['bankAccount']['bankNumber'];?></span></h5>
+                    <!-- <h5>เลขที่บัญชี: <span id="BankNumber"><?=$PaymentData['bankAccount']['bankNumber'];?></span></h5> -->
                     <h5>ยอดชำระ: <?=number_format($PaymentData['resultQr']['amount']);?> บาท</h5>
                     <h5 class="text-danger mb-0">
                         โปรดชำระเงินเพื่อยืนยันคำสั่งซื้อภายใน 10 นาที

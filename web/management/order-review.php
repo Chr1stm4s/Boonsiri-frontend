@@ -47,6 +47,80 @@
                     <h1 class="mb-0">Review</h1>
                 </div>
             </div>
+
+            <div class="row">
+                <div class="col-auto">
+                    <p>
+                        คุณภาพสินค้า <?=$ReviewData['quality'];?>
+                        <br>
+
+                        <?php
+                            for ($i=1; $i <= 5; $i++) { 
+                                if ($i <= $ReviewData['quality']) {
+                        ?>
+
+                        <i class="fa-solid fa-star text-warning"></i>
+
+                        <?php
+                                } else {
+                        ?>
+
+                        <i class="fa-regular fa-star text-warning"></i>
+
+                        <?php
+                                }
+                            }
+                        ?>
+
+                    </p>
+                    <p>
+                        บริการผู้ขาย <?=$ReviewData['services'];?>
+                        <br>
+
+                        <?php
+                            for ($i=1; $i <= 5; $i++) { 
+                                if ($i <= $ReviewData['services']) {
+                        ?>
+
+                        <i class="fa-solid fa-star text-warning"></i>
+
+                        <?php
+                                } else {
+                        ?>
+
+                        <i class="fa-regular fa-star text-warning"></i>
+
+                        <?php
+                                }
+                            }
+                        ?>
+
+                    </p>
+                    <p>
+                        บริการผู้ส่ง <?=$ReviewData['delivery'];?>
+                        <br>
+
+                        <?php
+                            for ($i=1; $i <= 5; $i++) { 
+                                if ($i <= $ReviewData['delivery']) {
+                        ?>
+
+                        <i class="fa-solid fa-star text-warning"></i>
+
+                        <?php
+                                } else {
+                        ?>
+
+                        <i class="fa-regular fa-star text-warning"></i>
+
+                        <?php
+                                }
+                            }
+                        ?>
+
+                    </p>
+                </div>
+            </div>
             
             <div class="row my-5">
                 <div class="col">
@@ -68,6 +142,17 @@
                 
                 <?php
                     foreach ($ReviewImageResponse['reviewsImage'] as $ReviewImageData) {
+                        $path_info = pathinfo("../reviews/$id/".$ReviewImageData['image']);
+                        $icon = [
+                            "pdf" => '<i class="mx-2 fs-3 fa-solid fa-file-pdf text-danger"></i>', 
+                            "doc" => '<i class="mx-2 fs-3 fa-solid fa-file-word text-primary"></i>', 
+                            "docx" => '<i class="mx-2 fs-3 fa-solid fa-file-word text-primary"></i>', 
+                            "xlsx" => '<i class="mx-2 fs-3 fa-solid fa-file-excel text-success"></i>', 
+                            "xls" => '<i class="mx-2 fs-3 fa-solid fa-file-excel text-success"></i>', 
+                            "csv" => '<i class="mx-2 fs-3 fa-solid fa-file-csv text-success"></i>'
+                        ];
+
+                        if (in_array($path_info['extension'], array("jpg", "jpeg", "png"))) {
                 ?>
 
                 <div class="col-3 my-3">
@@ -75,6 +160,17 @@
                 </div>
 
                 <?php
+                        } else {
+                ?>
+
+                <div class="col-3 my-3">
+                    <video class="w-100 btn p-0 rounded-5" controls>
+                        <source src="../reviews/<?=$id;?>/<?=$ReviewImageData['image'];?>" type="video/mp4" />
+                    </video>
+                </div>
+
+                <?php
+                        }
                     }
                 ?>
 

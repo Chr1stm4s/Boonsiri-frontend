@@ -177,7 +177,7 @@
                         <div class="mb-3">
                             <label for="image" class="form-label">รูปสินค้าที่มีปัญหา</label>
                             <div class="input-group">
-                                <input type="file" class="form-control" name="claim[]" id="image" multiple required aria-required="true" accept="image/*">
+                                <input type="file" class="form-control" name="claim[]" id="image" multiple required aria-required="true" accept="image/*,video/mp4,video/x-m4v,video/*">
                                 <label class="input-group-text" for="image">Upload</label>
                             </div>
                         </div>
@@ -185,7 +185,7 @@
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">ยกเลิก</button>
-                        <button type="submit" class="btn btn-primary">แจ้มเคลม</button>
+                        <button type="submit" class="btn btn-primary">แจ้งเคลม</button>
                     </div>
                 </div>
             </div>

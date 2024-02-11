@@ -95,13 +95,15 @@
 
                             <?php
                                 foreach ($MessageFileResponse['casesFiles'] as $MessageFileData) {
-                                    $path_info = pathinfo("/cases/$id/".$MessageFileData['file']);
+                                    $path_info = pathinfo("../cases/$id/".$MessageFileData['file']);
                                     $icon = [
                                         "pdf" => '<i class="mx-2 fs-3 fa-solid fa-file-pdf text-danger"></i>', 
                                         "doc" => '<i class="mx-2 fs-3 fa-solid fa-file-word text-primary"></i>', 
                                         "docx" => '<i class="mx-2 fs-3 fa-solid fa-file-word text-primary"></i>', 
                                         "xlsx" => '<i class="mx-2 fs-3 fa-solid fa-file-excel text-success"></i>', 
                                         "xls" => '<i class="mx-2 fs-3 fa-solid fa-file-excel text-success"></i>', 
+                                        "mp4" => '<i class="mx-2 fs-3 fa-solid fa-file-video text-warning"></i>', 
+                                        "m4v" => '<i class="mx-2 fs-3 fa-solid fa-file-video text-warning"></i>', 
                                         "csv" => '<i class="mx-2 fs-3 fa-solid fa-file-csv text-success"></i>'
                                     ];
 
@@ -112,7 +114,6 @@
 
                             <?php
                                     } else {
-
                             ?>
 
                             <a href="<?=rootURL();?>cases/<?=$id;?>/<?=$MessageFileData['file'];?>" download="<?=$MessageFileData['file'];?>" class="text-decoration-none">
@@ -174,6 +175,19 @@
         </div>
     </div>
 
+    <div class="modal fade" id="PreviewVideoModal" tabindex="-1" aria-labelledby="PreviewVideoModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    <video class="w-100" controls id="PreviewVideoModalVideo">
+                        <source id="PreviewVideoModalVideoSource" src="" type="video/mp4" />
+                    </video>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <section class="py-5">
         <form action="#" method="post" id="SubmitClaimMessageForm">
             <div class="container">
@@ -218,6 +232,41 @@
 
                 PreviewThumbnailModalIMG.src = image
             })
+        }
+
+        const PreviewVideoModal = document.getElementById('PreviewVideoModal')
+        if (PreviewVideoModal) {
+            PreviewVideoModal.addEventListener('show.bs.modal', event => {
+                // Button that triggered the modal
+                const button = event.relatedTarget
+                // Extract info from data-bs-* attributes
+                const video = button.getAttribute('data-bs-video')
+                // If necessary, you could initiate an Ajax request here
+                // and then do the updating in a callback.
+
+                // Update the modal's content.
+
+                const PreviewVideoModalVideo = myModal.querySelector('#PreviewVideoModalVideo');
+                const PreviewVideoModalVideoSource = myModal.querySelector('#PreviewVideoModalVideoSource');
+                
+                PreviewVideoModalVideoSource.src = video;
+                PreviewVideoModalVideo.load();
+            });
+
+            PreviewVideoModal.addEventListener('hidden.bs.modal', event => {
+                // Button that triggered the modal
+                const button = event.relatedTarget
+                // Extract info from data-bs-* attributes
+                const video = button.getAttribute('data-bs-video')
+                // If necessary, you could initiate an Ajax request here
+                // and then do the updating in a callback.
+
+                // Update the modal's content.
+
+                const PreviewVideoModalVideo = myModal.querySelector('#PreviewVideoModalVideo');
+
+                PreviewVideoModalVideo.pause();
+            });
         }
 
         $('#SubmitClaimMessageForm').on("submit", function(e) {
