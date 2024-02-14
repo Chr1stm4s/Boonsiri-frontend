@@ -116,7 +116,19 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            let table = new DataTable('#DataTables');
+            $('#DataTables').DataTable( {
+                columnDefs: [
+                    { 
+                        orderable: false, 
+                        targets: -1 
+                    }
+                ],
+                order: [
+                    [
+                        7, 'desc'
+                    ]
+                ]
+            } );
 
             $(".btn-done").on("click", function() {
                 const id = $(this).data("id");

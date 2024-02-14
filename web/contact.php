@@ -15,10 +15,10 @@
     
     <?php require_once "./header.php"; ?>
 
-    <section class="header-contact">
-        <div class="container my-auto">
-            <div class="row">
-                <div class="col text-center">
+    <section>
+        <div class="container">
+            <div class="row header-contact py-5">
+                <div class="col text-center py-5">
                     <h1 class="mb-0 f-shadow text-white">ติดต่อเรา</h1>
                 </div>
             </div>

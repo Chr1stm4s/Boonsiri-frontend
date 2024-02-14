@@ -258,8 +258,6 @@
                     'pageSize' => 6
                 ];
 
-                // var_dump($APIDataRequest);
-
                 $ResponseKey = 'product';
 
                 $APIDataResponse = connect_api($APIURL, $APIDataRequest);

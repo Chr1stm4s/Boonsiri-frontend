@@ -148,7 +148,7 @@
                     if (response == "success") {
                         Swal.fire(
                             'แก้ไขเนื้อหาสำเร็จ!',
-                            'เจ้าหน้าที่จะติดต่อกลับโดยเร็วที่สุด',
+                            '',
                             'success'
                         ).then(() => {
                             location.reload();

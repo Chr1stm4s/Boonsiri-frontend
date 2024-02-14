@@ -220,13 +220,15 @@
 
                                         $Response = connect_api("https://www.ecmapi.boonsiri.co.th/api/v1/preorder/list-preorder", $APIRequest);
 
+                                        $id = 1;
+
                                         if ($Response['responseCode'] == 000 && $Response['preOrders']) {
                                             foreach ($Response['preOrders'] as $OrderData) {
                                                 $quantity = ($OrderData['uomCode']) ? $OrderData['uomCode'] : "ชิ้น";
                                     ?>
 
                                         <tr>
-                                            <th class="text-end"><?=$OrderData['id'];?></th>
+                                            <th class="text-end"><?=$id;?></th>
                                             <td><p class="mb-0 text-overflow btn-tooltip" data-bs-title="<?=$OrderData['title'];?>"><?=$OrderData['title'];?></p></td>
                                             <td class="fit text-center"><?=$OrderData['amount'];?> <?=$quantity;?></td>
                                             <td class="fit text-end"><?=number_format($OrderData['price']);?> บาท</td>
@@ -238,6 +240,7 @@
                                         </tr>
 
                                     <?php
+                                                $i++;
                                             }
                                         } else {
                                     ?>

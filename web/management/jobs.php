@@ -47,12 +47,14 @@
                             
                             $data = connect_api($apiUrl);
 
+                            $i = 1;
+
                             if ($data['responseCode'] == 000) {
                                 foreach ($data['jobCategories'] as $job) {
                         ?>
 
                             <tr>
-                                <th class="text-end"><?=$job['id'];?></th>
+                                <th class="text-end"><?=$i;?></th>
                                 <td><p class="mb-0 text-overflow btn-tooltip" data-bs-title="<?=$job['title'];?>"><?=$job['title'];?></p></td>
                                 <td><p class="mb-0 text-overflow btn-tooltip" data-bs-title="<?=strip_tags($job['description']);?>"><?=strip_tags($job['description']);?></p></td>
                                 <td class="fit text-end"><?=number_format($job['salary']);?> บาท</td>
@@ -81,6 +83,7 @@
                             </tr>
 
                         <?php
+                                    $i++;
                                 }
                             }
                         ?>

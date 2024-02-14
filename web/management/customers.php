@@ -47,12 +47,14 @@
                             
                             $data = connect_api($apiUrl);
 
+                            $i = 1;
+
                             if ($data['responseCode'] == 000) {
                                 foreach ($data['customers'] as $customers) {
                         ?>
 
                             <tr>
-                                <th class="text-end"><?=$customers['id'];?></th>
+                                <th class="text-end"><?=$i;?></th>
                                 <td><p class="mb-0 text-overflow btn-tooltip" data-bs-title="<?=$customers['fname'];?> <?=$customers['lname'];?>"><?=$customers['fname'];?> <?=$customers['lname'];?></p></td>
                                 <td class="fit"><a href="mailto:<?=$customers['email'];?>"><?=$customers['email'];?></a></td>
                                 <td class="fit"><a href="tel:<?=$customers['phone'];?>"><?=$customers['phone'];?></a></td>
@@ -99,6 +101,7 @@
                             </tr>
 
                         <?php
+                                    $i++;
                                 }
                             }
                         ?>

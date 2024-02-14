@@ -99,6 +99,7 @@
                                 <td class="text-center"><?=date("d M Y", strtotime($promotion['endDate']));?></td>
                                 <td class="fit">
                                     <a class="btn btn-warning btn-tooltip" href="./promotion-apply-category.php?id=<?=$promotion['id'];?>" data-bs-title="ใช้งานโปรโมชั่น"><i class="fa-solid fa-tags"></i></a>
+                                    <a class="btn btn-primary btn-tooltip" href="./promotion-products.php?id=<?=$promotion['id'];?>" data-bs-title="สินค้าโปรโมชั่น"><i class="fa-solid fa-list-check"></i></a>
                                     <button class="btn btn-info btn-tooltip" type="button" data-bs-toggle="modal" data-bs-target="#EditSheduleModal" data-bs-id="<?=$promotion['id'];?>" data-bs-start="<?=$promotion['startDate'];?>" data-bs-end="<?=$promotion['endDate'];?>" data-bs-title="แก้ไขกำหนดการ"><i class="fa-solid fa-calendar-days"></i></button>
                                     <a class="btn btn-outline-dark btn-tooltip" href="./promotion-orders.php?id=<?=$promotion['id'];?>" data-bs-title="คำสั่งซื้อ"><i class="fa-solid fa-cart-plus"></i></a>
                                 </td>

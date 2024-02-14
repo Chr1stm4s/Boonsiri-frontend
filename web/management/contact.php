@@ -156,31 +156,32 @@
                         <tbody>
                             <tr>
                                 <th class="text-end">ชื่อผู้ติดต่อ:</th>
-                                <td id="ContactName" colspan="2"></td>
+                                <td id="ContactName" colspan="3"></td>
                             </tr>
                             <tr>
                                 <th class="text-end">อีเมล:</th>
-                                <td id="ContactEmail" colspan="2"></td>
+                                <td id="ContactEmail" colspan="3"></td>
                             </tr>
                             <tr>
                                 <th class="text-end">เบอร์โทรศัพท์:</th>
-                                <td id="ContactPhone" colspan="2"></td>
+                                <td id="ContactPhone" colspan="3"></td>
                             </tr>
                             <tr>
                                 <th class="text-end">LINE ID:</th>
-                                <td id="ContactLINE" colspan="2"></td>
+                                <td id="ContactLINE" colspan="3"></td>
                             </tr>
                             <tr>
                                 <th class="text-end">หัวเรื่อง:</th>
-                                <td id="ContactTopic" colspan="2"></td>
+                                <td id="ContactTopic" colspan="3"></td>
                             </tr>
                             <tr>
                                 <th class="text-end">ข้อความ:</th>
-                                <td id="ContactMessage" colspan="2"></td>
+                                <td id="ContactMessage" colspan="3"></td>
                             </tr>
                             <tr>
                                 <th class="text-end">ช่วงเวลาที่สะดวกติดต่อกลับ:</th>
-                                <td id="timeStart"></td>
+                                <td class="fit" id="timeStart"></td>
+                                <td class="fit px-0">ถึง</td>
                                 <td id="timeEnd"></td>
                             </tr>
                         </tbody>

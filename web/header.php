@@ -18,9 +18,9 @@
     <div class="container-fluid">
         <div class="row">
             <div class="my-auto col-12 col-md d-flex">
-                <marquee behavior="sliding" direction="left" class="my-auto text-white">Lorem ipsum dolor sit amet consectetur adipisicing elit. Consectetur, facilis quam vero corporis iusto amet assumenda dignissimos impedit quidem nesciunt. Nobis provident illum molestiae quasi repellendus quisquam iste, minima dolorem!</marquee>
+                <marquee behavior="sliding" direction="left" class="my-auto text-white">คิดถึงบุญศิริ คิดถึงแหล่งอาหารปลอดภัย รอยยิ้มสดใส ส่งทันใจ คู่ค้าโตไปด้วยกัน</marquee>
             </div>
-            <div class="my-auto col-12 col-md-auto">
+            <!-- <div class="my-auto col-12 col-md-auto">
                 <div class="row mx-0">
                     <div class="my-auto col col-md-auto border-end border-white border-2">
                         <div class="dropdown">
@@ -45,7 +45,7 @@
                         </button>
                     </div>
                 </div>
-            </div>
+            </div> -->
         </div>
     </div>
 </section>

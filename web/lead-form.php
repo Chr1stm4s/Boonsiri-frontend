@@ -57,7 +57,7 @@
                                         <div class="col-12 col-md">
                                             <div class="input-group">
                                                 <span class="input-group-text" id="time_start">เริ่มตั้งแต่เวลา</span>
-                                                <input type="time" class="form-control" placeholder="เริ่มตั้งแต่เวลา" id="time_start" name="time_start" aria-label="time_start" aria-describedby="time_start" inputmode="time">
+                                                <input type="time" class="form-control" placeholder="เริ่มตั้งแต่เวลา" id="time_start" name="timeStart" aria-label="time_start" aria-describedby="time_start" inputmode="time">
                                             </div>
                                         </div>
                                         <div class="col-12 col-md-auto px-0 my-auto text-center">
@@ -66,7 +66,7 @@
                                         <div class="col-12 col-md">
                                             <div class="input-group">
                                                 <span class="input-group-text" id="time_end">สิ้นสุดระยะเวลา</span>
-                                                <input type="time" class="form-control" placeholder="สิ้นสุดระยะเวลา" id="time_end" name="time_end" aria-label="time_end" aria-describedby="time_end" inputmode="time">
+                                                <input type="time" class="form-control" placeholder="สิ้นสุดระยะเวลา" id="time_end" name="timeEnd" aria-label="time_end" aria-describedby="time_end" inputmode="time">
                                             </div>
                                         </div>
                                     </div>

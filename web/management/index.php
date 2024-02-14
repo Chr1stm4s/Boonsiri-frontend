@@ -242,6 +242,10 @@
         </div>
     </section>
 
+    <pre>
+        <?=var_dump($DataSaleChart);?>
+    </pre>
+
     <section class="pb-5">
         <div class="container">
             <div class="row my-5">

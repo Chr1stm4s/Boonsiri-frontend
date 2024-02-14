@@ -210,6 +210,9 @@
                 <div class="col">
                     <h3 class="fs-1 mb-0">สินค้าลดราคา</h3>
                 </div>
+                <div class="col-auto my-auto">
+                    <a href="<?=rootURL();?>สินค้าลดราคา/" class="btn btn-theme-1 px-3">ดูทั้งหมด</a>
+                </div>
             </div>
             <div class="row g-4">
                 <div class="col">

@@ -32,9 +32,9 @@
                                 <th class="px-4 fit">รหัสสาขา</th>
                                 <th>ชื่อสาขา</th>
                                 <th>ที่อยู่</th>
+                                <th>ตำบล / แขวง</th>
                                 <th>อำเภอ / เขต</th>
                                 <th>จังหวัด</th>
-                                <!-- <th class="px-4 fit">ปรับปรุงล่าสุด</th> -->
                                 <th>จัดการ</th>
                             </tr>
                         </thead>
@@ -54,9 +54,9 @@
                                 <td class="text-center"><?=$branch['whsCode'];?></td>
                                 <td><p class="mb-0 text-overflow"><?=$branch['title'];?></p></td>
                                 <td><?=$branch['address'];?></td>
+                                <td><?=$branch['districtName'];?></td>
                                 <td><?=$branch['amphurName'];?></td>
                                 <td><?=$branch['provinceName'];?></td>
-                                <!-- <td class="text-center"><?//=time_ago("th", $branch['updates']);?></td> -->
                                 <td class="fit">
                                     <button 
                                         type="button" 

@@ -245,6 +245,11 @@ RewriteRule ^สินค้าบุญศิริ/(.*)/([0-9]+)$ /สิน�
 RewriteRule ^ข้อมูลสินค้าบุญศิริ/([0-9]+)/(.*)/$ product.php?id=$1&title=$2 [L]
 RewriteRule ^ข้อมูลสินค้าบุญศิริ/([0-9]+)/(.*)$ /สินค้าบุญศิริ/$1/$2/ [L]
 
+#Product promotions
+RewriteCond %{THE_REQUEST} \s/product-promotions\.php\s [NC]
+RewriteRule ^ /สินค้าลดราคา/? [R=301,L]
+RewriteRule ^สินค้าลดราคา/$ /product-promotions.php [L]
+
 #Branches
 RewriteCond %{THE_REQUEST} \s/branches\.php\s [NC]
 RewriteRule ^ /สาขาบุญศิริ/? [R=301,L]

@@ -34,8 +34,9 @@
                                 <th class="fit">เลขที่คำสั่งซื้อ</th>
                                 <th class="fit text-center">ภาพสินค้า</th>
                                 <th>ชื่อสินค้า</th>
-                                <!-- <th>ชื่อผู้สั่งซื้อ</th>
-                                <th class="fit">เบอร์ติดต่อ</th> -->
+                                <th>ชื่อผู้สั่งซื้อ</th>
+                                <th class="fit">เบอร์ติดต่อ</th>
+                                <th class="text-center">สถานะ</th>
                                 <th class="text-end">ราคา</th>
                                 <th class="fit">วันที่สั่งซื้อ</th>
                                 <th class="fit">แก้ไขล่าสุด</th>
@@ -51,20 +52,25 @@
 
                             if ($data['responseCode'] == 000) {
                                 foreach ($data['preOrders'] as $preOrder) {
-                                    // $ProductDataAPIRequest = [
-                                    //     "id" => $preOrder['customerId']
-                                    // ]; 
+                                    $ProductDataAPIRequest = [
+                                        "id" => $preOrder['customerId']
+                                    ]; 
 
-                                    // $ProductDataAPIResponse = connect_api("https://www.ecmapi.boonsiri.co.th/api/v1/customer/get-customer-by-id", $ProductDataAPIRequest);
+                                    $ProductDataAPIResponse = connect_api("https://www.ecmapi.boonsiri.co.th/api/v1/customer/get-customer-by-id", $ProductDataAPIRequest);
 
-                                    // if ($ProductDataAPIResponse['responseCode'] == "000") {
-                                    //     $customer = $ProductDataAPIResponse['preOrders'];
-                                    // } else {
-                                    //     var_dump($ProductDataAPIRequest);
-                                    //     var_dump($ProductDataAPIResponse);
+                                    if ($ProductDataAPIResponse['responseCode'] == "000") {
+                                        $customer = $ProductDataAPIResponse['point'];
 
-                                    //     exit();
-                                    // }
+                                        if ($preOrder['status'] == 1) {
+                                            $status = '<span class="badge text-bg-light w-100">รอแอดมินสรุปยอด</span>';
+                                        } elseif ($preOrder['status'] == 2) {
+                                            $status = '<span class="badge text-bg-success w-100">สรุปยอดแล้ว</span>';
+                                        } else {
+                                            $status = '<span class="badge text-bg-secondary w-100">รอแอดมินสรุปยอด</span>';
+                                        }
+                                    } else {
+                                        exit();
+                                    }
 
                                     $thumbnail = (file_exists("products/".$preOrder['image'])) ? rootURL()."products/".$preOrder['image'] : rootURL()."images/logo.png";
                         ?>
@@ -75,8 +81,9 @@
                                     <img src="<?=$thumbnail;?>" alt="" class="rounded-3" height="40" data-bs-toggle="modal" data-bs-target="#PreviewThumbnailModal" data-bs-img="<?=$thumbnail;?>">
                                 </td>
                                 <th><?=$preOrder['title'];?></th>
-                                <!-- <td><p class="mb-0 text-overflow btn-tooltip" data-bs-title="<?=$customer['fname'];?> <?=$customer['lname'];?>"><?=$customer['fname'];?> <?=$customer['lname'];?></p></td>
-                                <td class="fit"><a href="tel:<?=$customer['phone'];?>"><?=$customer['phone'];?></a></td> -->
+                                <td><p class="mb-0 text-overflow btn-tooltip" data-bs-title="<?=$customer['fname'];?> <?=$customer['lname'];?>"><?=$customer['fname'];?> <?=$customer['lname'];?></p></td>
+                                <td class="fit"><a href="tel:<?=$customer['phone'];?>"><?=$customer['phone'];?></a></td>
+                                <td class="fit text-end"><?=$status;?></td>
                                 <td class="fit text-end"><?=number_format($preOrder['price']);?> บาท</td>
                                 <td class="fit text-center"><?=date("d M Y", strtotime($preOrder['added']));?></td>
                                 <td class="fit text-center"><?=time_ago("th", $preOrder['updates']);?></td>
@@ -108,6 +115,10 @@
                     </div>
                     <div class="modal-body">
                         <input type="hidden" name="preOrderId" id="preOrderId">
+                        <div class="mb-3">
+                            <label for="orderNo" class="col-form-label">เลขที่คำสั่งซื้อ:</label>
+                            <input type="text" name="orderNo" class="form-control" id="orderNo" required aria-required="true">
+                        </div>
                         <div class="mb-3">
                             <label for="productPrice" class="col-form-label">ราคาสินค้า:</label>
                             <input type="number" name="productPrice" class="form-control" id="productPrice" required aria-required="true">
@@ -192,7 +203,9 @@
                                     'สร้างคำสั่งซื้อสำเร็จ',
                                     '',
                                     'success'
-                                );
+                                ).then(() => {
+                                    location.reload();
+                                });
                             } else if (response.responseCode == "A07") {
                                 Swal.fire(
                                     'สินค้าในระบบไม่เพียงพอ!',

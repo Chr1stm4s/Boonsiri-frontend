@@ -126,7 +126,7 @@
 
 .products-card>img {
     height: 200px;
-    object-fit: cover;
+    object-fit: contain;
 }
 
 .products-card>img.thumbnail-placeholder {
@@ -140,12 +140,9 @@
 }
 
 .header-contact {
-    height: calc(100vh - 102px);
     background-image: linear-gradient(to bottom, #6d98acd2 0%, #6d98acd2 100%), url('https://img.freepik.com/free-photo/industrial-park-factory-building-warehouse_1417-1928.jpg?w=1380&t=st=1690465834~exp=1690466434~hmac=d77181709c0f47f623a46c6a7c4d3f4994672f79d8ba6aa9e34f192a95a0066f');
     background-size: cover;
     background-position: center;
-    position: relative;
-    display: flex;
 }
 
 .header-jobs {
