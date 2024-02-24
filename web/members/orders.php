@@ -191,8 +191,8 @@
                                         <tr>
                                             <th class="fit">ลำดับ</th>
                                             <th>ชื่อสินค้า</th>
-                                            <th class="fit text-center">จำนวน</th>
                                             <th class="text-center">ราคา</th>
+                                            <th class="fit text-center">จำนวน</th>
                                             <th class="text-center">วันที่สั่งซื้อ</th>
                                             <th class="fit">อัพเดตล่าสุด</th>
                                             <th class="fit">เครื่องมือ</th>
@@ -230,8 +230,8 @@
                                         <tr>
                                             <th class="text-end"><?=$id;?></th>
                                             <td><p class="mb-0 text-overflow btn-tooltip" data-bs-title="<?=$OrderData['title'];?>"><?=$OrderData['title'];?></p></td>
-                                            <td class="fit text-center"><?=$OrderData['amount'];?> <?=$quantity;?></td>
                                             <td class="fit text-end"><?=number_format($OrderData['price']);?> บาท</td>
+                                            <td class="fit text-center"><?=$OrderData['amount'];?> <?=$quantity;?></td>
                                             <td class="fit text-center"><p class="mb-0 btn-tooltip" data-bs-title="<?=date("d M Y", strtotime($OrderData['added']));?>"><?=date("d M", strtotime($OrderData['added']));?> <?=date("Y", strtotime($OrderData['added'])) + 543;?></p></td>
                                             <td class="fit text-center"><?=time_ago("TH", $OrderData['updates']);?></td>
                                             <td class="fit text-center">
@@ -240,7 +240,7 @@
                                         </tr>
 
                                     <?php
-                                                $i++;
+                                                $id++;
                                             }
                                         } else {
                                     ?>

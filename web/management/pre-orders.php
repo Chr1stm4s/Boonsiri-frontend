@@ -36,8 +36,10 @@
                                 <th>ชื่อสินค้า</th>
                                 <th>ชื่อผู้สั่งซื้อ</th>
                                 <th class="fit">เบอร์ติดต่อ</th>
+                                <th class="fit text-center">สาขา</th>
                                 <th class="text-center">สถานะ</th>
                                 <th class="text-end">ราคา</th>
+                                <th class="fit text-center">จำนวน</th>
                                 <th class="fit">วันที่สั่งซื้อ</th>
                                 <th class="fit">แก้ไขล่าสุด</th>
                                 <th>จัดการ</th>
@@ -73,6 +75,7 @@
                                     }
 
                                     $thumbnail = (file_exists("products/".$preOrder['image'])) ? rootURL()."products/".$preOrder['image'] : rootURL()."images/logo.png";
+                                    $quantity = ($preOrder['uomCode']) ? $preOrder['uomCode'] : "ชิ้น";
                         ?>
 
                             <tr>
@@ -83,8 +86,10 @@
                                 <th><?=$preOrder['title'];?></th>
                                 <td><p class="mb-0 text-overflow btn-tooltip" data-bs-title="<?=$customer['fname'];?> <?=$customer['lname'];?>"><?=$customer['fname'];?> <?=$customer['lname'];?></p></td>
                                 <td class="fit"><a href="tel:<?=$customer['phone'];?>"><?=$customer['phone'];?></a></td>
+                                <td class="text-center"><?=$preOrder['whsCode'];?></td>
                                 <td class="fit text-end"><?=$status;?></td>
                                 <td class="fit text-end"><?=number_format($preOrder['price']);?> บาท</td>
+                                <td class="fit text-center"><?=$preOrder['amount'];?> <?=$quantity;?></td>
                                 <td class="fit text-center"><?=date("d M Y", strtotime($preOrder['added']));?></td>
                                 <td class="fit text-center"><?=time_ago("th", $preOrder['updates']);?></td>
                                 <td class="fit">

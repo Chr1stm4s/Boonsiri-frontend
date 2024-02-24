@@ -63,7 +63,7 @@
                 <img src="<?=rootURL();?>images/get-otp.svg" alt="สมัครสมาชิก บุญศิริ" class="step-1-element member-form-image">
                 <div class="step-1-element row">
                     <div class="col">
-                        <p class="mb-0">รหัสยืนยัน (OTP) ได้ส่งไปยัง <span id="OtpNumber">0865610611</span></p>
+                        <p class="mb-0">รหัสยืนยัน (OTP) ได้ส่งไปยัง <span id="OtpNumber"></span></p>
                     </div>
                 </div>
                 <div class="step-1-element row my-4">
@@ -101,6 +101,7 @@
                 <!-- Step 2 Elements -->
                 <form action="#" method="POST" id="FormRegister" class="step-2-element mt-4">
                     <input type="hidden" name="phone" id="RegisterPhone">
+                    <input type="hidden" name="cardCode" id="customerId" value="null">
                     <div class="row g-3 mb-3">
                         <div class="col-12 col-md-6">
                             <div class="form-floating">
@@ -136,7 +137,9 @@
                 </form>
 
                 <form action="#" method="POST" id="FormRegisterAddress" class="step-2-element">
-                    <input type="hidden" name="name" value="ที่อยู่จัดส่งเริ่มต้น">
+                    <input type="hidden" name="name" id="name" value="ที่อยู่จัดส่งเริ่มต้น">
+                    <input type="hidden" name="whsGrpCode" id="whsGrpCode" value="SSK">
+                    <input type="hidden" name="whsGrpName" id="whsGrpName" value="สาขาศรีสะเกษ">
                     <input type="hidden" name="isMain" value="1">
                     <div class="row g-3 mb-3">
                         <div class="col-12 col-lg-6">
@@ -208,12 +211,12 @@
                 <!-- Step 2 Elements -->
 
                 <!-- Step 3 Elements -->
-                <h2 class="mb-0 step-3-element">สมัครสมาชิกสำเร็จ</h2>
+                <h2 class="mt-3 mb-0 step-3-element">สมัครสมาชิกสำเร็จ</h2>
                 <img src="<?=rootURL();?>images/signed-up.svg" alt="สมัครสมาชิก บุญศิริ" class="step-3-element member-form-image">
 
                 <div class="row step-3-element">
                     <div class="col col-md-6 col-lg-4 mx-auto">
-                        <a href="<?=rootURL();?>" class="btn btn-theme-4 w-100" id="RegisterButton">เข้าสู่ระบบ</a>
+                        <a href="<?=rootURL();?>" class="btn btn-theme-4 w-100">เข้าสู่ระบบ</a>
                     </div>
                 </div>
                 <!-- Step 3 Elements -->
@@ -345,24 +348,11 @@
                     body: JSON.stringify(formDataObject)
                 };
 
-                fetch("https://www.ecmapi.boonsiri.co.th/api/v1/otp/send-otp", requestOptions)
+                fetch("https://www.ecmapi.boonsiri.co.th/api/v1/boonsiri/check-customer", requestOptions)
                 .then(response => response.json())
                 .then(
                     obj => {
                         if (obj.responseCode === "000") {
-                            Swal.fire({
-                                title: 'กรุณาตรวจสอบเลข OTP ในมือถือของคุณ!', 
-                                showCancelButton: false, 
-                                showDenyButton: false, 
-                                confirmButtonText: "ดำเนินการต่อ", 
-                                icon: 'success' 
-                            }).then(() => {
-                                $("#OtpNumber").text(phone);
-                                $("#RegisterPhone").val(phone);
-                                $("#FormCheckMember").hide();
-                                $("#RegisterFormWizard").fadeIn();
-                            });
-                        } else if (obj.responseCode === "A05") {
                             Swal.fire({
                                 title: 'คุณเป็นสมาชิกอยู่แล้ว!', 
                                 showCancelButton: false, 
@@ -373,21 +363,85 @@
                                 window.location.href = "<?=rootURL();?>ลงชื่อเข้าใช้งาน/";
                             });
                         } else if (obj.responseCode === "A06") {
-                            Swal.fire({
-                                title: 'คุณเป็นสมาชิกอยู่แล้ว!', 
-                                text: 'กรุณาใช้เบอร์โทรศัพท์เป็นรหัสผ่าน', 
-                                showCancelButton: false, 
-                                showDenyButton: false, 
-                                confirmButtonText: "ลงชื่อเข้าใช้งาน", 
-                                icon: 'info' 
-                            }).then(() => {
-                                window.location.href = "<?=rootURL();?>ลงชื่อเข้าใช้งาน/";
-                            });
+                            $("#Step1Header").removeClass("active");
+                            $("#Step1Number").removeClass("active");
+
+                            $("#Step2Header").addClass("active");
+                            $("#Step2Number").addClass("active");
+
+                            Swal.close();
+
+                            const userDataResponse = obj.response;
+
+                            console.log(userDataResponse);
+
+                            $("#RegisterPhone").val(phone);
+                            $("#FormCheckMember").hide();
+
+
+                            $(".step-1-element").hide();
+                            $(".step-2-element").show();
+
+                            $("#fname").val(userDataResponse.firstname);
+                            $("#lname").val(userDataResponse.lastname);
+                            $("#email").val(userDataResponse.email);
+                            $("#customerId").val(userDataResponse.customerId);
+                            $("#whsGrpCode").val(userDataResponse.whsGrpCode);
+                            $("#whsGrpName").val(userDataResponse.whsGrpName);
+
+                            $("#RegisterFormWizard").fadeIn();
                         } else {
-                            Swal.fire(
-                                'สมัครสมาชิกไม่สำเร็จ!',
-                                `กรุณาติดต่อเจ้าหน้าที่`,
-                                'error'
+                            fetch("https://www.ecmapi.boonsiri.co.th/api/v1/otp/send-otp", requestOptions)
+                            .then(response => response.json())
+                            .then(
+                                obj => {
+                                    if (obj.responseCode === "000") {
+                                        Swal.fire({
+                                            title: 'กรุณาตรวจสอบเลข OTP ในมือถือของคุณ!', 
+                                            showCancelButton: false, 
+                                            showDenyButton: false, 
+                                            confirmButtonText: "ดำเนินการต่อ", 
+                                            icon: 'success' 
+                                        }).then(() => {
+                                            $("#OtpNumber").text(phone);
+                                            $("#RegisterPhone").val(phone);
+                                            $("#FormCheckMember").hide();
+                                            $("#RegisterFormWizard").fadeIn();
+                                        });
+                                    } else if (obj.responseCode === "A05") {
+                                        Swal.fire({
+                                            title: 'คุณเป็นสมาชิกอยู่แล้ว!', 
+                                            showCancelButton: false, 
+                                            showDenyButton: false, 
+                                            confirmButtonText: "ลงชื่อเข้าใช้งาน", 
+                                            icon: 'info' 
+                                        }).then(() => {
+                                            window.location.href = "<?=rootURL();?>ลงชื่อเข้าใช้งาน/";
+                                        });
+                                    } else if (obj.responseCode === "A06") {
+                                        Swal.fire({
+                                            title: 'คุณเป็นสมาชิกอยู่แล้ว!', 
+                                            text: 'กรุณาใช้เบอร์โทรศัพท์เป็นรหัสผ่าน', 
+                                            showCancelButton: false, 
+                                            showDenyButton: false, 
+                                            confirmButtonText: "ลงชื่อเข้าใช้งาน", 
+                                            icon: 'info' 
+                                        }).then(() => {
+                                            window.location.href = "<?=rootURL();?>ลงชื่อเข้าใช้งาน/";
+                                        });
+                                    } else {
+                                        Swal.fire(
+                                            'สมัครสมาชิกไม่สำเร็จ!',
+                                            `กรุณาติดต่อเจ้าหน้าที่`,
+                                            'error'
+                                        );
+                                    }
+                                }
+                            )
+                            .catch(
+                                error => {
+                                    console.error('Error:', error);
+                                }
                             );
                         }
                     }
@@ -406,11 +460,11 @@
                         Swal.showLoading()
                     }
                 });
-                
+
                 event.preventDefault();
 
                 const formData = new FormData(this);
-                
+
                 const formDataObject = {};
                 formData.forEach((value, key) => {
                     formDataObject[key] = value;
@@ -496,12 +550,60 @@
                         'error'
                     );
                 } else {
-                    var unindexed_array = $("#FormRegister").serializeArray();
-                    var indexed_array = {};
+                    var formValue = $("#FormRegister").serializeArray();
+                    var indexFormValue = {};
 
-                    $.map(unindexed_array, function(n, i){
-                        indexed_array[n['name']] = n['value'];
+                    $.map(formValue, function(n, i){
+                        indexFormValue[n['name']] = n['value'];
                     });
+
+                    let customerData = {
+                        "customerId": null,
+                        "firstname": indexFormValue.fname,
+                        "lastname": indexFormValue.lname,
+                        "aliasName": "",
+                        "dateOfBirth": "",
+                        "phone1": indexFormValue.phone,
+                        "phone2": "",
+                        "email": indexFormValue.email,
+                        "shippingType": "1",
+                        "userResponsible": "012265",
+                        "branchId": 1,
+                        "whsGrpCode": "SSK",
+                        "whsGrpName": "สาขาศรีสะเกษ",
+                        "customerTypeCode": "T01",
+                        "customerType": "แปรรูปปลาทู",
+                        "knowus": "F01",
+                        "knowusCode": "Facebook",
+                        "addresses": [
+                            {
+                                "addressType": "bo_BillTo",
+                                "checkAddressName": "",
+                                "addressName": "",
+                                "street": "",
+                                "block": "",
+                                "city": "",
+                                "country": "",
+                                "zipCode": "",
+                                "visOrder": "",
+                                "U_BFP_Amphur": "",
+                                "U_BFP_Tambon": "",
+                                "U_ISS_RouteCode": "",
+                                "U_ISS_RouteName": "",
+                                "U_BFP_Latitude": "",
+                                "U_BFP_Longitude": ""
+                            }
+                        ],
+                        "branches": [
+                            {
+                                "branchCode": "1",
+                                "branchName": "SSK",
+                                "whGrpName": "สาขาศรีสะเกษ"
+                            }
+                        ]
+                    };
+
+                    console.log(JSON.stringify(customerData, null, 2));
 
                     Swal.fire({
                         title: 'กำลังดำเนินการ...',
@@ -515,87 +617,121 @@
                     });
 
                     $.ajax({
-                        url: 'https://www.ecmapi.boonsiri.co.th/api/v1/customer/add-customer',
+                        url: 'https://www.ecmapi.boonsiri.co.th/api/v1/boonsiri/create-customer-to-pos',
                         type: 'POST',
-                        data: JSON.stringify(indexed_array),
+                        data: JSON.stringify(customerData),
                         contentType: "application/json", 
                         success: function(response) {
                             if (response.responseCode == "000") {
-                                const UserID = response.id;
-                                const fname = indexed_array.fname;
-                                const lname = indexed_array.lname;
-                                const email = indexed_array.email;
-                                const phone = indexed_array.phone;
-                                const line = indexed_array.line;
-                                
-                                var FormRegisterAddress = $("#FormRegisterAddress").serializeArray();
-                                var FormRegisterAddressArray = {};
+                                var unindexed_array = $("#FormRegister").serializeArray();
+                                var indexed_array = {};
 
-                                $.map(FormRegisterAddress, function(n, i){
-                                    FormRegisterAddressArray[n['name']] = n['value'];
+                                $.map(unindexed_array, function(n, i){
+                                    indexed_array[n['name']] = n['value'];
                                 });
-                                
-                                FormRegisterAddressArray['customerId'] = UserID;
-                                FormRegisterAddressArray['fname'] = fname;
-                                FormRegisterAddressArray['lname'] = lname;
-                                FormRegisterAddressArray['phone'] = phone;
-                                FormRegisterAddressArray['email'] = email;
-                                FormRegisterAddressArray['line'] = line;
+
+                                Swal.fire({
+                                    title: 'กำลังดำเนินการ...',
+                                    showDenyButton: false,
+                                    showConfirmButton: false,
+                                    showCancelButton: false,
+                                    allowOutsideClick: false,
+                                    didOpen: () => {
+                                        Swal.showLoading();
+                                    }
+                                });
 
                                 $.ajax({
-                                    url: 'https://www.ecmapi.boonsiri.co.th/api/v1/address/insert-address-profile',
+                                    url: 'https://www.ecmapi.boonsiri.co.th/api/v1/customer/add-customer',
                                     type: 'POST',
-                                    data: JSON.stringify(FormRegisterAddressArray),
+                                    data: JSON.stringify(indexed_array),
                                     contentType: "application/json", 
                                     success: function(response) {
                                         if (response.responseCode == "000") {
-                                            $.post(
-                                                "<?=rootURL();?>action/login/", 
-                                                {
-                                                    id: UserID, 
-                                                    fname: fname, 
-                                                    lname: lname, 
-                                                    email: email, 
-                                                    line: line, 
-                                                    phone: phone, 
-                                                    address_id: response.addressProfile.id, 
-                                                    fname: response.addressProfile.fname, 
-                                                    lname: response.addressProfile.lname, 
-                                                    addressMain: response.addressProfile.addressMain, 
-                                                    addressSub: response.addressProfile.addressSub, 
-                                                    district: response.addressProfile.district, 
-                                                    amphur: response.addressProfile.amphur, 
-                                                    province: response.addressProfile.province, 
-                                                    postcode: response.addressProfile.postcode, 
-                                                    whsCode: response.addressProfile.whsCode, 
-                                                }, 
-                                                function(result) {
-                                                    Swal.close();
+                                            const UserID = response.id;
+                                            const fname = indexed_array.fname;
+                                            const lname = indexed_array.lname;
+                                            const email = indexed_array.email;
+                                            const phone = indexed_array.phone;
+                                            const line = indexed_array.line;
+                                            
+                                            var FormRegisterAddress = $("#FormRegisterAddress").serializeArray();
+                                            var FormRegisterAddressArray = {};
 
-                                                    if (result == "success") {
-                                                        $("#Step2Header").removeClass("active");
-                                                        $("#Step2Number").removeClass("active");
+                                            $.map(FormRegisterAddress, function(n, i){
+                                                FormRegisterAddressArray[n['name']] = n['value'];
+                                            });
+                                            
+                                            FormRegisterAddressArray['customerId'] = UserID;
+                                            FormRegisterAddressArray['fname'] = fname;
+                                            FormRegisterAddressArray['lname'] = lname;
+                                            FormRegisterAddressArray['phone'] = phone;
+                                            FormRegisterAddressArray['email'] = email;
+                                            FormRegisterAddressArray['line'] = line;
 
-                                                        $("#Step3Header").addClass("active");
-                                                        $("#Step3Number").addClass("active");
+                                            $.ajax({
+                                                url: 'https://www.ecmapi.boonsiri.co.th/api/v1/address/insert-address-profile',
+                                                type: 'POST',
+                                                data: JSON.stringify(FormRegisterAddressArray),
+                                                contentType: "application/json", 
+                                                success: function(response) {
+                                                    if (response.responseCode == "000") {
+                                                        $.post(
+                                                            "<?=rootURL();?>action/login/", 
+                                                            {
+                                                                id: UserID, 
+                                                                fname: fname, 
+                                                                lname: lname, 
+                                                                email: email, 
+                                                                line: line, 
+                                                                phone: phone, 
+                                                                address_id: response.addressProfile.id, 
+                                                                fname: response.addressProfile.fname, 
+                                                                lname: response.addressProfile.lname, 
+                                                                addressMain: response.addressProfile.addressMain, 
+                                                                addressSub: response.addressProfile.addressSub, 
+                                                                district: response.addressProfile.district, 
+                                                                amphur: response.addressProfile.amphur, 
+                                                                province: response.addressProfile.province, 
+                                                                postcode: response.addressProfile.postcode, 
+                                                                whsCode: response.addressProfile.whsCode, 
+                                                            }, 
+                                                            function(result) {
+                                                                Swal.close();
 
-                                                        $(".step-2-element").hide();
-                                                        $(".step-3-element").fadeIn();
+                                                                if (result == "success") {
+                                                                    $("#Step2Header").removeClass("active");
+                                                                    $("#Step2Number").removeClass("active");
+
+                                                                    $("#Step3Header").addClass("active");
+                                                                    $("#Step3Number").addClass("active");
+
+                                                                    $(".step-2-element").hide();
+                                                                    $(".step-3-element").fadeIn();
+                                                                } else {
+                                                                    Swal.fire(
+                                                                        'ลงชื่อเข้าใช้งานไม่สำเร็จ!',
+                                                                        `กรุณาลองใหม่ หรือติดต่อเจ้าหน้าที่`,
+                                                                        'error'
+                                                                    );
+
+                                                                    console.log(result)
+                                                                    console.log(response)
+                                                                }
+                                                            }
+                                                        );
                                                     } else {
                                                         Swal.fire(
-                                                            'ลงชื่อเข้าใช้งานไม่สำเร็จ!',
+                                                            'เพิ่มที่อยู่ไม่สำเร็จ!',
                                                             `กรุณาลองใหม่ หรือติดต่อเจ้าหน้าที่`,
                                                             'error'
                                                         );
-
-                                                        console.log(result)
-                                                        console.log(response)
                                                     }
                                                 }
-                                            );
+                                            });
                                         } else {
                                             Swal.fire(
-                                                'เพิ่มที่อยู่ไม่สำเร็จ!',
+                                                'สมัครสมาชิกไม่สำเร็จ!',
                                                 `กรุณาลองใหม่ หรือติดต่อเจ้าหน้าที่`,
                                                 'error'
                                             );

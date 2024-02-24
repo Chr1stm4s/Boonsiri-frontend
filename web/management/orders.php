@@ -42,6 +42,7 @@
                                 <th>ที่อยู่</th>
                                 <th class="fit">เบอร์ติดต่อ</th>
                                 <th class="text-end">ราคา</th>
+                                <th class="fit text-center">สาขา</th>
                                 <th class="px-4 fit text-center">สถานะ</th>
                                 <th class="px-4 fit text-center">เลขขนส่ง</th>
                                 <th class="fit">วันที่สั่งซื้อ</th>
@@ -83,6 +84,7 @@
                                 <td><p class="mb-0 text-overflow btn-tooltip" data-bs-title="<?=$purchase['address'];?> <?=$purchase['district'];?> <?=$purchase['amphur'];?> <?=$purchase['province'];?> <?=$purchase['postcode'];?>"><?=$purchase['address'];?> <?=$purchase['district'];?> <?=$purchase['amphur'];?> <?=$purchase['province'];?> <?=$purchase['postcode'];?></p></td>
                                 <td class="fit"><a href="tel:<?=$purchase['phone'];?>"><?=$purchase['phone'];?></a></td>
                                 <td class="fit text-end"><?=number_format($purchase['totalPrice']);?> บาท</td>
+                                <td class="text-center"><?=$purchase['whsCode'];?></td>
                                 <td class="fit"><?=$badge[$purchase['status']];?></td>
                                 <td class="fit"><?=$purchase['tracking'];?></td>
                                 <td class="fit text-center"><?=date("d M Y", strtotime($purchase['added']));?></td>
