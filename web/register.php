@@ -550,207 +550,327 @@
                         'error'
                     );
                 } else {
-                    var formValue = $("#FormRegister").serializeArray();
-                    var indexFormValue = {};
+                    if ($("#customerId").val() == "null") {
+                        var formValue = $("#FormRegister").serializeArray();
+                        var indexFormValue = {};
 
-                    $.map(formValue, function(n, i){
-                        indexFormValue[n['name']] = n['value'];
-                    });
+                        $.map(formValue, function(n, i){
+                            indexFormValue[n['name']] = n['value'];
+                        });
 
-                    let customerData = {
-                        "customerId": null,
-                        "firstname": indexFormValue.fname,
-                        "lastname": indexFormValue.lname,
-                        "aliasName": "",
-                        "dateOfBirth": "",
-                        "phone1": indexFormValue.phone,
-                        "phone2": "",
-                        "email": indexFormValue.email,
-                        "shippingType": "1",
-                        "userResponsible": "012265",
-                        "branchId": 1,
-                        "whsGrpCode": "SSK",
-                        "whsGrpName": "สาขาศรีสะเกษ",
-                        "customerTypeCode": "T01",
-                        "customerType": "แปรรูปปลาทู",
-                        "knowus": "F01",
-                        "knowusCode": "Facebook",
-                        "addresses": [
-                            {
-                                "addressType": "bo_BillTo",
-                                "checkAddressName": "",
-                                "addressName": "",
-                                "street": "",
-                                "block": "",
-                                "city": "",
-                                "country": "",
-                                "zipCode": "",
-                                "visOrder": "",
-                                "U_BFP_Amphur": "",
-                                "U_BFP_Tambon": "",
-                                "U_ISS_RouteCode": "",
-                                "U_ISS_RouteName": "",
-                                "U_BFP_Latitude": "",
-                                "U_BFP_Longitude": ""
+                        let customerData = {
+                            "customerId": null,
+                            "firstname": indexFormValue.fname,
+                            "lastname": indexFormValue.lname,
+                            "aliasName": "",
+                            "dateOfBirth": "",
+                            "phone1": indexFormValue.phone,
+                            "phone2": "",
+                            "email": indexFormValue.email,
+                            "shippingType": "1",
+                            "userResponsible": "012265",
+                            "branchId": 1,
+                            "whsGrpCode": "SSK",
+                            "whsGrpName": "สาขาศรีสะเกษ",
+                            "customerTypeCode": "T01",
+                            "customerType": "แปรรูปปลาทู",
+                            "knowus": "F01",
+                            "knowusCode": "Facebook",
+                            "addresses": [
+                                {
+                                    "addressType": "bo_BillTo",
+                                    "checkAddressName": "",
+                                    "addressName": "",
+                                    "street": "",
+                                    "block": "",
+                                    "city": "",
+                                    "country": "",
+                                    "zipCode": "",
+                                    "visOrder": "",
+                                    "U_BFP_Amphur": "",
+                                    "U_BFP_Tambon": "",
+                                    "U_ISS_RouteCode": "",
+                                    "U_ISS_RouteName": "",
+                                    "U_BFP_Latitude": "",
+                                    "U_BFP_Longitude": ""
+                                }
+                            ],
+                            "branches": [
+                                {
+                                    "branchCode": "1",
+                                    "branchName": "SSK",
+                                    "whGrpName": "สาขาศรีสะเกษ"
+                                }
+                            ]
+                        };
+
+                        console.log(JSON.stringify(customerData, null, 2));
+
+                        Swal.fire({
+                            title: 'กำลังดำเนินการ...',
+                            showDenyButton: false,
+                            showConfirmButton: false,
+                            showCancelButton: false,
+                            allowOutsideClick: false,
+                            didOpen: () => {
+                                Swal.showLoading();
                             }
-                        ],
-                        "branches": [
-                            {
-                                "branchCode": "1",
-                                "branchName": "SSK",
-                                "whGrpName": "สาขาศรีสะเกษ"
-                            }
-                        ]
-                    };
+                        });
 
-                    console.log(JSON.stringify(customerData, null, 2));
+                        $.ajax({
+                            url: 'https://www.ecmapi.boonsiri.co.th/api/v1/boonsiri/create-customer-to-pos',
+                            type: 'POST',
+                            data: JSON.stringify(customerData),
+                            contentType: "application/json", 
+                            success: function(response) {
+                                if (response.responseCode == "000") {
+                                    var unindexed_array = $("#FormRegister").serializeArray();
+                                    var indexed_array = {};
 
-                    Swal.fire({
-                        title: 'กำลังดำเนินการ...',
-                        showDenyButton: false,
-                        showConfirmButton: false,
-                        showCancelButton: false,
-                        allowOutsideClick: false,
-                        didOpen: () => {
-                            Swal.showLoading();
-                        }
-                    });
+                                    $.map(unindexed_array, function(n, i){
+                                        indexed_array[n['name']] = n['value'];
+                                    });
 
-                    $.ajax({
-                        url: 'https://www.ecmapi.boonsiri.co.th/api/v1/boonsiri/create-customer-to-pos',
-                        type: 'POST',
-                        data: JSON.stringify(customerData),
-                        contentType: "application/json", 
-                        success: function(response) {
-                            if (response.responseCode == "000") {
-                                var unindexed_array = $("#FormRegister").serializeArray();
-                                var indexed_array = {};
-
-                                $.map(unindexed_array, function(n, i){
-                                    indexed_array[n['name']] = n['value'];
-                                });
-
-                                Swal.fire({
-                                    title: 'กำลังดำเนินการ...',
-                                    showDenyButton: false,
-                                    showConfirmButton: false,
-                                    showCancelButton: false,
-                                    allowOutsideClick: false,
-                                    didOpen: () => {
-                                        Swal.showLoading();
-                                    }
-                                });
-
-                                $.ajax({
-                                    url: 'https://www.ecmapi.boonsiri.co.th/api/v1/customer/add-customer',
-                                    type: 'POST',
-                                    data: JSON.stringify(indexed_array),
-                                    contentType: "application/json", 
-                                    success: function(response) {
-                                        if (response.responseCode == "000") {
-                                            const UserID = response.id;
-                                            const fname = indexed_array.fname;
-                                            const lname = indexed_array.lname;
-                                            const email = indexed_array.email;
-                                            const phone = indexed_array.phone;
-                                            const line = indexed_array.line;
-                                            
-                                            var FormRegisterAddress = $("#FormRegisterAddress").serializeArray();
-                                            var FormRegisterAddressArray = {};
-
-                                            $.map(FormRegisterAddress, function(n, i){
-                                                FormRegisterAddressArray[n['name']] = n['value'];
-                                            });
-                                            
-                                            FormRegisterAddressArray['customerId'] = UserID;
-                                            FormRegisterAddressArray['fname'] = fname;
-                                            FormRegisterAddressArray['lname'] = lname;
-                                            FormRegisterAddressArray['phone'] = phone;
-                                            FormRegisterAddressArray['email'] = email;
-                                            FormRegisterAddressArray['line'] = line;
-
-                                            $.ajax({
-                                                url: 'https://www.ecmapi.boonsiri.co.th/api/v1/address/insert-address-profile',
-                                                type: 'POST',
-                                                data: JSON.stringify(FormRegisterAddressArray),
-                                                contentType: "application/json", 
-                                                success: function(response) {
-                                                    if (response.responseCode == "000") {
-                                                        $.post(
-                                                            "<?=rootURL();?>action/login/", 
-                                                            {
-                                                                id: UserID, 
-                                                                fname: fname, 
-                                                                lname: lname, 
-                                                                email: email, 
-                                                                line: line, 
-                                                                phone: phone, 
-                                                                address_id: response.addressProfile.id, 
-                                                                fname: response.addressProfile.fname, 
-                                                                lname: response.addressProfile.lname, 
-                                                                addressMain: response.addressProfile.addressMain, 
-                                                                addressSub: response.addressProfile.addressSub, 
-                                                                district: response.addressProfile.district, 
-                                                                amphur: response.addressProfile.amphur, 
-                                                                province: response.addressProfile.province, 
-                                                                postcode: response.addressProfile.postcode, 
-                                                                whsCode: response.addressProfile.whsCode, 
-                                                            }, 
-                                                            function(result) {
-                                                                Swal.close();
-
-                                                                if (result == "success") {
-                                                                    $("#Step2Header").removeClass("active");
-                                                                    $("#Step2Number").removeClass("active");
-
-                                                                    $("#Step3Header").addClass("active");
-                                                                    $("#Step3Number").addClass("active");
-
-                                                                    $(".step-2-element").hide();
-                                                                    $(".step-3-element").fadeIn();
-                                                                } else {
-                                                                    Swal.fire(
-                                                                        'ลงชื่อเข้าใช้งานไม่สำเร็จ!',
-                                                                        `กรุณาลองใหม่ หรือติดต่อเจ้าหน้าที่`,
-                                                                        'error'
-                                                                    );
-
-                                                                    console.log(result)
-                                                                    console.log(response)
-                                                                }
-                                                            }
-                                                        );
-                                                    } else {
-                                                        Swal.fire(
-                                                            'เพิ่มที่อยู่ไม่สำเร็จ!',
-                                                            `กรุณาลองใหม่ หรือติดต่อเจ้าหน้าที่`,
-                                                            'error'
-                                                        );
-                                                    }
-                                                }
-                                            });
-                                        } else {
-                                            Swal.fire(
-                                                'สมัครสมาชิกไม่สำเร็จ!',
-                                                `กรุณาลองใหม่ หรือติดต่อเจ้าหน้าที่`,
-                                                'error'
-                                            );
-
-                                            console.log(response)
+                                    Swal.fire({
+                                        title: 'กำลังดำเนินการ...',
+                                        showDenyButton: false,
+                                        showConfirmButton: false,
+                                        showCancelButton: false,
+                                        allowOutsideClick: false,
+                                        didOpen: () => {
+                                            Swal.showLoading();
                                         }
-                                    }
-                                });
-                            } else {
-                                Swal.fire(
-                                    'สมัครสมาชิกไม่สำเร็จ!',
-                                    `กรุณาลองใหม่ หรือติดต่อเจ้าหน้าที่`,
-                                    'error'
-                                );
+                                    });
 
-                                console.log(response)
+                                    $.ajax({
+                                        url: 'https://www.ecmapi.boonsiri.co.th/api/v1/customer/add-customer',
+                                        type: 'POST',
+                                        data: JSON.stringify(indexed_array),
+                                        contentType: "application/json", 
+                                        success: function(response) {
+                                            if (response.responseCode == "000") {
+                                                const UserID = response.id;
+                                                const fname = indexed_array.fname;
+                                                const lname = indexed_array.lname;
+                                                const email = indexed_array.email;
+                                                const phone = indexed_array.phone;
+                                                const line = indexed_array.line;
+                                                
+                                                var FormRegisterAddress = $("#FormRegisterAddress").serializeArray();
+                                                var FormRegisterAddressArray = {};
+
+                                                $.map(FormRegisterAddress, function(n, i){
+                                                    FormRegisterAddressArray[n['name']] = n['value'];
+                                                });
+                                                
+                                                FormRegisterAddressArray['customerId'] = UserID;
+                                                FormRegisterAddressArray['fname'] = fname;
+                                                FormRegisterAddressArray['lname'] = lname;
+                                                FormRegisterAddressArray['phone'] = phone;
+                                                FormRegisterAddressArray['email'] = email;
+                                                FormRegisterAddressArray['line'] = line;
+
+                                                $.ajax({
+                                                    url: 'https://www.ecmapi.boonsiri.co.th/api/v1/address/insert-address-profile',
+                                                    type: 'POST',
+                                                    data: JSON.stringify(FormRegisterAddressArray),
+                                                    contentType: "application/json", 
+                                                    success: function(response) {
+                                                        if (response.responseCode == "000") {
+                                                            $.post(
+                                                                "<?=rootURL();?>action/login/", 
+                                                                {
+                                                                    id: UserID, 
+                                                                    fname: fname, 
+                                                                    lname: lname, 
+                                                                    email: email, 
+                                                                    line: line, 
+                                                                    phone: phone, 
+                                                                    address_id: response.addressProfile.id, 
+                                                                    fname: response.addressProfile.fname, 
+                                                                    lname: response.addressProfile.lname, 
+                                                                    addressMain: response.addressProfile.addressMain, 
+                                                                    addressSub: response.addressProfile.addressSub, 
+                                                                    district: response.addressProfile.district, 
+                                                                    amphur: response.addressProfile.amphur, 
+                                                                    province: response.addressProfile.province, 
+                                                                    postcode: response.addressProfile.postcode, 
+                                                                    whsCode: response.addressProfile.whsCode, 
+                                                                }, 
+                                                                function(result) {
+                                                                    Swal.close();
+
+                                                                    if (result == "success") {
+                                                                        $("#Step2Header").removeClass("active");
+                                                                        $("#Step2Number").removeClass("active");
+
+                                                                        $("#Step3Header").addClass("active");
+                                                                        $("#Step3Number").addClass("active");
+
+                                                                        $(".step-2-element").hide();
+                                                                        $(".step-3-element").fadeIn();
+                                                                    } else {
+                                                                        Swal.fire(
+                                                                            'ลงชื่อเข้าใช้งานไม่สำเร็จ!',
+                                                                            `กรุณาลองใหม่ หรือติดต่อเจ้าหน้าที่`,
+                                                                            'error'
+                                                                        );
+
+                                                                        console.log(result)
+                                                                        console.log(response)
+                                                                    }
+                                                                }
+                                                            );
+                                                        } else {
+                                                            Swal.fire(
+                                                                'เพิ่มที่อยู่ไม่สำเร็จ!',
+                                                                `กรุณาลองใหม่ หรือติดต่อเจ้าหน้าที่`,
+                                                                'error'
+                                                            );
+                                                        }
+                                                    }
+                                                });
+                                            } else {
+                                                Swal.fire(
+                                                    'สมัครสมาชิกไม่สำเร็จ!',
+                                                    `กรุณาลองใหม่ หรือติดต่อเจ้าหน้าที่`,
+                                                    'error'
+                                                );
+
+                                                console.log(response)
+                                            }
+                                        }
+                                    });
+                                } else {
+                                    Swal.fire(
+                                        'สมัครสมาชิกไม่สำเร็จ!',
+                                        `กรุณาลองใหม่ หรือติดต่อเจ้าหน้าที่`,
+                                        'error'
+                                    );
+
+                                    console.log(response)
+                                }
                             }
-                        }
-                    });
+                        });
+                    } else {
+                        var unindexed_array = $("#FormRegister").serializeArray();
+                        var indexed_array = {};
+
+                        $.map(unindexed_array, function(n, i){
+                            indexed_array[n['name']] = n['value'];
+                        });
+
+                        Swal.fire({
+                            title: 'กำลังดำเนินการ...',
+                            showDenyButton: false,
+                            showConfirmButton: false,
+                            showCancelButton: false,
+                            allowOutsideClick: false,
+                            didOpen: () => {
+                                Swal.showLoading();
+                            }
+                        });
+
+                        $.ajax({
+                            url: 'https://www.ecmapi.boonsiri.co.th/api/v1/customer/add-customer',
+                            type: 'POST',
+                            data: JSON.stringify(indexed_array),
+                            contentType: "application/json", 
+                            success: function(response) {
+                                if (response.responseCode == "000") {
+                                    const UserID = response.id;
+                                    const fname = indexed_array.fname;
+                                    const lname = indexed_array.lname;
+                                    const email = indexed_array.email;
+                                    const phone = indexed_array.phone;
+                                    const line = indexed_array.line;
+                                    
+                                    var FormRegisterAddress = $("#FormRegisterAddress").serializeArray();
+                                    var FormRegisterAddressArray = {};
+
+                                    $.map(FormRegisterAddress, function(n, i){
+                                        FormRegisterAddressArray[n['name']] = n['value'];
+                                    });
+                                    
+                                    FormRegisterAddressArray['customerId'] = UserID;
+                                    FormRegisterAddressArray['fname'] = fname;
+                                    FormRegisterAddressArray['lname'] = lname;
+                                    FormRegisterAddressArray['phone'] = phone;
+                                    FormRegisterAddressArray['email'] = email;
+                                    FormRegisterAddressArray['line'] = line;
+
+                                    $.ajax({
+                                        url: 'https://www.ecmapi.boonsiri.co.th/api/v1/address/insert-address-profile',
+                                        type: 'POST',
+                                        data: JSON.stringify(FormRegisterAddressArray),
+                                        contentType: "application/json", 
+                                        success: function(response) {
+                                            if (response.responseCode == "000") {
+                                                $.post(
+                                                    "<?=rootURL();?>action/login/", 
+                                                    {
+                                                        id: UserID, 
+                                                        fname: fname, 
+                                                        lname: lname, 
+                                                        email: email, 
+                                                        line: line, 
+                                                        phone: phone, 
+                                                        address_id: response.addressProfile.id, 
+                                                        fname: response.addressProfile.fname, 
+                                                        lname: response.addressProfile.lname, 
+                                                        addressMain: response.addressProfile.addressMain, 
+                                                        addressSub: response.addressProfile.addressSub, 
+                                                        district: response.addressProfile.district, 
+                                                        amphur: response.addressProfile.amphur, 
+                                                        province: response.addressProfile.province, 
+                                                        postcode: response.addressProfile.postcode, 
+                                                        whsCode: response.addressProfile.whsCode, 
+                                                    }, 
+                                                    function(result) {
+                                                        Swal.close();
+
+                                                        if (result == "success") {
+                                                            $("#Step2Header").removeClass("active");
+                                                            $("#Step2Number").removeClass("active");
+
+                                                            $("#Step3Header").addClass("active");
+                                                            $("#Step3Number").addClass("active");
+
+                                                            $(".step-2-element").hide();
+                                                            $(".step-3-element").fadeIn();
+                                                        } else {
+                                                            Swal.fire(
+                                                                'ลงชื่อเข้าใช้งานไม่สำเร็จ!',
+                                                                `กรุณาลองใหม่ หรือติดต่อเจ้าหน้าที่`,
+                                                                'error'
+                                                            );
+
+                                                            console.log(result)
+                                                            console.log(response)
+                                                        }
+                                                    }
+                                                );
+                                            } else {
+                                                Swal.fire(
+                                                    'เพิ่มที่อยู่ไม่สำเร็จ!',
+                                                    `กรุณาลองใหม่ หรือติดต่อเจ้าหน้าที่`,
+                                                    'error'
+                                                );
+                                            }
+                                        }
+                                    });
+                                } else {
+                                    Swal.fire(
+                                        'สมัครสมาชิกไม่สำเร็จ!',
+                                        `กรุณาลองใหม่ หรือติดต่อเจ้าหน้าที่`,
+                                        'error'
+                                    );
+
+                                    console.log(response)
+                                }
+                            }
+                        });
+                    }
                 }
             });
         });
