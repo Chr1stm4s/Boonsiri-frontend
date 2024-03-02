@@ -104,6 +104,7 @@
             $thumbnail = $_POST['thumbnail'];
                     
             $APIDataRequest = [
+                "categoryId" => $categoryId,
                 "id" => $id,
                 "thumbnail" => $thumbnail,
                 "title" => $title,

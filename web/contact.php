@@ -73,7 +73,7 @@
                             <label for="message" class="form-label">ข้อความติดต่อ</label>
                             <textarea name="message" id="LeadFormMessage" cols="30" rows="10" class="form-control" placeholder="ข้อความติดต่อ"></textarea>
                         </div>
-                        <button type="button" class="btn btn-theme-2" id="SubmitLeadForm">ส่งข้อความ &nbsp;<i class="fa-solid fa-paper-plane"></i></button>
+                        <button type="submit" class="btn btn-theme-2">ส่งข้อความ &nbsp;<i class="fa-solid fa-paper-plane"></i></button>
                     </form>
                 </div>
             </div>

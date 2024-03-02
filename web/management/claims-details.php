@@ -88,7 +88,7 @@
 
                             $MessageFileResponse = connect_api("https://www.ecmapi.boonsiri.co.th/api/v1/case-file/list-case-file", $MessageFileAPIRequest);
 
-                            if ($MessageFileResponse['responseCode'] == 000 && $MessageFileResponse['casesFiles']) {
+                            if ($MessageFileResponse['responseCode'] == 000 || count($MessageFileResponse['casesFiles']) != 0) {
                         ?>
 
                         <div class="card-header border-0 bg-white">
@@ -96,6 +96,7 @@
                             <?php
                                 foreach ($MessageFileResponse['casesFiles'] as $MessageFileData) {
                                     $path_info = pathinfo("../cases/$id/".$MessageFileData['file']);
+                                    
                                     $icon = [
                                         "pdf" => '<i class="mx-2 fs-3 fa-solid fa-file-pdf text-danger"></i>', 
                                         "doc" => '<i class="mx-2 fs-3 fa-solid fa-file-word text-primary"></i>', 

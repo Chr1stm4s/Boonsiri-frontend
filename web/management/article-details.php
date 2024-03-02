@@ -110,6 +110,10 @@
             }
         });
 
+        <?php
+            if ($ArticleDetailsData['type'] == 2) {
+        ?>
+
         ContentImage.onchange = evt => {
             const [file] = ContentImage.files
             if (file) {
@@ -117,6 +121,10 @@
             }
         }
 
+        <?php
+            }
+        ?>
+        
         $('.article-details-form').on("submit", function(e) {
             e.preventDefault();
 

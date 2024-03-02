@@ -70,8 +70,6 @@
                                         } else {
                                             $status = '<span class="badge text-bg-secondary w-100">รอแอดมินสรุปยอด</span>';
                                         }
-                                    } else {
-                                        exit();
                                     }
 
                                     $thumbnail = (file_exists("products/".$preOrder['image'])) ? rootURL()."products/".$preOrder['image'] : rootURL()."images/logo.png";

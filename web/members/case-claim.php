@@ -149,8 +149,6 @@
                         </div>
 
                         <?php
-                            } else {
-                                var_dump($MessageFileAPIRequest);
                             }
                         ?>
 

@@ -183,7 +183,7 @@
                             ?>
 
                                 <div class="col-6 col-md-3">
-                                    <div class="card articles-list border-0">
+                                    <div class="card articles-list border-0 h-100">
                                         <img src="<?=rootURL();?>articles/<?=$RelateArticles['id'];?>/<?=$RelateArticles['thumbnail'];?>" alt="<?=$RelateArticles['title'];?>" class="card-img-top">
                                         <div class="card-body">
                                             <h5 class="card-title text-overflow"><?=$RelateArticles['title'];?></h5>

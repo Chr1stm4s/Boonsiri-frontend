@@ -61,15 +61,15 @@
                                 <td class="text-center"><?=date("d M Y", strtotime($job['added']));?></td>
                                 <td class="text-center"><?=time_ago("th", $job['updates']);?></td>
                                 <td class="fit">
-                                    <a href="./candidates.php?id=<?=$job['id'];?>" class="btn btn-primary"><i class="fa-solid fa-user-tie"></i></a>
+                                    <a href="./candidates.php?id=<?=$job['id'];?>" class="btn btn-primary btn-tooltip" data-bs-title="ดูรายชื่อผู้สมัคร"><i class="fa-solid fa-user-tie"></i></a>
                                     <button 
                                         type="button" 
                                         class="btn btn-warning btn-tooltip" 
-                                        data-title="แก้ไขข้อมูลตำแหน่งงาน" 
+                                        data-title="<?=$job['title'];?>" 
                                         data-bs-toggle="modal" 
                                         data-bs-target="#JobhModal" 
                                         data-bs-id="<?=$job['id'];?>" 
-                                        data-bs-title="<?=$job['title'];?>" 
+                                        data-bs-title="แก้ไขข้อมูลตำแหน่งงาน" 
                                         data-bs-description="<?=$job['description'];?>" 
                                         data-bs-salary="<?=$job['salary'];?>" 
                                         data-bs-working-hour="<?=$job['workingHour'];?>" 
@@ -78,7 +78,7 @@
                                     >
                                         <i class="fa-regular fa-pen-to-square"></i>
                                     </button>
-                                    <button type="button" class="btn btn-danger btn-remove" data-id="<?=$job['id'];?>"><i class="fa-solid fa-trash"></i></button>
+                                    <button type="button" class="btn btn-danger btn-remove btn-tooltip" data-id="<?=$job['id'];?>" data-bs-title="ลบโพสต์สมัครงาน"><i class="fa-solid fa-trash"></i></button>
                                 </td>
                             </tr>
 
@@ -156,7 +156,7 @@
                     const button = event.relatedTarget
                     // Extract info from data-bs-* attributes
                     const id = button.getAttribute('data-bs-id')
-                    const title = button.getAttribute('data-bs-title')
+                    const title = button.getAttribute('data-title')
                     const description = button.getAttribute('data-bs-description')
                     const salary = button.getAttribute('data-bs-salary')
                     const workingHour = button.getAttribute('data-bs-working-hour')
