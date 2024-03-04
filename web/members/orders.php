@@ -111,7 +111,9 @@
                                             '<span class="badge text-bg-success w-100">รับสินค้าแล้ว</span>', 
                                             '<span class="badge text-bg-info w-100">รีวิวสำเร็จ</span>', 
                                             '<span class="badge text-bg-danger w-100">มีสินค้าแจ้งเคลม</span>', 
-                                            '<span class="badge text-bg-dark w-100">เคลมแล้ว</span>'
+                                            '<span class="badge text-bg-dark w-100">เคลมแล้ว</span>', 
+                                            '<span class="badge text-bg-success w-100">เสร็จสมบูรณ์</span>', 
+                                            '<span class="badge text-bg-secondary w-100">เกินกำหนดชำระ</span>'
                                         );
 
                                         $APIRequest = [
@@ -210,8 +212,10 @@
                                             '<span class="badge text-bg-primary w-100">กำลังจัดส่ง</span>', 
                                             '<span class="badge text-bg-success w-100">รับสินค้าแล้ว</span>', 
                                             '<span class="badge text-bg-info w-100">รีวิวสำเร็จ</span>', 
-                                            '<span class="badge text-bg-danger w-100">ยกเลิกแล้ว</span>', 
-                                            '<span class="badge text-bg-warning w-100">เคลมแล้ว</span>'
+                                            '<span class="badge text-bg-danger w-100">มีสินค้าแจ้งเคลม</span>', 
+                                            '<span class="badge text-bg-dark w-100">เคลมแล้ว</span>', 
+                                            '<span class="badge text-bg-success w-100">เสร็จสมบูรณ์</span>', 
+                                            '<span class="badge text-bg-secondary w-100">เกินกำหนดชำระ</span>'
                                         );
 
                                         $APIRequest = [

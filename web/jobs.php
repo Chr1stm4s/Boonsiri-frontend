@@ -52,7 +52,7 @@
             ?>
 
                 <div class="col-12 col-md-6">
-                    <div class="card">
+                    <div class="card h-100">
                         <div class="card-body">
                             <div class="row mx-0">
                                 <div class="col-12 col-md">

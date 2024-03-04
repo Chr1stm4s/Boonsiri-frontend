@@ -447,7 +447,7 @@
 
                 <div class="col-6 col-md-4 col-lg-3 my-3">
                     <a href="<?=rootURL();?>ข่าวสารและกิจกรรม/<?=$HomeArticlesData['id'];?>/<?=str_replace(" ", "-", $HomeArticlesData['title']);?>/" class="text-decoration-none">
-                        <div class="card">
+                        <div class="card h-100">
                             <img src="<?=rootURL();?>articles/<?=$HomeArticlesData['id'];?>/<?=$HomeArticlesData['thumbnail'];?>" alt="<?=$HomeArticlesData['title'];?>" class="card-img-top">
                             <div class="card-body">
                                 <h5 class="card-title text-overflow overflow-2"><?=$HomeArticlesData['title'];?></h5>

@@ -4,6 +4,16 @@ php_flag opcache.enable Off
 
 Header add RCACHE "0"
 
+#API - Sync products
+RewriteCond %{THE_REQUEST} \s/action\/sync-products\.php\s [NC]
+RewriteRule ^ /action/sync-products/? [R=301,L]
+RewriteRule ^action/sync-products/$ /action/sync-products.php [L]
+
+#API - Clear orders
+RewriteCond %{THE_REQUEST} \s/action\/clear-orders\.php\s [NC]
+RewriteRule ^ /action/clear-orders/? [R=301,L]
+RewriteRule ^action/clear-orders/$ /action/clear-orders.php [L]
+
 #API - Login
 RewriteCond %{THE_REQUEST} \s/action\/login\.php\s [NC]
 RewriteRule ^ /action/login/? [R=301,L]
