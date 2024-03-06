@@ -127,7 +127,7 @@
             ?>
 
                 <div class="col-6 col-md-3">
-                    <div class="card articles-list">
+                    <div class="card articles-list h-100">
                         <img src="<?=rootURL();?>articles/<?=$Articles['id'];?>/<?=$Articles['thumbnail'];?>" alt="<?=$Articles['title'];?>" class="card-img-top">
                         <div class="card-body">
                             <h5 class="card-title"><?=$Articles['title'];?></h5>
