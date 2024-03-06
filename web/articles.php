@@ -66,7 +66,7 @@
                                     <span class="badge bg-theme-2"><?=$FeaturedArticle['categoryId'];?></span>
                                     <br>
                                     <br>
-                                    <p class="mb-4"><?=$FeaturedArticle['intro'];?></p>
+                                    <p class="mb-4 text-overflow overflow-5"><?=$FeaturedArticle['intro'];?></p>
                                     <a href="<?=rootURL();?>ข่าวสารและกิจกรรม/<?=$FeaturedArticle['id'];?>/<?=str_replace(" ", "-", $FeaturedArticle['title']);?>/" class="btn btn-theme-4 px-4">อ่านต่อ</a>
                                 </div>
                             </div>
