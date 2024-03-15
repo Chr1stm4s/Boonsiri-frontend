@@ -378,46 +378,6 @@
                     </div>
                 </div>
             </div>
-            <!-- <div class="row g-4">
-                <div class="col-12 col-md-7">
-                    <div id="map" class="w-100 h-100"></div>
-                </div>
-                <div class="col-12 col-md-4 mx-auto branch-list">
-
-                    <?php
-                        $BranchesResponse = connect_api("https://www.ecmapi.boonsiri.co.th/api/v1/branch/master/list-branch");
-
-                        if ($BranchesResponse['responseCode'] == 000) {
-                            foreach ($BranchesResponse['branches'] as $BranchData) {
-                    ?>
-
-                    <div class="card shadow mb-3">
-                        <div class="card-body">
-                            <h5 class="card-title"><img src="<?=rootURL();?>images/logo.png" alt="บุญศิริโฟรเซ่นโปรดักส์ นครราชสีมา" height="30">&nbsp; บุญศิริโฟรเซ่นโปรดักส์ <?=$BranchData['title'];?></h5>
-                            <p class="card-text"><?=$BranchData['address'];?></p>
-                            <p class="mb-1 fs-5"><a href="tel:<?=$BranchData['phone'];?>" class="text-decoration-none text-primary"><i class="fa-solid fa-square-phone"></i> <?=$BranchData['phone'];?></a></p>
-                            <p class="mb-1 fs-5"><a href="https://line.me/ti/p/%40<?=$BranchData['line'];?>" class="text-decoration-none text-success"><i class="fa-brands fa-line"></i> <?=$BranchData['line'];?></a></p>
-                            <p class="mb-1 fs-5"><a href="https://www.google.com/maps/dir/?api=1&destination=<?=$BranchData['latitude'];?>,<?=$BranchData['longitude'];?>" class="text-decoration-none text-theme-4"><i class="fa-solid fa-map-location-dot"></i> นำทาง</a></p>
-                        </div>
-                    </div>
-
-                    <?php
-                            }
-                        } else {
-                    ?>
-
-                    <div class="card shadow mb-3">
-                        <div class="card-body">
-                            <h5 class="card-title"><img src="<?=rootURL();?>images/logo.png" alt="บุญศิริโฟรเซ่นโปรดักส์ นครราชสีมา" height="30">ไม่พบข้อมูล</h5>
-                        </div>
-                    </div>           
-
-                    <?php
-                        }
-                    ?>
-                    
-                </div>
-            </div> -->
         </div>
     </section>
 
