@@ -5,7 +5,7 @@
         if (isset($_POST['checkboxValues'])) {
             $checkboxValues = $_POST['checkboxValues'];
 
-            $PromotionAPIURL = "https://www.ecmapi.boonsiri.co.th/api/v1/promotion/set-promotion-by-item-code";
+            $PromotionAPIURL = "https://ecmapi.boonsiri.co.th/api/v1/promotion/set-promotion-by-item-code";
 
             // foreach ($checkboxValues as $value) {
                 $PromotionAPIDataRequest = [

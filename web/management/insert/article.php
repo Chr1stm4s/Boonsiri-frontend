@@ -15,7 +15,7 @@
     
         $thumbnail = time() . ".$ext";
         
-        $APIURL = "https://www.ecmapi.boonsiri.co.th/api/v1/article/insert-article";
+        $APIURL = "https://ecmapi.boonsiri.co.th/api/v1/article/insert-article";
                     
         $APIDataRequest = [
             "categoryId" => $categoryId,
@@ -58,7 +58,7 @@
             exit();
         }
     } else {
-        $APIURL = "https://www.ecmapi.boonsiri.co.th/api/v1/article/update-article";
+        $APIURL = "https://ecmapi.boonsiri.co.th/api/v1/article/update-article";
 
         if ($_FILES['thumbnail']['name']) {
             $file = $_FILES['thumbnail']['name'];

@@ -11,7 +11,7 @@
         'addressProfilesId' => $_SESSION['address_id']
     ];
 
-    $APIResponse = connect_api("https://www.ecmapi.boonsiri.co.th/api/v1/preorder/insert-preorder", $data);
+    $APIResponse = connect_api("https://ecmapi.boonsiri.co.th/api/v1/preorder/insert-preorder", $data);
 
     echo $APIResponse['responseDesc'];
 ?>

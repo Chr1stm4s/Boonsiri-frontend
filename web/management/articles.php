@@ -43,7 +43,7 @@
                         <tbody>
 
                         <?php
-                            $apiUrl = "https://www.ecmapi.boonsiri.co.th/api/v1/article-category/list-article-category";
+                            $apiUrl = "https://ecmapi.boonsiri.co.th/api/v1/article-category/list-article-category";
                             
                             $data = connect_api($apiUrl);
 
@@ -197,7 +197,7 @@
                     });
 
                     $.ajax({
-                        url: "https://www.ecmapi.boonsiri.co.th/api/v1/article-category/delete-article-category",
+                        url: "https://ecmapi.boonsiri.co.th/api/v1/article-category/delete-article-category",
                         type: "POST",
                         data: JSON.stringify(data),
                         contentType: "application/json; charset=utf-8",

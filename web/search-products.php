@@ -10,7 +10,7 @@
     $WhsCode = (@$_SESSION['whsCode']) ? $_SESSION['whsCode'] : "SSK";
     
     if ($categoryId == 0) {
-        $APIURL = "https://www.ecmapi.boonsiri.co.th/api/v1/product/search-product";
+        $APIURL = "https://ecmapi.boonsiri.co.th/api/v1/product/search-product";
 
         $ProductAPIDataRequest = [
             'textSearch' => $textSearch, 
@@ -23,7 +23,7 @@
 
         $ResponseKey = 'product';
     } else {
-        $APIURL = "https://www.ecmapi.boonsiri.co.th/api/v1/product/search-product-by-category-id";
+        $APIURL = "https://ecmapi.boonsiri.co.th/api/v1/product/search-product-by-category-id";
 
         $ProductAPIDataRequest = [
             'categoryId' => $categoryId, 

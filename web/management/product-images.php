@@ -9,7 +9,7 @@
 
         require_once "./head.php";
 
-        $APIURL = "https://www.ecmapi.boonsiri.co.th/api/v1/product/get-product-by-id";
+        $APIURL = "https://ecmapi.boonsiri.co.th/api/v1/product/get-product-by-id";
                     
         $ProductAPIDataRequest = [
             'productId' => $id, 
@@ -124,7 +124,7 @@
                     });
 
                     // API endpoint
-                    const apiUrl = 'https://www.ecmapi.boonsiri.co.th/api/v1/product/delete-product-image';
+                    const apiUrl = 'https://ecmapi.boonsiri.co.th/api/v1/product/delete-product-image';
 
                     // Send the POST request
                     fetch(apiUrl, {

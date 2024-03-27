@@ -9,7 +9,7 @@
     $keywords = $_POST['keywords'];
 
     if ($id == 0) {
-        $APIURL = "https://www.ecmapi.boonsiri.co.th/api/v1/article-category/insert-article-category";
+        $APIURL = "https://ecmapi.boonsiri.co.th/api/v1/article-category/insert-article-category";
 
         if ($_FILES['thumbnail']['name']) {
             $file = $_FILES['thumbnail']['name'];
@@ -50,7 +50,7 @@
             exit();
         }
     } else {
-        $APIURL = "https://www.ecmapi.boonsiri.co.th/api/v1/article-category/update-article-category";
+        $APIURL = "https://ecmapi.boonsiri.co.th/api/v1/article-category/update-article-category";
 
         if ($_FILES['thumbnail']['name']) {
             $file = $_FILES['thumbnail']['name'];

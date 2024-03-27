@@ -6,7 +6,7 @@
         "customerId" => 0
     ];
 
-    $OrderDataAPIResponse = connect_api("https://www.ecmapi.boonsiri.co.th/api/v1/purchase/list-purchase", $OrderDataAPIRequest);
+    $OrderDataAPIResponse = connect_api("https://ecmapi.boonsiri.co.th/api/v1/purchase/list-purchase", $OrderDataAPIRequest);
 
     if ($OrderDataAPIResponse['responseCode'] == 000) {
         $OrderDataExport = [];
@@ -38,7 +38,7 @@
                         "id" => $item['id']
                     ];
         
-                    $GetOrderDataAPIResponse = connect_api("https://www.ecmapi.boonsiri.co.th/api/v1/purchase/get-purchase", $GetOrderDataAPIRequest);
+                    $GetOrderDataAPIResponse = connect_api("https://ecmapi.boonsiri.co.th/api/v1/purchase/get-purchase", $GetOrderDataAPIRequest);
         
                     $OrderDataExport[] = [
                         $item['orderNo'], 
@@ -80,7 +80,7 @@
                     "id" => $item['id']
                 ];
     
-                $GetOrderDataAPIResponse = connect_api("https://www.ecmapi.boonsiri.co.th/api/v1/purchase/get-purchase", $GetOrderDataAPIRequest);
+                $GetOrderDataAPIResponse = connect_api("https://ecmapi.boonsiri.co.th/api/v1/purchase/get-purchase", $GetOrderDataAPIRequest);
     
                 $OrderDataExport[] = [
                     $item['orderNo'], 

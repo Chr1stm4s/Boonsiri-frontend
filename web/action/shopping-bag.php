@@ -8,7 +8,7 @@
         'whsCode' => $_SESSION['whsCode']
     ];
 
-    $HeaderCartData = connect_api("https://www.ecmapi.boonsiri.co.th/api/v1/cart/list-cart", $HeaderCartDataAPI);
+    $HeaderCartData = connect_api("https://ecmapi.boonsiri.co.th/api/v1/cart/list-cart", $HeaderCartDataAPI);
 
     if ($HeaderCartData === null) {
         echo 0;

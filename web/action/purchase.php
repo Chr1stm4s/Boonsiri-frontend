@@ -8,7 +8,7 @@
         'whsCode' => $_SESSION['whsCode']
     ];
 
-    $APIResponse = connect_api("https://www.ecmapi.boonsiri.co.th/api/v1/cart/list-cart", $DataCart);
+    $APIResponse = connect_api("https://ecmapi.boonsiri.co.th/api/v1/cart/list-cart", $DataCart);
 
     $CartList = $APIResponse['cartModels'];
 
@@ -30,7 +30,7 @@
             'listOfItems' => $listOfItems
         ];
     
-        $APIResponse = connect_api("https://www.ecmapi.boonsiri.co.th/api/v1/purchase/insert-purchase", $DataPurchase);
+        $APIResponse = connect_api("https://ecmapi.boonsiri.co.th/api/v1/purchase/insert-purchase", $DataPurchase);
     
         if ($APIResponse['responseCode'] == 000) {
             $_SESSION['purchase_id'] = $APIResponse['purchase']['id'];

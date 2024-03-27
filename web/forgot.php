@@ -70,7 +70,7 @@
                     body: JSON.stringify(formDataObject)
                 };
 
-                fetch("https://www.ecmapi.boonsiri.co.th/api/v1/otp/send-otp", requestOptions)
+                fetch("https://ecmapi.boonsiri.co.th/api/v1/otp/send-otp", requestOptions)
                 .then(response => response.json())
                 .then(
                     obj => {

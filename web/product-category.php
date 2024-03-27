@@ -15,7 +15,7 @@
             "whsCode" => (@$_SESSION['whsCode']) ? $_SESSION['whsCode'] : "SSK"
         ];
 
-        $CategorySub = connect_api("https://www.ecmapi.boonsiri.co.th/api/v1/category/get-category-by-id", $CategoryAPIDataRequest);
+        $CategorySub = connect_api("https://ecmapi.boonsiri.co.th/api/v1/category/get-category-by-id", $CategoryAPIDataRequest);
 
         if ($CategorySub['responseCode'] == 000) {
             $CategoryData = $CategorySub['product'][0];
@@ -48,7 +48,7 @@
                                     "id" => $CategoryID,
                                 ];
 
-                                $Breadcrumb = connect_api("https://www.ecmapi.boonsiri.co.th/api/v1/category/breadcrumb", $BreadcrumbData);
+                                $Breadcrumb = connect_api("https://ecmapi.boonsiri.co.th/api/v1/category/breadcrumb", $BreadcrumbData);
 
 
                                 foreach ($Breadcrumb['items'] as $key => $CategoryList) {

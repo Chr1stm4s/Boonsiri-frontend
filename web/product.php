@@ -20,7 +20,7 @@
             "productId" => $id,
         ];
 
-        $data = connect_api("https://www.ecmapi.boonsiri.co.th/api/v1/product/get-product-by-id", $requestData);
+        $data = connect_api("https://ecmapi.boonsiri.co.th/api/v1/product/get-product-by-id", $requestData);
 
         $ProductData = $data['product'];
 
@@ -49,7 +49,7 @@
                                 "id" => $ProductData['categoryId'],
                             ];
 
-                            $Breadcrumb = connect_api("https://www.ecmapi.boonsiri.co.th/api/v1/category/breadcrumb", $BreadcrumbData);
+                            $Breadcrumb = connect_api("https://ecmapi.boonsiri.co.th/api/v1/category/breadcrumb", $BreadcrumbData);
 
 
                             foreach ($Breadcrumb['items'] as $key => $CategoryList) {
@@ -76,7 +76,7 @@
                 <div class="col-12 col-md-6">
 
                 <?php
-                    $ProductImageAPIURL = "https://www.ecmapi.boonsiri.co.th/api/v1/product/list-product-image";
+                    $ProductImageAPIURL = "https://ecmapi.boonsiri.co.th/api/v1/product/list-product-image";
 
                     $ProductImageAPIDataRequest = [
                         'itemCode' => $ProductData['itemCode'], 
@@ -246,7 +246,7 @@
             <div class="row g-4">
 
             <?php
-                $APIURL = "https://www.ecmapi.boonsiri.co.th/api/v1/product/get-product-by-category-id";
+                $APIURL = "https://ecmapi.boonsiri.co.th/api/v1/product/get-product-by-category-id";
 
                 $APIDataRequest = [
                     'categoryId' => $ProductData['categoryId'], 

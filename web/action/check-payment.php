@@ -11,7 +11,7 @@
             "status" => 2, 
         ];
 
-        $data = connect_api("https://www.ecmapi.boonsiri.co.th/api/v1/purchase/internal-update-purchase-status", $requestData);
+        $data = connect_api("https://ecmapi.boonsiri.co.th/api/v1/purchase/internal-update-purchase-status", $requestData);
 
         if ($data['responseCode'] === "000") {
             echo "success";

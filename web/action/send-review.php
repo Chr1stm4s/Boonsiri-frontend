@@ -17,7 +17,7 @@
         "message" => $message,
     ];
 
-    $data = connect_api("https://www.ecmapi.boonsiri.co.th/api/v1/review/insert-review", $requestData);
+    $data = connect_api("https://ecmapi.boonsiri.co.th/api/v1/review/insert-review", $requestData);
 
     if ($data['responseCode'] === "000") {
 
@@ -28,7 +28,7 @@
             "status" => 7,
         ];
     
-        $data = connect_api("https://www.ecmapi.boonsiri.co.th/api/v1/purchase/internal-update-purchase-status", $requestData);
+        $data = connect_api("https://ecmapi.boonsiri.co.th/api/v1/purchase/internal-update-purchase-status", $requestData);
 
         if ($data['responseCode'] === "000") {
             if ($_FILES['review']['name']) {
@@ -50,7 +50,7 @@
                             "image" => $review_image,
                         ];
                     
-                        $data = connect_api("https://www.ecmapi.boonsiri.co.th/api/v1/reviews-image/insert-reviews-image", $requestData);
+                        $data = connect_api("https://ecmapi.boonsiri.co.th/api/v1/reviews-image/insert-reviews-image", $requestData);
                         
                         if ($data['responseCode'] !== "000") {
                             exit();
@@ -79,7 +79,7 @@
                         "image" => $review_video,
                     ];
                 
-                    $data = connect_api("https://www.ecmapi.boonsiri.co.th/api/v1/reviews-image/insert-reviews-image", $requestData);
+                    $data = connect_api("https://ecmapi.boonsiri.co.th/api/v1/reviews-image/insert-reviews-image", $requestData);
                     
                     if ($data['responseCode'] !== "000") {
                         exit();

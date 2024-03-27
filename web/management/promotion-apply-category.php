@@ -31,7 +31,7 @@
             <div class="row">
 
             <?php
-                $apiUrl = "https://www.ecmapi.boonsiri.co.th/api/v1/category/list-category";
+                $apiUrl = "https://ecmapi.boonsiri.co.th/api/v1/category/list-category";
                 
                 $data = connect_api($apiUrl);
 

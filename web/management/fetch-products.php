@@ -3,7 +3,7 @@
 
     header('Content-Type: application/json');
 
-    $apiUrl = "https://www.ecmapi.boonsiri.co.th/api/v1/product/list-product";
+    $apiUrl = "https://ecmapi.boonsiri.co.th/api/v1/product/list-product";
 
     $requestData = [
         'whsCode' => "SSK", 

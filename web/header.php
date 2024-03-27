@@ -6,7 +6,7 @@
             'whsCode' => $_SESSION['whsCode']
         ];
 
-        $HeaderCartData = connect_api("https://www.ecmapi.boonsiri.co.th/api/v1/cart/list-cart", $HeaderCartDataAPI);
+        $HeaderCartData = connect_api("https://ecmapi.boonsiri.co.th/api/v1/cart/list-cart", $HeaderCartDataAPI);
 
         $HeaderCartCount = count($HeaderCartData['cartModels']);
     } else {
@@ -83,7 +83,7 @@
                                         "whsCode" => @$_SESSION['whsCode']
                                     ];
                                     
-                                    $HeaderCategoryMain = connect_api("https://www.ecmapi.boonsiri.co.th/api/v1/category/list-category", $HeaderCategoryMainRequest);
+                                    $HeaderCategoryMain = connect_api("https://ecmapi.boonsiri.co.th/api/v1/category/list-category", $HeaderCategoryMainRequest);
 
                                     foreach ($HeaderCategoryMain['categories'] as $HeaderCategoryList) {
                                 ?>

@@ -14,7 +14,7 @@
             'id' => $id, 
         ];
 
-        $Response = connect_api("https://www.ecmapi.boonsiri.co.th/api/v1/article/get-article", $APIRequest);
+        $Response = connect_api("https://ecmapi.boonsiri.co.th/api/v1/article/get-article", $APIRequest);
 
         if ($Response['responseCode'] == 000) {
             $Article = $Response['article'];
@@ -77,7 +77,7 @@
                             'articleId' => $id, 
                         ];
 
-                        $ArticleHeaderResponse = connect_api("https://www.ecmapi.boonsiri.co.th/api/v1/article-detail/list-article-detail", $ArticleHeaderAPIRequest);
+                        $ArticleHeaderResponse = connect_api("https://ecmapi.boonsiri.co.th/api/v1/article-detail/list-article-detail", $ArticleHeaderAPIRequest);
 
                         if ($ArticleHeaderResponse['responseCode'] == 000) {
                             foreach ($ArticleHeaderResponse['articleDetails'] as $ArticleHeader) {
@@ -176,7 +176,7 @@
                                     "pageSize" => 12
                                 ];
 
-                                $RelateArticleResponse = connect_api("https://www.ecmapi.boonsiri.co.th/api/v1/article/list-article", $APIRequest);
+                                $RelateArticleResponse = connect_api("https://ecmapi.boonsiri.co.th/api/v1/article/list-article", $APIRequest);
 
                                 if ($RelateArticleResponse['responseCode'] == 000) {
                                     foreach ($RelateArticleResponse['articleCategories'] as $RelateArticles) {

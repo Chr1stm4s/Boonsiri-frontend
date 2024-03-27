@@ -68,7 +68,7 @@
                                 '<span class="badge text-bg-secondary w-100">เกินกำหนดชำระ</span>'
                             );
 
-                            $apiUrl = "https://www.ecmapi.boonsiri.co.th/api/v1/purchase/list-purchase";
+                            $apiUrl = "https://ecmapi.boonsiri.co.th/api/v1/purchase/list-purchase";
                             
                             $data = connect_api($apiUrl);
 
@@ -275,12 +275,12 @@
                         body: JSON.stringify(tracking)
                     };
 
-                    fetch("https://www.ecmapi.boonsiri.co.th/api/v1/purchase/update-tracking", TrackingRequestOptions)
+                    fetch("https://ecmapi.boonsiri.co.th/api/v1/purchase/update-tracking", TrackingRequestOptions)
                     .then(response => response.json())
                     .then(
                         obj => {
                             if (obj.responseCode === "000") {
-                                fetch("https://www.ecmapi.boonsiri.co.th/api/v1/purchase/internal-update-purchase-status", StatusRequestOptions)
+                                fetch("https://ecmapi.boonsiri.co.th/api/v1/purchase/internal-update-purchase-status", StatusRequestOptions)
                                 .then(response => response.json())
                                 .then(
                                     obj => {
@@ -361,7 +361,7 @@
                         body: JSON.stringify(ConfirmData)
                     };
 
-                    fetch("https://www.ecmapi.boonsiri.co.th/api/v1/purchase/internal-update-purchase-status", requestOptions)
+                    fetch("https://ecmapi.boonsiri.co.th/api/v1/purchase/internal-update-purchase-status", requestOptions)
                     .then(response => response.json())
                     .then(
                         obj => {

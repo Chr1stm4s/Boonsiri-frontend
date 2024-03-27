@@ -70,7 +70,7 @@
             Swal.showLoading();
 
             $.ajax({
-                url: 'https://www.ecmapi.boonsiri.co.th/api/v1/address/amphur',
+                url: 'https://ecmapi.boonsiri.co.th/api/v1/address/amphur',
                 type: 'POST',
                 data: JSON.stringify(province),
                 contentType: "application/json",
@@ -128,7 +128,7 @@
                                 $('#district').select2();
 
                                 $.ajax({
-                                    url: 'https://www.ecmapi.boonsiri.co.th/api/v1/address/district',
+                                    url: 'https://ecmapi.boonsiri.co.th/api/v1/address/district',
                                     type: 'POST',
                                     data: JSON.stringify(amphur),
                                     contentType: "application/json",
@@ -193,7 +193,7 @@
         });
 
         $.ajax({
-            url: 'https://www.ecmapi.boonsiri.co.th/api/v1/contact/insert-Contact',
+            url: 'https://ecmapi.boonsiri.co.th/api/v1/contact/insert-Contact',
             type: 'POST',
             data: JSON.stringify(indexed_array),
             contentType: "application/json", 

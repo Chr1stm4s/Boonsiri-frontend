@@ -13,7 +13,7 @@
             'whsCode' => $_SESSION['whsCode']
         ];
 
-        $CartData = connect_api("https://www.ecmapi.boonsiri.co.th/api/v1/cart/list-cart", $CartDataAPI);
+        $CartData = connect_api("https://ecmapi.boonsiri.co.th/api/v1/cart/list-cart", $CartDataAPI);
 
         $ShoppingCart = $CartData['cartModels'];
         $CreateOrder = "";

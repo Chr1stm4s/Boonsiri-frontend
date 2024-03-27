@@ -48,7 +48,7 @@
                         <tbody>
 
                         <?php
-                            $apiUrl = "https://www.ecmapi.boonsiri.co.th/api/v1/preorder/list-preorder";
+                            $apiUrl = "https://ecmapi.boonsiri.co.th/api/v1/preorder/list-preorder";
                             
                             $data = connect_api($apiUrl);
 
@@ -58,7 +58,7 @@
                                         "id" => $preOrder['customerId']
                                     ]; 
 
-                                    $ProductDataAPIResponse = connect_api("https://www.ecmapi.boonsiri.co.th/api/v1/customer/get-customer-by-id", $ProductDataAPIRequest);
+                                    $ProductDataAPIResponse = connect_api("https://ecmapi.boonsiri.co.th/api/v1/customer/get-customer-by-id", $ProductDataAPIRequest);
 
                                     if ($ProductDataAPIResponse['responseCode'] == "000") {
                                         $customer = $ProductDataAPIResponse['point'];
@@ -184,7 +184,7 @@
                 indexed_array[n['name']] = n['value'];
             });
 
-            const url = 'https://www.ecmapi.boonsiri.co.th/api/v1/preorder/insert-purchase';
+            const url = 'https://ecmapi.boonsiri.co.th/api/v1/preorder/insert-purchase';
 
             Swal.fire({
                 title: 'กำลังดำเนินการ...',

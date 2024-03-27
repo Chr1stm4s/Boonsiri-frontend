@@ -42,7 +42,7 @@
                         <tbody>
 
                         <?php
-                            $apiUrl = "https://www.ecmapi.boonsiri.co.th/api/v1/translate/list-translate";
+                            $apiUrl = "https://ecmapi.boonsiri.co.th/api/v1/translate/list-translate";
                             
                             $data = connect_api($apiUrl);
 
@@ -177,7 +177,7 @@
 
             $('#JobhModalForm').submit(function () {
                 const InputID = $("#EditModalInputID").val();
-                const url = (InputID == 0) ? 'https://www.ecmapi.boonsiri.co.th/api/v1/job/insert-job' : 'https://www.ecmapi.boonsiri.co.th/api/v1/job/update-job';
+                const url = (InputID == 0) ? 'https://ecmapi.boonsiri.co.th/api/v1/job/insert-job' : 'https://ecmapi.boonsiri.co.th/api/v1/job/update-job';
 
                 var unindexed_array = $('#JobhModalForm').serializeArray();
                 var indexed_array = {};

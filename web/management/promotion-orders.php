@@ -14,7 +14,7 @@
             "id" => $id
         ];
 
-        $ResponseDataAPI = connect_api("https://www.ecmapi.boonsiri.co.th/api/v1/promotion/get-promotion", $RequestDataAPI);
+        $ResponseDataAPI = connect_api("https://ecmapi.boonsiri.co.th/api/v1/promotion/get-promotion", $RequestDataAPI);
 
         $Promotion = $ResponseDataAPI['promotion'];
     ?>
@@ -69,7 +69,7 @@
                                 "purchaseStatus" => 6
                             ];
 
-                            $apiUrl = "https://www.ecmapi.boonsiri.co.th/api/v1/promotion/list-product-promotion";
+                            $apiUrl = "https://ecmapi.boonsiri.co.th/api/v1/promotion/list-product-promotion";
                             
                             $data = connect_api($apiUrl, $apiRequest);
 

@@ -25,7 +25,7 @@
                         <div class="carousel-indicators">
 
                         <?php
-                            $BannerAPIURL = "https://www.ecmapi.boonsiri.co.th/api/v1/banner/list-banner";
+                            $BannerAPIURL = "https://ecmapi.boonsiri.co.th/api/v1/banner/list-banner";
                             
                             $BannerAPIRequest = [
                                 'location' => 1, 
@@ -152,7 +152,7 @@
                     "whsCode" => @$_SESSION['whsCode']
                 ];
 
-                $CategoryMain = connect_api("https://www.ecmapi.boonsiri.co.th/api/v1/category/list-category", $categoryRequest);
+                $CategoryMain = connect_api("https://ecmapi.boonsiri.co.th/api/v1/category/list-category", $categoryRequest);
 
                 foreach ($CategoryMain['categories'] as $CategoryList) {
                     $image = ($CategoryList['image'] && file_exists("products/category/".$CategoryList['image'])) ? rootURL()."products/category/".$CategoryList['image'] : rootURL()."images/logo.png";
@@ -183,7 +183,7 @@
                     'location' => 1, 
                 ];
 
-                $FeaturedAPIData = connect_api("https://www.ecmapi.boonsiri.co.th/api/v1/featured/list-featured", $FeaturedAPIRequest);
+                $FeaturedAPIData = connect_api("https://ecmapi.boonsiri.co.th/api/v1/featured/list-featured", $FeaturedAPIRequest);
 
                 foreach ($FeaturedAPIData['featureds'] as $featured) {
             ?>
@@ -227,7 +227,7 @@
                             "pageSize" => 8, 
                         ];
 
-                        $HomeProductsPromotion = connect_api("https://www.ecmapi.boonsiri.co.th/api/v1/product/get-product-by-promotion-id", $requestData);
+                        $HomeProductsPromotion = connect_api("https://ecmapi.boonsiri.co.th/api/v1/product/get-product-by-promotion-id", $requestData);
 
                         if ($HomeProductsPromotion['responseCode'] == 000) {
                     ?>
@@ -399,7 +399,7 @@
                         "pageSize" => 4, 
                     ];
 
-                    $HomeArticles = connect_api("https://www.ecmapi.boonsiri.co.th/api/v1/article/list-article", $requestData);
+                    $HomeArticles = connect_api("https://ecmapi.boonsiri.co.th/api/v1/article/list-article", $requestData);
 
                     if ($HomeArticles['responseCode'] == 000) {
                         foreach ($HomeArticles['articleCategories'] as $HomeArticlesData) {

@@ -64,7 +64,7 @@
                         <tbody>
 
                         <?php
-                            $apiUrl = "https://www.ecmapi.boonsiri.co.th/api/v1/product/list-product";
+                            $apiUrl = "https://ecmapi.boonsiri.co.th/api/v1/product/list-product";
 
                             $requestData = [
                                 'whsCode' => "SSK", 
@@ -378,7 +378,7 @@
             });
 
             $.ajax({
-                url: 'https://www.ecmapi.boonsiri.co.th/api/v1/product/update-product',
+                url: 'https://ecmapi.boonsiri.co.th/api/v1/product/update-product',
                 type: 'POST',
                 data: JSON.stringify(indexed_array),
                 contentType: "application/json", 

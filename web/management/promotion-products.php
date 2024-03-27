@@ -10,7 +10,7 @@
 
         $id = $_GET['id'];
 
-        $PromotionAPIURL = "https://www.ecmapi.boonsiri.co.th/api/v1/promotion/get-promotion";
+        $PromotionAPIURL = "https://ecmapi.boonsiri.co.th/api/v1/promotion/get-promotion";
 
         $PromotionAPIDataRequest = [
             'id' => $id, 

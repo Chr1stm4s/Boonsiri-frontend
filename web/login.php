@@ -74,7 +74,7 @@
                     body: JSON.stringify(formDataObject)
                 };
 
-                fetch("https://www.ecmapi.boonsiri.co.th/api/v1/customer/login", requestOptions)
+                fetch("https://ecmapi.boonsiri.co.th/api/v1/customer/login", requestOptions)
                 .then(response => response.json())
                 .then(
                     obj => {

@@ -15,7 +15,7 @@
             "id" => $article
         ];
 
-        $ArticleDataResponse = connect_api("https://www.ecmapi.boonsiri.co.th/api/v1/article/get-article", $ArticleDataRequest);
+        $ArticleDataResponse = connect_api("https://ecmapi.boonsiri.co.th/api/v1/article/get-article", $ArticleDataRequest);
 
         if ($ArticleDataResponse['responseCode'] == "000") {
             $ArticleData = $ArticleDataResponse['article'];
@@ -24,7 +24,7 @@
                 "id" => $id
             ];
     
-            $ArticleDetailsDataResponse = connect_api("https://www.ecmapi.boonsiri.co.th/api/v1/article-detail/get-article-detail", $ArticleDetailsDataRequest);
+            $ArticleDetailsDataResponse = connect_api("https://ecmapi.boonsiri.co.th/api/v1/article-detail/get-article-detail", $ArticleDetailsDataRequest);
     
             if ($ArticleDetailsDataResponse['responseCode'] == "000") {
                 $ArticleDetailsData = $ArticleDetailsDataResponse['articleDetail'];

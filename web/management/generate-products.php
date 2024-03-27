@@ -11,7 +11,7 @@
         "pageSize" => 0
     ];
 
-    $GetProductsDataAPIResponse = connect_api("https://www.ecmapi.boonsiri.co.th/api/v1/product/list-product", $GetProductsDataAPIRequest);
+    $GetProductsDataAPIResponse = connect_api("https://ecmapi.boonsiri.co.th/api/v1/product/list-product", $GetProductsDataAPIRequest);
 
     $ProductsDataExport[] = [
         "ลำดับ", 

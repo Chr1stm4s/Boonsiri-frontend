@@ -26,7 +26,7 @@
             "resume" => $resume
         ];
 
-        $data = connect_api("https://www.ecmapi.boonsiri.co.th/api/v1/candidate/insert-candidate", $requestData);
+        $data = connect_api("https://ecmapi.boonsiri.co.th/api/v1/candidate/insert-candidate", $requestData);
 
         if ($data['responseCode'] === "000") {
             echo "success";

@@ -11,7 +11,7 @@
         if (@$_GET['id']) {
             $id = $_GET['id'];
 
-            $apiUrl = "https://www.ecmapi.boonsiri.co.th/api/v1/category/get-category-by-id";
+            $apiUrl = "https://ecmapi.boonsiri.co.th/api/v1/category/get-category-by-id";
             $dataAPI = [
                 "categoryId" => $_GET['id']
             ];
@@ -29,7 +29,7 @@
         } else {
             $id = null;
 
-            $apiUrl = "https://www.ecmapi.boonsiri.co.th/api/v1/category/list-category";
+            $apiUrl = "https://ecmapi.boonsiri.co.th/api/v1/category/list-category";
             $dataAPI = null;
 
             $data = connect_api($apiUrl, $dataAPI);

@@ -14,7 +14,7 @@
             'id' => $id
         ];
 
-        $data = connect_api("https://www.ecmapi.boonsiri.co.th/api/v1/purchase/get-purchase", $request);
+        $data = connect_api("https://ecmapi.boonsiri.co.th/api/v1/purchase/get-purchase", $request);
 
         if ($data['responseCode'] != 000) {
             redirect(rootURL());
@@ -26,7 +26,7 @@
             'purchaseId' => $id
         ];
 
-        $data = connect_api("https://www.ecmapi.boonsiri.co.th/api/v1/boonsiri/gen-qr-payment", $request);
+        $data = connect_api("https://ecmapi.boonsiri.co.th/api/v1/boonsiri/gen-qr-payment", $request);
 
         $PaymentData = $data['response']['results'];
     ?>

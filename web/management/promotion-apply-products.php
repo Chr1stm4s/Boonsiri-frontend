@@ -11,7 +11,7 @@
         $id = $_GET['id'];
         $category = $_GET['category'];
 
-        $PromotionAPIURL = "https://www.ecmapi.boonsiri.co.th/api/v1/promotion/get-promotion";
+        $PromotionAPIURL = "https://ecmapi.boonsiri.co.th/api/v1/promotion/get-promotion";
 
         $PromotionAPIDataRequest = [
             'id' => $id, 
@@ -38,7 +38,7 @@
             'pageSize' => 0, 
         ];
 
-        $APIURL = "https://www.ecmapi.boonsiri.co.th/api/v1/product/get-product-by-category-id";
+        $APIURL = "https://ecmapi.boonsiri.co.th/api/v1/product/get-product-by-category-id";
 
         function calculateDiscount($type, $discount, $price) {
             if ($type == 0) {

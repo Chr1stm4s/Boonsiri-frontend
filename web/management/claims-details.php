@@ -14,7 +14,7 @@
             'id' => $id,
         ];
 
-        $Response = connect_api("https://www.ecmapi.boonsiri.co.th/api/v1/case/get-case", $APIRequest);
+        $Response = connect_api("https://ecmapi.boonsiri.co.th/api/v1/case/get-case", $APIRequest);
 
         if ($Response['responseCode'] == 000) {
             $CaseData = $Response['case'];
@@ -68,7 +68,7 @@
                     'caseId' => $id,
                 ];
         
-                $MessageResponse = connect_api("https://www.ecmapi.boonsiri.co.th/api/v1/case-message/list-case-message", $MessageAPIRequest);
+                $MessageResponse = connect_api("https://ecmapi.boonsiri.co.th/api/v1/case-message/list-case-message", $MessageAPIRequest);
         
                 if ($MessageResponse['responseCode'] == 000) {
                     $CaseMessageData = $MessageResponse['casesMessages'];
@@ -86,7 +86,7 @@
                                 'messageId' => $items['id'],
                             ];
 
-                            $MessageFileResponse = connect_api("https://www.ecmapi.boonsiri.co.th/api/v1/case-file/list-case-file", $MessageFileAPIRequest);
+                            $MessageFileResponse = connect_api("https://ecmapi.boonsiri.co.th/api/v1/case-file/list-case-file", $MessageFileAPIRequest);
 
                             if ($MessageFileResponse['responseCode'] == 000 || count($MessageFileResponse['casesFiles']) != 0) {
                         ?>
