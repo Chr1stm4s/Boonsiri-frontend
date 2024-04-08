@@ -186,7 +186,16 @@
                                 '',
                                 'success'
                             ).then(() => {
-                                console.log(result);
+                                Swal.fire({
+                                    title: 'กำลังดำเนินการ...',
+                                    showDenyButton: false,
+                                    showConfirmButton: false,
+                                    showCancelButton: false,
+                                    allowOutsideClick: false,
+                                    didOpen: () => {
+                                        Swal.showLoading();
+                                    }
+                                });
                                 
                                 location.reload();
                             });

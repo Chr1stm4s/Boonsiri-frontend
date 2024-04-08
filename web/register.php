@@ -117,7 +117,7 @@
                         </div>
                         <div class="col-12 col-md-6 col-lg-4">
                             <div class="form-floating">
-                                <input type="password" class="form-control" name="password" id="password" placeholder="รหัสผ่าน" required aria-required="true">
+                                <input type="password" class="form-control" name="password" id="password" placeholder="รหัสผ่าน" minlength="6" required aria-required="true">
                                 <label for="password" class="text-secondary">รหัสผ่าน<span class="text-danger">*</span></label>
                             </div>
                         </div>
@@ -144,14 +144,14 @@
                     <div class="row g-3 mb-3">
                         <div class="col-12 col-lg-6">
                             <div class="form-floating">
-                                <input type="text" class="form-control" name="addressMain" id="addressMain" placeholder="ที่อยู่" required aria-required="true">
-                                <label for="addressMain" class="text-secondary">ที่อยู่<span class="text-danger">*</span></label>
+                                <input type="text" class="form-control" name="addressMain" id="addressMain" placeholder="ที่อยู่สำหรับจัดส่ง" required aria-required="true">
+                                <label for="addressMain" class="text-secondary">ที่อยู่สำหรับจัดส่ง<span class="text-danger">*</span></label>
                             </div>
                         </div>
                         <div class="col-12 col-lg-6">
                             <div class="form-floating">
-                                <input type="text" class="form-control" name="addressSub" id="addressSub" placeholder="ที่อยู่(เพิ่มเติม)">
-                                <label for="addressSub" class="text-secondary">ที่อยู่(เพิ่มเติม)</label>
+                                <input type="text" class="form-control" name="addressSub" id="addressSub" placeholder="ที่อยู่สำหรับจัดส่ง (เพิ่มเติม)">
+                                <label for="addressSub" class="text-secondary">ที่อยู่สำหรับจัดส่ง (เพิ่มเติม)</label>
                             </div>
                         </div>
                         <div class="col-12 col-md-6">
@@ -186,7 +186,7 @@
                         </div>
                         <div class="col-12 col-md-6">
                             <select class="form-select address-select2" name="amphur" id="amphur" aria-label="อำเภอ / เขต" disabled>
-                                <option selected disabled value="0">เลือกตำบล / แขวง</option>
+                                <option selected disabled value="0">เลือกอำเภอ / เขต</option>
                             </select>
                         </div>
                         <div class="col-12 col-md-6">
@@ -241,9 +241,6 @@
 
     <script>
         $("#RegisterFormWizard").hide();
-
-        // $("#FormCheckMember").hide();
-        // $(".step-1-element").hide();
 
         $(".step-2-element").hide();
         $(".step-3-element").hide();

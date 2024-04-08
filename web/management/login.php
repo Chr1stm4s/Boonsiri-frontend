@@ -80,6 +80,17 @@
                             '',
                             'success'
                         ).then(function() {
+                            Swal.fire({
+                                title: 'กำลังเข้าสู่ระบบ...',
+                                showDenyButton: false,
+                                showConfirmButton: false,
+                                showCancelButton: false,
+                                allowOutsideClick: false,
+                                didOpen: () => {
+                                    Swal.showLoading();
+                                }
+                            });
+
                             window.location = "./"
                         });
                     } else {

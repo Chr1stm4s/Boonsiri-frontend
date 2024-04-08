@@ -57,11 +57,14 @@
                 <a class="navbar-brand" href="<?= rootURL(); ?>">
                     <img src="<?= rootURL(); ?>images/logo.png" alt="<?= $title; ?>" id="HeaderMenuLogo">
                 </a>
+                <a class="navbar-brand d-block d-md-none my-auto" href="<?= rootURL(); ?>">
+                    <i class="fa-solid fa-house-chimney-window fa-2x text-white"></i>
+                </a>
                 <button class="navbar-toggler ms-auto my-auto" type="button" data-bs-toggle="collapse" data-bs-target="#HeaderNavbar" aria-controls="HeaderNavbar" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
             </div>
-            <div class="col-12 col-lg-auto my-auto ms-au">
+            <div class="col-12 col-lg-auto my-auto ms-auto">
                 <div class="collapse navbar-collapse" id="HeaderNavbar">
                     <ul class="navbar-nav fs-5">
                         <li class="nav-item">
@@ -170,15 +173,15 @@
                 if (isset($_SESSION['id']) != null) {
             ?>
             
-            <div class="col-2 text-center h-100 px-0 bg-theme-1 py-3">
+            <div class="col-2 text-center h-100 px-0 bg-theme-5 py-3">
                 <button class="btn shoping-bag-icon p-0 btn-tooltip" id="AddressProfileButton" data-bs-title="เลือกที่อยู่จัดส่งสินค้า" data-bs-toggle="modal" data-bs-target="#SelectAddressProfileModal">
-                    <i class="fa-solid fa-house-user fs-4 text-white"></i>
+                    <i class="fa-solid fa-truck-fast fs-4 text-white"></i>
                 </button>
             </div>
             <div class="col px-0 text-center my-auto">
                 <div class="dropdown-center">
                     <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        สวัสดี คุณ <?=$_SESSION['fname'];?> !
+                        <i class="fa-solid fa-user"></i>&nbsp;บัญชีของฉัน
                     </button>
                     <ul class="dropdown-menu rounded-0 w-100">
                         <li><a class="dropdown-item" href="<?=rootURL();?>ข้อมูลสมาชิก/">ข้อมูลสมาชิก</a></li>
@@ -190,12 +193,12 @@
                     </ul>
                 </div>
             </div>
-            <div class="col-2 text-center h-100 px-0 bg-theme-1 py-3">
+            <div class="col-2 text-center h-100 px-0 bg-theme-5 py-3">
                 <a href="<?=rootURL();?>ตะกร้าสินค้า/" class="btn position-relative shoping-bag-icon p-0 text-white btn-tooltip" data-bs-title="รายการสินค้าที่สั่งซื้อ">
-                    <i class="fa-solid fa-bag-shopping fs-4"></i>
+                    <i class="fa-solid fa-cart-shopping fs-4"></i>
                     <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
                         <span id="CartAmountMobile"><?=$HeaderCartCount;?></span>
-                        <span class="visually-hidden">items in shopping bag</span>
+                        <span class="visually-hidden">items in shopping cart</span>
                     </span>
                 </a>
             </div>

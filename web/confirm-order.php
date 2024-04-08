@@ -158,7 +158,7 @@
                                         <td class="py-0"><?=number_format($PurchaseData['totalShippingPrice']);?> บาท</td>
                                     </tr>
                                     <tr>
-                                        <th class="py-0">รวมส่วนลดค่าสินค้า</th>
+                                        <th class="py-0">รวมส่วนลดจากโปรโมชั่น</th>
                                         <td class="py-0"><?=number_format($PurchaseData['totalDiscount']);?> บาท</td>
                                     </tr>
                                     <tr class="fs-5">

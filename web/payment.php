@@ -22,13 +22,6 @@
             redirect(rootURL());
         }
 
-        $request = [
-            'purchaseId' => $id
-        ];
-
-        $data = connect_api("https://ecmapi.boonsiri.co.th/api/v1/boonsiri/gen-qr-payment", $request);
-
-        $PaymentData = $data['response']['results'];
     ?>
 
 </head>
@@ -58,6 +51,14 @@
 
         <?php
             if ($data['responseCode'] == 000) {
+                $requestQR = [
+                    'purchaseId' => $id
+                ];
+        
+                $dataQR = connect_api("https://ecmapi.boonsiri.co.th/api/v1/boonsiri/gen-qr-payment", $requestQR);
+        
+                if ($dataQR['responseCode'] == 000) {
+                    $PaymentData = $data['response']['results'];
         ?>
 
             <div class="row">
@@ -91,13 +92,30 @@
             </div>
 
         <?php
-            } else {
+                } else {
         ?>
 
             <div class="row">
                 <div class="col text-center">
                     <h5 class="mb-0">
                         ไม่สามารถสร้าง QR Code เพื่อชำระเงินได้
+                        <br>
+                        กรุณาติดต่อเจ้าหน้าที่
+                        <br>
+                        <a href="tel:094-698-5555">094-698-5555</a>
+                    </h5>
+                </div>
+            </div>
+
+        <?php   
+                }
+            } else {
+        ?>
+
+            <div class="row">
+                <div class="col text-center">
+                    <h5 class="mb-0">
+                        ไม่สามารถชำระเงินได้
                         <br>
                         กรุณาติดต่อเจ้าหน้าที่
                         <br>

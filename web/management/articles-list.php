@@ -79,10 +79,10 @@
                         ?>
 
                             <tr>
-                                <th class="text-end"><?=$ArticleCategory['id'];?></th>
+                                <th class="text-end"><?=$i;?></th>
                                 <td class="fit text-center"><img src="<?=$thumbnail;?>" class="article-thumbnail btn p-0" data-bs-toggle="modal" data-bs-target="#PreviewThumbnailModal" data-bs-img="<?=$thumbnail;?>"></td>
-                                <td><p class="mb-0 text-overflow" data-bs-toggle="tooltip" data-bs-title="<?=$ArticleCategory['title'];?>"><?=$ArticleCategory['title'];?></p></td>
-                                <td><p class="mb-0 text-overflow" data-bs-toggle="tooltip" data-bs-title="<?=$ArticleCategory['intro'];?>"><?=$ArticleCategory['intro'];?></p></td>
+                                <td><p class="mb-0 text-overflow btn-tooltip" data-bs-toggle="tooltip" data-bs-title="<?=$ArticleCategory['title'];?>"><?=$ArticleCategory['title'];?></p></td>
+                                <td><p class="mb-0 text-overflow btn-tooltip" data-bs-toggle="tooltip" data-bs-title="<?=$ArticleCategory['intro'];?>"><?=$ArticleCategory['intro'];?></p></td>
                                 <td class="fit text-center"><?=$ArticleCategory['published'];?></td>
                                 <td class="fit text-center"><?=time_ago("th", $ArticleCategory['added']);?></td>
                                 <td class="fit">

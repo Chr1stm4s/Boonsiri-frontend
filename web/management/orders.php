@@ -142,16 +142,37 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
+            $.fn.dataTable.ext.type.order['date-euro-pre'] = function (date) {
+                var parts = date.split(' ');
+                var day = parseInt(parts[0], 10);
+                var month = monthToNumber(parts[1]);
+                var year = parseInt(parts[2], 10);
+                
+                return year * 10000 + month * 100 + day;
+            };
+
+            function monthToNumber(month) {
+                var months = {
+                    'Jan': 1, 'Feb': 2, 'Mar': 3, 'Apr': 4, 'May': 5, 'Jun': 6,
+                    'Jul': 7, 'Aug': 8, 'Sep': 9, 'Oct': 10, 'Nov': 11, 'Dec': 12
+                };
+                return months[month];
+            }
+            
             $('#DataTables').DataTable( {
                 columnDefs: [
                     { 
                         orderable: false, 
                         targets: -1 
+                    }, 
+                    {
+                        targets: 8,
+                        type: "date-euro"
                     }
                 ],
                 order: [
                     [
-                        9, 'asc'
+                        8, 'desc'
                     ]
                 ]
             } );

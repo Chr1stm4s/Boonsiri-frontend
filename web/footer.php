@@ -1,8 +1,8 @@
-<footer class="py-5 bg-theme-5 text-white">
+<footer class="py-5 bg-theme-5 text-white shadow">
     <div class="container">
         <div class="row">
             <div class="col-12 col-lg-3 text-center text-lg-start mb-4 mb-lg-0">
-                <img src="<?=rootURL();?>images/logo.png" alt="<?=$title;?>" class="w-50">
+                <img src="<?=rootURL();?>images/logo.png" alt="<?=$title;?>" class="w-50 mb-4">
                 <p class="mb-0 fw-light">
                     บริษัท บุญศิริโฟรเซ่นโปรดักส์ จำกัด
                     <br>
@@ -11,7 +11,7 @@
                     226 ต.หนองไผ่ อ.เมือง จ.ศรีสะเกษ 33000
                 </p>
             </div>
-            <div class="col-6 col-lg-auto mx-auto">
+            <div class="col col-lg-auto mx-auto">
                 <h5 class="fw-bold">ข้อมูลเว็บไซต์</h5>
                 <ul class="list-unstyled mb-0">
                     <li><a href="<?=rootURL();?>เกี่ยวกับบุญศิริ/" class="text-white text-decoration-none fw-light">เกี่ยวกับบุญศิริ</a></li>
@@ -20,9 +20,9 @@
                     <li><a href="<?=rootURL();?>ร่วมงานกับเรา/" class="text-white text-decoration-none fw-light">ร่วมงานกับเรา</a></li>
                 </ul>
             </div>
-            <div class="col-6 col-lg-auto mx-auto">
+            <div class="col-auto mx-auto">
                 <h5 class="fw-bold">ข้อมูลบริษัท</h5>
-                <p class="mb-0 fw-light">เปิดบริการทุกวัน 06:30 - 17:00 น.</p>
+                <p class="mb-0 fw-light">เปิดบริการทุกวัน<br class="d-block d-md-none">06:30 - 17:00 น.</p>
                 <p class="mb-4"><a href="tel:094-698-5555" class="text-decoration-none text-white fw-light"><i class="fa-solid fa-square-phone"></i> &nbsp;094-698-5555</a></p>
                 <h5 class="fw-bold mb-3">ติดตามเรา</h5>
                 <p class="mb-0">

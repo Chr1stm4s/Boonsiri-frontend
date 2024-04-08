@@ -38,7 +38,7 @@
                 <div class="col-12 col-md-8 col-lg-6 mx-auto">
                     <div class="mx-0 row my-4">
                         <div class="col my-auto">
-                            <h1 class="mb-0">ตั้งค่าบัญชี</h1>
+                            <h1 class="mb-0">ตั้งรหัสผ่าน</h1>
                         </div>
                         <div class="col-auto my-auto">
                             <button type="submit" class="btn btn-theme-4 w-100 px-4 rounded-0">บันทึก</button>

@@ -266,6 +266,8 @@
                     foreach ($APIDataResponse[$ResponseKey] as $FeaturedProducts) {
                         $thumbnail = (file_exists("products/".$FeaturedProducts['thumbnail'])) ? rootURL()."products/".$FeaturedProducts['thumbnail'] : rootURL()."images/logo.png";
                         $placeholder = (file_exists("products/".$FeaturedProducts['thumbnail'])) ? "" : "thumbnail-placeholder";
+
+                        if ($FeaturedProducts['id'] != $id) {
             ?>
 
                 <div class="col-6 col-md-4 col-lg-3">
@@ -332,6 +334,7 @@
                 </div>
 
             <?php
+                        }
                     }
                 } else {
             ?>

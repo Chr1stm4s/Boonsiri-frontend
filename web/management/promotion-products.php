@@ -35,6 +35,7 @@
             'orderBy' => "", 
             'pageNo' => 0, 
             'pageSize' => 0, 
+            'isFrontEnd' => 0, 
         ];
 
         $APIURL = "https://ecmapi.boonsiri.co.th/api/v1/product/get-product-by-promotion-id";

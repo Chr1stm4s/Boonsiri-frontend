@@ -100,11 +100,12 @@
                             
                             if ($DataAPI['responseCode'] == 000) {
                                 foreach ($DataAPI["product"] as $DataList) {
+                                    $disableCheckbox = (calculateDiscount($PromotionData['type'], $PromotionData['discount'], $DataList['price']) <= 0) ? "disabled" : "";
 
                         ?>
 
                             <tr>
-                                <th><input type="checkbox" name="apply[]" class="checkbox-promotion" value="<?=$DataList['itemCode'];?>" <?=($DataList['promotionId'] == $id) ? "checked" : ""; ?>></th>
+                                <th><input type="checkbox" name="apply[]" <?=$disableCheckbox;?> class="checkbox-promotion" value="<?=$DataList['itemCode'];?>" <?=($DataList['promotionId'] == $id) ? "checked" : ""; ?>></th>
                                 <td><?=$DataList['id'];?> <?=$DataList['title'];?></td>
                                 <td class="text-end"><?=(@$DataList['price']) ? number_format($DataList['price'])." บาท" : "-"; ?></td>
                                 <td class="text-end"><?=(@$DataList['price']) ? calculateDiscount($PromotionData['type'], $PromotionData['discount'], $DataList['price'])." บาท" : "-"; ?></td>

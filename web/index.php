@@ -216,7 +216,7 @@
             </div>
             <div class="row g-4">
                 <div class="col">
-                    
+
                     <?php
                         $requestData = [
                             "promotionId" => 0, 
@@ -225,6 +225,7 @@
                             "orderBy" => "", 
                             "pageNo" => 1, 
                             "pageSize" => 8, 
+                            "isFrontEnd" => 1, 
                         ];
 
                         $HomeProductsPromotion = connect_api("https://ecmapi.boonsiri.co.th/api/v1/product/get-product-by-promotion-id", $requestData);

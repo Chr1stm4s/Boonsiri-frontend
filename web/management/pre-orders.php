@@ -31,7 +31,7 @@
                     <table class="table table-hover border table-striped mb-3" id="DataTables">
                         <thead>
                             <tr>
-                                <th class="fit">เลขที่คำสั่งซื้อ</th>
+                                <th class="fit">ลำดับคำสั่งซื้อ</th>
                                 <th class="fit text-center">ภาพสินค้า</th>
                                 <th>ชื่อสินค้า</th>
                                 <th>ชื่อผู้สั่งซื้อ</th>
@@ -77,7 +77,6 @@
                         ?>
 
                             <tr>
-                                <th class="text-end"><?=$preOrder['id'];?></th>
                                 <td class="text-center">
                                     <img src="<?=$thumbnail;?>" alt="" class="rounded-3" height="40" data-bs-toggle="modal" data-bs-target="#PreviewThumbnailModal" data-bs-img="<?=$thumbnail;?>">
                                 </td>
@@ -144,16 +143,37 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
+            $.fn.dataTable.ext.type.order['date-euro-pre'] = function (date) {
+                var parts = date.split(' ');
+                var day = parseInt(parts[0], 10);
+                var month = monthToNumber(parts[1]);
+                var year = parseInt(parts[2], 10);
+                
+                return year * 10000 + month * 100 + day;
+            };
+
+            function monthToNumber(month) {
+                var months = {
+                    'Jan': 1, 'Feb': 2, 'Mar': 3, 'Apr': 4, 'May': 5, 'Jun': 6,
+                    'Jul': 7, 'Aug': 8, 'Sep': 9, 'Oct': 10, 'Nov': 11, 'Dec': 12
+                };
+                return months[month];
+            }
+            
             $('#DataTables').DataTable( {
                 columnDefs: [
                     { 
                         orderable: false, 
                         targets: -1 
+                    }, 
+                    {
+                        targets: 9,
+                        type: "date-euro"
                     }
                 ],
                 order: [
                     [
-                        1, 'asc'
+                        9, 'asc'
                     ]
                 ]
             } );

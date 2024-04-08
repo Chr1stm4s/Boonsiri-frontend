@@ -105,6 +105,7 @@
                                 foreach ($ShoppingCart as $cart) {
                                     $thumbnail = (file_exists("products/".$cart['thumbnail'])) ? rootURL()."products/".$cart['thumbnail'] : rootURL()."images/logo.png";
                                     $placeholder = (file_exists("products/".$cart['thumbnail'])) ? "" : "thumbnail-placeholder";
+                                    $stepPrice = ($cart['stepPrice'] == $cart['price']) ? false : true;
                     ?>
 
                     <div class="card my-2 rounded-1" id="itemID<?=$cart['id'];?>">
@@ -124,15 +125,15 @@
                                         <div class="my-3 my-md-auto col-cart cart-amount text-center">
                                             <div class="row mx-0">
                                                 <div class="col-auto px-0">
-                                                    <button class="btn btn-outline-secondary btn-sm btn-amount-adjust rounded-0" type="button" data-action="decrease" data-item="<?=$cart['id'];?>" data-sequence="<?=$count - 1;?>" data-price="LastPrice<?=$cart['id'];?>" data-before="<?=number_format($cart['price'] * $cart['amount']);?>" data-after="<?=($cart['promotionId'] == 0) ? 0 : number_format($cart['lastPrice']); ?>" data-promotion="<?=($cart['promotionId'] == 0) ? "no" : "yes"; ?>" data-input="#InputAmount<?=$count;?>" data-product="<?=$cart['productId'];?>">
+                                                    <button class="btn btn-outline-secondary btn-sm btn-amount-adjust rounded-0" type="button" data-action="decrease" data-item="<?=$cart['id'];?>" data-sequence="<?=$count - 1;?>" data-eprice="EachPrice<?=$cart['id'];?>" data-price="LastPrice<?=$cart['id'];?>" data-before="<?=number_format($cart['price'] * $cart['amount']);?>" data-after="<?=($cart['promotionId'] == 0) ? 0 : number_format($cart['lastPrice']); ?>" data-promotion="<?=($cart['promotionId'] == 0) ? "no" : "yes"; ?>" data-input="#InputAmount<?=$count;?>" data-product="<?=$cart['productId'];?>">
                                                         <i class="fa-solid fa-minus"></i>
                                                     </button>
                                                 </div>
                                                 <div class="col px-0">
-                                                    <input type="number" class="form-control form-control-sm input-amount-adjust rounded-0 text-end" placeholder="1" id="InputAmount<?=$count;?>" data-sequence="<?=$count - 1;?>" value="<?=$cart['amount'];?>" inputmode="numeric" data-before="<?=number_format($cart['price'] * $cart['amount']);?>" data-after="<?=($cart['promotionId'] == 0) ? 0 : number_format($cart['lastPrice']); ?>" data-promotion="<?=($cart['promotionId'] == 0) ? "no" : "yes"; ?>" data-price="LastPrice<?=$cart['id'];?>" data-input="#InputAmount<?=$count;?>" data-action="custom" data-item="<?=$cart['id'];?>" data-product="<?=$cart['productId'];?>">
+                                                    <input type="number" class="form-control form-control-sm input-amount-adjust rounded-0 text-end" placeholder="1" id="InputAmount<?=$count;?>" data-sequence="<?=$count - 1;?>" value="<?=$cart['amount'];?>" inputmode="numeric" data-before="<?=number_format($cart['price'] * $cart['amount']);?>" data-after="<?=($cart['promotionId'] == 0) ? 0 : number_format($cart['lastPrice']); ?>" data-promotion="<?=($cart['promotionId'] == 0) ? "no" : "yes"; ?>" data-eprice="EachPrice<?=$cart['id'];?>" data-price="LastPrice<?=$cart['id'];?>" data-input="#InputAmount<?=$count;?>" data-action="custom" data-item="<?=$cart['id'];?>" data-product="<?=$cart['productId'];?>">
                                                 </div>
                                                 <div class="col-auto px-0">
-                                                    <button class="btn btn-outline-secondary btn-sm btn-amount-adjust rounded-0" type="button" data-action="increase" data-item="<?=$cart['id'];?>" data-sequence="<?=$count - 1;?>" data-price="LastPrice<?=$cart['id'];?>" data-before="<?=number_format($cart['price'] * $cart['amount']);?>" data-after="<?=($cart['promotionId'] == 0) ? 0 : number_format($cart['lastPrice']); ?>" data-promotion="<?=($cart['promotionId'] == 0) ? "no" : "yes"; ?>" data-input="#InputAmount<?=$count;?>" data-product="<?=$cart['productId'];?>">
+                                                    <button class="btn btn-outline-secondary btn-sm btn-amount-adjust rounded-0" type="button" data-action="increase" data-item="<?=$cart['id'];?>" data-sequence="<?=$count - 1;?>" data-eprice="EachPrice<?=$cart['id'];?>" data-price="LastPrice<?=$cart['id'];?>" data-before="<?=number_format($cart['price'] * $cart['amount']);?>" data-after="<?=($cart['promotionId'] == 0) ? 0 : number_format($cart['lastPrice']); ?>" data-promotion="<?=($cart['promotionId'] == 0) ? "no" : "yes"; ?>" data-input="#InputAmount<?=$count;?>" data-product="<?=$cart['productId'];?>">
                                                         <i class="fa-solid fa-plus"></i>
                                                     </button>
                                                 </div>
@@ -141,10 +142,10 @@
                                         <div class="my-3 my-md-auto col-cart cart-price-each text-end">
 
                                             <?php
-                                                if ($cart['promotionId'] == 0) {
+                                                if ($cart['promotionId'] == 0 && $stepPrice == false) {
                                             ?>
                     
-                                            <p class="mb-0 text-theme-4">
+                                            <p class="mb-0 text-theme-4" id="EachPrice<?=$cart['id'];?>">
                                                 <small class="text-dark"><?=($cart['uomCode']) ? $cart['uomCode'] : "ชิ้น"; ?>ละ</small>
                                                 <?=number_format($cart['price']);?> บาท
                                             </p>
@@ -153,13 +154,13 @@
                                                 } else {
                                             ?>
                     
-                                            <p class="mb-0 text-theme-4">
+                                            <p class="mb-0 text-theme-4" id="EachPrice<?=$cart['id'];?>">
                                                 <small class="text-dark"><?=($cart['uomCode']) ? $cart['uomCode'] : "ชิ้น"; ?>ละ</small>
                                                 <small class="text-decoration-line-through text-theme-3">
                                                     <?=number_format($cart['price']);?> บาท
                                                 </small>
                                                 <br class="d-none d-md-block">
-                                                <?=number_format($cart['eachLastPrice']);?> บาท 
+                                                <?=number_format($cart['eachLastPrice']);?> บาท
                                             </p>
                     
                                             <?php
@@ -170,7 +171,7 @@
                                         <div class="my-3 my-md-auto col-cart cart-price-total text-end d-none d-md-flex">
 
                                             <?php
-                                                if ($cart['promotionId'] == 0) {
+                                                if ($cart['promotionId'] == 0 && $stepPrice == false) {
                                             ?>
                         
                                             <p class="mb-0 w-100 text-theme-4" id="LastPrice<?=$cart['id'];?>"><?=number_format($cart['lastPrice']);?> บาท</p>
@@ -299,6 +300,7 @@
             const action = $(this).data("action");
             const input = $(this).data("input");
             const price = $(this).data("price");
+            const eprice = $(this).data("eprice");
             const amount = $(input).val();
             const item = $(this).data("item");
             const product = $(this).data("product");
@@ -307,13 +309,14 @@
             const promotion = $(this).data("promotion");
             const sequence = $(this).data("sequence");
 
-            AdjustItemAmount(action, input, amount, item, product, price, before, after, promotion, sequence);
+            AdjustItemAmount(action, input, amount, item, product, eprice, price, before, after, promotion, sequence);
         });
         
         $(".input-amount-adjust").on("change", function() {
             const action = $(this).data("action");
             const input = $(this).data("input");
             const price = $(this).data("price");
+            const eprice = $(this).data("eprice");
             const amount = $(this).val();
             const item = $(this).data("item");
             const product = $(this).data("product");
@@ -322,14 +325,14 @@
             const promotion = $(this).data("promotion");
             const sequence = $(this).data("sequence");
 
-            AdjustItemAmount(action, input, amount, item, product, price, before, after, promotion, sequence);
+            AdjustItemAmount(action, input, amount, item, product, eprice, price, before, after, promotion, sequence);
         });
 
         function numberWithCommas(x) {
             return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
         }
 
-        function AdjustItemAmount(action, input, amount, item, product, price, before, after, promotion, sequence) {
+        function AdjustItemAmount(action, input, amount, item, product, eprice, price, before, after, promotion, sequence) {
             $(".create-order").prop("disabled", true);
             $(".create-order-loading").show();
 
@@ -360,6 +363,8 @@
                                     $.post(
                                         '<?=rootURL();?>action/check-cart/', 
                                         function(response, status) {
+                                            // console.log(response.cartModels[sequence]);
+
                                             if (response.responseCode == "000") {
                                                 $(".total-discount-text").text(`${numberWithCommas(response.totalDiscount)} บาท`)
                                                 $(".total-price-text").text(`${numberWithCommas(response.lastTotalPrice)} บาท`)
@@ -367,15 +372,21 @@
                                                 $(".create-order").prop("disabled", false);
                                                 $(".create-order-loading").hide();
 
-                                                if (promotion == "yes") {
-                                                    var newPrice = `<small class="text-decoration-line-through text-theme-3"> ${numberWithCommas(response.cartModels[sequence].price * response.cartModels[sequence].amount)} บาท </small> <br class="d-none d-md-block"> ${numberWithCommas(response.cartModels[sequence].lastPrice)} บาท`;
-                                                } else {
+                                                const stepPrice = (response.cartModels[sequence].stepPrice == response.cartModels[sequence].price) ? false : true;
+
+                                                if (promotion == "no" && stepPrice == false) {
                                                     var newPrice = `${numberWithCommas(response.cartModels[sequence].lastPrice)} บาท`;
+                                                    var newEprice = `<small class="text-dark">${(response.cartModels[sequence].uomCode) ? response.cartModels[sequence].uomCode : "ชิ้น"}ละ</small> ${numberWithCommas(response.cartModels[sequence].price)} บาท`;
+                                                } else {
+                                                    var newPrice = `<small class="text-decoration-line-through text-theme-3"> ${numberWithCommas(response.cartModels[sequence].price * response.cartModels[sequence].amount)} บาท </small> <br class="d-none d-md-block"> ${numberWithCommas(response.cartModels[sequence].lastPrice)} บาท`;
+                                                    var newEprice = `<small class="text-dark">${(response.cartModels[sequence].uomCode) ? response.cartModels[sequence].uomCode : "ชิ้น"}ละ</small> <small class="text-decoration-line-through text-theme-3"> ${numberWithCommas(response.cartModels[sequence].price)} บาท </small> <br class="d-none d-md-block"> ${numberWithCommas(response.cartModels[sequence].eachLastPrice)} บาท`;
                                                 }
                                                 
-                                                document.getElementById(price).innerHTML = newPrice;
+                                                // document.getElementById(price).innerHTML = newPrice;
+                                                // document.getElementById(eprice).innerHTML = eprice;
                                                 
                                                 $("#" + price).html(newPrice);
+                                                $("#" + eprice).html(newEprice);
                                             } else {
                                                 Swal.fire({
                                                     title: 'ไม่สามารถแก้ไขจำนวนสินค้าได้!',
