@@ -307,7 +307,7 @@
 
                     <div class="card shadow h-100">
                         <div class="card-body text-center">
-                            <h5 class="card-title mb-0 fs-1">ไม่พบข้อมูล</h5>
+                            <h5 class="card-title mb-0 fs-1">ยังไม่มีสินค้าลดราคา</h5>
                         </div>
                     </div>           
 

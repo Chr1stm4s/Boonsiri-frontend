@@ -58,7 +58,7 @@
                 $dataQR = connect_api("https://ecmapi.boonsiri.co.th/api/v1/boonsiri/gen-qr-payment", $requestQR);
         
                 if ($dataQR['responseCode'] == 000) {
-                    $PaymentData = $data['response']['results'];
+                    $PaymentData = $dataQR['response']['results'];
         ?>
 
             <div class="row">
