@@ -14,7 +14,7 @@
     </div>
 </div>
 
-<script src="<?=rootURL();?>bootstrap/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+<script src="<?=rootURL();?>bootstrap/js/bootstrap.bundle.min.js"></script>
 <script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
 <script src="<?=rootURL();?>sweetalert2.all.min.js"></script>
 <script src="<?=rootURL();?>select2/js/select2.min.js"></script>
