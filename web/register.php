@@ -101,7 +101,8 @@
                 <!-- Step 2 Elements -->
                 <form action="#" method="POST" id="FormRegister" class="step-2-element mt-4">
                     <input type="hidden" name="phone" id="RegisterPhone">
-                    <input type="hidden" name="cardCode" id="customerId" value="null">
+                    <input type="hidden" name="customerId" id="customerId" value="null">
+                    <input type="hidden" name="cardCode" id="customerCode" value="null">
                     <div class="row g-3 mb-3">
                         <div class="col-12 col-md-6">
                             <div class="form-floating">
@@ -331,6 +332,7 @@
                 const formData = new FormData(this);
                 
                 const formDataObject = {};
+
                 formData.forEach((value, key) => {
                     formDataObject[key] = value;
                 });
@@ -383,6 +385,7 @@
                             $("#lname").val(userDataResponse.lastname);
                             $("#email").val(userDataResponse.email);
                             $("#customerId").val(userDataResponse.customerId);
+                            $("#customerCode").val(userDataResponse.customerCode);
                             $("#whsGrpCode").val(userDataResponse.whsGrpCode);
                             $("#whsGrpName").val(userDataResponse.whsGrpName);
 
@@ -432,6 +435,8 @@
                                             `กรุณาติดต่อเจ้าหน้าที่`,
                                             'error'
                                         );
+
+                                        console.log(obj)
                                     }
                                 }
                             )
@@ -449,6 +454,114 @@
                     }
                 );
             });
+
+            // For test
+            // $("#ConfirmOTP").click(function() {
+            //     $("#Step1Header").removeClass("active");
+            //     $("#Step1Number").removeClass("active");
+
+            //     $("#Step2Header").addClass("active");
+            //     $("#Step2Number").addClass("active");
+
+            //     $(".step-1-element").hide();
+            //     $(".step-2-element").fadeIn();
+            // });
+
+            // $("#FormCheckMember").submit(function (event) {
+            //     const phone = $("#CheckPhone").val();
+
+            //     Swal.fire({
+            //         title: 'กำลังดำเนินการ', 
+            //         didOpen: () => {
+            //             Swal.showLoading()
+            //         }
+            //     });
+                
+            //     event.preventDefault();
+
+            //     const formData = new FormData(this);
+                
+            //     const formDataObject = {};
+
+            //     formData.forEach((value, key) => {
+            //         formDataObject[key] = value;
+            //     });
+
+            //     const headers = {
+            //         'Content-Type': 'application/json'
+            //     };
+
+            //     const requestOptions = {
+            //         method: 'POST',
+            //         headers: headers,
+            //         body: JSON.stringify(formDataObject)
+            //     };
+
+            //     fetch("https://ecmapi.boonsiri.co.th/api/v1/boonsiri/check-customer", requestOptions)
+            //     .then(response => response.json())
+            //     .then(
+            //         obj => {
+            //             if (obj.responseCode === "000") {
+            //                 Swal.fire({
+            //                     title: 'คุณเป็นสมาชิกอยู่แล้ว!', 
+            //                     showCancelButton: false, 
+            //                     showDenyButton: false, 
+            //                     confirmButtonText: "ลงชื่อเข้าใช้งาน", 
+            //                     icon: 'info' 
+            //                 }).then(() => {
+            //                     window.location.href = "<?=rootURL();?>ลงชื่อเข้าใช้งาน/";
+            //                 });
+            //             } else if (obj.responseCode === "A06") {
+            //                 $("#Step1Header").removeClass("active");
+            //                 $("#Step1Number").removeClass("active");
+
+            //                 $("#Step2Header").addClass("active");
+            //                 $("#Step2Number").addClass("active");
+
+            //                 Swal.close();
+
+            //                 const userDataResponse = obj.response;
+
+            //                 console.log(userDataResponse);
+
+            //                 $("#RegisterPhone").val(phone);
+            //                 $("#FormCheckMember").hide();
+
+
+            //                 $(".step-1-element").hide();
+            //                 $(".step-2-element").show();
+
+            //                 $("#fname").val(userDataResponse.firstname);
+            //                 $("#lname").val(userDataResponse.lastname);
+            //                 $("#email").val(userDataResponse.email);
+            //                 $("#customerId").val(userDataResponse.customerId);
+            //                 $("#customerCode").val(userDataResponse.customerCode);
+            //                 $("#whsGrpCode").val(userDataResponse.whsGrpCode);
+            //                 $("#whsGrpName").val(userDataResponse.whsGrpName);
+
+            //                 $("#RegisterFormWizard").fadeIn();
+            //             } else {
+            //                 Swal.fire({
+            //                     title: 'กรุณาตรวจสอบเลข OTP ในมือถือของคุณ!', 
+            //                     showCancelButton: false, 
+            //                     showDenyButton: false, 
+            //                     confirmButtonText: "ดำเนินการต่อ", 
+            //                     icon: 'success' 
+            //                 }).then(() => {
+            //                     $("#OtpNumber").text(phone);
+            //                     $("#RegisterPhone").val(phone);
+            //                     $("#FormCheckMember").hide();
+            //                     $("#RegisterFormWizard").fadeIn();
+            //                 });
+            //             }
+            //         }
+            //     )
+            //     .catch(
+            //         error => {
+            //             console.error('Error:', error);
+            //         }
+            //     );
+            // });
 
             $("#FormLogin").submit(function (event) {
                 Swal.fire({
@@ -547,7 +660,12 @@
                         'error'
                     );
                 } else {
-                    if ($("#customerId").val() == "null") {
+                    console.log(`customerId : ${$("#customerId").val()}`)
+                    console.log(`customerCode : ${$("#customerCode").val()}`)
+
+                    if ($("#customerId").val() == "null" && $("#customerCode").val() == "null") {
+                        console.log("null");
+
                         var formValue = $("#FormRegister").serializeArray();
                         var indexFormValue = {};
 
@@ -614,6 +732,8 @@
                             }
                         });
 
+                        console.log(`customerData : ${JSON.stringify(customerData, null, 4)}`)
+
                         $.ajax({
                             url: 'https://ecmapi.boonsiri.co.th/api/v1/boonsiri/create-customer-to-pos',
                             type: 'POST',
@@ -621,22 +741,216 @@
                             contentType: "application/json", 
                             success: function(response) {
                                 if (response.responseCode == "000") {
+                                    const formDataObject = {
+                                        "phone": indexFormValue.phone
+                                    };
+
+                                    console.log(`Form Phone : ${JSON.stringify(formDataObject, null, 4)}`)
+
+                                    const headers = {
+                                        'Content-Type': 'application/json'
+                                    };
+
+                                    const requestOptions = {
+                                        method: 'POST',
+                                        headers: headers,
+                                        body: JSON.stringify(formDataObject)
+                                    };
+
+                                    fetch("https://ecmapi.boonsiri.co.th/api/v1/boonsiri/check-customer", requestOptions)
+                                    .then(response => response.json())
+                                    .then(
+                                        obj => {
+                                            if (obj.responseCode === "A06") {
+                                                const userDataResponse = obj.response;
+
+                                                $("#customerId").val(userDataResponse.customerId);
+                                                $("#customerCode").val(userDataResponse.customerCode);
+                    
+                                                console.log(`CheckCustomer - customerId : ${userDataResponse.customerId}`)
+                                                console.log(`CheckCustomer - customerCode : ${userDataResponse.customerCode}`)
+
+                                                var unindexed_array = $("#FormRegister").serializeArray();
+                                                var indexed_array = {};
+
+                                                $.map(unindexed_array, function(n, i){
+                                                    indexed_array[n['name']] = n['value'];
+                                                });
+
+                                                $.ajax({
+                                                    url: 'https://ecmapi.boonsiri.co.th/api/v1/customer/add-customer',
+                                                    type: 'POST',
+                                                    data: JSON.stringify(indexed_array),
+                                                    contentType: "application/json", 
+                                                    success: function(response) {
+                                                        if (response.responseCode == "000") {
+                                                            const UserID = response.id;
+                                                            const fname = indexed_array.fname;
+                                                            const lname = indexed_array.lname;
+                                                            const email = indexed_array.email;
+                                                            const phone = indexed_array.phone;
+                                                            const line = indexed_array.line;
+                                                            
+                                                            var FormRegisterAddress = $("#FormRegisterAddress").serializeArray();
+                                                            var FormRegisterAddressArray = {};
+
+                                                            $.map(FormRegisterAddress, function(n, i){
+                                                                FormRegisterAddressArray[n['name']] = n['value'];
+                                                            });
+                                                            
+                                                            FormRegisterAddressArray['customerId'] = UserID;
+                                                            FormRegisterAddressArray['fname'] = fname;
+                                                            FormRegisterAddressArray['lname'] = lname;
+                                                            FormRegisterAddressArray['phone'] = phone;
+                                                            FormRegisterAddressArray['email'] = email;
+                                                            FormRegisterAddressArray['line'] = line;
+
+                                                            $.ajax({
+                                                                url: 'https://ecmapi.boonsiri.co.th/api/v1/address/insert-address-profile',
+                                                                type: 'POST',
+                                                                data: JSON.stringify(FormRegisterAddressArray),
+                                                                contentType: "application/json", 
+                                                                success: function(response) {
+                                                                    if (response.responseCode == "000") {
+                                                                        $.post(
+                                                                            "<?=rootURL();?>action/login/", 
+                                                                            {
+                                                                                id: UserID, 
+                                                                                fname: fname, 
+                                                                                lname: lname, 
+                                                                                email: email, 
+                                                                                line: line, 
+                                                                                phone: phone, 
+                                                                                address_id: response.addressProfile.id, 
+                                                                                fname: response.addressProfile.fname, 
+                                                                                lname: response.addressProfile.lname, 
+                                                                                addressMain: response.addressProfile.addressMain, 
+                                                                                addressSub: response.addressProfile.addressSub, 
+                                                                                district: response.addressProfile.district, 
+                                                                                amphur: response.addressProfile.amphur, 
+                                                                                province: response.addressProfile.province, 
+                                                                                postcode: response.addressProfile.postcode, 
+                                                                                whsCode: response.addressProfile.whsCode, 
+                                                                            }, 
+                                                                            function(result) {
+                                                                                Swal.close();
+
+                                                                                if (result == "success") {
+                                                                                    $("#Step2Header").removeClass("active");
+                                                                                    $("#Step2Number").removeClass("active");
+
+                                                                                    $("#Step3Header").addClass("active");
+                                                                                    $("#Step3Number").addClass("active");
+
+                                                                                    $(".step-2-element").hide();
+                                                                                    $(".step-3-element").fadeIn();
+                                                                                } else {
+                                                                                    Swal.fire(
+                                                                                        'ลงชื่อเข้าใช้งานไม่สำเร็จ!',
+                                                                                        `กรุณาลองใหม่ หรือติดต่อเจ้าหน้าที่`,
+                                                                                        'error'
+                                                                                    );
+
+                                                                                    console.log(result)
+                                                                                    console.log(response)
+                                                                                }
+                                                                            }
+                                                                        );
+                                                                    } else {
+                                                                        Swal.fire(
+                                                                            'เพิ่มที่อยู่ไม่สำเร็จ!',
+                                                                            `กรุณาลองใหม่ หรือติดต่อเจ้าหน้าที่`,
+                                                                            'error'
+                                                                        );
+                                                                        console.log(`Form Address : ${JSON.stringify(FormRegisterAddressArray, null, 4)}`)
+                                                                        console.log(FormRegisterAddressArray)
+                                                                        console.log(response)
+                                                                    }
+                                                                }
+                                                            });
+                                                        } else {
+                                                            Swal.fire(
+                                                                'สมัครสมาชิกไม่สำเร็จ!',
+                                                                `กรุณาลองใหม่ หรือติดต่อเจ้าหน้าที่`,
+                                                                'error'
+                                                            );
+
+                                                            console.log(FormRegisterAddressArray)
+                                                            console.log(response)
+                                                        }
+                                                    }
+                                                });
+                                            } else {
+                                                console.log(obj)
+
+                                                debugger
+                                            }
+                                        }
+                                    )
+                                    .catch(
+                                        error => {
+                                            console.error('Error:', error);
+                                        }
+                                    );
+                                } else {
+                                    Swal.fire(
+                                        'สมัครสมาชิกไม่สำเร็จ!',
+                                        `กรุณาลองใหม่ หรือติดต่อเจ้าหน้าที่`,
+                                        'error'
+                                    );
+
+                                    console.log(response)
+                                }
+                            }
+                        });
+                    } else {
+                        console.log("ok");
+
+                        const formDataObject = {
+                            "phone": $("#RegisterPhone").val()
+                        };
+
+                        console.log(`Form Phone : ${JSON.stringify(formDataObject, null, 4)}`)
+
+                        Swal.fire({
+                            title: 'กำลังดำเนินการ...',
+                            showDenyButton: false,
+                            showConfirmButton: false,
+                            showCancelButton: false,
+                            allowOutsideClick: false,
+                            didOpen: () => {
+                                Swal.showLoading();
+                            }
+                        });
+
+                        const headers = {
+                            'Content-Type': 'application/json'
+                        };
+
+                        const requestOptions = {
+                            method: 'POST',
+                            headers: headers,
+                            body: JSON.stringify(formDataObject)
+                        };
+
+                        fetch("https://ecmapi.boonsiri.co.th/api/v1/boonsiri/check-customer", requestOptions)
+                        .then(response => response.json())
+                        .then(
+                            obj => {
+                                if (obj.responseCode === "A06") {
+                                    const userDataResponse = obj.response;
+
+                                    $("#customerId").val(userDataResponse.customerId);
+                                    $("#customerCode").val(userDataResponse.customerCode);
+                    
+                                    console.log(`customerId : ${userDataResponse.customerId}`)
+                                    console.log(`customerCode : ${userDataResponse.customerCode}`)
+
                                     var unindexed_array = $("#FormRegister").serializeArray();
                                     var indexed_array = {};
 
                                     $.map(unindexed_array, function(n, i){
                                         indexed_array[n['name']] = n['value'];
-                                    });
-
-                                    Swal.fire({
-                                        title: 'กำลังดำเนินการ...',
-                                        showDenyButton: false,
-                                        showConfirmButton: false,
-                                        showCancelButton: false,
-                                        allowOutsideClick: false,
-                                        didOpen: () => {
-                                            Swal.showLoading();
-                                        }
                                     });
 
                                     $.ajax({
@@ -724,6 +1038,9 @@
                                                                 `กรุณาลองใหม่ หรือติดต่อเจ้าหน้าที่`,
                                                                 'error'
                                                             );
+                                                            console.log(`Form Address : ${JSON.stringify(FormRegisterAddressArray, null, 4)}`)
+                                                            console.log(FormRegisterAddressArray)
+                                                            console.log(response)
                                                         }
                                                     }
                                                 });
@@ -734,139 +1051,21 @@
                                                     'error'
                                                 );
 
+                                                console.log(FormRegisterAddressArray)
                                                 console.log(response)
                                             }
                                         }
                                     });
                                 } else {
-                                    Swal.fire(
-                                        'สมัครสมาชิกไม่สำเร็จ!',
-                                        `กรุณาลองใหม่ หรือติดต่อเจ้าหน้าที่`,
-                                        'error'
-                                    );
-
-                                    console.log(response)
+                                    console.log(obj)
                                 }
                             }
-                        });
-                    } else {
-                        var unindexed_array = $("#FormRegister").serializeArray();
-                        var indexed_array = {};
-
-                        $.map(unindexed_array, function(n, i){
-                            indexed_array[n['name']] = n['value'];
-                        });
-
-                        Swal.fire({
-                            title: 'กำลังดำเนินการ...',
-                            showDenyButton: false,
-                            showConfirmButton: false,
-                            showCancelButton: false,
-                            allowOutsideClick: false,
-                            didOpen: () => {
-                                Swal.showLoading();
+                        )
+                        .catch(
+                            error => {
+                                console.error('Error:', error);
                             }
-                        });
-
-                        $.ajax({
-                            url: 'https://ecmapi.boonsiri.co.th/api/v1/customer/add-customer',
-                            type: 'POST',
-                            data: JSON.stringify(indexed_array),
-                            contentType: "application/json", 
-                            success: function(response) {
-                                if (response.responseCode == "000") {
-                                    const UserID = response.id;
-                                    const fname = indexed_array.fname;
-                                    const lname = indexed_array.lname;
-                                    const email = indexed_array.email;
-                                    const phone = indexed_array.phone;
-                                    const line = indexed_array.line;
-                                    
-                                    var FormRegisterAddress = $("#FormRegisterAddress").serializeArray();
-                                    var FormRegisterAddressArray = {};
-
-                                    $.map(FormRegisterAddress, function(n, i){
-                                        FormRegisterAddressArray[n['name']] = n['value'];
-                                    });
-                                    
-                                    FormRegisterAddressArray['customerId'] = UserID;
-                                    FormRegisterAddressArray['fname'] = fname;
-                                    FormRegisterAddressArray['lname'] = lname;
-                                    FormRegisterAddressArray['phone'] = phone;
-                                    FormRegisterAddressArray['email'] = email;
-                                    FormRegisterAddressArray['line'] = line;
-
-                                    $.ajax({
-                                        url: 'https://ecmapi.boonsiri.co.th/api/v1/address/insert-address-profile',
-                                        type: 'POST',
-                                        data: JSON.stringify(FormRegisterAddressArray),
-                                        contentType: "application/json", 
-                                        success: function(response) {
-                                            if (response.responseCode == "000") {
-                                                $.post(
-                                                    "<?=rootURL();?>action/login/", 
-                                                    {
-                                                        id: UserID, 
-                                                        fname: fname, 
-                                                        lname: lname, 
-                                                        email: email, 
-                                                        line: line, 
-                                                        phone: phone, 
-                                                        address_id: response.addressProfile.id, 
-                                                        fname: response.addressProfile.fname, 
-                                                        lname: response.addressProfile.lname, 
-                                                        addressMain: response.addressProfile.addressMain, 
-                                                        addressSub: response.addressProfile.addressSub, 
-                                                        district: response.addressProfile.district, 
-                                                        amphur: response.addressProfile.amphur, 
-                                                        province: response.addressProfile.province, 
-                                                        postcode: response.addressProfile.postcode, 
-                                                        whsCode: response.addressProfile.whsCode, 
-                                                    }, 
-                                                    function(result) {
-                                                        Swal.close();
-
-                                                        if (result == "success") {
-                                                            $("#Step2Header").removeClass("active");
-                                                            $("#Step2Number").removeClass("active");
-
-                                                            $("#Step3Header").addClass("active");
-                                                            $("#Step3Number").addClass("active");
-
-                                                            $(".step-2-element").hide();
-                                                            $(".step-3-element").fadeIn();
-                                                        } else {
-                                                            Swal.fire(
-                                                                'ลงชื่อเข้าใช้งานไม่สำเร็จ!',
-                                                                `กรุณาลองใหม่ หรือติดต่อเจ้าหน้าที่`,
-                                                                'error'
-                                                            );
-
-                                                            console.log(result)
-                                                            console.log(response)
-                                                        }
-                                                    }
-                                                );
-                                            } else {
-                                                Swal.fire(
-                                                    'เพิ่มที่อยู่ไม่สำเร็จ!',
-                                                    `กรุณาลองใหม่ หรือติดต่อเจ้าหน้าที่`,
-                                                    'error'
-                                                );
-                                            }
-                                        }
-                                    });
-                                } else {
-                                    Swal.fire(
-                                        'สมัครสมาชิกไม่สำเร็จ!',
-                                        `กรุณาลองใหม่ หรือติดต่อเจ้าหน้าที่`,
-                                        'error'
-                                    );
-
-                                    console.log(response)
-                                }
-                            }
-                        });
+                        );
                     }
                 }
             });

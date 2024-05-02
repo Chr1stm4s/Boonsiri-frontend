@@ -63,7 +63,7 @@
 
                 <?php
                     } else {
-                        if ($product['promotionId'] != 0) {
+                        if ($product['promotionType'] !== null && ($product['promotionType'] == 0 || $product['promotionType'] == 1)) {
                 ?>
 
                     <p class="card-text">

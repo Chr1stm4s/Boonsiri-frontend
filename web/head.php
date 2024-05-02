@@ -27,10 +27,10 @@
 <meta name="msapplication-TileImage" content="<?=rootURL();?>favicon/ms-icon-144x144.png">
 <meta name="theme-color" content="#ffffff">
 
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+<link rel="stylesheet" href="<?=rootURL();?>bootstrap/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 <link rel="stylesheet" href="<?=rootURL();?>style-theme.css?version=<?=time();?>">
 <link rel="stylesheet" href="<?=rootURL();?>style-desktop.css?version=<?=time();?>">
 <link rel="stylesheet" href="<?=rootURL();?>style-tablet.css?version=<?=time();?>">
 <link rel="stylesheet" href="<?=rootURL();?>style-mobile.css?version=<?=time();?>">
-<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+<link href="<?=rootURL();?>select2/css/select2.min.css" rel="stylesheet" />

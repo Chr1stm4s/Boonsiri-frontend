@@ -174,6 +174,17 @@
             const address_id = $('input[name="address_profile_id"]:checked').val();
 
             if (address_id) {
+                Swal.fire({
+                    title: 'กำลังดำเนินการ...',
+                    showDenyButton: false,
+                    showConfirmButton: false,
+                    showCancelButton: false,
+                    allowOutsideClick: false,
+                    didOpen: () => {
+                        Swal.showLoading();
+                    }
+                });
+
                 $.post(
                     "<?=rootURL();?>action/set-address/", 
                     {
@@ -187,7 +198,7 @@
                                 'success'
                             ).then(() => {
                                 Swal.fire({
-                                    title: 'กำลังดำเนินการ...',
+                                    title: 'กำลังโหลดหน้าใหม่...',
                                     showDenyButton: false,
                                     showConfirmButton: false,
                                     showCancelButton: false,

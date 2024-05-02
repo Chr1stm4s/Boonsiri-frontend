@@ -32,7 +32,7 @@
                             ];
 
                             $BannerAPIData = connect_api($BannerAPIURL, $BannerAPIRequest);
-                            
+
                             $count = 0;
 
                             foreach ($BannerAPIData['banners'] as $banners) {
@@ -147,27 +147,21 @@
             </div>
             <div class="row">
             
-            <?php
-                $categoryRequest = [
-                    "whsCode" => @$_SESSION['whsCode']
-                ];
-
-                $CategoryMain = connect_api("https://ecmapi.boonsiri.co.th/api/v1/category/list-category", $categoryRequest);
-
-                foreach ($CategoryMain['categories'] as $CategoryList) {
-                    $image = ($CategoryList['image'] && file_exists("products/category/".$CategoryList['image'])) ? rootURL()."products/category/".$CategoryList['image'] : rootURL()."images/logo.png";
-            ?>
+                <?php
+                    foreach ($HeaderCategoryMain['categories'] as $CategoryList) {
+                        $image = ($CategoryList['image'] && file_exists("products/category/".$CategoryList['image'])) ? rootURL()."products/category/".$CategoryList['image'] : rootURL()."images/logo.png";
+                ?>
 
                 <div class="col-3 col-md-2 col-lg-1 my-3 text-center">
-                    <a href="<?=rootURL();?>หมวดหมู่สินค้าบุญศิริ/<?=($CategoryList['url']) ? $CategoryList['url'] : str_replace(" ", "-", $CategoryList['title']);?>/<?=$CategoryList['id'];?>/" class="text-decoration-none text-dark">
+                    <a href="<?=rootURL();?>หมวดหมู่สินค้าบุญศิริ/<?=($CategoryList['url']) ? $CategoryList['url'] : str_replace(" ", "-", $CategoryList['title']);?>/<?=$CategoryList['id'];?>/" class="text-decoration-none text-dark btn-hyper-link">
                         <img src="<?=$image;?>" alt="<?=$CategoryList['title'];?>" class="w-100 mb-2">
                         <p class="mb-0"><?=$CategoryList['title'];?></p>
                     </a>
                 </div>
 
-            <?php
-                }
-            ?>
+                <?php
+                    }
+                ?>
 
             </div>
         </div>
@@ -178,7 +172,6 @@
             <div class="row home-products-recommended g-3 g-md-4">
 
             <?php
-            
                 $FeaturedAPIRequest = [
                     'location' => 1, 
                 ];
@@ -207,7 +200,7 @@
     <section class="py-5 home-products-promotion">
         <div class="container">
             <div class="row mb-4">
-                <div class="col">
+                <div class="col my-auto">
                     <h3 class="fs-1 mb-0">สินค้าลดราคา</h3>
                 </div>
                 <div class="col-auto my-auto">
@@ -220,7 +213,7 @@
                     <?php
                         $requestData = [
                             "promotionId" => 0, 
-                            "whsCode" => "SSK", 
+                            "whsCode" => $WhsCode, 
                             "orderByColumn" => "", 
                             "orderBy" => "", 
                             "pageNo" => 1, 
@@ -230,7 +223,7 @@
 
                         $HomeProductsPromotion = connect_api("https://ecmapi.boonsiri.co.th/api/v1/product/get-product-by-promotion-id", $requestData);
 
-                        if ($HomeProductsPromotion['responseCode'] == 000) {
+                        if ($HomeProductsPromotion['responseCode'] == "000") {
                     ?>
 
                     <!-- Slider main container -->
@@ -262,7 +255,7 @@
 
                                         <?php
                                             } else {
-                                                if ($HomeProductsPromotion['promotionId'] != 0) {
+                                                if (in_array($HomeProductsPromotion['promotionType'], [0,1])) {
                                         ?>
 
                                             <p class="card-text mb-0">
@@ -275,7 +268,9 @@
                                                 } else {
                                             ?>
 
-                                            <p class="card-text text-theme-5 mb-0"><?=number_format($HomeProductsPromotion['price']);?> บาท</p>
+                                            <p class="card-text mb-0">
+                                                <span class="text-theme-5 price-discount"><?=number_format($HomeProductsPromotion['price']);?></span> บาท
+                                            </p>
 
                                         <?php
                                                 }
@@ -307,7 +302,7 @@
 
                     <div class="card shadow h-100">
                         <div class="card-body text-center">
-                            <h5 class="card-title mb-0 fs-1">ไม่พบข้อมูล</h5>
+                            <h5 class="card-title mb-0 fs-1">ยังไม่มีสินค้าลดราคา</h5>
                         </div>
                     </div>           
 

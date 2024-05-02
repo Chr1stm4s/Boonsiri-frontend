@@ -3,5 +3,5 @@
     
     header('Access-Control-Allow-Origin: *');
 
-    connect_api("https://ecmapi.boonsiri.co.th/api/v1/purchase/clear-purchase");
+    connect_api("https://ecmapi.boonsiri.co.th/api/v1/boonsiri/expire-order");
 ?>

@@ -22,7 +22,7 @@
             </div>
             <div class="col-auto mx-auto">
                 <h5 class="fw-bold">ข้อมูลบริษัท</h5>
-                <p class="mb-0 fw-light">เปิดบริการทุกวัน<br class="d-block d-md-none">06:30 - 17:00 น.</p>
+                <p class="mb-0 fw-light">เปิดบริการทุกวัน<br>06:30 - 17:00 น.</p>
                 <p class="mb-4"><a href="tel:094-698-5555" class="text-decoration-none text-white fw-light"><i class="fa-solid fa-square-phone"></i> &nbsp;094-698-5555</a></p>
                 <h5 class="fw-bold mb-3">ติดตามเรา</h5>
                 <p class="mb-0">

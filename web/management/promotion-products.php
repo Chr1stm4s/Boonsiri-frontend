@@ -105,17 +105,6 @@
 
                         <?php
                                 }
-                            } else {
-                        ?>
-
-                            <tr>
-                                <td colspan="5"><?=var_dump($ProductAPIDataRequest);?></td>
-                            </tr>
-                            <tr>
-                                <td colspan="5"><?=var_dump($DataAPI);?></td>
-                            </tr>
-
-                        <?php
                             }
                         ?>
 

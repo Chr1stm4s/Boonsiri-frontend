@@ -2,17 +2,17 @@
 <html lang="en">
 
 <head>
-    
-    <?php
-        $page = "orders";
 
-        require_once "./head.php";
+    <?php
+    $page = "orders";
+
+    require_once "./head.php";
     ?>
 
 </head>
 
 <body>
-    
+
     <?php require_once "./header.php"; ?>
 
     <section class="py-5">
@@ -31,7 +31,7 @@
                     <button type="button" class="btn btn-primary" id="Export">Export</button>
                 </div>
             </div>
-            
+
             <div class="row">
                 <div class="col">
                     <table class="table table-hover border table-striped mb-3" id="DataTables">
@@ -52,84 +52,88 @@
                         </thead>
                         <tbody>
 
-                        <?php
+                            <?php
                             $badge = array(
-                                '<span class="badge text-bg-light w-100">กำลังสั่งซื้อ</span>', 
-                                '<span class="badge text-bg-light w-100">รอชำระเงิน</span>', 
-                                '<span class="badge text-bg-success w-100">รอยืนยันชำระเงิน</span>', 
-                                '<span class="badge text-bg-success w-100">ชำระเงินแล้ว</span>', 
-                                '<span class="badge text-bg-info w-100">กำลังเตรียมสินค้า</span>', 
-                                '<span class="badge text-bg-primary w-100">กำลังจัดส่ง</span>', 
-                                '<span class="badge text-bg-success w-100">รับสินค้าแล้ว</span>', 
-                                '<span class="badge text-bg-info w-100">รีวิวสำเร็จ</span>', 
-                                '<span class="badge text-bg-danger w-100">มีสินค้าแจ้งเคลม</span>', 
-                                '<span class="badge text-bg-dark w-100">เคลมแล้ว</span>', 
-                                '<span class="badge text-bg-success w-100">เสร็จสมบูรณ์</span>', 
+                                '<span class="badge text-bg-light w-100">กำลังสั่งซื้อ</span>',
+                                '<span class="badge text-bg-light w-100">รอชำระเงิน</span>',
+                                '<span class="badge text-bg-success w-100">รอยืนยันชำระเงิน</span>',
+                                '<span class="badge text-bg-success w-100">ชำระเงินแล้ว</span>',
+                                '<span class="badge text-bg-info w-100">กำลังเตรียมสินค้า</span>',
+                                '<span class="badge text-bg-primary w-100">กำลังจัดส่ง</span>',
+                                '<span class="badge text-bg-success w-100">รับสินค้าแล้ว</span>',
+                                '<span class="badge text-bg-info w-100">รีวิวสำเร็จ</span>',
+                                '<span class="badge text-bg-danger w-100">มีสินค้าแจ้งเคลม</span>',
+                                '<span class="badge text-bg-dark w-100">เคลมแล้ว</span>',
+                                '<span class="badge text-bg-success w-100">เสร็จสมบูรณ์</span>',
                                 '<span class="badge text-bg-secondary w-100">เกินกำหนดชำระ</span>'
                             );
 
                             $apiUrl = "https://ecmapi.boonsiri.co.th/api/v1/purchase/list-purchase";
-                            
+
                             $data = connect_api($apiUrl);
 
                             if ($data['responseCode'] == 000) {
                                 foreach ($data['purchases'] as $purchase) {
-                        ?>
+                            ?>
 
-                            <tr>
-                                <th class="text-end">
-                                    <a href="./order-details.php?id=<?=$purchase['id'];?>" class="text-dark text-decoration-none btn-tooltip" data-bs-title="ดูรายการสินค้า">
-                                        <?=$purchase['orderNo'];?>
-                                    </a>
-                                </th>
-                                <td><p class="mb-0 text-overflow btn-tooltip" data-bs-title="<?=$purchase['fname'];?> <?=$purchase['lname'];?>"><?=$purchase['fname'];?> <?=$purchase['lname'];?></p></td>
-                                <td><p class="mb-0 text-overflow btn-tooltip" data-bs-title="<?=$purchase['address'];?> <?=$purchase['district'];?> <?=$purchase['amphur'];?> <?=$purchase['province'];?> <?=$purchase['postcode'];?>"><?=$purchase['address'];?> <?=$purchase['district'];?> <?=$purchase['amphur'];?> <?=$purchase['province'];?> <?=$purchase['postcode'];?></p></td>
-                                <td class="fit"><a href="tel:<?=$purchase['phone'];?>"><?=$purchase['phone'];?></a></td>
-                                <td class="fit text-end"><?=number_format($purchase['totalPrice']);?> บาท</td>
-                                <td class="text-center"><?=$purchase['whsCode'];?></td>
-                                <td class="fit"><?=$badge[$purchase['status']];?></td>
-                                <td class="fit"><?=$purchase['tracking'];?></td>
-                                <td class="fit text-center"><?=date("d M Y", strtotime($purchase['added']));?></td>
-                                <td class="fit text-center"><?=time_ago("th", $purchase['updates']);?></td>
-                                <td class="fit">
-                                    <a href="./order-details.php?id=<?=$purchase['id'];?>" class="btn btn-outline-dark btn-tooltip" data-bs-title="ดูรายการสินค้า"><i class="fa-solid fa-list"></i></a>
+                                    <tr>
+                                        <th class="text-end">
+                                            <a href="./order-details.php?id=<?= $purchase['id']; ?>" class="text-dark text-decoration-none btn-tooltip" data-bs-title="ดูรายการสินค้า">
+                                                <?= $purchase['orderNo']; ?>
+                                            </a>
+                                        </th>
+                                        <td>
+                                            <p class="mb-0 text-overflow btn-tooltip" data-bs-title="<?= $purchase['fname']; ?> <?= $purchase['lname']; ?>"><?= $purchase['fname']; ?> <?= $purchase['lname']; ?></p>
+                                        </td>
+                                        <td>
+                                            <p class="mb-0 text-overflow btn-tooltip" data-bs-title="<?= $purchase['address']; ?> <?= $purchase['district']; ?> <?= $purchase['amphur']; ?> <?= $purchase['province']; ?> <?= $purchase['postcode']; ?>"><?= $purchase['address']; ?> <?= $purchase['district']; ?> <?= $purchase['amphur']; ?> <?= $purchase['province']; ?> <?= $purchase['postcode']; ?></p>
+                                        </td>
+                                        <td class="fit"><a href="tel:<?= $purchase['phone']; ?>"><?= $purchase['phone']; ?></a></td>
+                                        <td class="fit text-end"><?= number_format($purchase['totalPrice']); ?> บาท</td>
+                                        <td class="text-center"><?= $purchase['whsCode']; ?></td>
+                                        <td class="fit"><?= $badge[$purchase['status']]; ?></td>
+                                        <td class="fit"><?= $purchase['tracking']; ?></td>
+                                        <td class="fit text-center"><?= date("d M Y", strtotime($purchase['added'])); ?></td>
+                                        <td class="fit text-center"><?= time_ago("th", $purchase['updates']); ?></td>
+                                        <td class="fit">
+                                            <a href="./order-details.php?id=<?= $purchase['id']; ?>" class="btn btn-outline-dark btn-tooltip" data-bs-title="ดูรายการสินค้า"><i class="fa-solid fa-list"></i></a>
 
-                                    <?php
-                                        if ($purchase['status'] == 2) {
-                                    ?>
+                                            <?php
+                                            if ($purchase['status'] == 2) {
+                                            ?>
 
-                                    <button class="btn btn-success btn-tooltip btn-confirm" data-id="<?=$purchase['id'];?>" data-status="3" data-bs-title="ยืนยันการชำระเงิน"><i class="fa-solid fa-check"></i></button>
+                                                <button class="btn btn-success btn-tooltip btn-confirm" data-id="<?= $purchase['id']; ?>" data-status="3" data-bs-title="ยืนยันการชำระเงิน"><i class="fa-solid fa-check"></i></button>
 
-                                    <?php
-                                        } elseif ($purchase['status'] == 3) {
-                                    ?>
+                                            <?php
+                                            } elseif ($purchase['status'] == 3) {
+                                            ?>
 
-                                    <button type="button" class="btn btn-outline-warning btn-tooltip btn-packing" data-id="<?=$purchase['id'];?>" data-status="4" data-bs-title="กำลังเตรียมสินค้า"><i class="fa-solid fa-box-open"></i></button>
-                                    <button type="button" class="btn btn-outline-primary btn-tooltip btn-shipping" data-id="<?=$purchase['id'];?>" data-status="5" data-bs-title="แจ้งเลขขนส่ง"><i class="fa-solid fa-truck-fast"></i></button>
+                                                <button type="button" class="btn btn-outline-warning btn-tooltip btn-packing" data-id="<?= $purchase['id']; ?>" data-status="4" data-bs-title="กำลังเตรียมสินค้า"><i class="fa-solid fa-box-open"></i></button>
+                                                <button type="button" class="btn btn-outline-primary btn-tooltip btn-shipping" data-id="<?= $purchase['id']; ?>" data-status="5" data-bs-title="แจ้งเลขขนส่ง"><i class="fa-solid fa-truck-fast"></i></button>
 
-                                    <?php
-                                        } elseif ($purchase['status'] == 4) {
-                                    ?>
+                                            <?php
+                                            } elseif ($purchase['status'] == 4) {
+                                            ?>
 
-                                    <button type="button" class="btn btn-outline-primary btn-tooltip btn-shipping" data-id="<?=$purchase['id'];?>" data-status="5" data-bs-title="แจ้งเลขขนส่ง"><i class="fa-solid fa-truck-fast"></i></button>
+                                                <button type="button" class="btn btn-outline-primary btn-tooltip btn-shipping" data-id="<?= $purchase['id']; ?>" data-status="5" data-bs-title="แจ้งเลขขนส่ง"><i class="fa-solid fa-truck-fast"></i></button>
 
-                                    <?php
-                                        } elseif ($purchase['status'] == 7) {
-                                    ?>
+                                            <?php
+                                            } elseif ($purchase['status'] == 7) {
+                                            ?>
 
-                                    <a href="./order-review.php?id=<?=$purchase['review'];?>" class="btn btn-warning btn-tooltip" data-bs-title="ดูรีวิวคำสั่งซื้อ"><i class="fa-solid fa-message"></i></a>
+                                                <a href="./order-review.php?id=<?= $purchase['review']; ?>" class="btn btn-warning btn-tooltip" data-bs-title="ดูรีวิวคำสั่งซื้อ"><i class="fa-solid fa-message"></i></a>
 
-                                    <?php
-                                        }
-                                    ?>
+                                            <?php
+                                            }
+                                            ?>
 
-                                </td>
-                            </tr>
+                                        </td>
+                                    </tr>
 
-                        <?php
+                            <?php
                                 }
                             }
-                        ?>
+                            ?>
 
                         </tbody>
                     </table>
@@ -142,29 +146,39 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            $.fn.dataTable.ext.type.order['date-euro-pre'] = function (date) {
+            $.fn.dataTable.ext.type.order['date-euro-pre'] = function(date) {
                 var parts = date.split(' ');
                 var day = parseInt(parts[0], 10);
                 var month = monthToNumber(parts[1]);
                 var year = parseInt(parts[2], 10);
-                
+
                 return year * 10000 + month * 100 + day;
             };
 
             function monthToNumber(month) {
                 var months = {
-                    'Jan': 1, 'Feb': 2, 'Mar': 3, 'Apr': 4, 'May': 5, 'Jun': 6,
-                    'Jul': 7, 'Aug': 8, 'Sep': 9, 'Oct': 10, 'Nov': 11, 'Dec': 12
+                    'Jan': 1,
+                    'Feb': 2,
+                    'Mar': 3,
+                    'Apr': 4,
+                    'May': 5,
+                    'Jun': 6,
+                    'Jul': 7,
+                    'Aug': 8,
+                    'Sep': 9,
+                    'Oct': 10,
+                    'Nov': 11,
+                    'Dec': 12
                 };
+                
                 return months[month];
             }
-            
-            $('#DataTables').DataTable( {
-                columnDefs: [
-                    { 
-                        orderable: false, 
-                        targets: -1 
-                    }, 
+
+            $('#DataTables').DataTable({
+                columnDefs: [{
+                        orderable: false,
+                        targets: -1
+                    },
                     {
                         targets: 8,
                         type: "date-euro"
@@ -175,7 +189,7 @@
                         8, 'desc'
                     ]
                 ]
-            } );
+            });
         }, false);
 
         $("#Export").click(function() {
@@ -194,11 +208,10 @@
             });
 
             $.post(
-                "./generate-orders.php", 
-                {
-                    "ReportStartDate": ReportStartDate, 
-                    "ReportEndDate": ReportEndDate, 
-                }, 
+                "./generate-orders.php", {
+                    "ReportStartDate": ReportStartDate,
+                    "ReportEndDate": ReportEndDate,
+                },
                 function(response) {
                     const data = JSON.parse(response);
 
@@ -245,7 +258,7 @@
         $(".btn-shipping").click(function() {
             const id = $(this).data("id");
             const status = $(this).data("status");
-            
+
             Swal.fire({
                 title: "กรุณากรอกเลข Tracking",
                 input: "text",
@@ -253,7 +266,7 @@
                     autocapitalize: "off"
                 },
                 showCancelButton: true,
-                cancelButtonText: "ยกเลิก", 
+                cancelButtonText: "ยกเลิก",
                 confirmButtonText: "ยืนยันเลขขนส่ง",
             }).then((result) => {
                 if (result.isConfirmed) {
@@ -267,13 +280,13 @@
                             Swal.showLoading();
                         }
                     });
-                    
+
                     const headers = {
                         'Content-Type': 'application/json'
                     };
 
                     const ConfirmData = {
-                        "id": id, 
+                        "id": id,
                         "status": status
                     };
 
@@ -284,7 +297,7 @@
                     };
 
                     const tracking = {
-                        "id": id, 
+                        "id": id,
                         "tracking": result.value
                     }
 
@@ -297,50 +310,50 @@
                     };
 
                     fetch("https://ecmapi.boonsiri.co.th/api/v1/purchase/update-tracking", TrackingRequestOptions)
-                    .then(response => response.json())
-                    .then(
-                        obj => {
-                            if (obj.responseCode === "000") {
-                                fetch("https://ecmapi.boonsiri.co.th/api/v1/purchase/internal-update-purchase-status", StatusRequestOptions)
-                                .then(response => response.json())
-                                .then(
-                                    obj => {
-                                        if (obj.responseCode === "000") {
-                                            Swal.fire(
-                                                `ยืนยันเลขขนส่งนี้สำเร็จ!`,
-                                                ``,
-                                                'success'
-                                            ).then(function() {
-                                                location.reload();
-                                            });
-                                        } else {
-                                            Swal.fire(
-                                                `ยืนยันเลขขนส่งนี้ไม่สำเร็จ!`,
-                                                `กรุณาลองใหม่ หรือติดต่อเจ้าหน้าที่`,
-                                                'error'
-                                            );
-                                        }
-                                    }
-                                )
-                                .catch(
-                                    error => {
-                                        console.error('Error:', error);
-                                    }
-                                );
-                            } else {
-                                Swal.fire(
-                                    `ยืนยันเลขขนส่งนี้ไม่สำเร็จ!`,
-                                    `กรุณาลองใหม่ หรือติดต่อเจ้าหน้าที่`,
-                                    'error'
-                                );
+                        .then(response => response.json())
+                        .then(
+                            obj => {
+                                if (obj.responseCode === "000") {
+                                    fetch("https://ecmapi.boonsiri.co.th/api/v1/purchase/internal-update-purchase-status", StatusRequestOptions)
+                                        .then(response => response.json())
+                                        .then(
+                                            obj => {
+                                                if (obj.responseCode === "000") {
+                                                    Swal.fire(
+                                                        `ยืนยันเลขขนส่งนี้สำเร็จ!`,
+                                                        ``,
+                                                        'success'
+                                                    ).then(function() {
+                                                        location.reload();
+                                                    });
+                                                } else {
+                                                    Swal.fire(
+                                                        `ยืนยันเลขขนส่งนี้ไม่สำเร็จ!`,
+                                                        `กรุณาลองใหม่ หรือติดต่อเจ้าหน้าที่`,
+                                                        'error'
+                                                    );
+                                                }
+                                            }
+                                        )
+                                        .catch(
+                                            error => {
+                                                console.error('Error:', error);
+                                            }
+                                        );
+                                } else {
+                                    Swal.fire(
+                                        `ยืนยันเลขขนส่งนี้ไม่สำเร็จ!`,
+                                        `กรุณาลองใหม่ หรือติดต่อเจ้าหน้าที่`,
+                                        'error'
+                                    );
+                                }
                             }
-                        }
-                    )
-                    .catch(
-                        error => {
-                            console.error('Error:', error);
-                        }
-                    );
+                        )
+                        .catch(
+                            error => {
+                                console.error('Error:', error);
+                            }
+                        );
                 }
             });
         });
@@ -368,7 +381,7 @@
                     });
 
                     const ConfirmData = {
-                        "id": id, 
+                        "id": id,
                         "status": status
                     };
 
@@ -383,31 +396,31 @@
                     };
 
                     fetch("https://ecmapi.boonsiri.co.th/api/v1/purchase/internal-update-purchase-status", requestOptions)
-                    .then(response => response.json())
-                    .then(
-                        obj => {
-                            if (obj.responseCode === "000") {
-                                Swal.fire(
-                                    `ยืนยัน${action}นี้สำเร็จ!`,
-                                    ``,
-                                    'success'
-                                ).then(function() {
-                                    location.reload();
-                                });
-                            } else {
-                                Swal.fire(
-                                    `ยืนยัน${action}นี้ไม่สำเร็จ!`,
-                                    `กรุณาลองใหม่ หรือติดต่อเจ้าหน้าที่`,
-                                    'error'
-                                );
+                        .then(response => response.json())
+                        .then(
+                            obj => {
+                                if (obj.responseCode === "000") {
+                                    Swal.fire(
+                                        `ยืนยัน${action}นี้สำเร็จ!`,
+                                        ``,
+                                        'success'
+                                    ).then(function() {
+                                        location.reload();
+                                    });
+                                } else {
+                                    Swal.fire(
+                                        `ยืนยัน${action}นี้ไม่สำเร็จ!`,
+                                        `กรุณาลองใหม่ หรือติดต่อเจ้าหน้าที่`,
+                                        'error'
+                                    );
+                                }
                             }
-                        }
-                    )
-                    .catch(
-                        error => {
-                            console.error('Error:', error);
-                        }
-                    );
+                        )
+                        .catch(
+                            error => {
+                                console.error('Error:', error);
+                            }
+                        );
                 }
             });
         }

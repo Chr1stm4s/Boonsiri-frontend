@@ -1,9 +1,11 @@
 <?php
-    if (@$_SESSION['id'] && @$_SESSION['whsCode']) {
+    $WhsCode = (@$_SESSION['whsCode']) ? $_SESSION['whsCode'] : "SSK";
+
+    if (@$_SESSION['id']) {
         // Request body
         $HeaderCartDataAPI = [
             'customerId' => $_SESSION['id'],
-            'whsCode' => $_SESSION['whsCode']
+            'whsCode' => $WhsCode
         ];
 
         $HeaderCartData = connect_api("https://ecmapi.boonsiri.co.th/api/v1/cart/list-cart", $HeaderCartDataAPI);
@@ -79,7 +81,7 @@
                                 <i class="fa-solid fa-angle-down"></i>
                             </a>
                             <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="<?=rootURL();?>หมวดหมู่สินค้าทั้งหมด/">หมวดหมู่สินค้าทั้งหมด</a></li>
+                                <li><a class="dropdown-item btn-hyper-link" href="<?=rootURL();?>หมวดหมู่สินค้าทั้งหมด/">หมวดหมู่สินค้าทั้งหมด</a></li>
             
                                 <?php
                                     $HeaderCategoryMainRequest = [
@@ -91,7 +93,7 @@
                                     foreach ($HeaderCategoryMain['categories'] as $HeaderCategoryList) {
                                 ?>
 
-                                <li><a class="dropdown-item" href="<?=rootURL();?>หมวดหมู่สินค้าบุญศิริ/<?=($HeaderCategoryList['url']) ? $HeaderCategoryList['url'] : str_replace(" ", "-", $HeaderCategoryList['title']);?>/<?=$HeaderCategoryList['id'];?>/"><?=$HeaderCategoryList['title'];?></a></li>
+                                <li><a class="dropdown-item btn-hyper-link" href="<?=rootURL();?>หมวดหมู่สินค้าบุญศิริ/<?=($HeaderCategoryList['url']) ? $HeaderCategoryList['url'] : str_replace(" ", "-", $HeaderCategoryList['title']);?>/<?=$HeaderCategoryList['id'];?>/"><?=$HeaderCategoryList['title'];?></a></li>
 
                                 <?php
                                     }

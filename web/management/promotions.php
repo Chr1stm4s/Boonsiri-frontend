@@ -147,13 +147,13 @@
         $('#DataTables').DataTable({
             order: [
                 [
-                    -1, 'DESC'
+                    4, 'DESC'
                 ]
             ], 
             columnDefs: [
                 { 
                     orderable: false, 
-                    targets: -1 
+                    targets: 6
                 }
             ],
         });

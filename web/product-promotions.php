@@ -87,7 +87,7 @@
                                     <div class="card-footer bg-white border-0 text-end">
 
                                     <?php
-                                        if ($product['promotionId'] != 0) {
+                                        if ($product['promotionType'] !== null && ($product['promotionType'] == 0 || $product['promotionType'] == 1)) {
                                     ?>
 
                                         <p class="card-text">

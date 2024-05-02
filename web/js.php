@@ -14,10 +14,10 @@
     </div>
 </div>
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+<script src="<?=rootURL();?>bootstrap/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
 <script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+<script src="<?=rootURL();?>sweetalert2.all.min.js"></script>
+<script src="<?=rootURL();?>select2/js/select2.min.js"></script>
 
 <?php require_once "modal-member.php"; ?>
 
@@ -34,6 +34,18 @@
         sessionStorage.setItem("pdpa", "accepted");
 
         $(".pdpa").remove();
+    });
+
+    $(document).on("click", ".btn-hyper-link", function() {
+        Swal.fire({
+            title: 'กำลังดำเนินการ',
+            text: 'กรุณารอสักครู่', 
+            allowOutsideClick: true,
+            allowEscapeKey: true,
+            didOpen: () => {
+                Swal.showLoading()
+            }
+        });
     });
 
     function CheckBrowser() {
@@ -221,32 +233,34 @@
         });
     });
 
-    $(".product-link").on("click", function() {
-            const url = $(this).data("url");
+    $(document).on("click", ".product-link", function() {
+        const url = $(this).data("url");
 
-            Swal.fire({
-                title: 'กำลังดำเนินการ',
-                text: 'กรุณารอสักครู่', 
-                didOpen: () => {
-                    Swal.showLoading()
-                }
-            });
-
-            $.post(
-                "<?=rootURL();?>action/check-login/", 
-                function(result) {
-                    if (result == "success") {
-                        window.location.href = url;
-                    } else {
-                        Swal.close();
-                        
-                        const ModalMemberRequired = new bootstrap.Modal('#ModalMemberRequired', {
-                            keyboard: false
-                        });
-
-                        ModalMemberRequired.show();
-                    }
-                }
-            );
+        Swal.fire({
+            title: 'กำลังดำเนินการ',
+            text: 'กรุณารอสักครู่', 
+            allowOutsideClick: true,
+            allowEscapeKey: true,
+            didOpen: () => {
+                Swal.showLoading()
+            }
         });
+
+        $.post(
+            "<?=rootURL();?>action/check-login/", 
+            function(result) {
+                if (result == "success") {
+                    window.location.href = url;
+                } else {
+                    Swal.close();
+                    
+                    const ModalMemberRequired = new bootstrap.Modal('#ModalMemberRequired', {
+                        keyboard: false
+                    });
+
+                    ModalMemberRequired.show();
+                }
+            }
+        );
+    });
 </script>

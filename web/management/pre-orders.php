@@ -52,6 +52,8 @@
                             
                             $data = connect_api($apiUrl);
 
+                            $i = 1;
+
                             if ($data['responseCode'] == 000) {
                                 foreach ($data['preOrders'] as $preOrder) {
                                     $ProductDataAPIRequest = [
@@ -77,6 +79,7 @@
                         ?>
 
                             <tr>
+                                <th class="text-end"><?=$i;?></th>
                                 <td class="text-center">
                                     <img src="<?=$thumbnail;?>" alt="" class="rounded-3" height="40" data-bs-toggle="modal" data-bs-target="#PreviewThumbnailModal" data-bs-img="<?=$thumbnail;?>">
                                 </td>
@@ -96,6 +99,7 @@
                             </tr>
 
                         <?php
+                                    $i++;
                                 }
                             }
                         ?>

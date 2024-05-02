@@ -301,7 +301,7 @@
                     if (response == "success") {
                         Swal.fire(
                             'ส่งข้อความสำเร็จ!',
-                            'เจ้าหน้าที่จะติดต่อกลับโดยเร็วที่สุด',
+                            '',
                             'success'
                         ).then(() => {
                             location.reload();

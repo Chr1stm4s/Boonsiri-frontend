@@ -58,7 +58,7 @@
                 $dataQR = connect_api("https://ecmapi.boonsiri.co.th/api/v1/boonsiri/gen-qr-payment", $requestQR);
         
                 if ($dataQR['responseCode'] == 000) {
-                    $PaymentData = $data['response']['results'];
+                    $PaymentData = $dataQR['response']['results'];
         ?>
 
             <div class="row">
@@ -86,7 +86,7 @@
                     <h5 class="text-danger mb-0">
                         โปรดชำระเงินเพื่อยืนยันคำสั่งซื้อภายใน 10 นาที
                         <br>
-                        หากไม่ชำระภายในเวลา 23.59 น. คำสั่งซื้อจะถูกยกเลิกอัตโนมัติ
+                        หากไม่ชำระภายใน 10 นาที คำสั่งซื้อจะถูกยกเลิกอัตโนมัติ
                     </h5>
                 </div>
             </div>
