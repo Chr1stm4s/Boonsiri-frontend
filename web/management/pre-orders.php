@@ -126,7 +126,7 @@
                             <input type="text" name="orderNo" class="form-control" id="orderNo" required aria-required="true">
                         </div>
                         <div class="mb-3">
-                            <label for="productPrice" class="col-form-label">ราคาสินค้า:</label>
+                            <label for="productPrice" class="col-form-label">ราคาสินค้า (ต่อชิ้น):</label>
                             <input type="number" name="productPrice" class="form-control" id="productPrice" required aria-required="true">
                         </div>
                         <div class="mb-3">

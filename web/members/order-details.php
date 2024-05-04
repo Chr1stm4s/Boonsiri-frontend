@@ -67,7 +67,8 @@
                                     <th>ชื่อสินค้า</th>
                                     <th class="text-center">จำนวน</th>
                                     <th class="fit">ค่าจัดส่ง</th>
-                                    <th class="text-center">ราคา</th>
+                                    <th class="fit text-center">ราคาต่อหน่วย</th>
+                                    <th class="fit text-center">ราคาทั้งหมด</th>
                                     <th class="fit">เครื่องมือ</th>
                                 </tr>
                             </thead>
@@ -108,7 +109,47 @@
                                     ?>
 
                                     </td>
-                                    <td class="fit text-end"><?=number_format($items['productPrice']);?> บาท</td>
+
+                                    <?php
+                                        if (($items['discountType'] !== null) && ($items['discountType'] == 0 || $items['discountType'] == 1)) {
+                                    ?>
+
+                                    <td class="fit text-end">
+                                        <p class="mb-0" id="EachPrice<?=$items['id'];?>">
+                                            <small class="text-decoration-line-through text-muted">
+                                                <?=number_format($items['productPrice']);?> บาท
+                                            </small>
+                                            <br class="d-none d-md-block">
+                                            <?=number_format($items['eachLastPrice']);?> บาท
+                                        </p>
+                                    </td>
+                                    <td class="fit text-end">
+                                        <p class="mb-0 w-100 text-theme-4" id="LastPrice<?=$items['id'];?>">
+                                            <small class="text-decoration-line-through text-muted">
+                                                <?=number_format($items['productPrice'] * $items['amount']);?> บาท
+                                            </small>
+                                            <br class="d-none d-md-block">
+                                            <?=number_format($items['lastPrice']);?> บาท 
+                                        </p>
+                                    </td>
+
+                                    <?php
+                                        } else {
+                                    ?>
+
+                                    <td class="fit text-end">
+                                        <p class="mb-0 text-dark" id="EachPrice<?=$items['id'];?>">
+                                            <?=number_format($items['productPrice']);?> บาท
+                                        </p>
+                                    </td>
+                                    <td class="fit text-end">
+                                        <p class="mb-0 text-dark w-100" id="LastPrice<?=$items['id'];?>"><?=number_format($items['lastPrice']);?> บาท</p>
+                                    </td>
+
+                                    <?php
+                                        }
+                                    ?>
+
                                     <td class="fit text-center">
                                         <a href="<?=rootURL();?>ข้อมูลสินค้าบุญศิริ/<?=$items['productId'];?>/<?=str_replace(" ", "-", $items['title']);?>/" class="btn btn-primary rounded-0 btn-edit btn-tooltip" data-bs-title="ดูรายละเอียดสินค้า"><i class="fa-solid fa-eye"></i></a>
                                     </td>
