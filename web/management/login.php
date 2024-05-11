@@ -17,8 +17,11 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
 <style>
+        html, body, section, html > body.swal2-height-auto {
+            height: 100% !important;
+        }
+
         html, body, section {
-            height: 100%;
             background-image: url('https://img.freepik.com/free-photo/top-view-fresh-seafood-table_23-2148290490.jpg?w=1380&t=st=1705101388~exp=1705101988~hmac=47888721845dbcd6c2e916f13d2456a2e0cf48f2413df94911ef34de3b895c67');
             background-size: cover;
         }

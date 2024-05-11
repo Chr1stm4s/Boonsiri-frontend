@@ -285,8 +285,11 @@ select#amount {
     color: var(--color-theme-3);
 }
 
+html > body.swal2-height-auto, html > body.member-form {
+    height: 100vh !important;
+}
+
 body.member-form {
-    height: 100vh;
     background-image: url('./images/login-bg.jpg');
     background-position: center;
     background-repeat: no-repeat;

@@ -14,6 +14,18 @@
     } else {
         $HeaderCartCount = 0;
     }
+
+    if (@$_SESSION['categories']) {
+        $CategoryList = $_SESSION['categories'];
+    } else {
+        $CategoryMainRequest = [
+            "whsCode" => @$_SESSION['whsCode']
+        ];
+        
+        $CategoryList = connect_api("https://ecmapi.boonsiri.co.th/api/v1/category/list-category", $CategoryMainRequest);
+
+        $_SESSION['categories'] = $CategoryList;
+    }
 ?>
 
 <section class="bg-header py-2">
@@ -84,13 +96,7 @@
                                 <li><a class="dropdown-item btn-hyper-link" href="<?=rootURL();?>หมวดหมู่สินค้าทั้งหมด/">หมวดหมู่สินค้าทั้งหมด</a></li>
             
                                 <?php
-                                    $HeaderCategoryMainRequest = [
-                                        "whsCode" => @$_SESSION['whsCode']
-                                    ];
-                                    
-                                    $HeaderCategoryMain = connect_api("https://ecmapi.boonsiri.co.th/api/v1/category/list-category", $HeaderCategoryMainRequest);
-
-                                    foreach ($HeaderCategoryMain['categories'] as $HeaderCategoryList) {
+                                    foreach ($CategoryList['categories'] as $HeaderCategoryList) {
                                 ?>
 
                                 <li><a class="dropdown-item btn-hyper-link" href="<?=rootURL();?>หมวดหมู่สินค้าบุญศิริ/<?=($HeaderCategoryList['url']) ? $HeaderCategoryList['url'] : str_replace(" ", "-", $HeaderCategoryList['title']);?>/<?=$HeaderCategoryList['id'];?>/"><?=$HeaderCategoryList['title'];?></a></li>

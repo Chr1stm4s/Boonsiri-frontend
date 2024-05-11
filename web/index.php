@@ -148,14 +148,14 @@
             <div class="row">
             
                 <?php
-                    foreach ($HeaderCategoryMain['categories'] as $CategoryList) {
-                        $image = ($CategoryList['image'] && file_exists("products/category/".$CategoryList['image'])) ? rootURL()."products/category/".$CategoryList['image'] : rootURL()."images/logo.png";
+                    foreach ($CategoryList['categories'] as $HomeCategoryList) {
+                        $image = ($HomeCategoryList['image'] && file_exists("products/category/".$HomeCategoryList['image'])) ? rootURL()."products/category/".$HomeCategoryList['image'] : rootURL()."images/logo.png";
                 ?>
 
                 <div class="col-3 col-md-2 col-lg-1 my-3 text-center">
-                    <a href="<?=rootURL();?>หมวดหมู่สินค้าบุญศิริ/<?=($CategoryList['url']) ? $CategoryList['url'] : str_replace(" ", "-", $CategoryList['title']);?>/<?=$CategoryList['id'];?>/" class="text-decoration-none text-dark btn-hyper-link">
-                        <img src="<?=$image;?>" alt="<?=$CategoryList['title'];?>" class="w-100 mb-2">
-                        <p class="mb-0"><?=$CategoryList['title'];?></p>
+                    <a href="<?=rootURL();?>หมวดหมู่สินค้าบุญศิริ/<?=($HomeCategoryList['url']) ? $HomeCategoryList['url'] : str_replace(" ", "-", $HomeCategoryList['title']);?>/<?=$HomeCategoryList['id'];?>/" class="text-decoration-none text-dark btn-hyper-link">
+                        <img src="<?=$image;?>" alt="<?=$HomeCategoryList['title'];?>" class="w-100 mb-2">
+                        <p class="mb-0"><?=$HomeCategoryList['title'];?></p>
                     </a>
                 </div>
 

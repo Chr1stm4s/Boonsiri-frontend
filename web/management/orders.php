@@ -4,9 +4,44 @@
 <head>
 
     <?php
-    $page = "orders";
+        $page = "orders";
 
-    require_once "./head.php";
+        require_once "./head.php";
+
+        $badge = array(
+            '<span class="badge text-bg-light w-100">กำลังสั่งซื้อ</span>',
+            '<span class="badge text-bg-light w-100">รอชำระเงิน</span>',
+            '<span class="badge text-bg-success w-100">รอยืนยันชำระเงิน</span>',
+            '<span class="badge text-bg-success w-100">ชำระเงินแล้ว</span>',
+            '<span class="badge text-bg-info w-100">กำลังเตรียมสินค้า</span>',
+            '<span class="badge text-bg-primary w-100">กำลังจัดส่ง</span>',
+            '<span class="badge text-bg-success w-100">รับสินค้าแล้ว</span>',
+            '<span class="badge text-bg-info w-100">รีวิวสำเร็จ</span>',
+            '<span class="badge text-bg-danger w-100">มีสินค้าแจ้งเคลม</span>',
+            '<span class="badge text-bg-dark w-100">เคลมแล้ว</span>',
+            '<span class="badge text-bg-success w-100">เสร็จสมบูรณ์</span>',
+            '<span class="badge text-bg-secondary w-100">เกินกำหนดชำระ</span>'
+        );
+
+        $courier = array(
+            '<span class="badge text-bg-dark w-100">ไม่ระบุ</span>',
+            '<span class="badge text-bg-primary w-100">บุญศิริ</span>',
+            '<span class="badge text-bg-light w-100">ขนส่งเอกชน (ภาคเหนือ)</span>',
+            '<span class="badge text-bg-light w-100">ขนส่งเอกชน (ภาคอื่นๆ)</span>'
+        );
+
+        $apiUrl = "https://ecmapi.boonsiri.co.th/api/v1/purchase/list-purchase";
+
+        $data = connect_api($apiUrl);
+
+        $InternalCourier = 0;
+        $ExternalCourier = 0;
+
+        if ($data['responseCode'] != 000) {
+            echo "Cannot get purchase data";
+
+            return;
+        }
     ?>
 
 </head>
@@ -33,48 +68,37 @@
             </div>
 
             <div class="row">
-                <div class="col">
-                    <table class="table table-hover border table-striped mb-3" id="DataTables">
-                        <thead>
-                            <tr>
-                                <th class="fit">เลขที่คำสั่งซื้อ</th>
-                                <th>ชื่อผู้สั่งซื้อ</th>
-                                <th>ที่อยู่</th>
-                                <th class="fit">เบอร์ติดต่อ</th>
-                                <th class="text-end">ราคา</th>
-                                <th class="fit text-center">สาขา</th>
-                                <th class="px-4 fit text-center">สถานะ</th>
-                                <th class="px-4 fit text-center">เลขขนส่ง</th>
-                                <th class="fit">วันที่สั่งซื้อ</th>
-                                <th class="fit">แก้ไขล่าสุด</th>
-                                <th>จัดการ</th>
-                            </tr>
-                        </thead>
-                        <tbody>
+                <div class="col-12 order-2">
+                    <div class="row mx-0">
+                        <div class="col">
+                            <table class="table table-hover border table-striped mb-0" id="DataTables">
+                                <thead>
+                                    <tr>
+                                        <th class="fit">เลขที่คำสั่งซื้อ</th>
+                                        <th>ชื่อผู้สั่งซื้อ</th>
+                                        <th>ที่อยู่</th>
+                                        <th class="fit">เบอร์ติดต่อ</th>
+                                        <th class="fit text-end">ราคาสินค้า</th>
+                                        <th class="fit text-end">ค่าจัดส่ง</th>
+                                        <th class="text-center">สายส่ง</th>
+                                        <th class="fit text-center">สาขา</th>
+                                        <th class="px-4 fit text-center">สถานะ</th>
+                                        <th class="px-4 fit text-center">เลขขนส่ง</th>
+                                        <th class="fit">วันที่สั่งซื้อ</th>
+                                        <th class="fit">แก้ไขล่าสุด</th>
+                                        <th>จัดการ</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
 
-                            <?php
-                            $badge = array(
-                                '<span class="badge text-bg-light w-100">กำลังสั่งซื้อ</span>',
-                                '<span class="badge text-bg-light w-100">รอชำระเงิน</span>',
-                                '<span class="badge text-bg-success w-100">รอยืนยันชำระเงิน</span>',
-                                '<span class="badge text-bg-success w-100">ชำระเงินแล้ว</span>',
-                                '<span class="badge text-bg-info w-100">กำลังเตรียมสินค้า</span>',
-                                '<span class="badge text-bg-primary w-100">กำลังจัดส่ง</span>',
-                                '<span class="badge text-bg-success w-100">รับสินค้าแล้ว</span>',
-                                '<span class="badge text-bg-info w-100">รีวิวสำเร็จ</span>',
-                                '<span class="badge text-bg-danger w-100">มีสินค้าแจ้งเคลม</span>',
-                                '<span class="badge text-bg-dark w-100">เคลมแล้ว</span>',
-                                '<span class="badge text-bg-success w-100">เสร็จสมบูรณ์</span>',
-                                '<span class="badge text-bg-secondary w-100">เกินกำหนดชำระ</span>'
-                            );
-
-                            $apiUrl = "https://ecmapi.boonsiri.co.th/api/v1/purchase/list-purchase";
-
-                            $data = connect_api($apiUrl);
-
-                            if ($data['responseCode'] == 000) {
-                                foreach ($data['purchases'] as $purchase) {
-                            ?>
+                                    <?php
+                                        foreach ($data['purchases'] as $purchase) {
+                                            if ($purchase['courierId'] == 1) {
+                                                $InternalCourier += $purchase['shippingPrice'];
+                                            } else {
+                                                $ExternalCourier += $purchase['shippingPrice'];
+                                            }
+                                    ?>
 
                                     <tr>
                                         <th class="text-end">
@@ -90,6 +114,8 @@
                                         </td>
                                         <td class="fit"><a href="tel:<?= $purchase['phone']; ?>"><?= $purchase['phone']; ?></a></td>
                                         <td class="fit text-end"><?= number_format($purchase['totalPrice']); ?> บาท</td>
+                                        <td class="fit text-end"><?= number_format($purchase['shippingPrice']); ?> บาท</td>
+                                        <td class="text-center"><?= $courier[$purchase['courierId']]; ?></td>
                                         <td class="text-center"><?= $purchase['whsCode']; ?></td>
                                         <td class="fit"><?= $badge[$purchase['status']]; ?></td>
                                         <td class="fit"><?= $purchase['tracking']; ?></td>
@@ -99,44 +125,65 @@
                                             <a href="./order-details.php?id=<?= $purchase['id']; ?>" class="btn btn-outline-dark btn-tooltip" data-bs-title="ดูรายการสินค้า"><i class="fa-solid fa-list"></i></a>
 
                                             <?php
-                                            if ($purchase['status'] == 2) {
+                                                if ($purchase['status'] == 2) {
                                             ?>
 
                                                 <button class="btn btn-success btn-tooltip btn-confirm" data-id="<?= $purchase['id']; ?>" data-status="3" data-bs-title="ยืนยันการชำระเงิน"><i class="fa-solid fa-check"></i></button>
 
                                             <?php
-                                            } elseif ($purchase['status'] == 3) {
+                                                } elseif ($purchase['status'] == 3) {
                                             ?>
 
                                                 <button type="button" class="btn btn-outline-warning btn-tooltip btn-packing" data-id="<?= $purchase['id']; ?>" data-status="4" data-bs-title="กำลังเตรียมสินค้า"><i class="fa-solid fa-box-open"></i></button>
                                                 <button type="button" class="btn btn-outline-primary btn-tooltip btn-shipping" data-id="<?= $purchase['id']; ?>" data-status="5" data-bs-title="แจ้งเลขขนส่ง"><i class="fa-solid fa-truck-fast"></i></button>
 
                                             <?php
-                                            } elseif ($purchase['status'] == 4) {
+                                                } elseif ($purchase['status'] == 4) {
                                             ?>
 
                                                 <button type="button" class="btn btn-outline-primary btn-tooltip btn-shipping" data-id="<?= $purchase['id']; ?>" data-status="5" data-bs-title="แจ้งเลขขนส่ง"><i class="fa-solid fa-truck-fast"></i></button>
 
                                             <?php
-                                            } elseif ($purchase['status'] == 7) {
+                                                } elseif ($purchase['status'] == 7) {
                                             ?>
 
                                                 <a href="./order-review.php?id=<?= $purchase['review']; ?>" class="btn btn-warning btn-tooltip" data-bs-title="ดูรีวิวคำสั่งซื้อ"><i class="fa-solid fa-message"></i></a>
 
                                             <?php
-                                            }
+                                                }
                                             ?>
 
                                         </td>
                                     </tr>
 
-                            <?php
-                                }
-                            }
-                            ?>
+                                    <?php
+                                        }
+                                    ?>
 
-                        </tbody>
-                    </table>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 order-1 mb-4">
+                    <div class="row mx-0">
+                        <div class="col-6 col-md-3 ms-auto text-center">
+                            <div class="card text-bg-primary">
+                                <div class="card-header border-0">ขนส่งบุญศิริ</div>
+                                <div class="card-body">
+                                    <h3 class="card-title mb-0 py-3"><?=number_format($InternalCourier);?> บาท</h3>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-6 col-md-3 me-auto text-center">
+                            <div class="card text-bg-light">
+                                <div class="card-header border-0">ขนส่งเอกชน</div>
+                                <div class="card-body">
+                                    <h3 class="card-title mb-0 py-3"><?=number_format($ExternalCourier);?> บาท</h3>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
