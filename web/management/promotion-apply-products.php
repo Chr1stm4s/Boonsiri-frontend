@@ -31,14 +31,14 @@
 
         $ProductAPIDataRequest = [
             'categoryId' => $category, 
-            'whsCode' => "SSK", 
+            'whsCode' => "", 
             'orderByColumn' => "", 
             'orderBy' => "", 
             'pageNo' => 0, 
             'pageSize' => 0, 
         ];
 
-        $APIURL = "https://ecmapi.boonsiri.co.th/api/v1/product/get-product-by-category-id";
+        $APIURL = "https://ecmapi.boonsiri.co.th/api/v1/product/get-product-by-category-id-all";
 
         function calculateDiscount($type, $discount, $price) {
             if ($type == 0) {
@@ -74,7 +74,7 @@
                     <h1 class="mb-0"><?=$PromotionData['title'];?></h1>
                 </div>
                 <div class="col-auto my-auto">
-                    <button type="button" class="btn btn-primary" id="ApplyPromotion" data-type="itemCode">บันทึก</button>
+                    <button type="button" class="btn btn-primary" disabled id="ApplyPromotion" data-type="itemCode">บันทึก</button>
                     <!-- <button type="button" class="btn btn-primary" id="ApplyPromotion" data-type="itemCode">บันทึกเป็น itemCode</button> -->
                 </div>
                 <!-- <div class="col-auto my-auto">
@@ -88,6 +88,7 @@
                         <thead>
                             <tr>
                                 <th class="fit"><input type="checkbox" id="ButtonApplyAll"></th>
+                                <th>itemCode</th>
                                 <th>ชื่อสินค้า</th>
                                 <th class="fit">ราคาก่อนลด</th>
                                 <th class="fit">ราคาหลังลด</th>
@@ -106,7 +107,8 @@
 
                             <tr>
                                 <th><input type="checkbox" name="apply[]" <?=$disableCheckbox;?> class="checkbox-promotion" value="<?=$DataList['itemCode'];?>" <?=($DataList['promotionId'] == $id) ? "checked" : ""; ?>></th>
-                                <td><?=$DataList['id'];?> <?=$DataList['title'];?></td>
+                                <td><?=$DataList['itemCode'];?></td>
+                                <td><?=$DataList['title'];?></td>
                                 <td class="text-end"><?=(@$DataList['price']) ? number_format($DataList['price'])." บาท" : "-"; ?></td>
                                 <td class="text-end"><?=(@$DataList['price']) ? calculateDiscount($PromotionData['type'], $PromotionData['discount'], $DataList['price'])." บาท" : "-"; ?></td>
                             </tr>
@@ -155,10 +157,41 @@
                     [10, 25, 50, 100, -1],
                     [10, 25, 50, 100, "แสดงทั้งหมด"]
                 ],
-                iDisplayLength: 10
-            } );
+                iDisplayLength: 10, 
+                drawCallback: function () {
+                    var table = this.api();
+
+                    function updateButtonApplyAll() {
+                        if ($('.checkbox-promotion:checked').length == $('.checkbox-promotion').length) {
+                            $("#ButtonApplyAll").prop('checked', true);
+                        } else {
+                            $("#ButtonApplyAll").prop('checked', false);
+                        }
+                    }
+
+                    // Event handler for page change
+                    table.on('draw', function() {
+                        updateButtonApplyAll();
+                    });
+
+                    // Event handlers for pagination buttons
+                    $('.paginate_button.next:not(.disabled)', table.table().container()).on('click', updateButtonApplyAll);
+                    $('.paginate_button:not(.next, .previous)', table.table().container()).on('click', updateButtonApplyAll);
+                    $('.paginate_button.previous:not(.disabled)', table.table().container()).on('click', updateButtonApplyAll);
+
+                    // Event handlers for length change and search
+                    table.on('length.dt', function() {
+                        updateButtonApplyAll();
+                    });
+                    table.on('search.dt', function() {
+                        updateButtonApplyAll();
+                    });
+                }
+            });
             
             $(document).on('click', '#ButtonApplyAll', function() {
+                $("#ApplyPromotion").prop("disabled", false);
+
                 if($(this).is(':checked')) {
                     $('.checkbox-promotion').prop('checked', true);
                 } else {
@@ -181,7 +214,34 @@
                             Swal.close();
 
                             if(response == 'success') {
-                                console.log("success");
+                                console.log("removed");
+                            } else {
+                                Swal.fire(
+                                    'ใช้งานโปรโมชั่นไม่สำเร็จ!',
+                                    'กรุณาติดต่อเจ้าหน้าที่',
+                                    'error'
+                                );
+
+                                console.log(checkedValues)
+                                console.log(response)
+                            }
+                        }
+                    });
+                } else {
+                    const promotionId = <?=$id;?>;
+
+                    $.ajax({
+                        type: 'POST',
+                        url: './update/promotion-apply-single.php', 
+                        data: { 
+                            checkboxValues: checkedValues, 
+                            promotionId: promotionId, 
+                        },
+                        success: function(response) {
+                            Swal.close();
+
+                            if(response == 'success') {
+                                console.log("added");
                             } else {
                                 Swal.fire(
                                     'ใช้งานโปรโมชั่นไม่สำเร็จ!',
@@ -197,17 +257,31 @@
                 }
             });
 
+            console.log($('.checkbox-promotion').length);
+
+            if ($('.checkbox-promotion:checked').length == $('.checkbox-promotion').length) {
+                $("#ButtonApplyAll").prop('checked', true);
+            }
+            
             // Handle button click
-            $('#ApplyPromotion').click(function(e) {
+            $('#ApplyPromotion').on("click", function(e) {
                 e.preventDefault();
 
                 var checkedValues = [];
 
-                const promotionId = <?=$id;?>;
-
                 $('.checkbox-promotion:checked').each(function() {
                     checkedValues.push($(this).val());
                 });
+
+                if (checkedValues.length > 0) {
+                    var promotionId = <?=$id;?>;
+                } else {
+                    var promotionId = 0;
+
+                    $('.checkbox-promotion').each(function() {
+                        checkedValues.push($(this).val());
+                    });
+                }
 
                 Swal.fire({
                     title: 'ต้องการใช้งานโปรโมชั่นกับสินค้าเหล่านี้ใช่ไหม?',
@@ -255,6 +329,8 @@
                                         'กรุณาติดต่อเจ้าหน้าที่',
                                         'error'
                                     );
+
+                                    console.log(response)
                                 }
                             }
                         });

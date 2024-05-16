@@ -21,6 +21,9 @@
                 <div class="col">
                     <h1 class="mb-0">Branches</h1>
                 </div>
+                <div class="col-auto">
+                    <a href="./branches-dashboard.php" class="btn btn-primary">Dashboard</a>
+                </div>
             </div>
             
             <div class="row">
@@ -83,9 +86,9 @@
                                             <i class="fa-solid fa-truck-ramp-box"></i>
                                         </button>
                                         <ul class="dropdown-menu">
-                                            <li><a class="dropdown-item" href="./branche-area.php?id=<?=$branch['id'];?>&courier=1">Boonsiri</a></li>
-                                            <li><a class="dropdown-item" href="./branche-area.php?id=<?=$branch['id'];?>&courier=3">Flash (ภาคเหนือ)</a></li>
-                                            <li><a class="dropdown-item" href="./branche-area.php?id=<?=$branch['id'];?>&courier=4">Flash (ภาคอื่นๆ)</a></li>
+                                            <li><a class="dropdown-item" href="./branche-area.php?id=<?=$branch['id'];?>&courier=1">ขนส่งบุญศิริ</a></li>
+                                            <li><a class="dropdown-item" href="./branche-area.php?id=<?=$branch['id'];?>&courier=3">ขนส่งเอกชน (ภาคเหนือ)</a></li>
+                                            <li><a class="dropdown-item" href="./branche-area.php?id=<?=$branch['id'];?>&courier=4">ขนส่งเอกชน (ภาคอื่นๆ)</a></li>
                                         </ul>
                                     </div>
                                 </td>

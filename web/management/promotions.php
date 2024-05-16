@@ -48,6 +48,7 @@
                             <tr>
                                 <th class="fit">ลำดับ</th>
                                 <th>ชื่อโปรโมชั่น</th>
+                                <th class="px-4 fit">ประเภทส่วนลด</th>
                                 <th class="px-4 fit">มูลค่าส่วนลด</th>
                                 <th class="px-4 fit">สถานะ</th>
                                 <th class="px-4 fit">วันที่เริ่มโปรโมชั่น</th>
@@ -79,12 +80,16 @@
                             if ($data['responseCode'] == 000) {
                                 foreach ($data['promotions'] as $promotion) {
                                     if ($promotion['type'] == 0) {
+                                        $promotionTitle = '<span class="w-100 badge text-bg-success">ลดค่าสินค้า</span>';
                                         $PromotionType = number_format($promotion['discount'])." บาท";
                                     } elseif ($promotion['type'] == 1) {
-                                        $PromotionType = number_format($promotion['discount'])." %";
+                                        $promotionTitle = '<span class="w-100 badge text-bg-success">ลดค่าสินค้า</span>';
+                                        $PromotionType = number_format($promotion['discount'])."%";
                                     } elseif ($promotion['type'] == 2) {
+                                        $promotionTitle = '<span class="w-100 badge text-bg-warning">ลดค่าขนส่ง</span>';
                                         $PromotionType = number_format($promotion['discount'])." บาท";
                                     } else {
+                                        $promotionTitle = '<span class="w-100 badge text-bg-warning">ลดค่าขนส่ง</span>';
                                         $PromotionType = "ส่งฟรี";
                                     }
                         ?>
@@ -93,7 +98,8 @@
                             <tr>
                                 <th class="text-end"><?=$promotion['id'];?></th>
                                 <td><?=$promotion['title'];?></td>
-                                <td class="text-end"><?=$PromotionType;?></td>
+                                <td class="fit text-center"><?=$promotionTitle;?></td>
+                                <td class="fit text-end"><?=$PromotionType;?></td>
                                 <td class="fit"><?=checkDateRangeStatus($promotion['startDate'], $promotion['endDate']);?></td>
                                 <td class="text-center"><?=date("d M Y", strtotime($promotion['startDate']));?></td>
                                 <td class="text-center"><?=date("d M Y", strtotime($promotion['endDate']));?></td>

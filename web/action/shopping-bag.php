@@ -11,8 +11,8 @@
     $HeaderCartData = connect_api("https://ecmapi.boonsiri.co.th/api/v1/cart/list-cart", $HeaderCartDataAPI);
 
     if ($HeaderCartData === null) {
-        echo 0;
+        echo $_SESSION['cart'] = 0;
     } else {
-        echo $HeaderCartCount = count($HeaderCartData['cartModels']);
+        echo $_SESSION['cart'] = count($HeaderCartData['cartModels']);
     }
 ?>

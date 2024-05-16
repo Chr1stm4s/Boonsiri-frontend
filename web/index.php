@@ -214,8 +214,8 @@
                         $requestData = [
                             "promotionId" => 0, 
                             "whsCode" => $WhsCode, 
-                            "orderByColumn" => "", 
-                            "orderBy" => "", 
+                            'orderByColumn' => "id",  
+                            'orderBy' => "DESC", 
                             "pageNo" => 1, 
                             "pageSize" => 8, 
                             "isFrontEnd" => 1, 

@@ -1,6 +1,8 @@
 <?php
     session_start();
 
+    date_default_timezone_set("Asia/Bangkok");
+
     // Full Thai Date
     function thai_date($strDate, $time) {
         $strYear = date("Y", strtotime($strDate)) + 543;
@@ -140,6 +142,7 @@
             $ago = "ที่แล้ว";
             $justnow = "เมื่อสักครู่นี้";
         }
+
         foreach ($string as $k => &$v) {
             if ($diff->$k) {
                 $v = $diff->$k . ' ' . $v . ($diff->$k > 1 ? '' : '');

@@ -25,7 +25,6 @@
                         <ol class="breadcrumb mb-0">
                             <li class="breadcrumb-item"><a href="<?=rootURL();?>" class="text-theme-1">หน้าหลัก</a></li>
                             <li class="breadcrumb-item"><a href="<?=rootURL();?>สินค้าทั้งหมดของบุญศิริ/" class="text-theme-1">สินค้าทั้งหมดของบุญศิริ</a></li>
-
                             <li class="breadcrumb-item active" aria-current="page">สินค้าลดราคา</li>
                         </ol>
                     </nav>
@@ -46,11 +45,13 @@
                         $pageSize = 12;
 
                         $ProductAPIDataRequest = [
-                            'whsCode' => $WhsCode, 
+                            "promotionId" => 0, 
+                            "whsCode" => $WhsCode, 
                             'orderByColumn' => "id",  
                             'orderBy' => "DESC", 
-                            'pageNo' => 0, 
-                            'pageSize' => 0
+                            "pageNo" => 0, 
+                            "pageSize" => 0, 
+                            "isFrontEnd" => 1, 
                         ];
 
                         $PromotionAPIDataResponse = connect_api($APIURL, $ProductAPIDataRequest);
@@ -125,7 +126,7 @@
                         } else {
                     ?>
 
-                    <h3 class="mb-0 text-center">ไม่พบข้อมูลสินค้า</h3>
+                    <h3 class="mb-0 text-center">ยังไม่มีสินค้าลดราคา</h3>
 
                     <?php
                         }

@@ -15,13 +15,6 @@
         ];
 
         $data = connect_api("https://ecmapi.boonsiri.co.th/api/v1/purchase/get-purchase", $request);
-
-        if ($data['responseCode'] != 000) {
-            redirect(rootURL());
-        } elseif ($data['purchase']['status'] != 1) {
-            redirect(rootURL());
-        }
-
     ?>
 
 </head>
@@ -51,14 +44,15 @@
 
         <?php
             if ($data['responseCode'] == 000) {
-                $requestQR = [
-                    'purchaseId' => $id
-                ];
-        
-                $dataQR = connect_api("https://ecmapi.boonsiri.co.th/api/v1/boonsiri/gen-qr-payment", $requestQR);
-        
-                if ($dataQR['responseCode'] == 000) {
-                    $PaymentData = $dataQR['response']['results'];
+                if ($data['purchase']['status'] == 1) {
+                    $requestQR = [
+                        'purchaseId' => $id
+                    ];
+            
+                    $dataQR = connect_api("https://ecmapi.boonsiri.co.th/api/v1/boonsiri/gen-qr-payment", $requestQR);
+            
+                    if ($dataQR['responseCode'] == 000) {
+                        $PaymentData = $dataQR['response']['results'];
         ?>
 
             <div class="row">
@@ -92,7 +86,7 @@
             </div>
 
         <?php
-                } else {
+                    } else {    
         ?>
 
             <div class="row">
@@ -104,6 +98,25 @@
                         <br>
                         <a href="tel:094-698-5555">094-698-5555</a>
                     </h5>
+                </div>
+            </div>
+
+        <?php   
+                    }
+                } else {
+        ?>
+
+            <div class="row">
+                <div class="col text-center">
+                    <h5 class="mb-0">
+                        ไม่สามารถชำระเงินได้
+                        <br>
+                        เนื่องจากเกินระยะเวลาที่กำหนด
+                        <br>
+                        กรุณาสั่งซื้อใหม่อีกครั้ง
+                    </h5>
+                    <br>
+                    <a href="<?=rootURL();?>หมวดหมู่สินค้าทั้งหมด/" class="btn btn-theme-1 px-3 btn-hyper-link">เลือกซื้อสินค้า</a>
                 </div>
             </div>
 

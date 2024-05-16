@@ -59,7 +59,7 @@
                                 <td class="fit"><a href="mailto:<?=$customers['email'];?>"><?=$customers['email'];?></a></td>
                                 <td class="fit"><a href="tel:<?=$customers['phone'];?>"><?=$customers['phone'];?></a></td>
                                 <td class="text-center fit"><?=date("d M Y", strtotime($customers['added']));?></td>
-                                <td class="text-center"><?=time_ago("th", $customers['lastLogin']);?></td>
+                                <td class="text-center"><?=($customers['lastLogin']) ? time_ago("th", $customers['lastLogin']) : '<span class="badge bg-secondary">ยังไม่เคยเข้าใช้งาน</span>';?></td>
                                 <td class="fit">
                                     <button 
                                         type="button" 

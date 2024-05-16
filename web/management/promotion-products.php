@@ -68,7 +68,7 @@
         <div class="container">
             <div class="row mb-5">
                 <div class="col-auto my-auto">
-                    <a href="./promotion-apply-category.php?id=<?=$id;?>" class="btn fs-1"><i class="fa-regular fa-square-caret-left"></i></a>
+                    <a href="./promotions.php" class="btn fs-1"><i class="fa-regular fa-square-caret-left"></i></a>
                 </div>
                 <div class="col my-auto">
                     <h1 class="mb-0"><?=$PromotionData['title'];?></h1>

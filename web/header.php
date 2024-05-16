@@ -1,7 +1,7 @@
 <?php
     $WhsCode = (@$_SESSION['whsCode']) ? $_SESSION['whsCode'] : "SSK";
 
-    if (@$_SESSION['id']) {
+    if (@$_SESSION['cart']) {
         // Request body
         $HeaderCartDataAPI = [
             'customerId' => $_SESSION['id'],
@@ -10,7 +10,9 @@
 
         $HeaderCartData = connect_api("https://ecmapi.boonsiri.co.th/api/v1/cart/list-cart", $HeaderCartDataAPI);
 
-        $HeaderCartCount = count($HeaderCartData['cartModels']);
+        $_SESSION['cart'] = count($HeaderCartData['cartModels']);
+
+        $HeaderCartCount = $_SESSION['cart'];
     } else {
         $HeaderCartCount = 0;
     }
