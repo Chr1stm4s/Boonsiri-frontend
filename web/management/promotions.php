@@ -65,11 +65,11 @@
                                 $inputEndDate = date("Y-m-d", strtotime($endDate));
                             
                                 if ($inputStartDate <= $today && $today <= $inputEndDate) {
-                                    echo '<span class="w-100 badge text-bg-primary">กำลังใช้งาน</span>';
+                                    return array('<span class="w-100 badge text-bg-primary">กำลังใช้งาน</span>', "");
                                 } elseif ($today < $inputStartDate) {
-                                    echo '<span class="w-100 badge text-bg-warning">เร็วๆ นี้</span>';
+                                    return array('<span class="w-100 badge text-bg-warning">เร็วๆ นี้</span>', "");
                                 } else {
-                                    echo '<span class="w-100 badge text-bg-secondary">สิ้นสุด</span>';
+                                    return array('<span class="w-100 badge text-bg-secondary">สิ้นสุด</span>', "disabled");
                                 }
                             }                           
                         
@@ -92,19 +92,20 @@
                                         $promotionTitle = '<span class="w-100 badge text-bg-warning">ลดค่าขนส่ง</span>';
                                         $PromotionType = "ส่งฟรี";
                                     }
-                        ?>
 
+                                    $PromotionStatus = checkDateRangeStatus($promotion['startDate'], $promotion['endDate']);
+                        ?>
 
                             <tr>
                                 <th class="text-end"><?=$promotion['id'];?></th>
                                 <td><?=$promotion['title'];?></td>
                                 <td class="fit text-center"><?=$promotionTitle;?></td>
                                 <td class="fit text-end"><?=$PromotionType;?></td>
-                                <td class="fit"><?=checkDateRangeStatus($promotion['startDate'], $promotion['endDate']);?></td>
+                                <td class="fit"><?=$PromotionStatus[0];?></td>
                                 <td class="text-center"><?=date("d M Y", strtotime($promotion['startDate']));?></td>
                                 <td class="text-center"><?=date("d M Y", strtotime($promotion['endDate']));?></td>
                                 <td class="fit">
-                                    <a class="btn btn-warning btn-tooltip" href="./promotion-apply-category.php?id=<?=$promotion['id'];?>" data-bs-title="ใช้งานโปรโมชั่น"><i class="fa-solid fa-tags"></i></a>
+                                    <a class="btn btn-warning btn-tooltip <?=$PromotionStatus[1];?>" href="./promotion-apply-category.php?id=<?=$promotion['id'];?>" data-bs-title="ใช้งานโปรโมชั่น"><i class="fa-solid fa-tags"></i></a>
                                     <a class="btn btn-primary btn-tooltip" href="./promotion-products.php?id=<?=$promotion['id'];?>" data-bs-title="สินค้าโปรโมชั่น"><i class="fa-solid fa-list-check"></i></a>
                                     <button class="btn btn-info btn-tooltip" type="button" data-bs-toggle="modal" data-bs-target="#EditSheduleModal" data-bs-id="<?=$promotion['id'];?>" data-bs-start="<?=$promotion['startDate'];?>" data-bs-end="<?=$promotion['endDate'];?>" data-bs-title="แก้ไขกำหนดการ"><i class="fa-solid fa-calendar-days"></i></button>
                                     <a class="btn btn-outline-dark btn-tooltip" href="./promotion-orders.php?id=<?=$promotion['id'];?>" data-bs-title="คำสั่งซื้อ"><i class="fa-solid fa-cart-plus"></i></a>
@@ -219,12 +220,27 @@
                 contentType: "application/json", 
                 success: function(response) {
                     if (response.responseCode == "000") {
-                        Swal.fire(
-                            'บันทึกข้อมูลสำเร็จ!',
-                            ``,
-                            'success'
-                        ).then(() => {
-                            location.reload();
+                        $.ajax({
+                            url: 'https://ecmapi.boonsiri.co.th/api/v1/promotion/clear-promotion',
+                            type: 'POST',
+                            contentType: "application/json", 
+                            success: function(response) {
+                                if (response.responseCode == "000") {
+                                    Swal.fire(
+                                        'บันทึกข้อมูลสำเร็จ!',
+                                        ``,
+                                        'success'
+                                    ).then(() => {
+                                        location.reload();
+                                    });
+                                } else {
+                                    Swal.fire(
+                                        'บันทึกข้อมูลไม่สำเร็จ!',
+                                        `กรุณาลองใหม่ หรือติดต่อเจ้าหน้าที่`,
+                                        'error'
+                                    );
+                                }
+                            }
                         });
                     } else {
                         Swal.fire(

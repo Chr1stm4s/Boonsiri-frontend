@@ -27,6 +27,8 @@
         if ($CartData['totalCart'] != 0) {
             $CreateOrder = "create-order";
         }
+
+        $_SESSION['totalDiscount'] = ($CartData['totalDiscount']) ? $CartData['totalDiscount'] : 0;
     ?>
 
 </head>
@@ -111,7 +113,6 @@
                                 foreach ($ShoppingCart as $cart) {
                                     $thumbnail = (file_exists("products/".$cart['thumbnail'])) ? rootURL()."products/".$cart['thumbnail'] : rootURL()."images/logo.png";
                                     $placeholder = (file_exists("products/".$cart['thumbnail'])) ? "" : "thumbnail-placeholder";
-                                    $stepPrice = ($cart['stepPrice'] == $cart['price']) ? false : true;
                     ?>
 
                     <div class="card my-2 rounded-1" id="itemID<?=$cart['id'];?>">
@@ -147,26 +148,66 @@
                                         </div>
 
                                         <?php
-                                            if (($cart['promotionType'] !== null && $stepPrice == false) && ($cart['promotionType'] == 0 || $cart['promotionType'] == 1)) {
+                                            if ($cart['promotionType'] !== null) {
+                                                if ($cart['promotionType'] == 3) {
                                         ?>
 
                                         <div class="my-3 my-md-auto col-cart cart-price-each text-end">
                                             <p class="mb-0 text-theme-4" id="EachPrice<?=$cart['id'];?>">
                                                 <small class="text-dark"><?=($cart['uomCode']) ? $cart['uomCode'] : "ชิ้น"; ?>ละ</small>
-                                                <small class="text-decoration-line-through text-theme-3">
-                                                    <?=number_format($cart['price']);?> บาท
-                                                </small>
-                                                <br class="d-none d-md-block">
-                                                <?=number_format($cart['eachLastPrice']);?> บาท
+                                                <?=number_format($cart['price']);?> บาท
                                             </p>
                                         </div>
                                         <div class="my-3 my-md-auto col-cart cart-price-total text-end d-none d-md-flex">
-                                            <p class="mb-0 w-100 text-theme-4" id="LastPrice<?=$cart['id'];?>">
-                                                <small class="text-decoration-line-through text-theme-3">
+                                            <p class="mb-0 w-100 text-theme-4" id="LastPrice<?=$cart['id'];?>"><?=number_format($cart['lastPrice']);?> บาท</p>
+                                        </div>
+
+                                        <?php
+                                                } else {
+                                        ?>
+
+                                        <div class="my-3 my-md-auto col-cart cart-price-each text-end">
+                                            <p class="mb-0 w-100" id="EachPrice<?=$cart['id'];?>">
+                                                <small class="text-dark"><?=($cart['uomCode']) ? $cart['uomCode'] : "ชิ้น"; ?>ละ</small>
+                                                <small class="text-decoration-line-through text-theme-3 fw-light">
+                                                    <?=number_format($cart['price']);?> บาท
+                                                </small>
+                                                <br class="d-none d-md-block">
+                                                <span class="text-danger fw-bold"><?=number_format($cart['eachLastPrice']);?> บาท</span>
+                                            </p>
+                                        </div>
+                                        <div class="my-3 my-md-auto col-cart cart-price-total text-end d-none d-md-flex">
+                                            <p class="mb-0 w-100" id="LastPrice<?=$cart['id'];?>">
+                                                <small class="text-decoration-line-through text-theme-3 fw-light">
                                                     <?=number_format($cart['price'] * $cart['amount']);?> บาท
                                                 </small>
                                                 <br class="d-none d-md-block">
-                                                <?=number_format($cart['lastPrice']);?> บาท 
+                                                <span class="text-danger fw-bold"><?=number_format($cart['lastPrice']);?> บาท</span>
+                                            </p>
+                                        </div>
+
+                                        <?php
+                                                }
+                                            } elseif ($cart['stepPrice'] !== $cart['price']) {
+                                        ?>
+
+                                        <div class="my-3 my-md-auto col-cart cart-price-each text-end">
+                                            <p class="mb-0 w-100" id="EachPrice<?=$cart['id'];?>">
+                                                <small class="text-dark"><?=($cart['uomCode']) ? $cart['uomCode'] : "ชิ้น"; ?>ละ</small>
+                                                <small class="text-decoration-line-through text-theme-3 fw-light">
+                                                    <?=number_format($cart['price']);?> บาท
+                                                </small>
+                                                <br class="d-none d-md-block">
+                                                <span class="text-danger fw-bold"><?=number_format($cart['eachLastPrice']);?> บาท</span>
+                                            </p>
+                                        </div>
+                                        <div class="my-3 my-md-auto col-cart cart-price-total text-end d-none d-md-flex">
+                                            <p class="mb-0 w-100" id="LastPrice<?=$cart['id'];?>">
+                                                <small class="text-decoration-line-through text-theme-3 fw-light">
+                                                    <?=number_format($cart['price'] * $cart['amount']);?> บาท
+                                                </small>
+                                                <br class="d-none d-md-block">
+                                                <span class="text-danger fw-bold"><?=number_format($cart['lastPrice']);?> บาท</span>
                                             </p>
                                         </div>
 
@@ -373,8 +414,8 @@
                                                     var newPrice = `${numberWithCommas(response.cartModels[sequence].lastPrice)} บาท`;
                                                     var newEprice = `<small class="text-dark">${(response.cartModels[sequence].uomCode) ? response.cartModels[sequence].uomCode : "ชิ้น"}ละ</small> ${numberWithCommas(response.cartModels[sequence].price)} บาท`;
                                                 } else {
-                                                    var newPrice = `<small class="text-decoration-line-through text-theme-3"> ${numberWithCommas(response.cartModels[sequence].price * response.cartModels[sequence].amount)} บาท </small> <br class="d-none d-md-block"> ${numberWithCommas(response.cartModels[sequence].lastPrice)} บาท`;
-                                                    var newEprice = `<small class="text-dark">${(response.cartModels[sequence].uomCode) ? response.cartModels[sequence].uomCode : "ชิ้น"}ละ</small> <small class="text-decoration-line-through text-theme-3"> ${numberWithCommas(response.cartModels[sequence].price)} บาท </small> <br class="d-none d-md-block"> ${numberWithCommas(response.cartModels[sequence].eachLastPrice)} บาท`;
+                                                    var newPrice = `<small class="text-decoration-line-through text-theme-3"> ${numberWithCommas(response.cartModels[sequence].price * response.cartModels[sequence].amount)} บาท </small> <br class="d-none d-md-block"> <span class="text-danger fw-bold">${numberWithCommas(response.cartModels[sequence].lastPrice)} บาท</span>`;
+                                                    var newEprice = `<small class="text-dark">${(response.cartModels[sequence].uomCode) ? response.cartModels[sequence].uomCode : "ชิ้น"}ละ</small> <small class="text-decoration-line-through text-theme-3"> ${numberWithCommas(response.cartModels[sequence].price)} บาท </small> <br class="d-none d-md-block"> <span class="text-danger fw-bold">${numberWithCommas(response.cartModels[sequence].eachLastPrice)} บาท</span>`;
                                                 }
                                                 
                                                 $("#" + price).html(newPrice);

@@ -91,11 +91,13 @@
                                         if ($product['promotionType'] !== null && ($product['promotionType'] == 0 || $product['promotionType'] == 1)) {
                                     ?>
 
-                                        <p class="card-text">
-                                            <small class="text-decoration-line-through text-theme-3"><?=number_format($product['price']);?> บาท</small> 
+                                        <p class="card-text discount-text">
+                                            <span class="text-decoration-line-through"><?=number_format($product['price']);?> บาท</span> 
                                             &nbsp;
                                             <br class="d-block d-lg-none"> 
-                                            <span class="fs-3 fw-bold"><?=number_format($product['lastPrice']);?> บาท</span>
+                                            <span class="fs-3 fw-bold text-danger"><?=number_format($product['lastPrice']);?> บาท</span>
+                                            <br>
+                                            <span class="bdage text-bg-danger py-1 px-2 save-text fw-bold">ประหยัด <?=number_format($product['discount']);?> บาท</span>
                                         </p>
 
                                     <?php

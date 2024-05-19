@@ -199,7 +199,7 @@
                 }
             });
 
-            $('.checkbox-promotion').on("change", function() {
+            $('#DataTables').on("change", '.checkbox-promotion', function() {
                 const checkedValues = $(this).val();
 
                 if (!$(this).is(":checked")) {

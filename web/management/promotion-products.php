@@ -30,7 +30,6 @@
 
         $ProductAPIDataRequest = [
             'promotionId' => $id, 
-            'whsCode' => "SSK", 
             'orderByColumn' => "", 
             'orderBy' => "", 
             'pageNo' => 0, 
@@ -38,7 +37,7 @@
             'isFrontEnd' => 0, 
         ];
 
-        $APIURL = "https://ecmapi.boonsiri.co.th/api/v1/product/get-product-by-promotion-id";
+        $APIURL = "https://ecmapi.boonsiri.co.th/api/v1/product/get-product-by-promotion-id-all";
 
         function calculateDiscount($type, $discount, $price) {
             if ($type == 0) {
@@ -98,7 +97,7 @@
 
                             <tr>
                                 <th class="fit"><?=$DataList['itemCode'];?></th>
-                                <td><?=$DataList['id'];?> <?=$DataList['title'];?></td>
+                                <td><?=$DataList['title'];?></td>
                                 <td class="text-end"><?=(@$DataList['price']) ? number_format($DataList['price'])." บาท" : "-"; ?></td>
                                 <td class="text-end"><?=(@$DataList['price']) ? calculateDiscount($PromotionData['type'], $PromotionData['discount'], $DataList['price'])." บาท" : "-"; ?></td>
                             </tr>

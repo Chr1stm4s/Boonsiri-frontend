@@ -159,7 +159,7 @@
                                     </tr>
                                     <tr>
                                         <th class="py-0">รวมส่วนลดจากโปรโมชั่น</th>
-                                        <td class="py-0"><?=number_format($PurchaseData['totalDiscount']);?> บาท</td>
+                                        <td class="py-0"><?=number_format($_SESSION['totalDiscount']);?> บาท</td>
                                     </tr>
                                     <tr class="fs-5">
                                         <th class="py-0">ราคาทั้งหมด</th>

@@ -126,7 +126,7 @@
 
 .products-card>img {
     height: 200px;
-    object-fit: contain;
+    object-fit: cover;
 }
 
 .products-card>img.thumbnail-placeholder {
@@ -441,4 +441,8 @@ div.pdpa {
     width: 100%;
     object-fit: contain;
     object-position: center;
+}
+
+.save-text {
+    font-size: 12px;
 }

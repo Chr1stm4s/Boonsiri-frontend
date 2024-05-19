@@ -3,10 +3,10 @@
 
     header('Content-Type: application/json');
 
-    $apiUrl = "https://ecmapi.boonsiri.co.th/api/v1/product/list-product";
+    $apiUrl = "https://ecmapi.boonsiri.co.th/api/v1/product/list-product-all";
 
     $requestData = [
-        'whsCode' => "SSK", 
+        'whsCode' => "", 
         'orderByColumn' => '',  
         'orderBy' => '', 
         'pageNo' => intval($_POST['start']) + 1, 

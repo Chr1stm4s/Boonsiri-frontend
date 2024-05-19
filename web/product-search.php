@@ -9,7 +9,7 @@
         require_once "./head.php";
 
         $search = $_GET['search'];
-        $categoryId = ($_GET['categoryId']) ? $_GET['categoryId'] : '-';
+        $categoryId = (@$_GET['categoryId']) ? $_GET['categoryId'] : 0;
         $pageNo = 1;
         $pageSize = 12;
     ?>
@@ -97,26 +97,26 @@
     <?php require_once "./js.php"; ?>
 
     <script>
-        $("#ButtonPrev").on("click", function() {
+        $("#ProductList").on("click", "#ButtonPrev", function() {
             const CurrentPage = $("#PageNumber").val();
             const page = CurrentPage - 1;
 
-            fetchAndDisplayProducts(0, page, 12);
+            fetchAndDisplayProducts(<?=$categoryId;?>, page, 12);
 
             $("#PageNumber").val(page);
         });
 
-        $("#ButtonNext").on("click", function() {
+        $("#ProductList").on("click", "#ButtonNext", function() {
             const CurrentPage = $("#PageNumber").val();
             const page = parseInt(CurrentPage) + 1;
 
-            fetchAndDisplayProducts(0, page, 12);
+            fetchAndDisplayProducts(<?=$categoryId;?>, page, 12);
         });
 
-        $("#PageNumber").on("change", function() {
+        $("#ProductList").on("change", "#PageNumber", function() {
             const page = $(this).val();
 
-            fetchAndDisplayProducts(0, page, 12);
+            fetchAndDisplayProducts(<?=$categoryId;?>, page, 12);
         });
 
         function fetchAndDisplayProducts(categoryId, pageNo, pageSize, orderByColumn = '', orderBy = '') {
@@ -137,7 +137,7 @@
         }
 
         (function() {
-            fetchAndDisplayProducts(0, 1, 12);
+            fetchAndDisplayProducts(<?=$categoryId;?>, 1, 12);
         })();
     </script>
 

@@ -137,7 +137,7 @@
                                                 <button type="button" class="btn btn-light rounded-0 border-dark btn-details btn-tooltip" data-bs-title="ดูรายเอียดคำสั่งซื้อ" data-id="<?=$OrderData['id'];?>"><i class="fa-solid fa-list-check"></i></button>
 
                                                 <?php
-                                                    if (in_array($OrderData['status'], [1,2])) {
+                                                    if ($OrderData['status'] == 1) {
                                                 ?>
 
                                                 <button type="button" class="btn btn-primary rounded-0 btn-edit btn-tooltip btn-payment" data-id="<?=$OrderData['id'];?>" data-bs-title="ชำระเงิน"><i class="fa-regular fa-credit-card"></i></button>

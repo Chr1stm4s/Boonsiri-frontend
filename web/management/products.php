@@ -64,10 +64,10 @@
                         <tbody>
 
                         <?php
-                            $apiUrl = "https://ecmapi.boonsiri.co.th/api/v1/product/list-product";
+                            $apiUrl = "https://ecmapi.boonsiri.co.th/api/v1/product/list-product-all";
 
                             $requestData = [
-                                'whsCode' => "SSK", 
+                                "itemSize" => "",
                                 'orderByColumn' => '',  
                                 'orderBy' => '', 
                                 'pageNo' => 0, 

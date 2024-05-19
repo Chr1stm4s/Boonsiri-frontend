@@ -152,12 +152,14 @@
                         if ($ProductData['promotionType'] !== null && ($ProductData['promotionType'] == 0 || $ProductData['promotionType'] == 1)) {
                     ?>
 
-                        <p class="my-4 text-theme-4 fs-3">
-                            <?=number_format($ProductData['lastPrice']);?> บาท 
+                        <p class="my-4 fs-3">
+                            <span class="text-danger"><?=number_format($ProductData['lastPrice']);?> บาท </span>
                             &nbsp; 
-                            <small class="text-decoration-line-through text-theme-3 fs-6">
+                            <small class="text-decoration-line-through fs-6">
                                 <?=number_format($ProductData['price']);?> บาท
                             </small>
+                            <br>
+                            <span class="bdage text-bg-danger py-1 px-2 save-text fw-bold">ประหยัด <?=number_format($ProductData['discount']);?> บาท</span>
                         </p>
 
                     <?php
@@ -240,7 +242,7 @@
         <div class="container">
             <div class="row mb-4">
                 <div class="col-auto mx-auto">
-                    <h5 class="fs-2">สินค้าอื่นที่น่าสนใจ <?=$_SESSION['whsCode'];?></h5>
+                    <h5 class="fs-2">สินค้าอื่นที่น่าสนใจ</h5>
                 </div>
             </div>
             <div class="row g-4">

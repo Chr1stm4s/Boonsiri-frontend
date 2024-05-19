@@ -3,7 +3,7 @@
     require_once "SimpleXLSXGen.php";
 
     $GetProductsDataAPIRequest = [
-        "whsCode" => "SSK",
+        "whsCode" => "",
         "itemSize" => "",
         "orderByColumn" => "",
         "orderBy" => "",
@@ -11,7 +11,7 @@
         "pageSize" => 0
     ];
 
-    $GetProductsDataAPIResponse = connect_api("https://ecmapi.boonsiri.co.th/api/v1/product/list-product", $GetProductsDataAPIRequest);
+    $GetProductsDataAPIResponse = connect_api("https://ecmapi.boonsiri.co.th/api/v1/product/list-product-all", $GetProductsDataAPIRequest);
 
     $ProductsDataExport[] = [
         "ลำดับ", 

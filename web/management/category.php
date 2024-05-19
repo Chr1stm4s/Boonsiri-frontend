@@ -13,7 +13,8 @@
 
             $apiUrl = "https://ecmapi.boonsiri.co.th/api/v1/category/get-category-by-id";
             $dataAPI = [
-                "categoryId" => $_GET['id']
+                "categoryId" => $_GET['id'], 
+                "whsCode" => ""
             ];
 
             $data = connect_api($apiUrl, $dataAPI);
@@ -35,6 +36,7 @@
             $data = connect_api($apiUrl, $dataAPI);
     
             if ($data['responseCode'] != 000) {
+
                 exit();
             }
 
