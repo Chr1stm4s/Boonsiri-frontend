@@ -127,7 +127,7 @@
                                     ?>
 
                                         <tr>
-                                            <th class="text-end"><?=$OrderData['orderNo'];?></th>
+                                            <th class="text-end"><?=($OrderData['shippingType'] == 2) ? '<i class="fa-solid fa-shop p-2 rounded-2 bg-theme-2 text-white btn-tooltip" data-bs-title="รับสินค้าเองที่ร้าน"></i>' : ""; ?><?=$OrderData['orderNo'];?></th>
                                             <td><p class="mb-0 text-overflow btn-tooltip" data-bs-title="คุณ <?=$OrderData['fname'];?> <?=$OrderData['lname'];?>">คุณ <?=$OrderData['fname'];?> <?=$OrderData['lname'];?></p></td>
                                             <td><?=$OrderData['phone'];?></td>
                                             <td class="fit"><?=$badge[$OrderData['status']];?></td>
@@ -143,12 +143,18 @@
                                                 <button type="button" class="btn btn-primary rounded-0 btn-edit btn-tooltip btn-payment" data-id="<?=$OrderData['id'];?>" data-bs-title="ชำระเงิน"><i class="fa-regular fa-credit-card"></i></button>
 
                                                 <?php
+                                                    } elseif ($OrderData['status'] == 3 && $OrderData['shippingType'] == 2) {
+                                                ?>
+                
+                                                <button type="button" class="btn btn-success rounded-0 btn-tooltip btn-received" data-id="<?=$OrderData['id'];?>" data-bs-title="ยืนยันรับสินค้า"><i class="fa-solid fa-check"></i></button>
+                
+                                                <?php
                                                     } elseif ($OrderData['status'] == 5) {
                                                 ?>
-        
+            
                                                 <button type="button" class="btn btn-success rounded-0 btn-tooltip btn-received" data-id="<?=$OrderData['id'];?>" data-bs-title="ยืนยันรับสินค้า"><i class="fa-solid fa-check"></i></button>
                                                 <button type="button" class="btn btn-outline-primary rounded-0 btn-tooltip" data-id="<?=$OrderData['id'];?>" data-bs-title="ดูเลขขนส่งสินค้า" data-bs-toggle="modal" data-bs-target="#TrackingModal" data-bs-tracking="<?=$OrderData['tracking'];?>"><i class="fa-solid fa-truck-fast"></i></button>
-        
+            
                                                 <?php
                                                     } elseif ($OrderData['status'] == 6) {
                                                 ?>

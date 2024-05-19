@@ -83,7 +83,7 @@
                                         <th class="text-center">สายส่ง</th>
                                         <th class="fit text-center">สาขา</th>
                                         <th class="px-4 fit text-center">สถานะ</th>
-                                        <th class="px-4 fit text-center">เลขขนส่ง</th>
+                                        <!-- <th class="px-4 fit text-center">เลขขนส่ง</th> -->
                                         <th class="fit">วันที่สั่งซื้อ</th>
                                         <th class="fit">แก้ไขล่าสุด</th>
                                         <th>จัดการ</th>
@@ -102,6 +102,7 @@
 
                                     <tr>
                                         <th class="text-end">
+                                            <?=($purchase['shippingType'] == 2) ? '<i class="fa-solid fa-shop p-2 rounded-2 bg-primary text-white btn-tooltip" data-bs-title="รับสินค้าเองที่ร้าน"></i>' : ""; ?> 
                                             <a href="./order-details.php?id=<?= $purchase['id']; ?>" class="text-dark text-decoration-none btn-tooltip" data-bs-title="ดูรายการสินค้า">
                                                 <?= $purchase['orderNo']; ?>
                                             </a>
@@ -118,7 +119,7 @@
                                         <td class="text-center"><?= $courier[$purchase['courierId']]; ?></td>
                                         <td class="text-center"><?= $purchase['whsCode']; ?></td>
                                         <td class="fit"><?= $badge[$purchase['status']]; ?></td>
-                                        <td class="fit"><?= $purchase['tracking']; ?></td>
+                                        <!-- <td class="fit"><?= $purchase['tracking']; ?></td> -->
                                         <td class="fit text-center"><?= date("d M Y", strtotime($purchase['added'])); ?></td>
                                         <td class="fit text-center"><?= time_ago("th", $purchase['updates']); ?></td>
                                         <td class="fit">

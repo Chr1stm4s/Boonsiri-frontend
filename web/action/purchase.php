@@ -2,6 +2,8 @@
     require_once "../functions.php";
 
     header('Access-Control-Allow-Origin: *');
+
+    $shippingType = $_POST['shipping_type'];
     
     $DataCart = [
         'customerId' => $_SESSION['id'], 
@@ -27,6 +29,7 @@
 
         $DataPurchase = [
             'customerId' => $_SESSION['id'], 
+            'shippingType' => $shippingType, 
             'listOfItems' => $listOfItems
         ];
     

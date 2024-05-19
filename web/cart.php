@@ -55,13 +55,21 @@
     <section class="py-5 bg-light">
         <div class="container">
             <div class="row mb-4">
-                <div class="col-12 col-md my-auto text-center text-md-start mb-0">
+                <div class="col-12 col-md my-auto text-center text-md-start mb-4 mb-md-0">
                     <h1 class="mb-0">รายการสินค้าในตะกร้า</h1>
                 </div>
-                <div class="col-6 col-md-auto mx-auto px-md-0 d-none d-md-block">
+                <div class="col-auto m-auto">
+                    <div class="form-check mx-auto">
+                        <input class="form-check-input" type="checkbox" value="2" id="shipping_type">
+                        <label class="form-check-label" for="shipping_type">รับสินค้าที่ร้าน</label>
+                    </div>
+                </div>
+            </div>
+            <div class="row mb-4 d-none d-md-flex">
+                <div class="col-6 col-md-auto mx-auto ms-md-auto me-md-0 px-md-0">
                     <a href="<?=rootURL();?>หมวดหมู่สินค้าทั้งหมด/" class="btn btn-theme-3 rounded-0 px-3 w-100">เลือกซื้อสินค้าต่อ <i class="fa-solid fa-cart-plus"></i></a>
                 </div>
-                <div class="col-6 col-md-auto mx-auto d-none d-md-block">
+                <div class="col-6 col-md-auto mx-auto mx-md-0">
                     <button class="btn btn-theme-2 rounded-0 px-3 w-100 <?=$CreateOrder;?>"><i class="fa-solid fa-spinner fa-pulse create-order-loading"></i> ยืนยันคำสั่งซื้อ <i class="fa-solid fa-caret-right"></i></button>
                 </div>
             </div>
@@ -473,6 +481,8 @@
         }
 
         $(".create-order").on("click", function() {
+            const shipping_type = ($("#shipping_type").prop('checked') == true) ? 2 : 1;
+
             Swal.fire({
                 title: 'กำลังดำเนินการ...',
                 showDenyButton: false,
@@ -487,6 +497,9 @@
             $.ajax({
                 type: "POST",  
                 url: "<?=rootURL();?>action/purchase/", 
+                data: {
+                    shipping_type: shipping_type
+                }, 
                 success: function(response) {  
                     let data = $.parseJSON(response);
 

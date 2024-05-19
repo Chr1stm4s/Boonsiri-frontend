@@ -42,6 +42,10 @@
         font-size: 12px;
     }
 
+    .col-cart.cart-amount {
+        width: 150px;
+    }
+
     .col-cart.cart-price-each {
         flex: 1 0 0%;
         width: 100%;
