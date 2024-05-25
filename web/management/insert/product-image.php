@@ -30,7 +30,7 @@
 
             //Upload the file into the temp dir
             if (move_uploaded_file($tmpFilePath, $newFilePath)) {
-                $APIURL = "https://ecmapi.boonsiri.co.th/api/v1/product/insert-product-image";
+                $APIURL = "$API_Link/v1/product/insert-product-image";
                     
                 $ProductAPIDataRequest = [
                     'itemCode' => $itemCode, 

@@ -14,21 +14,21 @@
 
         $APIRequest = [
             "banner" => [
-                'url' => 'https://ecmapi.boonsiri.co.th/api/v1/banner/list-banner', 
+                'url' => '$API_Link/v1/banner/list-banner', 
                 'key' => 'banners', 
                 'path' => 'slideshows/home/header-'.$location.'/', 
                 'title' => 'Header Home', 
-                'update' => 'https://ecmapi.boonsiri.co.th/api/v1/banner/update-banner', 
+                'update' => '$API_Link/v1/banner/update-banner', 
                 'request' => [
                     "location" => $location
                 ]
             ], 
             "featured" => [
-                'url' => 'https://ecmapi.boonsiri.co.th/api/v1/featured/list-featured', 
+                'url' => '$API_Link/v1/featured/list-featured', 
                 'key' => 'featureds', 
                 'path' => 'featured/', 
                 'title' => 'Home Featured Section', 
-                'update' => 'https://ecmapi.boonsiri.co.th/api/v1/featured/update-featured', 
+                'update' => '$API_Link/v1/featured/update-featured', 
                 'request' => [
                     "location" => $location
                 ]
@@ -170,7 +170,7 @@
         $(".btn-delete").click(function() {
             const id = $(this).data("bs-id");
             const api = "<?=$api;?>";
-            const url = (api == "banner") ? "https://ecmapi.boonsiri.co.th/api/v1/banner/delete-banner" : "https://ecmapi.boonsiri.co.th/api/v1/featured/delete-featured";
+            const url = (api == "banner") ? "$API_Link/v1/banner/delete-banner" : "$API_Link/v1/featured/delete-featured";
             
             Swal.fire({
                 title: `ต้องการลบภาพนี้ใช่ไหม?`,

@@ -8,7 +8,7 @@
         'password' => $_POST['password'], 
     ];
 
-    $Result = connect_api("https://ecmapi.boonsiri.co.th/api/v1/customer/update-customer-password", $APIRequest);
+    $Result = connect_api("$API_Link/v1/customer/update-customer-password", $APIRequest);
 
     if ($Result['responseCode'] == 000) {
         echo "success";

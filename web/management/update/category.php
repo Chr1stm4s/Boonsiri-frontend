@@ -11,7 +11,7 @@
         "description" => $description,
     ];
 
-    $data = connect_api("https://ecmapi.boonsiri.co.th/api/v1/category/update-category", $requestData);
+    $data = connect_api("$API_Link/v1/category/update-category", $requestData);
 
     if ($data['responseCode'] === "000") {
         if ($_FILES['image']['name']) {
@@ -30,7 +30,7 @@
                     "image" => $image,
                 ];
             
-                $data = connect_api("https://ecmapi.boonsiri.co.th/api/v1/category/update-category", $requestData);
+                $data = connect_api("$API_Link/v1/category/update-category", $requestData);
                 
                 if ($data['responseCode'] === "000") {
                     echo "success";

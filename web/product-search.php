@@ -51,7 +51,7 @@
                                         <li class="active"><a href="<?=rootURL();?>สินค้าบุญศิริ/" class="text-decoration-none"><i class="fa-solid fa-caret-right"></i>&nbsp; สินค้าทั้งหมด</a></li>
 
                                     <?php
-                                        $CategoryMain = connect_api("https://ecmapi.boonsiri.co.th/api/v1/category/list-category");
+                                        $CategoryMain = connect_api("$API_Link/v1/category/list-category");
 
                                         foreach ($CategoryMain['categories'] as $CategoryList) {
                                     ?>

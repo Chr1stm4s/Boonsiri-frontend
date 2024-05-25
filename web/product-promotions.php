@@ -39,7 +39,7 @@
                 <div class="col p-0">
 
                     <?php
-                        $APIURL = "https://ecmapi.boonsiri.co.th/api/v1/product/get-product-by-promotion-id";
+                        $APIURL = "$API_Link/v1/product/get-product-by-promotion-id";
 
                         $pageNo = 1;
                         $pageSize = 12;
@@ -56,7 +56,7 @@
 
                         $PromotionAPIDataResponse = connect_api($APIURL, $ProductAPIDataRequest);
 
-                        if ($PromotionAPIDataResponse['responseCode'] == 000) {
+                        if ($PromotionAPIDataResponse['responseCode'] == "000") {
                     ?>
 
                     <div class="row mx-0 g-0">

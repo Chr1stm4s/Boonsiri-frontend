@@ -51,7 +51,7 @@
                                 '<span class="badge text-bg-success w-100">เสร็จสิ้น</span>'
                             );
 
-                            $customersData = connect_api("https://ecmapi.boonsiri.co.th/api/v1/customer/list-customer");
+                            $customersData = connect_api("$API_Link/v1/customer/list-customer");
 
                             foreach ($customersData['customers'] as $customer) {
                                 $customers[$customer['id']] = [
@@ -60,7 +60,7 @@
                                 ];
                             }
                             
-                            $apiUrl = "https://ecmapi.boonsiri.co.th/api/v1/case/list-case";
+                            $apiUrl = "$API_Link/v1/case/list-case";
                             
                             $data = connect_api($apiUrl);
 
@@ -71,7 +71,7 @@
                                         "id" => $cases['id']
                                     ];
 
-                                    $CaseStatusAPI = connect_api("https://ecmapi.boonsiri.co.th/api/v1/case/get-case", $CaseStatusRequest);
+                                    $CaseStatusAPI = connect_api("$API_Link/v1/case/get-case", $CaseStatusRequest);
                         ?>
 
                             <tr>

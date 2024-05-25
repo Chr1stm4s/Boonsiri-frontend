@@ -181,7 +181,7 @@
                                             'geoId' => 0,
                                         ];
 
-                                        $ListProvinceResponse = connect_api("https://ecmapi.boonsiri.co.th/api/v1/address/province", $ListProvinceAPIRequest);
+                                        $ListProvinceResponse = connect_api("$API_Link/v1/address/province", $ListProvinceAPIRequest);
 
                                         if ($ListProvinceResponse['responseCode'] == 000) {
                                             foreach ($ListProvinceResponse['provinces'] as $ProvinceData) {
@@ -214,7 +214,7 @@
                                             'provinceId' => 0,
                                         ];
 
-                                        $ListAmphurResponse = connect_api("https://ecmapi.boonsiri.co.th/api/v1/address/amphur", $ListAmphurAPIRequest);
+                                        $ListAmphurResponse = connect_api("$API_Link/v1/address/amphur", $ListAmphurAPIRequest);
 
                                         if ($ListAmphurResponse['responseCode'] == 000) {
                                             foreach ($ListAmphurResponse['amphurs'] as $AmphurData) {
@@ -248,7 +248,7 @@
                                             'amphurId' => 0, 
                                         ];
 
-                                        $ListDistrictResponse = connect_api("https://ecmapi.boonsiri.co.th/api/v1/address/district", $ListDistrictAPIRequest);
+                                        $ListDistrictResponse = connect_api("$API_Link/v1/address/district", $ListDistrictAPIRequest);
 
                                         if ($ListDistrictResponse['responseCode'] == 000) {
                                             foreach ($ListDistrictResponse['districts'] as $DistrictData) {
@@ -352,7 +352,7 @@
                     $("#ButtonLoading").show();
 
                     $.ajax({
-                        url: 'https://ecmapi.boonsiri.co.th/api/v1/address/amphur',
+                        url: '$API_Link/v1/address/amphur',
                         type: 'POST',
                         data: JSON.stringify(provinceAPI),
                         contentType: "application/json", 
@@ -379,7 +379,7 @@
                         },
                         complete: function () {
                             $.ajax({
-                                url: 'https://ecmapi.boonsiri.co.th/api/v1/address/district',
+                                url: '$API_Link/v1/address/district',
                                 type: 'POST',
                                 data: JSON.stringify(amphurAPI),
                                 contentType: "application/json", 
@@ -467,7 +467,7 @@
                 });
 
                 $.ajax({
-                    url: 'https://ecmapi.boonsiri.co.th/api/v1/branch/master/update-branch',
+                    url: '$API_Link/v1/branch/master/update-branch',
                     type: 'POST',
                     data: JSON.stringify(indexed_array),
                     contentType: "application/json", 
@@ -508,7 +508,7 @@
                     Swal.showLoading();
                     
                     $.ajax({
-                        url: 'https://ecmapi.boonsiri.co.th/api/v1/address/amphur',
+                        url: '$API_Link/v1/address/amphur',
                         type: 'POST',
                         data: JSON.stringify(province),
                         contentType: "application/json", 
@@ -567,7 +567,7 @@
                                         postcodeInput.disabled = false;
 
                                         $.ajax({
-                                            url: 'https://ecmapi.boonsiri.co.th/api/v1/address/district',
+                                            url: '$API_Link/v1/address/district',
                                             type: 'POST',
                                             data: JSON.stringify(amphur),
                                             contentType: "application/json", 

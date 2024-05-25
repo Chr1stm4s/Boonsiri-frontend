@@ -11,7 +11,7 @@
         'whsCode' => $_SESSION['whsCode']
     ];
 
-    $APIResponse = connect_api("https://ecmapi.boonsiri.co.th/api/v1/cart/insert-or-update-cart", $data);
+    $APIResponse = connect_api("$API_Link/v1/cart/insert-or-update-cart", $data);
 
     echo $APIResponse['responseDesc'];
 ?>

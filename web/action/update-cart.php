@@ -11,7 +11,7 @@
         "amount" => $_POST['amount'],
     ];
 
-    $data = connect_api("https://ecmapi.boonsiri.co.th/api/v1/cart/edit-cart-amount", $requestData);
+    $data = connect_api("$API_Link/v1/cart/edit-cart-amount", $requestData);
 
     echo json_encode($data);
 

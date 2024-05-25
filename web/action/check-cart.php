@@ -9,7 +9,7 @@
         "whsCode" => $_SESSION['whsCode'], 
     ];
 
-    $data = connect_api("https://ecmapi.boonsiri.co.th/api/v1/cart/list-cart", $requestData);
+    $data = connect_api("$API_Link/v1/cart/list-cart", $requestData);
 
     echo json_encode($data);
 

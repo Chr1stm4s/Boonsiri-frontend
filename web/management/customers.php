@@ -43,7 +43,7 @@
                         <tbody>
 
                         <?php
-                            $apiUrl = "https://ecmapi.boonsiri.co.th/api/v1/customer/list-customer";
+                            $apiUrl = "$API_Link/v1/customer/list-customer";
                             
                             $data = connect_api($apiUrl);
 
@@ -84,7 +84,7 @@
                                         <ul class="dropdown-menu">
 
                                         <?php
-                                            $GetBranch = connect_api("https://ecmapi.boonsiri.co.th/api/v1/branch/master/list-branch");
+                                            $GetBranch = connect_api("$API_Link/v1/branch/master/list-branch");
 
                                             foreach ($GetBranch['branches'] as $value) {
                                         ?>
@@ -254,7 +254,7 @@
                 });
 
                 const InputID = $("#EditModalInputID").val();
-                const url = (InputID == 0) ? 'https://ecmapi.boonsiri.co.th/api/v1/customer/add-customer' : 'https://ecmapi.boonsiri.co.th/api/v1/customer/edit-customer';
+                const url = (InputID == 0) ? '$API_Link/v1/customer/add-customer' : '$API_Link/v1/customer/edit-customer';
 
                 Swal.fire({
                     title: 'กำลังดำเนินการ...',

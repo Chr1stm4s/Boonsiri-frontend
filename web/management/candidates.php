@@ -10,7 +10,7 @@
 
         $id = $_GET['id'];
 
-        $JobApiUrl = "https://ecmapi.boonsiri.co.th/api/v1/job/get-job";
+        $JobApiUrl = "$API_Link/v1/job/get-job";
         $JobApiRequest = [
             "id" => $id
         ];
@@ -52,7 +52,7 @@
                         <tbody>
 
                         <?php
-                            $apiUrl = "https://ecmapi.boonsiri.co.th/api/v1/candidate/list-candidate";
+                            $apiUrl = "$API_Link/v1/candidate/list-candidate";
                             $apiRequest = [
                                 "jobId" => $id
                             ];
@@ -149,7 +149,7 @@
 
             $('#JobhModalForm').submit(function () {
                 const InputID = $("#EditModalInputID").val();
-                const url = (InputID == 0) ? 'https://ecmapi.boonsiri.co.th/api/v1/job/insert-job' : 'https://ecmapi.boonsiri.co.th/api/v1/job/update-job';
+                const url = (InputID == 0) ? '$API_Link/v1/job/insert-job' : '$API_Link/v1/job/update-job';
 
                 var unindexed_array = $('#JobhModalForm').serializeArray();
                 var indexed_array = {};
@@ -228,7 +228,7 @@
                         });
 
                         $.ajax({
-                            url: "https://ecmapi.boonsiri.co.th/api/v1/job/delete-job",
+                            url: "$API_Link/v1/job/delete-job",
                             type: "POST",
                             data: JSON.stringify(data),
                             contentType: "application/json; charset=utf-8",

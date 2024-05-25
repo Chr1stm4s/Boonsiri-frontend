@@ -64,7 +64,7 @@
                         <tbody>
 
                         <?php
-                            $apiUrl = "https://ecmapi.boonsiri.co.th/api/v1/product/list-product-all";
+                            $apiUrl = "$API_Link/v1/product/list-product-all";
 
                             $requestData = [
                                 "itemSize" => "",
@@ -378,7 +378,7 @@
             });
 
             $.ajax({
-                url: 'https://ecmapi.boonsiri.co.th/api/v1/product/update-product',
+                url: '$API_Link/v1/product/update-product',
                 type: 'POST',
                 data: JSON.stringify(indexed_array),
                 contentType: "application/json", 

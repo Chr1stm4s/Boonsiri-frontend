@@ -42,7 +42,7 @@
             <div class="row g-4">
 
                 <?php
-                    $BranchesResponse = connect_api("https://ecmapi.boonsiri.co.th/api/v1/branch/master/list-branch");
+                    $BranchesResponse = connect_api("$API_Link/v1/branch/master/list-branch");
 
                     if ($BranchesResponse['responseCode'] == 000) {
                         foreach ($BranchesResponse['branches'] as $BranchData) {
@@ -102,7 +102,7 @@
             });
 
             $.ajax({
-                url: 'https://ecmapi.boonsiri.co.th/api/v1/branch/master/list-branch',
+                url: '$API_Link/v1/branch/master/list-branch',
                 type: 'POST',
                 contentType: "application/json", 
                 success: function(response) {

@@ -7,7 +7,7 @@
         "productId" => $id
     ];
 
-    $DataAPIResponse = connect_api("https://ecmapi.boonsiri.co.th/api/v1/product/get-product-by-id", $DataAPIRequest);
+    $DataAPIResponse = connect_api("$API_Link/v1/product/get-product-by-id", $DataAPIRequest);
 
     if ($DataAPIResponse['responseCode'] == "000") {
         $file = $_FILES['image']['name'];
@@ -33,7 +33,7 @@
                 "price" => $DataAPIResponse['product']['price']
             ];
 
-            $ThumbnailDataAPIResponse = connect_api("https://ecmapi.boonsiri.co.th/api/v1/product/update-product", $ThumbnailDataAPIRequest);
+            $ThumbnailDataAPIResponse = connect_api("$API_Link/v1/product/update-product", $ThumbnailDataAPIRequest);
 
             if ($ThumbnailDataAPIResponse['responseCode'] == "000") {
                 echo "success";

@@ -18,7 +18,7 @@
             "itemId" => $itemId,
         ];
 
-        $data = connect_api("https://ecmapi.boonsiri.co.th/api/v1/case/insert-case", $requestData);
+        $data = connect_api("$API_Link/v1/case/insert-case", $requestData);
 
         if ($data['responseCode'] === "000") {
             $caseId = $data['case']['id'];
@@ -30,7 +30,7 @@
                 "message" => $description,
             ];
         
-            $data = connect_api("https://ecmapi.boonsiri.co.th/api/v1/case-message/insert-case-message", $requestData);
+            $data = connect_api("$API_Link/v1/case-message/insert-case-message", $requestData);
 
             if ($data['responseCode'] === "000") {
                 $messageId = $data['casesMessage']['id'];
@@ -46,7 +46,7 @@
                         "file" => $message_file,
                     ];
                 
-                    $data = connect_api("https://ecmapi.boonsiri.co.th/api/v1/case-file/insert-case-file", $requestData);
+                    $data = connect_api("$API_Link/v1/case-file/insert-case-file", $requestData);
                         
                     if ($data['responseCode'] !== "000") {
                         var_dump($requestData);
@@ -75,7 +75,7 @@
                     "status" => 8,
                 ];
             
-                $data = connect_api("https://ecmapi.boonsiri.co.th/api/v1/purchase/internal-update-purchase-status", $requestData);
+                $data = connect_api("$API_Link/v1/purchase/internal-update-purchase-status", $requestData);
 
                 if ($data['responseCode'] == "000") {
                     echo "success";

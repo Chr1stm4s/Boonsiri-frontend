@@ -10,7 +10,7 @@
 
         $id = $_GET['id'];
 
-        $PromotionAPIURL = "https://ecmapi.boonsiri.co.th/api/v1/promotion/get-promotion";
+        $PromotionAPIURL = "$API_Link/v1/promotion/get-promotion";
 
         $PromotionAPIDataRequest = [
             'id' => $id, 
@@ -37,7 +37,7 @@
             'isFrontEnd' => 0, 
         ];
 
-        $APIURL = "https://ecmapi.boonsiri.co.th/api/v1/product/get-product-by-promotion-id-all";
+        $APIURL = "$API_Link/v1/product/get-product-by-promotion-id-all";
 
         function calculateDiscount($type, $discount, $price) {
             if ($type == 0) {

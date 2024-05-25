@@ -1,6 +1,9 @@
 <?php
     session_start();
 
+    // $API_Link = "https://ecmapi.boonsiri.co.th/";
+    $API_Link = "https://ecmapi.boonsiri.co.th/";
+
     date_default_timezone_set("Asia/Bangkok");
 
     // Full Thai Date

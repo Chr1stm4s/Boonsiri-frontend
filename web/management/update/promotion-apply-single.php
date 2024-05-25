@@ -3,7 +3,7 @@
 
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         if (isset($_POST['checkboxValues'])) {
-            $PromotionAPIURL = "https://ecmapi.boonsiri.co.th/api/v1/promotion/set-promotion-by-item-code";
+            $PromotionAPIURL = "$API_Link/v1/promotion/set-promotion-by-item-code";
 
             $PromotionAPIDataRequest = [
                 'itemCode' => $_POST['checkboxValues'], 

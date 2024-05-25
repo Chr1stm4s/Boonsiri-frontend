@@ -164,7 +164,7 @@
                                         'geoId' => 0,
                                     ];
 
-                                    $ListProvinceResponse = connect_api("https://ecmapi.boonsiri.co.th/api/v1/address/province", $ListProvinceAPIRequest);
+                                    $ListProvinceResponse = connect_api("$API_Link/v1/address/province", $ListProvinceAPIRequest);
 
                                     if ($ListProvinceResponse['responseCode'] == 000) {
                                         foreach ($ListProvinceResponse['provinces'] as $ProvinceData) {
@@ -261,7 +261,7 @@
 
                 if (OTP1 && OTP2 && OTP3 && OTP4 && OTP5 && OTP6) {
                     // API endpoint
-                    const apiUrl = 'https://ecmapi.boonsiri.co.th/api/v1/otp/validate-otp';
+                    const apiUrl = '$API_Link/v1/otp/validate-otp';
 
                     // Data to send in the request
                     const data = {
@@ -347,7 +347,7 @@
                     body: JSON.stringify(formDataObject)
                 };
 
-                fetch("https://ecmapi.boonsiri.co.th/api/v1/boonsiri/check-customer", requestOptions)
+                fetch("$API_Link/v1/boonsiri/check-customer", requestOptions)
                 .then(response => response.json())
                 .then(
                     obj => {
@@ -391,7 +391,7 @@
 
                             $("#RegisterFormWizard").fadeIn();
                         } else {
-                            fetch("https://ecmapi.boonsiri.co.th/api/v1/otp/send-otp", requestOptions)
+                            fetch("$API_Link/v1/otp/send-otp", requestOptions)
                             .then(response => response.json())
                             .then(
                                 obj => {
@@ -497,7 +497,7 @@
             //         body: JSON.stringify(formDataObject)
             //     };
 
-            //     fetch("https://ecmapi.boonsiri.co.th/api/v1/boonsiri/check-customer", requestOptions)
+            //     fetch("$API_Link/v1/boonsiri/check-customer", requestOptions)
             //     .then(response => response.json())
             //     .then(
             //         obj => {
@@ -591,7 +591,7 @@
                     body: JSON.stringify(formDataObject)
                 };
 
-                fetch("https://ecmapi.boonsiri.co.th/api/v1/customer/login", requestOptions)
+                fetch("$API_Link/v1/customer/login", requestOptions)
                 .then(response => response.json())
                 .then(
                     obj => {
@@ -736,7 +736,7 @@
                         console.log(`customerData : ${JSON.stringify(customerData, null, 4)}`)
 
                         $.ajax({
-                            url: 'https://ecmapi.boonsiri.co.th/api/v1/boonsiri/create-customer-to-pos',
+                            url: '<?=$API_Link;?>api/v1/boonsiri/create-customer-to-pos',
                             type: 'POST',
                             data: JSON.stringify(customerData),
                             contentType: "application/json", 
@@ -758,7 +758,7 @@
                                         body: JSON.stringify(formDataObject)
                                     };
 
-                                    fetch("https://ecmapi.boonsiri.co.th/api/v1/boonsiri/check-customer", requestOptions)
+                                    fetch("<?=$API_Link;?>api/v1/boonsiri/check-customer", requestOptions)
                                     .then(response => response.json())
                                     .then(
                                         obj => {
@@ -779,7 +779,7 @@
                                                 });
 
                                                 $.ajax({
-                                                    url: 'https://ecmapi.boonsiri.co.th/api/v1/customer/add-customer',
+                                                    url: '<?=$API_Link;?>api/v1/customer/add-customer',
                                                     type: 'POST',
                                                     data: JSON.stringify(indexed_array),
                                                     contentType: "application/json", 
@@ -807,7 +807,7 @@
                                                             FormRegisterAddressArray['line'] = line;
 
                                                             $.ajax({
-                                                                url: 'https://ecmapi.boonsiri.co.th/api/v1/address/insert-address-profile',
+                                                                url: '<?=$API_Link;?>api/v1/address/insert-address-profile',
                                                                 type: 'POST',
                                                                 data: JSON.stringify(FormRegisterAddressArray),
                                                                 contentType: "application/json", 
@@ -934,7 +934,7 @@
                             body: JSON.stringify(formDataObject)
                         };
 
-                        fetch("https://ecmapi.boonsiri.co.th/api/v1/boonsiri/check-customer", requestOptions)
+                        fetch("<?=$API_Link;?>api/v1/boonsiri/check-customer", requestOptions)
                         .then(response => response.json())
                         .then(
                             obj => {
@@ -955,7 +955,7 @@
                                     });
 
                                     $.ajax({
-                                        url: 'https://ecmapi.boonsiri.co.th/api/v1/customer/add-customer',
+                                        url: '<?=$API_Link;?>api/v1/customer/add-customer',
                                         type: 'POST',
                                         data: JSON.stringify(indexed_array),
                                         contentType: "application/json", 
@@ -983,7 +983,7 @@
                                                 FormRegisterAddressArray['line'] = line;
 
                                                 $.ajax({
-                                                    url: 'https://ecmapi.boonsiri.co.th/api/v1/address/insert-address-profile',
+                                                    url: '<?=$API_Link;?>api/v1/address/insert-address-profile',
                                                     type: 'POST',
                                                     data: JSON.stringify(FormRegisterAddressArray),
                                                     contentType: "application/json", 

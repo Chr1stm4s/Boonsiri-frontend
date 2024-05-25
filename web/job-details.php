@@ -14,7 +14,7 @@
             "id" => $id,
         ];
 
-        $data = connect_api("https://ecmapi.boonsiri.co.th/api/v1/job/get-job", $requestData);
+        $data = connect_api("$API_Link/v1/job/get-job", $requestData);
 
         if ($data['responseCode'] === "000") {
             $JobData = $data['job'];

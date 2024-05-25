@@ -3,5 +3,5 @@
     
     header('Access-Control-Allow-Origin: *');
 
-    connect_api("$API_Link/v1/boonsiri/ECom/product/sync-product-all");
+    connect_api("$API_Link/v1/promotion/clear-promotion");
 ?>

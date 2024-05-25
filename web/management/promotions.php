@@ -73,7 +73,7 @@
                                 }
                             }                           
                         
-                            $apiUrl = "https://ecmapi.boonsiri.co.th/api/v1/promotion/list-promotion";
+                            $apiUrl = "$API_Link/v1/promotion/list-promotion";
                             
                             $data = connect_api($apiUrl);
 
@@ -214,14 +214,14 @@
             });
 
             $.ajax({
-                url: 'https://ecmapi.boonsiri.co.th/api/v1/promotion/update-promotion',
+                url: '$API_Link/v1/promotion/update-promotion',
                 type: 'POST',
                 data: JSON.stringify(indexed_array),
                 contentType: "application/json", 
                 success: function(response) {
                     if (response.responseCode == "000") {
                         $.ajax({
-                            url: 'https://ecmapi.boonsiri.co.th/api/v1/promotion/clear-promotion',
+                            url: '$API_Link/v1/promotion/clear-promotion',
                             type: 'POST',
                             contentType: "application/json", 
                             success: function(response) {
@@ -275,7 +275,7 @@
             });
 
             $.ajax({
-                url: 'https://ecmapi.boonsiri.co.th/api/v1/promotion/insert-promotion',
+                url: '$API_Link/v1/promotion/insert-promotion',
                 type: 'POST',
                 data: JSON.stringify(indexed_array),
                 contentType: "application/json", 

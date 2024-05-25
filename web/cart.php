@@ -19,7 +19,7 @@
             'whsCode' => $_SESSION['whsCode']
         ];
 
-        $CartData = connect_api("https://ecmapi.boonsiri.co.th/api/v1/cart/list-cart", $CartDataAPI);
+        $CartData = connect_api("$API_Link/v1/cart/list-cart", $CartDataAPI);
 
         $ShoppingCart = $CartData['cartModels'];
         $CreateOrder = "";
@@ -494,11 +494,13 @@
                 }
             });
 
+            console.log(shipping_type);
+            
             $.ajax({
                 type: "POST",  
                 url: "<?=rootURL();?>action/purchase/", 
                 data: {
-                    shipping_type: shipping_type
+                    "shipping_type": shipping_type
                 }, 
                 success: function(response) {  
                     let data = $.parseJSON(response);

@@ -27,7 +27,7 @@
                     'customerId' => $_SESSION['id'],
                 ];
 
-                $ListAddressResponse = connect_api("https://ecmapi.boonsiri.co.th/api/v1/address/list-address-profile", $ListAddressAPIRequest);
+                $ListAddressResponse = connect_api("$API_Link/v1/address/list-address-profile", $ListAddressAPIRequest);
 
                 if ($ListAddressResponse['responseCode'] == 000) {
                     foreach ($ListAddressResponse['addressProfile'] as $AddressData) {

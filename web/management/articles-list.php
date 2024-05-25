@@ -14,7 +14,7 @@
             "id" => $id
         ];
 
-        $ArticleCategoryData = connect_api("https://ecmapi.boonsiri.co.th/api/v1/article-category/get-article-category", $ArticleCategoryRequest);
+        $ArticleCategoryData = connect_api("$API_Link/v1/article-category/get-article-category", $ArticleCategoryRequest);
 
         if ($ArticleCategoryData['responseCode'] != "000") {
             var_dump($ArticleCategoryData);
@@ -60,7 +60,7 @@
                         <tbody>
 
                         <?php
-                            $apiUrl = "https://ecmapi.boonsiri.co.th/api/v1/article/list-article";
+                            $apiUrl = "$API_Link/v1/article/list-article";
                             $dataRequest = [
                                 "categoryId" => $id,
                                 "orderByColumn" => "",
@@ -224,7 +224,7 @@
                     });
 
                     $.ajax({
-                        url: "https://ecmapi.boonsiri.co.th/api/v1/article/delete-article",
+                        url: "$API_Link/v1/article/delete-article",
                         type: "POST",
                         data: JSON.stringify(data),
                         contentType: "application/json; charset=utf-8",

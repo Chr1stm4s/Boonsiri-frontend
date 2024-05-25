@@ -6,7 +6,7 @@
         "password" => $_POST['password'], 
     ];
 
-    $DataAPIResponse = connect_api("https://ecmapi.boonsiri.co.th/api/v1/user/login", $DataAPIRequest);
+    $DataAPIResponse = connect_api("$API_Link/v1/user/login", $DataAPIRequest);
 
     if ($DataAPIResponse['responseCode'] == "000") {
         $_SESSION['admin_id'] = $DataAPIResponse['user']['id'];

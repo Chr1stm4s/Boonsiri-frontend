@@ -11,7 +11,7 @@
         'line' => $_POST['line'], 
     ];
 
-    $Result = connect_api("https://ecmapi.boonsiri.co.th/api/v1/customer/update-customer-profile", $APIRequest);
+    $Result = connect_api("$API_Link/v1/customer/update-customer-profile", $APIRequest);
 
     if ($Result['responseCode'] == 000) {
         $_SESSION['fname'] = $_POST['fname'];

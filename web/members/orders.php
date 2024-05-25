@@ -120,7 +120,7 @@
                                             'customerId' => $_SESSION['id'],
                                         ];
 
-                                        $Response = connect_api("https://ecmapi.boonsiri.co.th/api/v1/purchase/list-purchase", $APIRequest);
+                                        $Response = connect_api("$API_Link/v1/purchase/list-purchase", $APIRequest);
 
                                         if ($Response['responseCode'] == 000 && $Response['purchases']) {
                                             foreach ($Response['purchases'] as $OrderData) {
@@ -228,7 +228,7 @@
                                             'customerId' => $_SESSION['id'],
                                         ];
 
-                                        $Response = connect_api("https://ecmapi.boonsiri.co.th/api/v1/preorder/list-preorder", $APIRequest);
+                                        $Response = connect_api("$API_Link/v1/preorder/list-preorder", $APIRequest);
 
                                         $id = 1;
 
@@ -426,7 +426,7 @@
                         body: JSON.stringify(ConfirmData)
                     };
 
-                    fetch("https://ecmapi.boonsiri.co.th/api/v1/purchase/internal-update-purchase-status", requestOptions)
+                    fetch("$API_Link/v1/purchase/internal-update-purchase-status", requestOptions)
                     .then(response => response.json())
                     .then(
                         obj => {

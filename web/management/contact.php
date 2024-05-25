@@ -42,7 +42,7 @@
                         <tbody>
 
                         <?php
-                            $apiUrl = "https://ecmapi.boonsiri.co.th/api/v1/contact/list-contact";
+                            $apiUrl = "$API_Link/v1/contact/list-contact";
                             
                             $data = connect_api($apiUrl);
 
@@ -241,7 +241,7 @@
                 body: JSON.stringify(ConfirmData)
             };
 
-            fetch("https://ecmapi.boonsiri.co.th/api/v1/contact/update-Contact", requestOptions)
+            fetch("$API_Link/v1/contact/update-Contact", requestOptions)
             .then(response => response.json())
             .then(
                 obj => {

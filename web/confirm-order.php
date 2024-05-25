@@ -14,7 +14,7 @@
             'id' => $id
         ];
 
-        $data = connect_api("https://ecmapi.boonsiri.co.th/api/v1/purchase/get-purchase", $request);
+        $data = connect_api("$API_Link/v1/purchase/get-purchase", $request);
 
         if ($data['responseCode'] != 000) {
             redirect(rootURL());

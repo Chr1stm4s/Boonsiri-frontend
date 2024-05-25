@@ -45,7 +45,7 @@
             <div class="row g-4">
 
             <?php
-                $JobsAPIData = connect_api("https://ecmapi.boonsiri.co.th/api/v1/job/list-job");
+                $JobsAPIData = connect_api("$API_Link/v1/job/list-job");
 
                 if ($JobsAPIData['responseCode'] == "000") {
                     foreach ($JobsAPIData['jobCategories'] as $job) {

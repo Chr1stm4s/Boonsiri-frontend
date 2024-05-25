@@ -30,7 +30,7 @@
             '<span class="badge text-bg-light w-100">ขนส่งเอกชน (ภาคอื่นๆ)</span>'
         );
 
-        $apiUrl = "https://ecmapi.boonsiri.co.th/api/v1/purchase/list-purchase";
+        $apiUrl = "$API_Link/v1/purchase/list-purchase";
 
         $data = connect_api($apiUrl);
 
@@ -102,16 +102,33 @@
 
                                     <tr>
                                         <th class="text-end">
-                                            <?=($purchase['shippingType'] == 2) ? '<i class="fa-solid fa-shop p-2 rounded-2 bg-primary text-white btn-tooltip" data-bs-title="รับสินค้าเองที่ร้าน"></i>' : ""; ?> 
-                                            <a href="./order-details.php?id=<?= $purchase['id']; ?>" class="text-dark text-decoration-none btn-tooltip" data-bs-title="ดูรายการสินค้า">
-                                                <?= $purchase['orderNo']; ?>
-                                            </a>
+                                            <p class="mb-0">
+                                                <a href="./order-details.php?id=<?= $purchase['id']; ?>" class="text-dark text-decoration-none btn-tooltip" data-bs-title="ดูรายการสินค้า">
+                                                    <?= $purchase['orderNo']; ?>
+                                                </a>
+                                            </p>
                                         </th>
                                         <td>
                                             <p class="mb-0 text-overflow btn-tooltip" data-bs-title="<?= $purchase['fname']; ?> <?= $purchase['lname']; ?>"><?= $purchase['fname']; ?> <?= $purchase['lname']; ?></p>
                                         </td>
                                         <td>
+
+                                            <?php
+                                                if($purchase['shippingType'] == 2) {
+                                            ?>
+
+                                            <span class="badge text-bg-info">รับสินค้าเองที่ร้าน</span>
+                                        
+                                            <?php
+                                                } else {
+                                            ?>
+
                                             <p class="mb-0 text-overflow btn-tooltip" data-bs-title="<?= $purchase['address']; ?> <?= $purchase['district']; ?> <?= $purchase['amphur']; ?> <?= $purchase['province']; ?> <?= $purchase['postcode']; ?>"><?= $purchase['address']; ?> <?= $purchase['district']; ?> <?= $purchase['amphur']; ?> <?= $purchase['province']; ?> <?= $purchase['postcode']; ?></p>
+                                        
+                                            <?php    
+                                                }
+                                            ?>
+                                        
                                         </td>
                                         <td class="fit"><a href="tel:<?= $purchase['phone']; ?>"><?= $purchase['phone']; ?></a></td>
                                         <td class="fit text-end"><?= number_format($purchase['totalPrice']); ?> บาท</td>
@@ -357,12 +374,12 @@
                         body: JSON.stringify(tracking)
                     };
 
-                    fetch("https://ecmapi.boonsiri.co.th/api/v1/purchase/update-tracking", TrackingRequestOptions)
+                    fetch("$API_Link/v1/purchase/update-tracking", TrackingRequestOptions)
                         .then(response => response.json())
                         .then(
                             obj => {
                                 if (obj.responseCode === "000") {
-                                    fetch("https://ecmapi.boonsiri.co.th/api/v1/purchase/internal-update-purchase-status", StatusRequestOptions)
+                                    fetch("$API_Link/v1/purchase/internal-update-purchase-status", StatusRequestOptions)
                                         .then(response => response.json())
                                         .then(
                                             obj => {
@@ -443,7 +460,7 @@
                         body: JSON.stringify(ConfirmData)
                     };
 
-                    fetch("https://ecmapi.boonsiri.co.th/api/v1/purchase/internal-update-purchase-status", requestOptions)
+                    fetch("$API_Link/v1/purchase/internal-update-purchase-status", requestOptions)
                         .then(response => response.json())
                         .then(
                             obj => {

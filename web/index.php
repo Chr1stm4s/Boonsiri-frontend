@@ -25,7 +25,7 @@
                         <div class="carousel-indicators">
 
                         <?php
-                            $BannerAPIURL = "https://ecmapi.boonsiri.co.th/api/v1/banner/list-banner";
+                            $BannerAPIURL = "$API_Link/v1/banner/list-banner";
                             
                             $BannerAPIRequest = [
                                 'location' => 1, 
@@ -176,7 +176,7 @@
                     'location' => 1, 
                 ];
 
-                $FeaturedAPIData = connect_api("https://ecmapi.boonsiri.co.th/api/v1/featured/list-featured", $FeaturedAPIRequest);
+                $FeaturedAPIData = connect_api("$API_Link/v1/featured/list-featured", $FeaturedAPIRequest);
 
                 foreach ($FeaturedAPIData['featureds'] as $featured) {
             ?>
@@ -221,7 +221,7 @@
                             "isFrontEnd" => 1, 
                         ];
 
-                        $HomeProductsPromotion = connect_api("https://ecmapi.boonsiri.co.th/api/v1/product/get-product-by-promotion-id", $requestData);
+                        $HomeProductsPromotion = connect_api("$API_Link/v1/product/get-product-by-promotion-id", $requestData);
 
                         if ($HomeProductsPromotion['responseCode'] == "000") {
                     ?>
@@ -245,7 +245,7 @@
                                         <div class="card-body">
                                             <h5 class="card-title text-dark mb-0"><?=$HomeProductsPromotion['title'];?></h5>
                                         </div>
-                                        <div class="card-footer bg-white border-0 p-2">
+                                        <div class="card-footer bg-white border-0 p-2 text-end">
 
                                         <?php
                                             if ($HomeProductsPromotion['preOrder'] == 1) {
@@ -258,10 +258,13 @@
                                                 if (in_array($HomeProductsPromotion['promotionType'], [0,1])) {
                                         ?>
 
-                                            <p class="card-text mb-0">
-                                                <small class="text-decoration-line-through text-secondary"><?=number_format($HomeProductsPromotion['price']);?> บาท</small> 
+                                            <p class="card-text mb-0 discount-text">
+                                                <span class="text-decoration-line-through"><?=number_format($HomeProductsPromotion['price']);?> บาท</span> 
                                                 &nbsp;
-                                                <span class="text-danger price-discount"><?=number_format($HomeProductsPromotion['lastPrice']);?></span> บาท
+                                                <br class="d-block d-lg-none"> 
+                                                <span class="fs-3 fw-bold text-danger"><?=number_format($HomeProductsPromotion['lastPrice']);?> บาท</span>
+                                                <br>
+                                                <span class="bdage text-bg-danger py-1 px-2 save-text fw-bold">ประหยัด <?=number_format($HomeProductsPromotion['discount']);?> บาท</span>
                                             </p>
 
                                             <?php
@@ -395,7 +398,7 @@
                         "pageSize" => 4, 
                     ];
 
-                    $HomeArticles = connect_api("https://ecmapi.boonsiri.co.th/api/v1/article/list-article", $requestData);
+                    $HomeArticles = connect_api("$API_Link/v1/article/list-article", $requestData);
 
                     if ($HomeArticles['responseCode'] == 000) {
                         foreach ($HomeArticles['articleCategories'] as $HomeArticlesData) {

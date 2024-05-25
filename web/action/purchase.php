@@ -5,44 +5,50 @@
 
     $shippingType = $_POST['shipping_type'];
     
-    $DataCart = [
-        'customerId' => $_SESSION['id'], 
-        'whsCode' => $_SESSION['whsCode']
-    ];
-
-    $APIResponse = connect_api("https://ecmapi.boonsiri.co.th/api/v1/cart/list-cart", $DataCart);
-
-    $CartList = $APIResponse['cartModels'];
-
-    $listOfItems = array();
-
-    if ($APIResponse['responseCode'] == 000) {
-        
-        foreach ($CartList as $cart) {
-            $item = array(
-                'productId' => $cart['productId'],
-                'amount' => $cart['amount']
-            );
-
-            array_push($listOfItems, $item);
-        }
-
-        $DataPurchase = [
+    if ($shippingType) {
+        $DataCart = [
             'customerId' => $_SESSION['id'], 
-            'shippingType' => $shippingType, 
-            'listOfItems' => $listOfItems
+            'whsCode' => $_SESSION['whsCode']
         ];
     
-        $APIResponse = connect_api("https://ecmapi.boonsiri.co.th/api/v1/purchase/insert-purchase", $DataPurchase);
+        $APIResponse = connect_api("$API_Link/v1/cart/list-cart", $DataCart);
+    
+        $CartList = $APIResponse['cartModels'];
+    
+        $listOfItems = array();
     
         if ($APIResponse['responseCode'] == 000) {
-            $_SESSION['purchase_id'] = $APIResponse['purchase']['id'];
-
-            echo json_encode($APIResponse);
+            
+            foreach ($CartList as $cart) {
+                $item = array(
+                    'productId' => $cart['productId'],
+                    'amount' => $cart['amount']
+                );
+    
+                array_push($listOfItems, $item);
+            }
+    
+            $DataPurchase = [
+                'customerId' => $_SESSION['id'], 
+                'shippingType' => $shippingType, 
+                'listOfItems' => $listOfItems
+            ];
+        
+            $APIResponse = connect_api("$API_Link/v1/purchase/insert-purchase", $DataPurchase);
+        
+            if ($APIResponse['responseCode'] == 000) {
+                $_SESSION['purchase_id'] = $APIResponse['purchase']['id'];
+    
+                echo json_encode($APIResponse);
+            } else {
+                echo json_encode($APIResponse);
+            }
         } else {
             echo json_encode($APIResponse);
         }
     } else {
-        echo json_encode($APIResponse);
+        echo json_encode([
+            "shippingType" => $shippingType,
+        ]);
     }
 ?>
