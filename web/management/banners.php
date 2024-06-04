@@ -14,21 +14,21 @@
 
         $APIRequest = [
             "banner" => [
-                'url' => '$API_Link/v1/banner/list-banner', 
+                'url' => '$API_Linkv1/banner/list-banner', 
                 'key' => 'banners', 
                 'path' => 'slideshows/home/header-'.$location.'/', 
                 'title' => 'Header Home', 
-                'update' => '$API_Link/v1/banner/update-banner', 
+                'update' => '$API_Linkv1/banner/update-banner', 
                 'request' => [
                     "location" => $location
                 ]
             ], 
             "featured" => [
-                'url' => '$API_Link/v1/featured/list-featured', 
+                'url' => '$API_Linkv1/featured/list-featured', 
                 'key' => 'featureds', 
                 'path' => 'featured/', 
                 'title' => 'Home Featured Section', 
-                'update' => '$API_Link/v1/featured/update-featured', 
+                'update' => '$API_Linkv1/featured/update-featured', 
                 'request' => [
                     "location" => $location
                 ]
@@ -170,7 +170,7 @@
         $(".btn-delete").click(function() {
             const id = $(this).data("bs-id");
             const api = "<?=$api;?>";
-            const url = (api == "banner") ? "$API_Link/v1/banner/delete-banner" : "$API_Link/v1/featured/delete-featured";
+            const url = (api == "banner") ? "{$API_Link}api/v1/banner/delete-banner" : "{$API_Link}api/v1/featured/delete-featured";
             
             Swal.fire({
                 title: `ต้องการลบภาพนี้ใช่ไหม?`,

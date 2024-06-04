@@ -26,7 +26,7 @@
             "resume" => $resume
         ];
 
-        $data = connect_api("$API_Link/v1/candidate/insert-candidate", $requestData);
+        $data = connect_api("{$API_Link}api/v1/candidate/insert-candidate", $requestData);
 
         if ($data['responseCode'] === "000") {
             echo "success";

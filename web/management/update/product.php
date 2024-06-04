@@ -15,7 +15,7 @@
         "price" => $_POST['price']
     ];
 
-    $DataAPIResponse = connect_api("$API_Link/v1/product/update-product", $DataAPIRequest);
+    $DataAPIResponse = connect_api("{$API_Link}api/v1/product/update-product", $DataAPIRequest);
 
     if ($DataAPIResponse['responseCode'] == "000") {
         echo "success";

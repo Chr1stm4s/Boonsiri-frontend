@@ -15,7 +15,7 @@
         "status" => $status
     ];
 
-    $data = connect_api("$API_Link/v1/case-message/insert-case-message", $requestData);
+    $data = connect_api("{$API_Link}api/v1/case-message/insert-case-message", $requestData);
 
     if ($data['responseCode'] === "000") {
         if (@$_FILES['claim']['tmp_name'][0]) {
@@ -32,7 +32,7 @@
                     "file" => $message_file,
                 ];
             
-                $data = connect_api("$API_Link/v1/case-file/insert-case-file", $requestData);
+                $data = connect_api("{$API_Link}api/v1/case-file/insert-case-file", $requestData);
                     
                 if ($data['responseCode'] !== "000") {
                     var_dump($requestData);
@@ -63,7 +63,7 @@
                 "status" => 9,
             ];
         
-            $data = connect_api("$API_Link/v1/purchase/internal-update-purchase-status", $requestData);
+            $data = connect_api("{$API_Link}api/v1/purchase/internal-update-purchase-status", $requestData);
 
             if ($data['responseCode'] !== "000") {
                 var_dump($requestData);

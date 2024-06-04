@@ -15,7 +15,7 @@
             "branchId" => $id
         ];
         
-        $dataBranch = connect_api("$API_Link/v1/branch/master/get-branch-by-id", $dataAPI);
+        $dataBranch = connect_api("{$API_Link}api/v1/branch/master/get-branch-by-id", $dataAPI);
 
         $branchData = $dataBranch['branch'];
     ?>
@@ -68,7 +68,7 @@
                                 "courierId" => $courier
                             ];
 
-                            $dataListBranch = connect_api("$API_Link/v1/mapping-branch/list-mapping-branch", $MappingDataAPI);
+                            $dataListBranch = connect_api("{$API_Link}api/v1/mapping-branch/list-mapping-branch", $MappingDataAPI);
 
                             if ($dataListBranch['responseCode'] == 000) {
                                 foreach ($dataListBranch['mappingBranches'] as $branchArea) {
@@ -125,7 +125,7 @@
                                                 'geoId' => 0,
                                             ];
 
-                                            $ListProvinceResponse = connect_api("$API_Link/v1/address/province", $ListProvinceAPIRequest);
+                                            $ListProvinceResponse = connect_api("{$API_Link}api/v1/address/province", $ListProvinceAPIRequest);
 
                                             if ($ListProvinceResponse['responseCode'] == 000) {
                                                 foreach ($ListProvinceResponse['provinces'] as $ProvinceData) {
@@ -363,7 +363,7 @@
                 });
 
                 $.ajax({
-                    url: '$API_Link/v1/mapping-branch/insert-mapping-branch',
+                    url: '$API_Linkv1/mapping-branch/insert-mapping-branch',
                     type: 'POST',
                     data: JSON.stringify(indexed_array),
                     contentType: "application/json", 
@@ -405,7 +405,7 @@
                 Swal.showLoading();
                 
                 $.ajax({
-                    url: '$API_Link/v1/address/amphur',
+                    url: '$API_Linkv1/address/amphur',
                     type: 'POST',
                     data: JSON.stringify(province),
                     contentType: "application/json", 
@@ -457,7 +457,7 @@
                                 SelectDistrict.disabled = false;
                                 
                                 $.ajax({
-                                    url: '$API_Link/v1/address/district',
+                                    url: '$API_Linkv1/address/district',
                                     type: 'POST',
                                     data: JSON.stringify(amphur),
                                     contentType: "application/json", 

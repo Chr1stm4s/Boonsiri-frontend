@@ -14,7 +14,7 @@
             "id" => $id
         ];
 
-        $ArticleDataResponse = connect_api("$API_Link/v1/article/get-article", $ArticleDataRequest);
+        $ArticleDataResponse = connect_api("{$API_Link}api/v1/article/get-article", $ArticleDataRequest);
 
         if ($ArticleDataResponse['responseCode'] == "000") {
             $ArticleData = $ArticleDataResponse['article'];
@@ -66,7 +66,7 @@
                         <tbody>
 
                         <?php
-                            $apiUrl = "$API_Link/v1/article-detail/list-article-detail";
+                            $apiUrl = "{$API_Link}api/v1/article-detail/list-article-detail";
                             $dataRequest = [
                                 "articleId" => $id,
                             ];
@@ -243,7 +243,7 @@
                     });
 
                     $.ajax({
-                        url: "$API_Link/v1/article-detail/delete-article-detail",
+                        url: "{$API_Link}api/v1/article-detail/delete-article-detail",
                         type: "POST",
                         data: JSON.stringify(data),
                         contentType: "application/json; charset=utf-8",

@@ -13,7 +13,7 @@
             "endDate" => date("Y-m-d", strtotime(date("Y-m-d") . "+1 days"))
         ];
 
-        $DataDashboardAPI = connect_api("$API_Link/v1/dashboard/get-dashboard", $DataDashboardRequest);
+        $DataDashboardAPI = connect_api("{$API_Link}api/v1/dashboard/get-dashboard", $DataDashboardRequest);
 
         if ($DataDashboardAPI['responseCode'] == "000") {
             $DataDashboard = $DataDashboardAPI['getDashBoard'];
@@ -33,7 +33,7 @@
             "year" => date("Y"), 
         ];
 
-        $DataSaleChartAPI = connect_api("$API_Link/v1/dashboard/get-yearly-sales-chart", $DataSaleChartRequest);
+        $DataSaleChartAPI = connect_api("{$API_Link}api/v1/dashboard/get-yearly-sales-chart", $DataSaleChartRequest);
 
         if ($DataSaleChartAPI['responseCode'] == "000") {
             $DataSaleChart = $DataSaleChartAPI['salesChartViewModels'];
@@ -54,7 +54,7 @@
             "endDate" => date("Y-m-01", strtotime("+1 month", strtotime(date("Y-m-01"))))
         ];
 
-        $DataPieChartAPI = connect_api("$API_Link/v1/dashboard/get-circle-sales-graph", $DataPieChartRequest);
+        $DataPieChartAPI = connect_api("{$API_Link}api/v1/dashboard/get-circle-sales-graph", $DataPieChartRequest);
 
         if ($DataPieChartAPI['responseCode'] == "000") {
             $DataPieChart = $DataPieChartAPI['circleSalesGraphModel'];

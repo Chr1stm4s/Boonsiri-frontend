@@ -47,9 +47,9 @@
                     "pageSize" => 1
                 ];
 
-                $Response = connect_api("$API_Link/v1/article/list-article", $APIRequest);
+                $Response = connect_api("{$API_Link}api/v1/article/list-article", $APIRequest);
 
-                if ($Response['responseCode'] == 000) {
+                if ($Response['responseCode'] == "000") {
                     $FeaturedArticle = $Response['articleCategories'][0];
             ?>
 
@@ -95,9 +95,9 @@
     <hr>
 
     <?php
-        $CategoryResponse = connect_api("$API_Link/v1/article-category/list-article-category");
+        $CategoryResponse = connect_api("{$API_Link}api/v1/article-category/list-article-category");
 
-        if ($CategoryResponse['responseCode'] == 000) {
+        if ($CategoryResponse['responseCode'] == "000") {
             foreach ($CategoryResponse['articleCategories'] as $Category) {
     ?>
 
@@ -120,9 +120,9 @@
                     "pageSize" => 12
                 ];
 
-                $ArticleResponse = connect_api("$API_Link/v1/article/list-article", $APIRequest);
+                $ArticleResponse = connect_api("{$API_Link}api/v1/article/list-article", $APIRequest);
 
-                if ($ArticleResponse['responseCode'] == 000) {
+                if ($ArticleResponse['responseCode'] == "000") {
                     foreach ($ArticleResponse['articleCategories'] as $Articles) {
             ?>
 

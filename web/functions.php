@@ -1,7 +1,10 @@
 <?php
     session_start();
 
+    // Local test
     // $API_Link = "https://ecmapi.boonsiri.co.th/";
+
+    // Production
     $API_Link = "https://ecmapi.boonsiri.co.th/";
 
     date_default_timezone_set("Asia/Bangkok");

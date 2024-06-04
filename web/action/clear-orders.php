@@ -3,5 +3,5 @@
     
     header('Access-Control-Allow-Origin: *');
 
-    connect_api("$API_Link/v1/boonsiri/expire-order");
+    connect_api("{$API_Link}api/v1/boonsiri/expire-order");
 ?>

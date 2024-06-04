@@ -42,7 +42,7 @@
                         <tbody>
 
                         <?php
-                            $apiUrl = "$API_Link/v1/translate/list-translate";
+                            $apiUrl = "{$API_Link}api/v1/translate/list-translate";
                             
                             $data = connect_api($apiUrl);
 
@@ -177,7 +177,7 @@
 
             $('#JobhModalForm').submit(function () {
                 const InputID = $("#EditModalInputID").val();
-                const url = (InputID == 0) ? '$API_Link/v1/job/insert-job' : '$API_Link/v1/job/update-job';
+                const url = (InputID == 0) ? '$API_Linkv1/job/insert-job' : '$API_Linkv1/job/update-job';
 
                 var unindexed_array = $('#JobhModalForm').serializeArray();
                 var indexed_array = {};

@@ -14,7 +14,7 @@
             'id' => $id
         ];
 
-        $data = connect_api("$API_Link/v1/purchase/get-purchase", $request);
+        $data = connect_api("{$API_Link}api/v1/purchase/get-purchase", $request);
     ?>
 
 </head>
@@ -49,7 +49,7 @@
                         'purchaseId' => $id
                     ];
             
-                    $dataQR = connect_api("$API_Link/v1/boonsiri/gen-qr-payment", $requestQR);
+                    $dataQR = connect_api("{$API_Link}api/v1/boonsiri/gen-qr-payment", $requestQR);
             
                     if ($dataQR['responseCode'] == 000) {
                         $PaymentData = $dataQR['response']['results'];

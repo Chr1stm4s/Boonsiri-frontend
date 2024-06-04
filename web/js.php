@@ -22,6 +22,16 @@
 <?php require_once "modal-member.php"; ?>
 
 <script>
+    document.addEventListener('contextmenu', event => {
+        if (event.target.tagName === 'IMG') {
+            event.preventDefault();
+        }
+    });
+
+    document.querySelectorAll('img').forEach(img => {
+        img.addEventListener('dragstart', event => event.preventDefault());
+    });
+    
     const pdpa = sessionStorage.getItem("pdpa");
 
     if (pdpa == "accepted") {

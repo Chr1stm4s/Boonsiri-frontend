@@ -20,7 +20,7 @@
             "productId" => $id,
         ];
 
-        $data = connect_api("$API_Link/v1/product/get-product-by-id", $requestData);
+        $data = connect_api("{$API_Link}api/v1/product/get-product-by-id", $requestData);
 
         $ProductData = $data['product'];
 
@@ -49,7 +49,7 @@
                                 "id" => $ProductData['categoryId'],
                             ];
 
-                            $Breadcrumb = connect_api("$API_Link/v1/category/breadcrumb", $BreadcrumbData);
+                            $Breadcrumb = connect_api("{$API_Link}api/v1/category/breadcrumb", $BreadcrumbData);
 
 
                             foreach ($Breadcrumb['items'] as $key => $CategoryList) {
@@ -76,7 +76,7 @@
                 <div class="col-12 col-md-6">
 
                 <?php
-                    $ProductImageAPIURL = "$API_Link/v1/product/list-product-image";
+                    $ProductImageAPIURL = "{$API_Link}api/v1/product/list-product-image";
 
                     $ProductImageAPIDataRequest = [
                         'itemCode' => $ProductData['itemCode'], 
@@ -105,7 +105,8 @@
 
                         </div>
                         <div class="carousel-inner">
-                            <div class="carousel-item active">
+                            <div class="carousel-item position-relative active">
+                                <img src="<?=rootURL();?>images/watermark.png" alt="บุญศิริ โฟรเซ่น" class="watermark">
                                 <img src="<?=$thumbnail;?>" class="d-block w-100" alt="<?=$ProductData['title'];?>">
                             </div>
 
@@ -113,8 +114,9 @@
                             foreach ($ProductImageAPIDataResponse['productImages'] as $ProductImage) {
                         ?>
 
-                            <div class="carousel-item">
-                                <img src="<?=rootURL();?>products/gallery/<?=$id;?>/<?=$ProductImage['image'];?>" class="d-block w-100" alt="<?=$ProductData['title'];?>">
+                            <div class="carousel-item position-relative">
+                                <img src="<?=rootURL();?>images/watermark.png" alt="บุญศิริ โฟรเซ่น" class="watermark">
+                                <img src="<?=rootURL();?>products/gallery/<?=str_replace("/", "", $ProductData['itemCode']);?>/<?=$ProductImage['image'];?>" class="d-block w-100" alt="<?=$ProductData['title'];?>">
                             </div>
                             
                         <?php
@@ -248,7 +250,7 @@
             <div class="row g-4">
 
                 <?php
-                    $APIURL = "$API_Link/v1/product/get-product-by-category-id";
+                    $APIURL = "{$API_Link}api/v1/product/get-product-by-category-id";
 
                     $APIDataRequest = [
                         'categoryId' => $ProductData['categoryId'], 

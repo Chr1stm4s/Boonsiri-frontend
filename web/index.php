@@ -25,7 +25,7 @@
                         <div class="carousel-indicators">
 
                         <?php
-                            $BannerAPIURL = "$API_Link/v1/banner/list-banner";
+                            $BannerAPIURL = "{$API_Link}api/v1/banner/list-banner";
                             
                             $BannerAPIRequest = [
                                 'location' => 1, 
@@ -176,7 +176,7 @@
                     'location' => 1, 
                 ];
 
-                $FeaturedAPIData = connect_api("$API_Link/v1/featured/list-featured", $FeaturedAPIRequest);
+                $FeaturedAPIData = connect_api("{$API_Link}api/v1/featured/list-featured", $FeaturedAPIRequest);
 
                 foreach ($FeaturedAPIData['featureds'] as $featured) {
             ?>
@@ -221,7 +221,7 @@
                             "isFrontEnd" => 1, 
                         ];
 
-                        $HomeProductsPromotion = connect_api("$API_Link/v1/product/get-product-by-promotion-id", $requestData);
+                        $HomeProductsPromotion = connect_api("{$API_Link}api/v1/product/get-product-by-promotion-id", $requestData);
 
                         if ($HomeProductsPromotion['responseCode'] == "000") {
                     ?>
@@ -331,45 +331,41 @@
                         <div class="card-body">
                             <div class="row">
                                 <div class="col-4 col-md-3 col-lg-2 text-center my-2">
-                                    <img src="<?=rootURL();?>images/feature-1.svg" alt="บริการจัดส่งทันที" class="rounded-circle mb-4">
-                                    <h5>บริการจัดส่งทันที</h5>
+                                    <img src="<?=rootURL();?>images/feature-1.png" alt="จัดส่งฟรีไม่มีขั้นต่ำ" class="mb-4">
+                                    <h5>จัดส่งฟรีไม่มีขั้นต่ำ</h5>
+                                    <p class="fw-light mb-0">จัดส่งสินค้าฟรีภายในวัน ในเขตพื้นที่บริการ ขนส่งแบบควบคุมอุณหภูมิ</p>
+                                </div>
+                                <div class="col-4 col-md-3 col-lg-2 text-center my-2">
+                                    <img src="<?=rootURL();?>images/feature-2.png" alt="สินค้าคุณภาพราคาประหยัด" class="mb-4">
+                                    <h5>สินค้าคุณภาพราคาประหยัด</h5>
+                                    <p class="fw-light mb-0">มุ่งเน้นการกระจายสินค้าในราคาย่อมเยา คัดสรรและจัดหาอาหารแช่แข็งที่ดีที่สุด จากทุกมุมโลก</p>
+                                </div>
+                                <div class="col-4 col-md-3 col-lg-2 text-center my-2">
+                                    <img src="<?=rootURL();?>images/feature-3.png" alt="ใส่ใจในทุกขั้นตอน" class="mb-4">
+                                    <h5>ใส่ใจในทุกขั้นตอน</h5>
                                     <p class="fw-light mb-0">
-                                        บริการจัดส่งสินค้า ทั้งแบบชั่วโมงถัดไปหรือวันถัดไป
+                                        เราบริการลูกค้าด้วยรอยยิ้มและความจริงใจ เพราะเรามีความสุขที่ได้สร้างคุณค่าให้กับลูกค้าของบุญศิริ
                                     </p>
                                 </div>
                                 <div class="col-4 col-md-3 col-lg-2 text-center my-2">
-                                    <img src="<?=rootURL();?>images/feature-2.svg" alt="ใส่ใจทุกขั้นตอน" class="rounded-circle mb-4">
-                                    <h5>ใส่ใจทุกขั้นตอน</h5>
+                                    <img src="<?=rootURL();?>images/feature-4.png" alt="โปรโมชั่นสุดคุ้ม" class="mb-4">
+                                    <h5>โปรโมชั่นสุดคุ้ม</h5>
                                     <p class="fw-light mb-0">
-                                        เพราะเราใส่ใจกับทุกรายละเอียดตั้งแต่การเลือกจนถึงการส่งสินค้าถึงมือคุณ
+                                        โปรโมชั่นโดนใจ พร้อมสินค้าราคาพิเศษ หลากหลายรายการ
                                     </p>
                                 </div>
                                 <div class="col-4 col-md-3 col-lg-2 text-center my-2">
-                                    <img src="<?=rootURL();?>images/feature-3.svg" alt="รับประกันความสดใหม่" class="rounded-circle mb-4">
-                                    <h5>รับประกันความสดใหม่</h5>
+                                    <img src="<?=rootURL();?>images/feature-5.png" alt="สิทธิประโยชน์มากมาย" class="mb-4">
+                                    <h5>สิทธิประโยชน์มากมาย</h5>
                                     <p class="fw-light mb-0">
-                                        เพราะเราคัดสรรสินค้าที่ดีและมีคุณภาพสูงที่สุดให้กับคุณ
+                                        ทุกยอดซื้อจะแปลงเปลี่ยนเป็นแต้มเพื่อให้ลูกค้าได้รับสิทธิประโยชน์มากมาย
                                     </p>
                                 </div>
                                 <div class="col-4 col-md-3 col-lg-2 text-center my-2">
-                                    <img src="<?=rootURL();?>images/feature-4.svg" alt="สินค้าที่คุณสั่งซื้อเป็นประจำ" class="rounded-circle mb-4">
-                                    <h5>สินค้าที่คุณสั่งซื้อเป็นประจำ</h5>
+                                    <img src="<?=rootURL();?>images/feature-6.png" alt="สั่งง่ายแค่ปลายนิ้ว" class="mb-4">
+                                    <h5>สั่งง่ายแค่ปลายนิ้ว</h5>
                                     <p class="fw-light mb-0">
-                                        ง่ายและสะดวกรวดเร็วกว่าเดิม เพื่อให้คุณประหยัดเวลายิ่งขึ้น
-                                    </p>
-                                </div>
-                                <div class="col-4 col-md-3 col-lg-2 text-center my-2">
-                                    <img src="<?=rootURL();?>images/feature-5.svg" alt="สิทธิประโยชน์จากสมาชิกบุญศิริ" class="rounded-circle mb-4">
-                                    <h5>สิทธิประโยชน์จากสมาชิกบุญศิริ</h5>
-                                    <p class="fw-light mb-0">
-                                        เพื่อให้คุณสะสมแต้มและรับสิทธิประโยชน์มากมายที่ครอบคลุมไลฟ์สไตล์ของคุณ
-                                    </p>
-                                </div>
-                                <div class="col-4 col-md-3 col-lg-2 text-center my-2">
-                                    <img src="<?=rootURL();?>images/feature-6.svg" alt="ช็อปสะดวกได้ทุกที่ ทุกเวลา" class="rounded-circle mb-4">
-                                    <h5>ช็อปสะดวกได้ทุกที่ ทุกเวลา</h5>
-                                    <p class="fw-light mb-0">
-                                        สั่งซื้อสินค้าได้ทุกที่ ทุกเวลา ผ่านทางเว็บไซต์และแอปพลิเคชั่น
+                                        สั่งซื้อสินค้าได้อย่างสะดวก รวดเร็ว ผ่านช่องทางเว็บไซต์
                                     </p>
                                 </div>
                             </div>
@@ -398,9 +394,9 @@
                         "pageSize" => 4, 
                     ];
 
-                    $HomeArticles = connect_api("$API_Link/v1/article/list-article", $requestData);
+                    $HomeArticles = connect_api("{$API_Link}api/v1/article/list-article", $requestData);
 
-                    if ($HomeArticles['responseCode'] == 000) {
+                    if ($HomeArticles['responseCode'] == "000") {
                         foreach ($HomeArticles['articleCategories'] as $HomeArticlesData) {
                 ?>
 

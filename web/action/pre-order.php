@@ -11,7 +11,7 @@
         'addressProfilesId' => $_SESSION['address_id']
     ];
 
-    $APIResponse = connect_api("$API_Link/v1/preorder/insert-preorder", $data);
+    $APIResponse = connect_api("{$API_Link}api/v1/preorder/insert-preorder", $data);
 
     echo $APIResponse['responseDesc'];
 ?>

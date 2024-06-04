@@ -4,6 +4,15 @@ php_flag opcache.enable Off
 
 Header add RCACHE "0"
 
+ErrorDocument 301 /error.php
+ErrorDocument 404 /error.php
+ErrorDocument 500 /error.php
+
+#Products 
+RewriteCond %{THE_REQUEST} \s/error\.php\s [NC]
+RewriteRule ^ /error/? [R=301,L]
+RewriteRule ^error/$ /error.php [L]
+
 #API - Sync products
 RewriteCond %{THE_REQUEST} \s/action\/sync-products\.php\s [NC]
 RewriteRule ^ /action/sync-products/? [R=301,L]

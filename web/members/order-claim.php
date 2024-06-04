@@ -14,7 +14,7 @@
             'id' => $id,
         ];
 
-        $Response = connect_api("$API_Link/v1/purchase/get-purchase", $APIRequest);
+        $Response = connect_api("{$API_Link}api/v1/purchase/get-purchase", $APIRequest);
 
         if ($Response['responseCode'] == 000) {
             $OrderData = $Response['purchase'];

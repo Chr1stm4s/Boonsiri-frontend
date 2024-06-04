@@ -8,7 +8,7 @@
         'whsCode' => $_SESSION['whsCode']
     ];
 
-    $HeaderCartData = connect_api("$API_Link/v1/cart/list-cart", $HeaderCartDataAPI);
+    $HeaderCartData = connect_api("{$API_Link}api/v1/cart/list-cart", $HeaderCartDataAPI);
 
     if ($HeaderCartData === null) {
         echo $_SESSION['cart'] = 0;

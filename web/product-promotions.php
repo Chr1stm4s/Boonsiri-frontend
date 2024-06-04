@@ -39,7 +39,7 @@
                 <div class="col p-0">
 
                     <?php
-                        $APIURL = "$API_Link/v1/product/get-product-by-promotion-id";
+                        $APIURL = "{$API_Link}api/v1/product/get-product-by-promotion-id";
 
                         $pageNo = 1;
                         $pageSize = 12;

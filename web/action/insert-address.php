@@ -34,7 +34,7 @@
         'isMain' => $isMain
     ];
 
-    $InsertAddressResponse = connect_api("$API_Link/v1/address/insert-address-profile", $InsertAddressAPIRequest);
+    $InsertAddressResponse = connect_api("{$API_Link}api/v1/address/insert-address-profile", $InsertAddressAPIRequest);
 
     if ($InsertAddressResponse['responseCode'] == 000) {
         if ($isMain == 1) {

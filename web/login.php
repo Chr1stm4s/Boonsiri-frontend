@@ -16,7 +16,7 @@
     <div class="card card-member-form">
         <div class="card-body text-center p-3 p-md-4 p-lg-5">
             <h1 class="mb-0">ลงชื่อเข้าใช้งาน</h1>
-            <img src="<?=rootURL();?>images/login-member.svg" alt="ลงชื่อเข้าใช้งาน บุญศิริ" class="member-form-image">
+            <img src="<?=rootURL();?>images/login-member.png" alt="ลงชื่อเข้าใช้งาน บุญศิริ" class="member-form-image">
             <form method="POST" id="FormLogin">
                 <div class="row">
                     <div class="col-12 col-md-6 col-lg-4 my-3">
@@ -74,7 +74,7 @@
                     body: JSON.stringify(formDataObject)
                 };
 
-                fetch("$API_Link/v1/customer/login", requestOptions)
+                fetch("<?=$API_Link;?>api/v1/customer/login", requestOptions)
                 .then(response => response.json())
                 .then(
                     obj => {

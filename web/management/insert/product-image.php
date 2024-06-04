@@ -3,6 +3,7 @@
 
     $id = $_POST['id'];
     $itemCode = $_POST['itemCode'];
+    $folder = str_replace("/", "", $ProductData['itemCode']);
     $title = $_POST['title'];
 
     // Count # of uploaded files in array
@@ -21,16 +22,16 @@
         
             $image = time() . "-$i.$ext";
 
-            if (!file_exists("../../products/gallery/$id")) {
-                mkdir("../../products/gallery/$id", 0777, true);
+            if (!file_exists("../../products/gallery/$folder")) {
+                mkdir("../../products/gallery/$folder", 0777, true);
             }
 
             //Setup our new file path
-            $newFilePath = "../../products/gallery/$id/$image";
+            $newFilePath = "../../products/gallery/$folder/$image";
 
             //Upload the file into the temp dir
             if (move_uploaded_file($tmpFilePath, $newFilePath)) {
-                $APIURL = "$API_Link/v1/product/insert-product-image";
+                $APIURL = "{$API_Link}api/v1/product/insert-product-image";
                     
                 $ProductAPIDataRequest = [
                     'itemCode' => $itemCode, 

@@ -15,7 +15,7 @@
     
         $thumbnail = time() . ".$ext";
         
-        $APIURL = "$API_Link/v1/article/insert-article";
+        $APIURL = "{$API_Link}api/v1/article/insert-article";
                     
         $APIDataRequest = [
             "categoryId" => $categoryId,
@@ -58,7 +58,7 @@
             exit();
         }
     } else {
-        $APIURL = "$API_Link/v1/article/update-article";
+        $APIURL = "{$API_Link}api/v1/article/update-article";
 
         if ($_FILES['thumbnail']['name']) {
             $file = $_FILES['thumbnail']['name'];

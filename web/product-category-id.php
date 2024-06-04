@@ -16,7 +16,7 @@
             'categoryId' => $CategoryID
         ];
 
-        $CategoryMain = connect_api("$API_Link/v1/category/get-category-by-id", $CategoryAPIDataRequest);
+        $CategoryMain = connect_api("{$API_Link}api/v1/category/get-category-by-id", $CategoryAPIDataRequest);
 
         if ($CategoryMain['responseCode'] == 000) {
             $CategoryData = $CategoryMain['product'][0];
@@ -49,7 +49,7 @@
                                     "id" => $CategoryID,
                                 ];
 
-                                $Breadcrumb = connect_api("$API_Link/v1/category/breadcrumb", $BreadcrumbData);
+                                $Breadcrumb = connect_api("{$API_Link}api/v1/category/breadcrumb", $BreadcrumbData);
 
 
                                 foreach ($Breadcrumb['items'] as $key => $CategoryList) {
@@ -77,7 +77,7 @@
                 <div class="col p-0">
 
                     <?php
-                        $APIURL = "$API_Link/v1/product/get-product-by-category-id";
+                        $APIURL = "{$API_Link}api/v1/product/get-product-by-category-id";
 
                         $pageNo = 1;
                         $pageSize = 12;

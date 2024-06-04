@@ -31,7 +31,7 @@
             <div class="row">
 
             <?php
-                $apiUrl = "$API_Link/v1/category/list-category";
+                $apiUrl = "{$API_Link}api/v1/category/list-category";
                 
                 $data = connect_api($apiUrl);
 

@@ -290,13 +290,18 @@ html > body.swal2-height-auto, html > body.member-form {
 }
 
 body.member-form {
-    background-image: url('./images/login-bg.jpg');
+    background-image: url('./images/login-bg.png');
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
     display: flex;
     flex-direction: column;
     position: relative;
+}
+
+.sticky-about {
+    position: sticky;
+    top: 100px;
 }
 
 .home-category p {
@@ -325,12 +330,19 @@ body.member-form {
 }
 
 .home-feature .card img {
-    height: 100px;
-    width: 100px;
+    width: 75%;
     padding: 1rem;
+}
+
+.watermark {
+    height: 100%;
+    width: 100%;
     object-fit: contain;
     object-position: center;
-    background-color: var(--color-theme-3);
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: transparent;
 }
 
 .home-feature .card h5 {

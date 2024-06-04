@@ -43,7 +43,7 @@
                         <tbody>
 
                         <?php
-                            $apiUrl = "$API_Link/v1/job/list-job";
+                            $apiUrl = "{$API_Link}api/v1/job/list-job";
                             
                             $data = connect_api($apiUrl);
 
@@ -201,7 +201,7 @@
 
             $('#JobhModalForm').submit(function () {
                 const InputID = $("#EditModalInputID").val();
-                const url = (InputID == 0) ? '$API_Link/v1/job/insert-job' : '$API_Link/v1/job/update-job';
+                const url = (InputID == 0) ? '$API_Linkv1/job/insert-job' : '$API_Linkv1/job/update-job';
 
                 var unindexed_array = $('#JobhModalForm').serializeArray();
                 var indexed_array = {};
@@ -280,7 +280,7 @@
                         });
 
                         $.ajax({
-                            url: "$API_Link/v1/job/delete-job",
+                            url: "{$API_Link}api/v1/job/delete-job",
                             type: "POST",
                             data: JSON.stringify(data),
                             contentType: "application/json; charset=utf-8",

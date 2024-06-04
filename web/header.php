@@ -8,7 +8,7 @@
             'whsCode' => $WhsCode
         ];
 
-        $HeaderCartData = connect_api("$API_Link/v1/cart/list-cart", $HeaderCartDataAPI);
+        $HeaderCartData = connect_api("{$API_Link}api/v1/cart/list-cart", $HeaderCartDataAPI);
 
         $_SESSION['cart'] = count($HeaderCartData['cartModels']);
 
@@ -21,10 +21,10 @@
         $CategoryList = $_SESSION['categories'];
     } else {
         $CategoryMainRequest = [
-            "whsCode" => @$_SESSION['whsCode']
+            "whsCode" => $WhsCode
         ];
         
-        $CategoryList = connect_api("$API_Link/v1/category/list-category", $CategoryMainRequest);
+        $CategoryList = connect_api("{$API_Link}api/v1/category/list-category", $CategoryMainRequest);
 
         $_SESSION['categories'] = $CategoryList;
     }

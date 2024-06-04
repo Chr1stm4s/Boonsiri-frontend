@@ -9,7 +9,7 @@
 
         require_once "./head.php";
 
-        $APIURL = "$API_Link/v1/product/get-product-by-id";
+        $APIURL = "{$API_Link}api/v1/product/get-product-by-id";
                     
         $ProductAPIDataRequest = [
             'productId' => $id, 
@@ -124,7 +124,7 @@
                     });
 
                     // API endpoint
-                    const apiUrl = '$API_Link/v1/product/delete-product-image';
+                    const apiUrl = '$API_Linkv1/product/delete-product-image';
 
                     // Send the POST request
                     fetch(apiUrl, {

@@ -42,7 +42,7 @@
                     "whsCode" => $whsCode
                 ];
 
-                $CategoryMain = connect_api("$API_Link/v1/category/list-category", $categoryRequest);
+                $CategoryMain = connect_api("{$API_Link}api/v1/category/list-category", $categoryRequest);
 
                 foreach ($CategoryMain['categories'] as $CategoryList) {
                     $image = ($CategoryList['image'] && file_exists("products/category/".$CategoryList['image'])) ? rootURL()."products/category/".$CategoryList['image'] : rootURL()."images/logo.png";

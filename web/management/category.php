@@ -11,7 +11,7 @@
         if (@$_GET['id']) {
             $id = $_GET['id'];
 
-            $apiUrl = "$API_Link/v1/category/get-category-by-id";
+            $apiUrl = "{$API_Link}api/v1/category/get-category-by-id";
             $dataAPI = [
                 "categoryId" => $_GET['id'], 
                 "whsCode" => ""
@@ -30,7 +30,7 @@
         } else {
             $id = null;
 
-            $apiUrl = "$API_Link/v1/category/list-category";
+            $apiUrl = "{$API_Link}api/v1/category/list-category";
             $dataAPI = null;
 
             $data = connect_api($apiUrl, $dataAPI);

@@ -17,7 +17,7 @@
         <div class="card-body text-center p-3 p-md-4 p-lg-5">
             <form method="POST" id="FormCheckMember">
                 <h1 class="mb-0">สมัครสมาชิก</h1>
-                <img src="<?=rootURL();?>images/send-otp.svg" alt="สมัครสมาชิก บุญศิริ" class="member-form-image">
+                <img src="<?=rootURL();?>images/send-otp.png" alt="สมัครสมาชิก บุญศิริ" class="member-form-image">
                 <input type="hidden" name="type" value="regis">
                 <div class="row">
                     <div class="col-12 col-md-6 col-lg-4 my-3 ms-auto">
@@ -60,7 +60,7 @@
                 </div>
 
                 <!-- Step 1 Elements -->
-                <img src="<?=rootURL();?>images/get-otp.svg" alt="สมัครสมาชิก บุญศิริ" class="step-1-element member-form-image">
+                <img src="<?=rootURL();?>images/get-otp.png" alt="สมัครสมาชิก บุญศิริ" class="step-1-element member-form-image">
                 <div class="step-1-element row">
                     <div class="col">
                         <p class="mb-0">รหัสยืนยัน (OTP) ได้ส่งไปยัง <span id="OtpNumber"></span></p>
@@ -164,7 +164,7 @@
                                         'geoId' => 0,
                                     ];
 
-                                    $ListProvinceResponse = connect_api("$API_Link/v1/address/province", $ListProvinceAPIRequest);
+                                    $ListProvinceResponse = connect_api("{$API_Link}api/v1/address/province", $ListProvinceAPIRequest);
 
                                     if ($ListProvinceResponse['responseCode'] == 000) {
                                         foreach ($ListProvinceResponse['provinces'] as $ProvinceData) {
@@ -213,7 +213,7 @@
 
                 <!-- Step 3 Elements -->
                 <h2 class="mt-3 mb-0 step-3-element">สมัครสมาชิกสำเร็จ</h2>
-                <img src="<?=rootURL();?>images/signed-up.svg" alt="สมัครสมาชิก บุญศิริ" class="step-3-element member-form-image">
+                <img src="<?=rootURL();?>images/signed-up.png" alt="สมัครสมาชิก บุญศิริ" class="step-3-element member-form-image">
 
                 <div class="row step-3-element">
                     <div class="col col-md-6 col-lg-4 mx-auto">
@@ -261,7 +261,7 @@
 
                 if (OTP1 && OTP2 && OTP3 && OTP4 && OTP5 && OTP6) {
                     // API endpoint
-                    const apiUrl = '$API_Link/v1/otp/validate-otp';
+                    const apiUrl = '<?=$API_Link;?>api/v1/otp/validate-otp';
 
                     // Data to send in the request
                     const data = {
@@ -347,7 +347,7 @@
                     body: JSON.stringify(formDataObject)
                 };
 
-                fetch("$API_Link/v1/boonsiri/check-customer", requestOptions)
+                fetch("<?=$API_Link;?>api/v1/boonsiri/check-customer", requestOptions)
                 .then(response => response.json())
                 .then(
                     obj => {
@@ -391,7 +391,7 @@
 
                             $("#RegisterFormWizard").fadeIn();
                         } else {
-                            fetch("$API_Link/v1/otp/send-otp", requestOptions)
+                            fetch("<?=$API_Link;?>api/v1/otp/send-otp", requestOptions)
                             .then(response => response.json())
                             .then(
                                 obj => {
@@ -497,7 +497,7 @@
             //         body: JSON.stringify(formDataObject)
             //     };
 
-            //     fetch("$API_Link/v1/boonsiri/check-customer", requestOptions)
+            //     fetch("{$API_Link}api/v1/boonsiri/check-customer", requestOptions)
             //     .then(response => response.json())
             //     .then(
             //         obj => {
@@ -591,7 +591,7 @@
                     body: JSON.stringify(formDataObject)
                 };
 
-                fetch("$API_Link/v1/customer/login", requestOptions)
+                fetch("<?=$API_Link;?>api/v1/customer/login", requestOptions)
                 .then(response => response.json())
                 .then(
                     obj => {
