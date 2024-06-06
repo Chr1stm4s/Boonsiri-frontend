@@ -134,6 +134,38 @@
                                 <label for="line" class="text-secondary">LINE ID</label>
                             </div>
                         </div>
+                        <div class="col-12 col-md-6">
+                            <div class="form-floating">
+                                <select class="form-select" id="customerTypeCode" name="customerTypeCode" aria-label="เลือกประเภทกิจการ">
+                                    <option selected disabled>เลือกประเภทกิจการ</option>
+                                    <option value="T01">แปรรูปปลาทู</option>
+                                    <option value="T02">ห้องเย็น</option>
+                                    <option value="T03">ขายของสด</option>
+                                    <option value="T04">ร้านรถเข็น ตลาดนัด</option>
+                                    <option value="T05">ร้านอาหาร, โรงแรมและจัดเลี้ยง</option>
+                                    <option value="T06">ค้าขายมีหน้าร้าน</option>
+                                    <option value="T07">หน่วยงาน/องค์กร</option>
+                                    <option value="T08">รถพุ่มพวง</option>
+                                    <option value="T09">ทั่วไป</option>
+                                </select>
+                                <label for="customerTypeCode">เลือกประเภทกิจการ</label>
+                            </div>
+                        </div>
+                        <div class="col-12 col-md-6">
+                            <div class="form-floating">
+                                <select class="form-select" id="knowusCode" name="knowusCode" aria-label="รู้จักบุญศิริได้อย่างไร">
+                                    <option selected disabled>รู้จักบุญศิริได้อย่างไร</option>
+                                    <option value="F01">Facebook</option>
+                                    <option value="F02">Line</option>
+                                    <option value="F03">TikTok</option>
+                                    <option value="F04">รถขนส่ง</option>
+                                    <option value="F05">ฝ่ายขายออกตลาด</option>
+                                    <option value="F06">การบอกต่อ</option>
+                                    <option value="F07">อื่นๆ</option>
+                                </select>
+                                <label for="knowusCode">รู้จักบุญศิริได้อย่างไร</label>
+                            </div>
+                        </div>
                     </div>
                 </form>
 
@@ -674,6 +706,28 @@
                             indexFormValue[n['name']] = n['value'];
                         });
 
+                        var CustomerTypeCodeMaster = {
+                            "T01" : "แปรรูปปลาทู", 
+                            "T02" : "ห้องเย็น", 
+                            "T03" : "ขายของสด", 
+                            "T04" : "ร้านรถเข็น ตลาดนัด", 
+                            "T05" : "ร้านอาหาร, โรงแรมและจัดเลี้ยง", 
+                            "T06" : "ค้าขายมีหน้าร้าน", 
+                            "T07" : "หน่วยงาน/องค์กร", 
+                            "T08" : "รถพุ่มพวง", 
+                            "T09" : "ทั่วไป", 
+                        }
+
+                        var KnowUsCodeMaster = {
+                            "F01" : "Facebook", 
+                            "F02" : "Line", 
+                            "F03" : "TikTok", 
+                            "F04" : "รถขนส่ง", 
+                            "F05" : "ฝ่ายขายออกตลาด", 
+                            "F06" : "การบอกต่อ", 
+                            "F07" : "อื่นๆ", 
+                        }
+
                         let customerData = {
                             "customerId": null,
                             "firstname": indexFormValue.fname,
@@ -688,10 +742,10 @@
                             "branchId": 1,
                             "whsGrpCode": "SSK",
                             "whsGrpName": "สาขาศรีสะเกษ",
-                            "customerTypeCode": "T01",
-                            "customerType": "แปรรูปปลาทู",
-                            "knowus": "F01",
-                            "knowusCode": "Facebook",
+                            "customerTypeCode": indexFormValue.customerTypeCode,
+                            "customerType": CustomerTypeCodeMaster[indexFormValue.customerTypeCode],
+                            "knowusCode": indexFormValue.knowusCode,
+                            "knowus": KnowUsCodeMaster[indexFormValue.knowusCode],
                             "addresses": [
                                 {
                                     "addressType": "bo_BillTo",

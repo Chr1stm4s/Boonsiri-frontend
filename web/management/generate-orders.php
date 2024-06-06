@@ -43,11 +43,13 @@
             "มูลค่าคำสั่งซื้อ", 
             "สาขาที่สั่งซื้อ", 
             "วันที่สั่งซื้อ", 
-            "รายการสินค้า", 
+            "ลำดับสินค้า", 
             "ชื่อสินค้า", 
+            "comCode", 
             "โปรโมชั่น", 
             "จำนวน", 
             "ราคาสินค้า", 
+            "มูลค่ารวมต่อรายการ", 
             "ค่าจัดส่ง", 
         ];
 
@@ -88,11 +90,15 @@
                             "", 
                             "", 
                             "", 
+                            "", 
+                            "", 
                             $i, 
                             $list['title'], 
+                            $list['comCode'], 
                             $list['promotionId'], 
                             ($list['uomCode']) ? $list['amount'] . " " . $list['uomCode'] : $list['amount'] . " " . "ชิ้น", 
                             $list['eachLastPrice'], 
+                            $list['eachLastPrice'] * $list['amount'], 
                             $list['lastShippingPrice'], 
                         ];
         
@@ -133,11 +139,15 @@
                         "", 
                         "", 
                         "", 
+                        "", 
+                        "", 
                         $i, 
                         $list['title'], 
+                        $list['comCode'], 
                         $list['promotionId'], 
                         ($list['uomCode']) ? $list['amount'] . " " . $list['uomCode'] : $list['amount'] . " " . "ชิ้น", 
                         $list['eachLastPrice'], 
+                        $list['eachLastPrice'] * $list['amount'], 
                         $list['lastShippingPrice'], 
                     ];
     
