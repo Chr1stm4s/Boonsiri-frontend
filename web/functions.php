@@ -2,10 +2,10 @@
     session_start();
 
     // Local test
-    // $API_Link = "https://ecmapi.boonsiri.co.th/";
+    $API_Link = "https://127.0.0.1:7104/";
 
     // Production
-    $API_Link = "https://ecmapi.boonsiri.co.th/";
+    // $API_Link = "https://ecmapi.boonsiri.co.th/";
 
     date_default_timezone_set("Asia/Bangkok");
 
@@ -211,34 +211,36 @@
 
     function connect_api($url, $data = "") {
         // Convert the data to JSON format
-        if ($data == "") {
-            $data = [
-                "data" => 0
-            ];
-        }
+        // if ($data == "") {
+        //     $data = [
+        //         "data" => 0
+        //     ];
+        // }
 
-        $jsonData = json_encode($data);
+        // $jsonData = json_encode($data);
 
-        $curl = curl_init($url);
+        // $curl = curl_init($url);
         
-        // Set cURL options
-        curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+        // // Set cURL options
+        // curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
 
-        curl_setopt($curl, CURLOPT_HTTPHEADER, [
-            'Content-Type: application/json',
-            'Content-Length: ' . strlen($jsonData)
-        ]);
+        // curl_setopt($curl, CURLOPT_HTTPHEADER, [
+        //     'Content-Type: application/json',
+        //     'Content-Length: ' . strlen($jsonData)
+        // ]);
 
-        curl_setopt($curl, CURLOPT_CUSTOMREQUEST, 'POST');
-        curl_setopt($curl, CURLOPT_POSTFIELDS, $jsonData);
+        // curl_setopt($curl, CURLOPT_CUSTOMREQUEST, 'POST');
+        // curl_setopt($curl, CURLOPT_POSTFIELDS, $jsonData);
         
-        $response = curl_exec($curl);
+        // $response = curl_exec($curl);
         
-        if (curl_errno($curl)) {
-            echo "Error: " . curl_error($curl);
-        }
+        // if (curl_errno($curl)) {
+        //     echo "Error: " . curl_error($curl);
+        // }
         
-        curl_close($curl);
+        // curl_close($curl);
         
-        return json_decode($response, true);
+        // return json_decode($response, true);
+
+        echo $url;
     }

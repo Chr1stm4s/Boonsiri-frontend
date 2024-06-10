@@ -279,6 +279,7 @@
         $(".step-3-element").hide();
 
         $(document).ready(function(){
+            // For Prod
             $("#ConfirmOTP").click(function() {
                 const OTP1 = $("#OTP1").val();
                 const OTP2 = $("#OTP2").val();
@@ -486,6 +487,7 @@
                     }
                 );
             });
+            // For Prod
 
             // For test
             // $("#ConfirmOTP").click(function() {
@@ -529,7 +531,7 @@
             //         body: JSON.stringify(formDataObject)
             //     };
 
-            //     fetch("{$API_Link}api/v1/boonsiri/check-customer", requestOptions)
+            //     fetch("<?=$API_Link;?>api/v1/boonsiri/check-customer", requestOptions)
             //     .then(response => response.json())
             //     .then(
             //         obj => {
