@@ -2,7 +2,7 @@
     session_start();
 
     // Local test
-    $API_Link = "https://127.0.0.1:7104/";
+    $API_Link = "https://localhost:7104/";
 
     // Production
     // $API_Link = "https://ecmapi.boonsiri.co.th/";
@@ -241,6 +241,4 @@
         // curl_close($curl);
         
         // return json_decode($response, true);
-
-        echo $url;
     }
