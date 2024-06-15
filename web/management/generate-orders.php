@@ -67,31 +67,19 @@
         
                     $GetOrderDataAPIResponse = connect_api("{$API_Link}api/v1/purchase/get-purchase", $GetOrderDataAPIRequest);
         
-                    $OrderDataExport[] = [
-                        $item['orderNo'], 
-                        $badge[$item['status']], 
-                        $courier[$item['courierId']], 
-                        $item['fname'] . " " . $item['lname'], 
-                        $item['address'] . " " . $item['district'] . " " . $item['amphur'] . " " . $item['province'] . " " . $item['postcode'], 
-                        $item['phone'], 
-                        $item['totalPrice'], 
-                        $item['branchName'], 
-                        $OrderDate
-                    ];
-        
                     $i = 1;
         
                     foreach ($GetOrderDataAPIResponse['purchase']['listItem'] as $list) {
                         $OrderDataExport[] = [
-                            "", 
-                            "", 
-                            "", 
-                            "", 
-                            "", 
-                            "", 
-                            "", 
-                            "", 
-                            "", 
+                            $item['orderNo'], 
+                            $badge[$item['status']], 
+                            $courier[$item['courierId']], 
+                            $item['fname'] . " " . $item['lname'], 
+                            $item['address'] . " " . $item['district'] . " " . $item['amphur'] . " " . $item['province'] . " " . $item['postcode'], 
+                            $item['phone'], 
+                            $item['totalPrice'], 
+                            $item['branchName'], 
+                            $OrderDate, 
                             $i, 
                             $list['title'], 
                             $list['comCode'], 
@@ -116,31 +104,19 @@
     
                 $GetOrderDataAPIResponse = connect_api("{$API_Link}api/v1/purchase/get-purchase", $GetOrderDataAPIRequest);
     
-                $OrderDataExport[] = [
-                    $item['orderNo'], 
-                    $badge[$item['status']], 
-                    $courier[$item['courierId']], 
-                    $item['fname'] . " " . $item['lname'], 
-                    $item['address'] . " " . $item['district'] . " " . $item['amphur'] . " " . $item['province'] . " " . $item['postcode'], 
-                    $item['phone'], 
-                    $item['totalPrice'], 
-                    $item['branchName'], 
-                    $OrderDate
-                ];
-    
                 $i = 1;
     
                 foreach ($GetOrderDataAPIResponse['purchase']['listItem'] as $list) {
                     $OrderDataExport[] = [
-                        "", 
-                        "", 
-                        "", 
-                        "", 
-                        "", 
-                        "", 
-                        "", 
-                        "", 
-                        "", 
+                        $item['orderNo'], 
+                        $badge[$item['status']], 
+                        $courier[$item['courierId']], 
+                        $item['fname'] . " " . $item['lname'], 
+                        $item['address'] . " " . $item['district'] . " " . $item['amphur'] . " " . $item['province'] . " " . $item['postcode'], 
+                        $item['phone'], 
+                        $item['totalPrice'], 
+                        $item['branchName'], 
+                        $OrderDate, 
                         $i, 
                         $list['title'], 
                         $list['comCode'], 
