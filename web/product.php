@@ -20,7 +20,7 @@
             "productId" => $id,
         ];
 
-        $data = connect_api("{$API_Link}api/v1/product/get-product-by-id", $requestData);
+        $data = connect_api("{$API_URL}product/get-product-by-id", $requestData);
 
         $ProductData = $data['product'];
 
@@ -49,7 +49,7 @@
                                 "id" => $ProductData['categoryId'],
                             ];
 
-                            $Breadcrumb = connect_api("{$API_Link}api/v1/category/breadcrumb", $BreadcrumbData);
+                            $Breadcrumb = connect_api("{$API_URL}category/breadcrumb", $BreadcrumbData);
 
 
                             foreach ($Breadcrumb['items'] as $key => $CategoryList) {
@@ -73,10 +73,10 @@
     <section class="py-5">
         <div class="container">
             <div class="row">
-                <div class="col-12 col-md-6">
+                <div class="col-12 col-md-6 position-relative">
 
                 <?php
-                    $ProductImageAPIURL = "{$API_Link}api/v1/product/list-product-image";
+                    $ProductImageAPIURL = "{$API_URL}product/list-product-image";
 
                     $ProductImageAPIDataRequest = [
                         'itemCode' => $ProductData['itemCode'], 
@@ -84,7 +84,7 @@
                     
                     $ProductImageAPIDataResponse = connect_api($ProductImageAPIURL, $ProductImageAPIDataRequest);
                     
-                    if ($ProductImageAPIDataResponse['responseCode'] == 000) {
+                    if ($ProductImageAPIDataResponse['responseCode'] == "000") {
                         $i = 1;
                 ?>
 
@@ -138,6 +138,7 @@
                     } else {
                 ?>
 
+                    <img src="<?=rootURL();?>images/watermark.png" alt="บุญศิริ โฟรเซ่น" class="watermark">
                     <img src="<?=$thumbnail;?>" alt="<?=$ProductData['title'];?>" class="w-100">
 
                 <?php
@@ -250,7 +251,7 @@
             <div class="row g-4">
 
                 <?php
-                    $APIURL = "{$API_Link}api/v1/product/get-product-by-category-id";
+                    $APIURL = "{$API_URL}product/get-product-by-category-id";
 
                     $APIDataRequest = [
                         'categoryId' => $ProductData['categoryId'], 
@@ -266,7 +267,7 @@
 
                     $APIDataResponse = connect_api($APIURL, $APIDataRequest);
 
-                    if ($APIDataResponse['responseCode'] == 000) {
+                    if ($APIDataResponse['responseCode'] == "000") {
                         if (count($APIDataResponse[$ResponseKey]) > 1) {
                             foreach ($APIDataResponse[$ResponseKey] as $FeaturedProducts) {
                                 $thumbnail = (file_exists("products/".$FeaturedProducts['thumbnail'])) ? rootURL()."products/".$FeaturedProducts['thumbnail'] : rootURL()."images/logo.png";
@@ -289,6 +290,7 @@
                                 }
                             ?>
 
+                            <img src="<?=rootURL();?>images/watermark.png" alt="บุญศิริ โฟรเซ่น" class="watermark">
                             <img src="<?=$thumbnail;?>" alt="<?=$FeaturedProducts['title'];?>" class="card-img-top">
                         </a>
                         <div class="card-body">

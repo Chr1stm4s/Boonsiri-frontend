@@ -26,7 +26,7 @@
             <div class="row">
 
             <?php
-                $apiUrl = "{$API_Link}api/v1/article-category/list-courier";
+                $apiUrl = "{$API_URL}article-category/list-courier";
                 
                 $data = connect_api($apiUrl);
 
@@ -73,7 +73,7 @@
                                         "courierId" => $courier['id']
                                     ];
 
-                                    $apiUrl = "{$API_Link}api/v1/courier-rate/list-courier-rate";
+                                    $apiUrl = "{$API_URL}courier-rate/list-courier-rate";
                                     
                                     $data = connect_api($apiUrl, $dataAPI);
 
@@ -148,7 +148,7 @@
             });
 
             $.ajax({
-                url: '$API_Linkv1/courier-rate/insert-courier-rate',
+                url: '<?=$API_URL;?>courier-rate/insert-courier-rate',
                 type: 'POST',
                 data: JSON.stringify(indexed_array),
                 contentType: "application/json", 
@@ -200,7 +200,7 @@
                     });
 
                     // API endpoint
-                    const apiUrl = '$API_Linkv1/courier-rate/delete-courier-rate';
+                    const apiUrl = '<?=$API_URL;?>courier-rate/delete-courier-rate';
 
                     // Data to send in the request
                     const data = {

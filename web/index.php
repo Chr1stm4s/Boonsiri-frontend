@@ -14,6 +14,11 @@
 </head>
 
 <body class="bg-light">
+
+    <div id="home_loading">
+        <img src="<?= rootURL(); ?>images/logo.png" alt="<?= $title; ?>" id="LoadingLogo">
+        <div class="lds-facebook"><div></div><div></div><div></div></div>
+    </div>
     
     <?php require_once "./header.php"; ?>
 
@@ -24,35 +29,45 @@
                     <div id="carouselHomeHeaderIndicators" class="carousel slide">
                         <div class="carousel-indicators">
 
-                        <?php
-                            $BannerAPIURL = "{$API_Link}api/v1/banner/list-banner";
-                            
-                            $BannerAPIRequest = [
-                                'location' => 1, 
-                            ];
+                            <?php
+                                $BannerAPIURL = "{$API_URL}banner/list-banner";
+                                
+                                $BannerAPIRequest = [
+                                    'location' => 0, 
+                                ];
 
-                            $BannerAPIData = connect_api($BannerAPIURL, $BannerAPIRequest);
+                                $BannerAPIData = connect_api($BannerAPIURL, $BannerAPIRequest);
 
-                            $count = 0;
+                                $count = 0;
 
-                            foreach ($BannerAPIData['banners'] as $banners) {
-                        ?>
+                                $BannerData = [];
+
+                                foreach ($BannerAPIData['banners'] as $banners) {
+                                    $BannerData[$banners['location']][] = [
+                                        "image" => $banners['image'], 
+                                        "url" => $banners['url'], 
+                                        "altText" => $banners['altText'] 
+                                    ];
+                                }
+
+                                foreach ($BannerData[1] as $banners) {
+                            ?>
 
                             <button type="button" data-bs-target="#carouselHomeHeaderIndicators" data-bs-slide-to="<?=$count;?>" class="<?=($count == 0) ? 'active' : ''; ?>" aria-current="<?=($count == 0) ? 'true' : ''; ?>" aria-label="Slide <?=$count+1;?>"></button>
 
-                        <?php
-                                $count++;
-                            }
-                        ?>
+                            <?php
+                                    $count++;
+                                }
+                            ?>
 
                         </div>
                         <div class="carousel-inner">
 
-                        <?php
-                            $count = 0;
+                            <?php
+                                $count = 0;
 
-                            foreach ($BannerAPIData['banners'] as $banners) {
-                        ?>
+                                foreach ($BannerData[1] as $banners) {
+                            ?>
 
                             <div class="carousel-item <?=($count == 0) ? 'active' : ''; ?>">
                                 <a href="<?=$banners['url'];?>">
@@ -60,10 +75,10 @@
                                 </a>
                             </div>
 
-                        <?php
-                                $count++;
-                            }
-                        ?>
+                            <?php
+                                    $count++;
+                                }
+                            ?>
                         
                         </div>
                         <button class="carousel-control-prev" type="button" data-bs-target="#carouselHomeHeaderIndicators" data-bs-slide="prev">
@@ -80,17 +95,11 @@
                     <div id="carouselHomeHeaderIndicators2" class="carousel slide mb-3">
                         <div class="carousel-inner">
 
-                        <?php
-                            $BannerAPIRequest = [
-                                'location' => 2, 
-                            ];
+                            <?php
+                                $count = 0;
 
-                            $count = 0;
-
-                            $BannerAPIData = connect_api($BannerAPIURL, $BannerAPIRequest);
-
-                            foreach ($BannerAPIData['banners'] as $banners) {
-                        ?>
+                                foreach ($BannerData[2] as $banners) {
+                            ?>
 
                             <div class="carousel-item <?=($count == 0) ? 'active' : ''; ?>">
                                 <a href="<?=$banners['url'];?>">
@@ -98,27 +107,21 @@
                                 </a>
                             </div>
 
-                        <?php
-                                $count++;
-                            }
-                        ?>
+                            <?php
+                                    $count++;
+                                }
+                            ?>
                         
                         </div>
                     </div>
                     <div id="carouselHomeHeaderIndicators3" class="carousel slide">
                         <div class="carousel-inner">
 
-                        <?php
-                            $BannerAPIRequest = [
-                                'location' => 3, 
-                            ];
-
-                            $count = 0;
-
-                            $BannerAPIData = connect_api($BannerAPIURL, $BannerAPIRequest);
-
-                            foreach ($BannerAPIData['banners'] as $banners) {
-                        ?>
+                            <?php
+                                $count = 0;
+                                
+                                foreach ($BannerData[3] as $banners) {
+                            ?>
 
                             <div class="carousel-item <?=($count == 0) ? 'active' : ''; ?>">
                                 <a href="<?=$banners['url'];?>">
@@ -126,10 +129,10 @@
                                 </a>
                             </div>
 
-                        <?php
-                                $count++;
-                            }
-                        ?>
+                            <?php
+                                    $count++;
+                                }
+                            ?>
                         
                         </div>
                     </div>
@@ -146,7 +149,7 @@
                 </div>
             </div>
             <div class="row">
-            
+
                 <?php
                     foreach ($CategoryList['categories'] as $HomeCategoryList) {
                         $image = ($HomeCategoryList['image'] && file_exists("products/category/".$HomeCategoryList['image'])) ? rootURL()."products/category/".$HomeCategoryList['image'] : rootURL()."images/logo.png";
@@ -176,7 +179,7 @@
                     'location' => 1, 
                 ];
 
-                $FeaturedAPIData = connect_api("{$API_Link}api/v1/featured/list-featured", $FeaturedAPIRequest);
+                $FeaturedAPIData = connect_api("{$API_URL}featured/list-featured", $FeaturedAPIRequest);
 
                 foreach ($FeaturedAPIData['featureds'] as $featured) {
             ?>
@@ -221,7 +224,7 @@
                             "isFrontEnd" => 1, 
                         ];
 
-                        $HomeProductsPromotion = connect_api("{$API_Link}api/v1/product/get-product-by-promotion-id", $requestData);
+                        $HomeProductsPromotion = connect_api("{$API_URL}product/get-product-by-promotion-id", $requestData);
 
                         if ($HomeProductsPromotion['responseCode'] == "000") {
                     ?>
@@ -394,7 +397,7 @@
                         "pageSize" => 4, 
                     ];
 
-                    $HomeArticles = connect_api("{$API_Link}api/v1/article/list-article", $requestData);
+                    $HomeArticles = connect_api("{$API_URL}article/list-article", $requestData);
 
                     if ($HomeArticles['responseCode'] == "000") {
                         foreach ($HomeArticles['articleCategories'] as $HomeArticlesData) {
@@ -459,6 +462,10 @@
                     slidesPerView: 6,
                 },
             },
+        });
+
+        $( window ).on( "load", function() {
+            $("#home_loading").fadeOut();
         });
     </script>
 

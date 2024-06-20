@@ -4,7 +4,7 @@
 <head>
     
     <?php
-        $page = "claim";
+        $page = "member";
         
         require_once "../head.php";
 
@@ -14,7 +14,7 @@
             'id' => $id,
         ];
 
-        $Response = connect_api("{$API_Link}api/v1/purchase/get-purchase", $APIRequest);
+        $Response = connect_api("{$API_URL}purchase/get-purchase", $APIRequest);
 
         if ($Response['responseCode'] == 000) {
             $OrderData = $Response['purchase'];

@@ -7,7 +7,7 @@
         'id' => $_POST['id']
     ];
 
-    $APIResponse = connect_api("{$API_Link}api/v1/address/delete-address-profile", $data);
+    $APIResponse = connect_api("{$API_URL}address/delete-address-profile", $data);
 
     if ($APIResponse['responseCode'] === "000") {
         $_SESSION['address_id'] = null;

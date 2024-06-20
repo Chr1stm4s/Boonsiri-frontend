@@ -4,25 +4,9 @@
 <head>
     
     <?php
-        $page = "jobs";
+        $page = "job-details";
         
         require_once "./head.php";
-
-        $id = $_GET['id'];
-
-        $requestData = [
-            "id" => $id,
-        ];
-
-        $data = connect_api("{$API_Link}api/v1/job/get-job", $requestData);
-
-        if ($data['responseCode'] === "000") {
-            $JobData = $data['job'];
-        } else {
-            var_dump($data);
-
-            exit();
-        }
     ?>
 
 </head>

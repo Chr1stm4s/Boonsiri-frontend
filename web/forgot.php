@@ -70,7 +70,7 @@
                     body: JSON.stringify(formDataObject)
                 };
 
-                fetch("{$API_Link}api/v1/otp/send-otp", requestOptions)
+                fetch("<?=$API_URL;?>otp/send-otp", requestOptions)
                 .then(response => response.json())
                 .then(
                     obj => {

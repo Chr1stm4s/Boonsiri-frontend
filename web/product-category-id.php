@@ -7,25 +7,6 @@
         $page = "products";
         
         require_once "./head.php";
-
-        $CategoryID = $_GET['title'];
-        $WhsCode = (@$_SESSION['whsCode']) ? $_SESSION['whsCode'] : "SSK";
-
-        $CategoryAPIDataRequest = [
-            "whsCode" => $WhsCode, 
-            'categoryId' => $CategoryID
-        ];
-
-        $CategoryMain = connect_api("{$API_Link}api/v1/category/get-category-by-id", $CategoryAPIDataRequest);
-
-        if ($CategoryMain['responseCode'] == 000) {
-            $CategoryData = $CategoryMain['product'][0];
-        } else {
-            echo $CategoryMain['responseCode'];
-
-            exit();
-        }
-
     ?>
 
 </head>
@@ -49,7 +30,7 @@
                                     "id" => $CategoryID,
                                 ];
 
-                                $Breadcrumb = connect_api("{$API_Link}api/v1/category/breadcrumb", $BreadcrumbData);
+                                $Breadcrumb = connect_api("{$API_URL}category/breadcrumb", $BreadcrumbData);
 
 
                                 foreach ($Breadcrumb['items'] as $key => $CategoryList) {
@@ -77,7 +58,7 @@
                 <div class="col p-0">
 
                     <?php
-                        $APIURL = "{$API_Link}api/v1/product/get-product-by-category-id";
+                        $APIURL = "{$API_URL}product/get-product-by-category-id";
 
                         $pageNo = 1;
                         $pageSize = 12;

@@ -14,7 +14,7 @@
         "status" => 1
     ];
 
-    $data = connect_api("{$API_Link}api/v1/case-message/insert-case-message", $requestData);
+    $data = connect_api("{$API_URL}case-message/insert-case-message", $requestData);
 
     if ($data['responseCode'] === "000") {
         if ($_FILES["claim"]["tmp_name"][0]) {
@@ -31,7 +31,7 @@
                     "file" => $message_file,
                 ];
             
-                $data = connect_api("{$API_Link}api/v1/case-file/insert-case-file", $requestData);
+                $data = connect_api("{$API_URL}case-file/insert-case-file", $requestData);
                     
                 if ($data['responseCode'] !== "000") {
                     exit();

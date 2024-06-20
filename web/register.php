@@ -4,7 +4,7 @@
 <head>
     
     <?php
-        $page = "login";
+        $page = "register";
         
         require_once "./head.php";
     ?>
@@ -196,7 +196,7 @@
                                         'geoId' => 0,
                                     ];
 
-                                    $ListProvinceResponse = connect_api("{$API_Link}api/v1/address/province", $ListProvinceAPIRequest);
+                                    $ListProvinceResponse = connect_api("{$API_URL}address/province", $ListProvinceAPIRequest);
 
                                     if ($ListProvinceResponse['responseCode'] == 000) {
                                         foreach ($ListProvinceResponse['provinces'] as $ProvinceData) {
@@ -279,7 +279,6 @@
         $(".step-3-element").hide();
 
         $(document).ready(function(){
-            // For Prod
             $("#ConfirmOTP").click(function() {
                 const OTP1 = $("#OTP1").val();
                 const OTP2 = $("#OTP2").val();
@@ -294,7 +293,7 @@
 
                 if (OTP1 && OTP2 && OTP3 && OTP4 && OTP5 && OTP6) {
                     // API endpoint
-                    const apiUrl = '<?=$API_Link;?>api/v1/otp/validate-otp';
+                    const apiUrl = '<?=$API_URL;?>otp/validate-otp';
 
                     // Data to send in the request
                     const data = {
@@ -380,7 +379,7 @@
                     body: JSON.stringify(formDataObject)
                 };
 
-                fetch("<?=$API_Link;?>api/v1/boonsiri/check-customer", requestOptions)
+                fetch("<?=$API_URL;?>boonsiri/check-customer", requestOptions)
                 .then(response => response.json())
                 .then(
                     obj => {
@@ -424,7 +423,7 @@
 
                             $("#RegisterFormWizard").fadeIn();
                         } else {
-                            fetch("<?=$API_Link;?>api/v1/otp/send-otp", requestOptions)
+                            fetch("<?=$API_URL;?>otp/send-otp", requestOptions)
                             .then(response => response.json())
                             .then(
                                 obj => {
@@ -487,7 +486,6 @@
                     }
                 );
             });
-            // For Prod
 
             // For test
             // $("#ConfirmOTP").click(function() {
@@ -531,7 +529,7 @@
             //         body: JSON.stringify(formDataObject)
             //     };
 
-            //     fetch("<?=$API_Link;?>api/v1/boonsiri/check-customer", requestOptions)
+            //     fetch("<?=$API_URL;?>boonsiri/check-customer", requestOptions)
             //     .then(response => response.json())
             //     .then(
             //         obj => {
@@ -625,7 +623,7 @@
                     body: JSON.stringify(formDataObject)
                 };
 
-                fetch("<?=$API_Link;?>api/v1/customer/login", requestOptions)
+                fetch("<?=$API_URL;?>customer/login", requestOptions)
                 .then(response => response.json())
                 .then(
                     obj => {
@@ -792,7 +790,7 @@
                         console.log(`customerData : ${JSON.stringify(customerData, null, 4)}`)
 
                         $.ajax({
-                            url: '<?=$API_Link;?>api/v1/boonsiri/create-customer-to-pos',
+                            url: '<?=$API_URL;?>boonsiri/create-customer-to-pos',
                             type: 'POST',
                             data: JSON.stringify(customerData),
                             contentType: "application/json", 
@@ -814,7 +812,7 @@
                                         body: JSON.stringify(formDataObject)
                                     };
 
-                                    fetch("<?=$API_Link;?>api/v1/boonsiri/check-customer", requestOptions)
+                                    fetch("<?=$API_URL;?>boonsiri/check-customer", requestOptions)
                                     .then(response => response.json())
                                     .then(
                                         obj => {
@@ -835,7 +833,7 @@
                                                 });
 
                                                 $.ajax({
-                                                    url: '<?=$API_Link;?>api/v1/customer/add-customer',
+                                                    url: '<?=$API_URL;?>customer/add-customer',
                                                     type: 'POST',
                                                     data: JSON.stringify(indexed_array),
                                                     contentType: "application/json", 
@@ -863,7 +861,7 @@
                                                             FormRegisterAddressArray['line'] = line;
 
                                                             $.ajax({
-                                                                url: '<?=$API_Link;?>api/v1/address/insert-address-profile',
+                                                                url: '<?=$API_URL;?>address/insert-address-profile',
                                                                 type: 'POST',
                                                                 data: JSON.stringify(FormRegisterAddressArray),
                                                                 contentType: "application/json", 
@@ -990,7 +988,7 @@
                             body: JSON.stringify(formDataObject)
                         };
 
-                        fetch("<?=$API_Link;?>api/v1/boonsiri/check-customer", requestOptions)
+                        fetch("<?=$API_URL;?>boonsiri/check-customer", requestOptions)
                         .then(response => response.json())
                         .then(
                             obj => {
@@ -1011,7 +1009,7 @@
                                     });
 
                                     $.ajax({
-                                        url: '<?=$API_Link;?>api/v1/customer/add-customer',
+                                        url: '<?=$API_URL;?>customer/add-customer',
                                         type: 'POST',
                                         data: JSON.stringify(indexed_array),
                                         contentType: "application/json", 
@@ -1039,7 +1037,7 @@
                                                 FormRegisterAddressArray['line'] = line;
 
                                                 $.ajax({
-                                                    url: '<?=$API_Link;?>api/v1/address/insert-address-profile',
+                                                    url: '<?=$API_URL;?>address/insert-address-profile',
                                                     type: 'POST',
                                                     data: JSON.stringify(FormRegisterAddressArray),
                                                     contentType: "application/json", 

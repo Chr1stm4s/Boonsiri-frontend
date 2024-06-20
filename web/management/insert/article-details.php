@@ -7,7 +7,7 @@
     $header = $_POST['header'];
 
     if ($id == 0) {
-        $APIURL = "{$API_Link}api/v1/article-detail/insert-article-detail";
+        $APIURL = "{$API_URL}article-detail/insert-article-detail";
 
         if ($type == 1) {
             $APIDataRequest = [
@@ -64,7 +64,7 @@
             exit();
         }
     } else {
-        $APIURL = "{$API_Link}api/v1/article-detail/update-article-detail";
+        $APIURL = "{$API_URL}article-detail/update-article-detail";
 
         if ($type == 1) {
             $APIDataRequest = [

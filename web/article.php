@@ -7,20 +7,6 @@
         $page = "article";
         
         require_once "./head.php";
-
-        $id = $_GET['id'];
-
-        $APIRequest = [
-            'id' => $id, 
-        ];
-
-        $Response = connect_api("{$API_Link}api/v1/article/get-article", $APIRequest);
-
-        if ($Response['responseCode'] == 000) {
-            $Article = $Response['article'];
-        } else {
-            redirect(rootURL());
-        }
     ?>
 
 </head>
@@ -37,6 +23,7 @@
                         <ol class="breadcrumb">
                             <li class="breadcrumb-item"><a href="<?=rootURL();?>" class="text-theme-1">หน้าหลัก</a></li>
                             <li class="breadcrumb-item"><a href="<?=rootURL();?>ข่าวสารและกิจกรรม/" class="text-theme-1">ข่าวสารและกิจกรรม</a></li>
+                            <li class="breadcrumb-item"><a href="<?=rootURL();?>ข่าวสารและกิจกรรม/หมวดหมู่/<?=$Article['categoryId'];?>/" class="text-theme-1"><?=$ResultData["title"];?></a></li>
                             <li class="breadcrumb-item active" aria-current="page"><?=$Article['title'];?></li>
                         </ol>
                     </nav>
@@ -77,9 +64,9 @@
                             'articleId' => $id, 
                         ];
 
-                        $ArticleHeaderResponse = connect_api("{$API_Link}api/v1/article-detail/list-article-detail", $ArticleHeaderAPIRequest);
+                        $ArticleHeaderResponse = connect_api("{$API_URL}article-detail/list-article-detail", $ArticleHeaderAPIRequest);
 
-                        if ($ArticleHeaderResponse['responseCode'] == 000) {
+                        if ($ArticleHeaderResponse['responseCode'] == "000") {
                             foreach ($ArticleHeaderResponse['articleDetails'] as $ArticleHeader) {
                     ?>
 
@@ -104,7 +91,7 @@
     </section>
 
     <?php
-        if ($ArticleHeaderResponse['responseCode'] == 000) {
+        if ($ArticleHeaderResponse['responseCode'] == "000") {
             foreach ($ArticleHeaderResponse['articleDetails'] as $ArticleDetails) {
                 if ($ArticleDetails['type'] == 1) {
     ?>
@@ -176,9 +163,9 @@
                                     "pageSize" => 12
                                 ];
 
-                                $RelateArticleResponse = connect_api("{$API_Link}api/v1/article/list-article", $APIRequest);
+                                $RelateArticleResponse = connect_api("{$API_URL}article/list-article", $APIRequest);
 
-                                if ($RelateArticleResponse['responseCode'] == 000) {
+                                if ($RelateArticleResponse['responseCode'] == "000") {
                                     foreach ($RelateArticleResponse['articleCategories'] as $RelateArticles) {
                             ?>
 

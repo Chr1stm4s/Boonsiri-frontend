@@ -10,7 +10,7 @@
     $WhsCode = (@$_SESSION['whsCode']) ? $_SESSION['whsCode'] : "SSK";
     
     if ($categoryId == 0) {
-        $APIURL = "{$API_Link}api/v1/product/list-product";
+        $APIURL = "{$API_URL}product/list-product";
 
         $ProductAPIDataRequest = [
             'whsCode' => $WhsCode, 
@@ -23,7 +23,7 @@
 
         $ResponseKey = 'products';
     } else {
-        $APIURL = "{$API_Link}api/v1/product/get-product-by-category-id";
+        $APIURL = "{$API_URL}product/get-product-by-category-id";
 
         $ProductAPIDataRequest = [
             'categoryId' => $categoryId, 
@@ -60,6 +60,7 @@
                 }
             ?>
 
+            <img src="<?=rootURL();?>images/watermark.png" alt="บุญศิริ โฟรเซ่น" class="watermark">
             <img src="<?=$thumbnail;?>" alt="<?=$product['title'];?>" class="card-img-top <?=$placeholder;?>">
             <div class="card-body">
                 <h5 class="card-title text-dark"><?=$product['title'];?></h5>

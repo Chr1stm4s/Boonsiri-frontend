@@ -4,14 +4,14 @@
 <head>
     
     <?php
-        $page = "products";
-        
-        require_once "./head.php";
+        $page = "products-search";
 
         $search = $_GET['search'];
         $categoryId = (@$_GET['categoryId']) ? $_GET['categoryId'] : 0;
         $pageNo = 1;
         $pageSize = 12;
+        
+        require_once "./head.php";
     ?>
 
 </head>
@@ -27,7 +27,8 @@
                     <nav style="--bs-breadcrumb-divider: url(&#34;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8'%3E%3Cpath d='M2.5 0L1 1.5 3.5 4 1 6.5 2.5 8l4-4-4-4z' fill='%236c757d'/%3E%3C/svg%3E&#34;);" aria-label="breadcrumb">
                         <ol class="breadcrumb mb-0">
                             <li class="breadcrumb-item"><a href="<?=rootURL();?>" class="text-theme-1">หน้าหลัก</a></li>
-                            <li class="breadcrumb-item active" aria-current="page">สินค้าทั้งหมด</li>
+                            <li class="breadcrumb-item"><a href="<?=rootURL();?>สินค้าบุญศิริ/" class="text-theme-1">สินค้าทั้งหมด</a></li>
+                            <li class="breadcrumb-item active" aria-current="page">ค้นหาสินค้า - <?=$search;?></li>
                         </ol>
                     </nav>
                 </div>
@@ -51,7 +52,7 @@
                                         <li class="active"><a href="<?=rootURL();?>สินค้าบุญศิริ/" class="text-decoration-none"><i class="fa-solid fa-caret-right"></i>&nbsp; สินค้าทั้งหมด</a></li>
 
                                     <?php
-                                        $CategoryMain = connect_api("{$API_Link}api/v1/category/list-category");
+                                        $CategoryMain = connect_api("{$API_URL}category/list-category");
 
                                         foreach ($CategoryMain['categories'] as $CategoryList) {
                                     ?>

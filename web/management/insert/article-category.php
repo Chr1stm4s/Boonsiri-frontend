@@ -9,7 +9,7 @@
     $keywords = $_POST['keywords'];
 
     if ($id == 0) {
-        $APIURL = "{$API_Link}api/v1/article-category/insert-article-category";
+        $APIURL = "{$API_URL}article-category/insert-article-category";
 
         if ($_FILES['thumbnail']['name']) {
             $file = $_FILES['thumbnail']['name'];
@@ -50,7 +50,7 @@
             exit();
         }
     } else {
-        $APIURL = "{$API_Link}api/v1/article-category/update-article-category";
+        $APIURL = "{$API_URL}article-category/update-article-category";
 
         if ($_FILES['thumbnail']['name']) {
             $file = $_FILES['thumbnail']['name'];

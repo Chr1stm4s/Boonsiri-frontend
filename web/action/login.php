@@ -17,7 +17,7 @@
             "id"=> $_POST['address_id']
         ];
 
-        $API = connect_api("{$API_Link}api/v1/address/set-address-profile", $DataAPI);
+        $API = connect_api("{$API_URL}address/set-address-profile", $DataAPI);
 
         if ($API['responseCode'] == 000) {
             // $_SESSION['address_id'] = $_POST['address_id'];

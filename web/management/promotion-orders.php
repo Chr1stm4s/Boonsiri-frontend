@@ -14,7 +14,7 @@
             "id" => $id
         ];
 
-        $ResponseDataAPI = connect_api("{$API_Link}api/v1/promotion/get-promotion", $RequestDataAPI);
+        $ResponseDataAPI = connect_api("{$API_URL}promotion/get-promotion", $RequestDataAPI);
 
         $Promotion = $ResponseDataAPI['promotion'];
     ?>
@@ -66,10 +66,10 @@
                         <?php
                             $apiRequest = [
                                 "promotionId" => $id, 
-                                "purchaseStatus" => 6
+                                "purchaseStatus" => [3,4,5,6,7]
                             ];
 
-                            $apiUrl = "{$API_Link}api/v1/promotion/list-product-promotion";
+                            $apiUrl = "{$API_URL}promotion/list-product-promotion";
                             
                             $data = connect_api($apiUrl, $apiRequest);
 

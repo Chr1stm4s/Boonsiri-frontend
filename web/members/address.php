@@ -4,7 +4,7 @@
 <head>
     
     <?php
-        $page = "member-address";
+        $page = "member";
         
         require_once "../head.php";
     ?>
@@ -98,7 +98,7 @@
                                             'geoId' => 0,
                                         ];
 
-                                        $ListProvinceResponse = connect_api("{$API_Link}api/v1/address/province", $ListProvinceAPIRequest);
+                                        $ListProvinceResponse = connect_api("{$API_URL}address/province", $ListProvinceAPIRequest);
 
                                         if ($ListProvinceResponse['responseCode'] == 000) {
                                             foreach ($ListProvinceResponse['provinces'] as $ProvinceData) {
@@ -184,7 +184,7 @@
                                     'customerId' => $_SESSION['id'],
                                 ];
                 
-                                $ListAddressResponse = connect_api("{$API_Link}api/v1/address/list-address-profile", $ListAddressAPIRequest);
+                                $ListAddressResponse = connect_api("{$API_URL}address/list-address-profile", $ListAddressAPIRequest);
                 
                                 if ($ListAddressResponse['responseCode'] == 000) {
                                     $count = 1;

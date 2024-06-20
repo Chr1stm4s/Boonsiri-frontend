@@ -19,7 +19,7 @@
             'whsCode' => $_SESSION['whsCode']
         ];
 
-        $CartData = connect_api("{$API_Link}api/v1/cart/list-cart", $CartDataAPI);
+        $CartData = connect_api("{$API_URL}cart/list-cart", $CartDataAPI);
 
         $ShoppingCart = $CartData['cartModels'];
         $CreateOrder = "";

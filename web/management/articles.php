@@ -43,7 +43,7 @@
                         <tbody>
 
                         <?php
-                            $apiUrl = "{$API_Link}api/v1/article-category/list-article-category";
+                            $apiUrl = "{$API_URL}article-category/list-article-category";
                             
                             $data = connect_api($apiUrl);
 
@@ -197,7 +197,7 @@
                     });
 
                     $.ajax({
-                        url: "{$API_Link}api/v1/article-category/delete-article-category",
+                        url: "<?=$API_URL;?>article-category/delete-article-category",
                         type: "POST",
                         data: JSON.stringify(data),
                         contentType: "application/json; charset=utf-8",

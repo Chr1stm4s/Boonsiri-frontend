@@ -65,7 +65,7 @@
                                 'whsCode' => $whsCode,
                             ];
 
-                            $Response = connect_api("{$API_Link}api/v1/cart/list-cart", $APIRequest);
+                            $Response = connect_api("{$API_URL}cart/list-cart", $APIRequest);
 
                             if ($Response['responseCode'] == 000 && $Response['cartModels']) {
                                 foreach ($Response['cartModels'] as $CartData) {
@@ -276,7 +276,7 @@
                 });
 
                 const InputID = $("#EditModalInputID").val();
-                const url = (InputID == 0) ? '$API_Linkv1/customer/add-customer' : '$API_Linkv1/customer/edit-customer';
+                const url = (InputID == 0) ? '<?=$API_URL;?>customer/add-customer' : '<?=$API_URL;?>customer/edit-customer';
 
                 Swal.fire({
                     title: 'กำลังดำเนินการ...',
@@ -379,12 +379,12 @@
                             body: JSON.stringify(tracking)
                         };
 
-                        fetch("{$API_Link}api/v1/purchase/update-tracking", TrackingRequestOptions)
+                        fetch("<?=$API_URL;?>purchase/update-tracking", TrackingRequestOptions)
                         .then(response => response.json())
                         .then(
                             obj => {
                                 if (obj.responseCode === "000") {
-                                    fetch("{$API_Link}api/v1/purchase/internal-update-purchase-status", StatusRequestOptions)
+                                    fetch("<?=$API_URL;?>purchase/internal-update-purchase-status", StatusRequestOptions)
                                     .then(response => response.json())
                                     .then(
                                         obj => {
@@ -465,7 +465,7 @@
                             body: JSON.stringify(ConfirmData)
                         };
 
-                        fetch("{$API_Link}api/v1/purchase/internal-update-purchase-status", requestOptions)
+                        fetch("<?=$API_URL;?>purchase/internal-update-purchase-status", requestOptions)
                         .then(response => response.json())
                         .then(
                             obj => {

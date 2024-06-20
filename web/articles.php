@@ -47,7 +47,7 @@
                     "pageSize" => 1
                 ];
 
-                $Response = connect_api("{$API_Link}api/v1/article/list-article", $APIRequest);
+                $Response = connect_api("{$API_URL}article/list-article", $APIRequest);
 
                 if ($Response['responseCode'] == "000") {
                     $FeaturedArticle = $Response['articleCategories'][0];
@@ -95,7 +95,7 @@
     <hr>
 
     <?php
-        $CategoryResponse = connect_api("{$API_Link}api/v1/article-category/list-article-category");
+        $CategoryResponse = connect_api("{$API_URL}article-category/list-article-category");
 
         if ($CategoryResponse['responseCode'] == "000") {
             foreach ($CategoryResponse['articleCategories'] as $Category) {
@@ -107,6 +107,9 @@
             <div class="row mb-4">
                 <div class="col-auto">
                     <h2 class="fs-1 border-bottom border-2 border-info"><?=$Category['title'];?></h2>
+                </div>
+                <div class="ms-auto my-auto col-auto">
+                    <a href="<?=rootURL();?>ข่าวสารและกิจกรรม/หมวดหมู่/<?=$Category['id'];?>/" class="btn btn-info">ดูทั้งหมด</a>
                 </div>
             </div>
             <div class="row g-4">
@@ -120,7 +123,7 @@
                     "pageSize" => 12
                 ];
 
-                $ArticleResponse = connect_api("{$API_Link}api/v1/article/list-article", $APIRequest);
+                $ArticleResponse = connect_api("{$API_URL}article/list-article", $APIRequest);
 
                 if ($ArticleResponse['responseCode'] == "000") {
                     foreach ($ArticleResponse['articleCategories'] as $Articles) {

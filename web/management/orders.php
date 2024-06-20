@@ -30,7 +30,7 @@
             '<span class="badge text-bg-light w-100">ขนส่งเอกชน (ภาคอื่นๆ)</span>'
         );
 
-        $apiUrl = "{$API_Link}api/v1/purchase/list-purchase";
+        $apiUrl = "{$API_URL}purchase/list-purchase";
 
         $data = connect_api($apiUrl);
 
@@ -374,12 +374,12 @@
                         body: JSON.stringify(tracking)
                     };
 
-                    fetch("{$API_Link}api/v1/purchase/update-tracking", TrackingRequestOptions)
+                    fetch("<?=$API_URL;?>purchase/update-tracking", TrackingRequestOptions)
                         .then(response => response.json())
                         .then(
                             obj => {
                                 if (obj.responseCode === "000") {
-                                    fetch("{$API_Link}api/v1/purchase/internal-update-purchase-status", StatusRequestOptions)
+                                    fetch("<?=$API_URL;?>purchase/internal-update-purchase-status", StatusRequestOptions)
                                         .then(response => response.json())
                                         .then(
                                             obj => {
@@ -460,7 +460,7 @@
                         body: JSON.stringify(ConfirmData)
                     };
 
-                    fetch("{$API_Link}api/v1/purchase/internal-update-purchase-status", requestOptions)
+                    fetch("<?=$API_URL;?>purchase/internal-update-purchase-status", requestOptions)
                         .then(response => response.json())
                         .then(
                             obj => {

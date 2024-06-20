@@ -6,7 +6,7 @@
             $checkboxValues = $_POST['checkboxValues'];
             $promotionId = $_POST['promotionId'];
 
-            $PromotionAPIURL = "{$API_Link}api/v1/promotion/set-promotion-by-item-code";
+            $PromotionAPIURL = "{$API_URL}promotion/set-promotion-by-item-code";
 
             foreach ($checkboxValues as $value) {
                 $PromotionAPIDataRequest = [

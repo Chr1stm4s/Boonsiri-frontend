@@ -74,7 +74,7 @@
                     body: JSON.stringify(formDataObject)
                 };
 
-                fetch("<?=$API_Link;?>api/v1/customer/login", requestOptions)
+                fetch("<?=$API_URL;?>customer/login", requestOptions)
                 .then(response => response.json())
                 .then(
                     obj => {

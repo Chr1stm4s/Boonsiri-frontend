@@ -14,7 +14,7 @@
             "id" => $id
         ];
 
-        $ArticleCategoryData = connect_api("{$API_Link}api/v1/article-category/get-article-category", $ArticleCategoryRequest);
+        $ArticleCategoryData = connect_api("{$API_URL}article-category/get-article-category", $ArticleCategoryRequest);
 
         if ($ArticleCategoryData['responseCode'] != "000") {
             var_dump($ArticleCategoryData);
@@ -60,7 +60,7 @@
                         <tbody>
 
                         <?php
-                            $apiUrl = "{$API_Link}api/v1/article/list-article";
+                            $apiUrl = "{$API_URL}article/list-article";
                             $dataRequest = [
                                 "categoryId" => $id,
                                 "orderByColumn" => "",
@@ -224,7 +224,7 @@
                     });
 
                     $.ajax({
-                        url: "{$API_Link}api/v1/article/delete-article",
+                        url: "<?=$API_URL;?>article/delete-article",
                         type: "POST",
                         data: JSON.stringify(data),
                         contentType: "application/json; charset=utf-8",

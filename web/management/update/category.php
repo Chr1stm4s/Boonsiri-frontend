@@ -4,14 +4,20 @@
     $id = $_POST['id'];
     $title = $_POST['title'];
     $description = nl2br($_POST['description']);
+    $metaTitle = $_POST['metaTitle'];
+    $metaDescription = $_POST['metaDescription'];
+    $keywords = $_POST['keywords'];
 
     $requestData = [
         "id" => $id,
         "title" => $title,
         "description" => $description,
+        "metaTitle" => $metaTitle,
+        "metaDescription" => $metaDescription,
+        "keywords" => $keywords,
     ];
 
-    $data = connect_api("{$API_Link}api/v1/category/update-category", $requestData);
+    $data = connect_api("{$API_URL}category/update-category", $requestData);
 
     if ($data['responseCode'] === "000") {
         if ($_FILES['image']['name']) {
@@ -28,9 +34,12 @@
                     "title" => $title,
                     "description" => $description,
                     "image" => $image,
+                    "metaTitle" => $metaTitle,
+                    "metaDescription" => $metaDescription,
+                    "keywords" => $keywords,
                 ];
             
-                $data = connect_api("{$API_Link}api/v1/category/update-category", $requestData);
+                $data = connect_api("{$API_URL}category/update-category", $requestData);
                 
                 if ($data['responseCode'] === "000") {
                     echo "success";

@@ -28,7 +28,7 @@
         "customerId" => 0
     ];
 
-    $OrderDataAPIResponse = connect_api("{$API_Link}api/v1/purchase/list-purchase", $OrderDataAPIRequest);
+    $OrderDataAPIResponse = connect_api("{$API_URL}purchase/list-purchase", $OrderDataAPIRequest);
 
     if ($OrderDataAPIResponse['responseCode'] == 000) {
         $OrderDataExport = [];
@@ -65,7 +65,7 @@
                         "id" => $item['id']
                     ];
         
-                    $GetOrderDataAPIResponse = connect_api("{$API_Link}api/v1/purchase/get-purchase", $GetOrderDataAPIRequest);
+                    $GetOrderDataAPIResponse = connect_api("{$API_URL}purchase/get-purchase", $GetOrderDataAPIRequest);
         
                     $i = 1;
         
@@ -102,7 +102,7 @@
                     "id" => $item['id']
                 ];
     
-                $GetOrderDataAPIResponse = connect_api("{$API_Link}api/v1/purchase/get-purchase", $GetOrderDataAPIRequest);
+                $GetOrderDataAPIResponse = connect_api("{$API_URL}purchase/get-purchase", $GetOrderDataAPIRequest);
     
                 $i = 1;
     

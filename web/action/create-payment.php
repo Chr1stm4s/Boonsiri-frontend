@@ -11,7 +11,7 @@
             "status" => 1, 
         ];
 
-        $data = connect_api("{$API_Link}api/v1/purchase/internal-update-purchase-status", $requestData);
+        $data = connect_api("{$API_URL}purchase/internal-update-purchase-status", $requestData);
 
         if ($data['responseCode'] === "000") {
             echo "success";

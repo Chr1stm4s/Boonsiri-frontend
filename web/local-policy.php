@@ -4,9 +4,9 @@
 <head>
 
 	<?php
-	$page = "about";
+		$page = "policy";
 
-	require_once "./head.php";
+		require_once "./head.php";
 	?>
 
 </head>

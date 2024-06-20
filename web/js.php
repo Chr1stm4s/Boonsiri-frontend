@@ -1,3 +1,7 @@
+<?php
+    if (!@$_SESSION['pdpa']) {
+?>
+
 <div class="pdpa py-2 bg-theme-1 shadow">
     <div class="container">
         <div class="row">
@@ -8,11 +12,15 @@
                 <a href="<?=rootURL();?>เงื่อนไขการสั่งซื้อและจัดส่ง/" class="btn btn-warning w-100">เงื่อนไขการสั่งซื้อและจัดส่ง</a>
             </div>
             <div class="col-auto">
-                <button type="button" class="btn btn-primary" id="ButtonAcceptPDPA">ยอมรับทั้งหมด</button>
+                <button type="button" class="btn btn-primary" onclick="AcceptPDPA();">ยอมรับทั้งหมด</button>
             </div>
         </div>
     </div>
 </div>
+
+<?php
+    }
+?>
 
 <script src="<?=rootURL();?>bootstrap/js/bootstrap.bundle.min.js"></script>
 <script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
@@ -31,20 +39,24 @@
     document.querySelectorAll('img').forEach(img => {
         img.addEventListener('dragstart', event => event.preventDefault());
     });
-    
-    const pdpa = sessionStorage.getItem("pdpa");
-
-    if (pdpa == "accepted") {
-        $(".pdpa").hide();
-    } else {
-        $(".pdpa").show();
-    }
 
     $("#ButtonAcceptPDPA").on("click", function() {
         sessionStorage.setItem("pdpa", "accepted");
 
         $(".pdpa").remove();
     });
+
+    function AcceptPDPA() {
+        $.ajax({
+            url: "<?=rootURL();?>action/accept-pdpa/", 
+            contentType: "application/json",
+            success: function (response) {
+                if (response == "success") {
+                    $(".pdpa").remove();
+                }
+            }
+        });
+    }
 
     $(document).on("click", ".btn-hyper-link", function() {
         Swal.fire({
@@ -92,7 +104,7 @@
             Swal.showLoading();
 
             $.ajax({
-                url: '<?=$API_Link;?>api/v1/address/amphur',
+                url: '<?=$API_URL;?>address/amphur',
                 type: 'POST',
                 data: JSON.stringify(province),
                 contentType: "application/json",
@@ -150,7 +162,7 @@
                                 $('#district').select2();
 
                                 $.ajax({
-                                    url: '<?=$API_Link;?>api/v1/address/district',
+                                    url: '<?=$API_URL;?>address/district',
                                     type: 'POST',
                                     data: JSON.stringify(amphur),
                                     contentType: "application/json",
@@ -215,7 +227,7 @@
         });
 
         $.ajax({
-            url: '<?=$API_Link;?>api/v1/contact/insert-Contact',
+            url: '<?=$API_URL;?>contact/insert-Contact',
             type: 'POST',
             data: JSON.stringify(indexed_array),
             contentType: "application/json", 

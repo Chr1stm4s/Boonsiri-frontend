@@ -11,7 +11,7 @@
         if (@$_GET['id']) {
             $id = $_GET['id'];
 
-            $apiUrl = "{$API_Link}api/v1/category/get-category-by-id";
+            $apiUrl = "{$API_URL}category/get-category-by-id";
             $dataAPI = [
                 "categoryId" => $_GET['id'], 
                 "whsCode" => ""
@@ -30,7 +30,7 @@
         } else {
             $id = null;
 
-            $apiUrl = "{$API_Link}api/v1/category/list-category";
+            $apiUrl = "{$API_URL}category/list-category";
             $dataAPI = null;
 
             $data = connect_api($apiUrl, $dataAPI);
@@ -83,7 +83,7 @@
 
                 <div class="col-12 col-xs-6 col-sm-4 col-md-3 col-lg-2 my-3">
                     <div class="card h-100 shadow position-relative" data-id="<?=$category['id'];?>" id="CategoryID<?=$category['id'];?>">
-                        <button class="btn btn-warning btn-edit" data-bs-toggle="modal" data-bs-target="#CategoryModal" data-bs-id="<?=$category['id'];?>" data-bs-title="<?=$category['title'];?>" data-bs-description="<?=$category['description'];?>" data-bs-image="<?=$image;?>"><i class="fa-regular fa-pen-to-square"></i></button>
+                        <button class="btn btn-warning btn-edit" data-bs-toggle="modal" data-bs-target="#CategoryModal" data-bs-id="<?=$category['id'];?>" data-bs-title="<?=$category['title'];?>" data-bs-description="<?=$category['description'];?>" data-bs-metaTitle="<?=$category['metaTitle'];?>" data-bs-metaDescription="<?=$category['metaDescription'];?>" data-bs-keywords="<?=$category['keywords'];?>" data-bs-image="<?=$image;?>"><i class="fa-regular fa-pen-to-square"></i></button>
                         <img src="<?=$image;?>" alt="" class="card-img-top p-4">
                         <div class="card-body">
                             <h5 class="card-title mb-0"><?=$category['title'];?></h5>
@@ -125,6 +125,20 @@
                             <label for="title" class="col-form-label">รายละเอียด</label>
                             <textarea name="description" id="description" class="form-control" placeholder="รายละเอียด"></textarea>
                         </div>
+                        <hr>
+                        <h5 class="mb-0">SEO Settings</h5>
+                        <div class="mb-3">
+                            <label for="metaTitle" class="col-form-label">Meta Title</label>
+                            <input type="text" class="form-control" id="metaTitle" name="metaTitle" placeholder="Meta Title">
+                        </div>
+                        <div class="my-3">
+                            <label for="metaDescription" class="col-form-label">Meta Description</label>
+                            <input type="text" class="form-control" id="metaDescription" name="metaDescription" placeholder="Meta Description">
+                        </div>
+                        <div class="my-3">
+                            <label for="keywords" class="col-form-label">Keywords</label>
+                            <input type="text" class="form-control" id="keywords" name="keywords" placeholder="Keywords">
+                        </div>
                     </form>
                 </div>
                 <div class="modal-footer">
@@ -159,6 +173,9 @@
                 const title = button.getAttribute('data-bs-title')
                 const description = button.getAttribute('data-bs-description')
                 const image = button.getAttribute('data-bs-image')
+                const metaTitle = button.getAttribute('data-bs-metaTitle')
+                const metaDescription = button.getAttribute('data-bs-metaDescription')
+                const keywords = button.getAttribute('data-bs-keywords')
                 // If necessary, you could initiate an Ajax request here
                 // and then do the updating in a callback.
 
@@ -168,12 +185,18 @@
                 const inputTitle = CategoryModal.querySelector('#title')
                 const inputDescription = CategoryModal.querySelector('#description')
                 const ImagePreview = CategoryModal.querySelector('#CategoryImagePreview')
-
+                const inputMetaTitle = CategoryModal.querySelector('#metaTitle')
+                const inputMetaDescription = CategoryModal.querySelector('#metaDescription')
+                const inputKeywords = CategoryModal.querySelector('#keywords')
+                
                 modalTitle.textContent = `แก้ไขหมวดหมู่ ${title}`
                 inputId.value = id
                 inputTitle.value = title
                 inputDescription.value = description
                 inputDescription.textContent = description
+                inputMetaTitle.value = metaTitle
+                inputMetaDescription.value = metaDescription
+                inputKeywords.value = keywords
                 ImagePreview.src = image
             })
 

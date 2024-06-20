@@ -10,7 +10,7 @@
     $WhsCode = (@$_SESSION['whsCode']) ? $_SESSION['whsCode'] : "SSK";
     
     if ($categoryId == 0) {
-        $APIURL = "{$API_Link}api/v1/product/search-product";
+        $APIURL = "{$API_URL}product/search-product";
 
         $ProductAPIDataRequest = [
             'textSearch' => $textSearch, 
@@ -23,7 +23,7 @@
 
         $ResponseKey = 'product';
     } else {
-        $APIURL = "{$API_Link}api/v1/product/search-product-by-category-id";
+        $APIURL = "{$API_URL}product/search-product-by-category-id";
 
         $ProductAPIDataRequest = [
             'categoryId' => $categoryId, 

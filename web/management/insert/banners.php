@@ -5,7 +5,7 @@
     $location = $_POST['location'];
     $url = ($_POST['url']) ? $_POST['url'] : "#";
     $altText = $_POST['altText'];
-    $APIURL = ($api == "banner") ? "{$API_Link}api/v1/banner/insert-banner" : "{$API_Link}api/v1/featured/insert-featured";
+    $APIURL = ($api == "banner") ? "{$API_URL}banner/insert-banner" : "{$API_URL}featured/insert-featured";
 
     // Count # of uploaded files in array
     $total = count($_FILES['image']['name']);

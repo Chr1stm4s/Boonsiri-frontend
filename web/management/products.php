@@ -64,7 +64,7 @@
                         <tbody>
 
                         <?php
-                            $apiUrl = "{$API_Link}api/v1/product/list-product-all";
+                            $apiUrl = "{$API_URL}product/list-product-all";
 
                             $requestData = [
                                 "itemSize" => "",
@@ -378,7 +378,7 @@
             });
 
             $.ajax({
-                url: '$API_Linkv1/product/update-product',
+                url: '<?=$API_URL;?>product/update-product',
                 type: 'POST',
                 data: JSON.stringify(indexed_array),
                 contentType: "application/json", 

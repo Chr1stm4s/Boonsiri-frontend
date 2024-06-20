@@ -8,7 +8,7 @@
                 "id" => $id
             ];
 
-            $data = connect_api("{$API_Link}api/v1/mapping-branch/delete-mapping-branch", $dataAPI);
+            $data = connect_api("{$API_URL}mapping-branch/delete-mapping-branch", $dataAPI);
 
             if ($data['responseCode'] != 000) {
                 var_dump($data);
@@ -25,7 +25,7 @@
             "id" => $id
         ];
 
-        $data = connect_api("{$API_Link}api/v1/mapping-branch/delete-mapping-branch", $dataAPI);
+        $data = connect_api("{$API_URL}mapping-branch/delete-mapping-branch", $dataAPI);
 
         if ($data['responseCode'] == 000) {
             echo "success";

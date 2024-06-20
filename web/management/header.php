@@ -31,7 +31,7 @@
                 </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                    Orders
+                        Orders
                     </a>
                     <ul class="dropdown-menu dropdown-menu-end">
                         <li><a class="dropdown-item" href="./orders.php">Normal</a></li>
@@ -61,6 +61,40 @@
                         <li><a class="dropdown-item" href="./banners.php?api=banner&location=4&size=header-x">Header Home Square #3</a></li>
                         <li><a class="dropdown-item" href="./banners.php?api=banner&location=5&size=header-x">Header Home Square #4</a></li>
                         <li><a class="dropdown-item" href="./banners.php?api=featured&location=1&size=featured">Featured</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        Meta Data
+                    </a>
+                    <ul class="dropdown-menu dropdown-menu-end">
+
+                        <?php
+                            $PageName = [
+                               1 => "หน้าแรก", 
+                               2 => "เกี่ยวกับเรา", 
+                               3 => "รับสมัครงาน", 
+                               4 => "บทความ", 
+                               5 => "ติดต่อเรา", 
+                               6 => "สินค้าทั้งหมด", 
+                               7 => "Privacy Policy", 
+                               8 => "ลงชื่อเข้าใช้งาน", 
+                               9 => "โปรโมชั่น", 
+                               10 => "หมวดหมู่สินค้าทั้งหมด", 
+                               11 => "สมัครสมาชิก", 
+                            ];
+
+                            $PageAPI = connect_api("{$API_URL}page/list-page");
+
+                            foreach ($PageAPI['articleCategories'] as $Pages) {
+                        ?>
+
+                        <li><a class="dropdown-item" href="./meta.php?id=<?=$Pages['id'];?>"><?=$PageName[$Pages['id']];?></a></li>
+
+                        <?php
+                            }
+                        ?>
+
                     </ul>
                 </li>
             </ul>

@@ -4,7 +4,7 @@
 <head>
     
     <?php
-        $page = "contact";
+        $page = "member";
         
         require_once "../head.php";
     ?>

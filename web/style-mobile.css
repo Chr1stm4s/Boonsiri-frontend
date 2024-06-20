@@ -83,4 +83,9 @@
     .logo-login {
         height: auto;
     }
+
+    .home-feature .card img {
+        width: 80%;
+        padding: 0rem;
+    }
 }

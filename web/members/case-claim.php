@@ -4,7 +4,7 @@
 <head>
     
     <?php
-        $page = "claim";
+        $page = "member";
         
         require_once "../head.php";
 
@@ -14,7 +14,7 @@
             'id' => $id,
         ];
 
-        $Response = connect_api("{$API_Link}api/v1/case/get-case", $APIRequest);
+        $Response = connect_api("{$API_URL}case/get-case", $APIRequest);
 
         if ($Response['responseCode'] == 000) {
             $CaseData = $Response['case'];
@@ -88,7 +88,7 @@
                     'caseId' => $id,
                 ];
         
-                $MessageResponse = connect_api("{$API_Link}api/v1/case-message/list-case-message", $MessageAPIRequest);
+                $MessageResponse = connect_api("{$API_URL}case-message/list-case-message", $MessageAPIRequest);
         
                 if ($MessageResponse['responseCode'] == 000) {
                     $CaseMessageData = $MessageResponse['casesMessages'];
@@ -106,7 +106,7 @@
                                 'messageId' => $items['id'],
                             ];
 
-                            $MessageFileResponse = connect_api("{$API_Link}api/v1/case-file/list-case-file", $MessageFileAPIRequest);
+                            $MessageFileResponse = connect_api("{$API_URL}case-file/list-case-file", $MessageFileAPIRequest);
 
                             if ($MessageFileResponse['responseCode'] == 000 && $MessageFileResponse['casesFiles']) {
                         ?>

@@ -8,7 +8,7 @@
         "id" => $id
     ];
 
-    $PromotionDataAPIResponse = connect_api("{$API_Link}api/v1/promotion/get-promotion", $PromotionDataAPIRequest);
+    $PromotionDataAPIResponse = connect_api("{$API_URL}promotion/get-promotion", $PromotionDataAPIRequest);
 
     if ($PromotionDataAPIResponse['responseCode'] == 000) {
 
@@ -17,7 +17,7 @@
             "purchaseStatus" => 6
         ];
 
-        $GetPromotionOrderDataAPIResponse = connect_api("{$API_Link}api/v1/promotion/list-product-promotion", $GetPromotionOrderDataAPIRequest);
+        $GetPromotionOrderDataAPIResponse = connect_api("{$API_URL}promotion/list-product-promotion", $GetPromotionOrderDataAPIRequest);
 
         if ($GetPromotionOrderDataAPIResponse['responseCode'] == 000) {
             $PromotionData = $PromotionDataAPIResponse['promotion'];

@@ -14,7 +14,7 @@
             'id' => $id,
         ];
 
-        $Response = connect_api("{$API_Link}api/v1/review/get-review", $APIRequest);
+        $Response = connect_api("{$API_URL}review/get-review", $APIRequest);
 
         if ($Response['responseCode'] == 000) {
             $ReviewData = $Response['review'];
@@ -133,7 +133,7 @@
                     'reviewId' => $id,
                 ];
 
-                $ReviewImageResponse = connect_api("{$API_Link}api/v1/reviews-image/get-reviews-image", $ReviewImageAPIRequest);
+                $ReviewImageResponse = connect_api("{$API_URL}reviews-image/get-reviews-image", $ReviewImageAPIRequest);
 
                 if ($ReviewImageResponse['responseCode'] == 000) {
             ?>

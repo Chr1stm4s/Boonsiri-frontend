@@ -14,21 +14,21 @@
 
         $APIRequest = [
             "banner" => [
-                'url' => '$API_Linkv1/banner/list-banner', 
+                'url' => "{$API_URL}banner/list-banner", 
                 'key' => 'banners', 
                 'path' => 'slideshows/home/header-'.$location.'/', 
                 'title' => 'Header Home', 
-                'update' => '$API_Linkv1/banner/update-banner', 
+                'update' => "{$API_URL}banner/update-banner", 
                 'request' => [
                     "location" => $location
                 ]
             ], 
             "featured" => [
-                'url' => '$API_Linkv1/featured/list-featured', 
+                'url' => "{$API_URL}featured/list-featured", 
                 'key' => 'featureds', 
                 'path' => 'featured/', 
                 'title' => 'Home Featured Section', 
-                'update' => '$API_Linkv1/featured/update-featured', 
+                'update' => "{$API_URL}featured/update-featured", 
                 'request' => [
                     "location" => $location
                 ]
@@ -57,7 +57,7 @@
                     <h1 class="mb-0">Banners - <?=$APIRequest[$api]['title'];?></h1>
                 </div>
                 <div class="col-auto">
-                    <button type="button" class="btn btn-primary"data-bs-toggle="modal" data-bs-target="#BannerModal">เพิ่มภาพ</button>
+                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#BannerModal">เพิ่มภาพ</button>
                 </div>
             </div>
             
@@ -170,7 +170,7 @@
         $(".btn-delete").click(function() {
             const id = $(this).data("bs-id");
             const api = "<?=$api;?>";
-            const url = (api == "banner") ? "{$API_Link}api/v1/banner/delete-banner" : "{$API_Link}api/v1/featured/delete-featured";
+            const url = (api == "banner") ? "<?=$API_URL;?>banner/delete-banner" : "<?=$API_URL;?>featured/delete-featured";
             
             Swal.fire({
                 title: `ต้องการลบภาพนี้ใช่ไหม?`,

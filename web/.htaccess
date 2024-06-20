@@ -4,15 +4,6 @@ php_flag opcache.enable Off
 
 Header add RCACHE "0"
 
-ErrorDocument 301 /error.php
-ErrorDocument 404 /error.php
-ErrorDocument 500 /error.php
-
-#Products 
-RewriteCond %{THE_REQUEST} \s/error\.php\s [NC]
-RewriteRule ^ /error/? [R=301,L]
-RewriteRule ^error/$ /error.php [L]
-
 #API - Sync products
 RewriteCond %{THE_REQUEST} \s/action\/sync-products\.php\s [NC]
 RewriteRule ^ /action/sync-products/? [R=301,L]
@@ -27,6 +18,11 @@ RewriteRule ^action/clear-orders/$ /action/clear-orders.php [L]
 RewriteCond %{THE_REQUEST} \s/action\/clear-promotion\.php\s [NC]
 RewriteRule ^ /action/clear-promotion/? [R=301,L]
 RewriteRule ^action/clear-promotion/$ /action/clear-promotion.php [L]
+
+#API - Accept PDPA
+RewriteCond %{THE_REQUEST} \s/action\/accept-pdpa\.php\s [NC]
+RewriteRule ^ /action/accept-pdpa/? [R=301,L]
+RewriteRule ^action/accept-pdpa/$ /action/accept-pdpa.php [L]
 
 #API - Login
 RewriteCond %{THE_REQUEST} \s/action\/login\.php\s [NC]
@@ -285,7 +281,7 @@ RewriteRule ^ /ข่าวสารและกิจกรรม/? [R=301,L]
 RewriteRule ^ข่าวสารและกิจกรรม/$ /articles.php [L]
 
 #Articles Category
-RewriteRule ^ข่าวสารและกิจกรรม/หมวดหมู่/(.*)/$ articles-category.php?category=$1 [L]
+RewriteRule ^ข่าวสารและกิจกรรม/หมวดหมู่/(.*)/$ article-category.php?id=$1 [L]
 RewriteRule ^ข่าวสารและกิจกรรม/หมวดหมู่/(.*)$ /ข่าวสารและกิจกรรม/หมวดหมู่/$1/ [L]
 
 #Article

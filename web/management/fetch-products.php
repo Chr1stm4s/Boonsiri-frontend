@@ -3,7 +3,7 @@
 
     header('Content-Type: application/json');
 
-    $apiUrl = "{$API_Link}api/v1/product/list-product-all";
+    $apiUrl = "{$API_URL}product/list-product-all";
 
     $requestData = [
         'whsCode' => "", 

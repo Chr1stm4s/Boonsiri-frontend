@@ -122,8 +122,10 @@
 
 .products-card {
     height: 100%;
+    position: relative;
 }
 
+.products-card>a>img,
 .products-card>img {
     height: 200px;
     object-fit: cover;
@@ -135,7 +137,7 @@
 }
 
 .articles-list>img {
-    height: 200px;
+    min-height: 200px;
     object-fit: cover;
 }
 
@@ -285,7 +287,8 @@ select#amount {
     color: var(--color-theme-3);
 }
 
-html > body.swal2-height-auto, html > body.member-form {
+html>body.swal2-height-auto,
+html>body.member-form {
     height: 100vh !important;
 }
 
@@ -430,7 +433,8 @@ body.member-form {
     border: solid var(--color-theme-5) 1px;
 }
 
-.btn-item-size.active, .btn-item-size:hover {
+.btn-item-size.active,
+.btn-item-size:hover {
     background-color: var(--color-theme-5);
     color: white;
 }
@@ -457,4 +461,69 @@ div.pdpa {
 
 .save-text {
     font-size: 12px;
+}
+
+#home_loading {
+    position: fixed;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+    background-color: white;
+    z-index: 9999;
+    align-items: center;
+    justify-content: center;
+}
+
+#LoadingLogo {
+    width: 10%;
+}
+
+
+.lds-facebook,
+.lds-facebook div {
+    box-sizing: border-box;
+}
+
+.lds-facebook {
+    position: relative;
+    width: 80px;
+    height: 80px;
+}
+
+.lds-facebook div {
+    display: inline-block;
+    position: absolute;
+    left: 8px;
+    width: 16px;
+    background: var(--color-theme-2);
+    animation: lds-facebook 1.2s cubic-bezier(0, 0.5, 0.5, 1) infinite;
+}
+
+.lds-facebook div:nth-child(1) {
+    left: 8px;
+    animation-delay: -0.24s;
+}
+
+.lds-facebook div:nth-child(2) {
+    left: 32px;
+    animation-delay: -0.12s;
+}
+
+.lds-facebook div:nth-child(3) {
+    left: 56px;
+    animation-delay: 0s;
+}
+
+@keyframes lds-facebook {
+    0% {
+        top: 8px;
+        height: 64px;
+    }
+
+    50%,
+    100% {
+        top: 24px;
+        height: 32px;
+    }
 }

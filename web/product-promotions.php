@@ -4,7 +4,7 @@
 <head>
     
     <?php
-        $page = "products";
+        $page = "promotions";
         
         require_once "./head.php";
 
@@ -39,7 +39,7 @@
                 <div class="col p-0">
 
                     <?php
-                        $APIURL = "{$API_Link}api/v1/product/get-product-by-promotion-id";
+                        $APIURL = "{$API_URL}product/get-product-by-promotion-id";
 
                         $pageNo = 1;
                         $pageSize = 12;
@@ -81,6 +81,7 @@
                                         }
                                     ?>
 
+                                    <img src="<?=rootURL();?>images/watermark.png" alt="บุญศิริ โฟรเซ่น" class="watermark">
                                     <img src="<?=$thumbnail;?>" alt="<?=$product['title'];?>" class="card-img-top <?=$placeholder;?>">
                                     <div class="card-body">
                                         <h5 class="card-title text-dark"><?=$product['title'];?></h5>

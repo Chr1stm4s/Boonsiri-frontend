@@ -8,7 +8,7 @@
         'password' => $_POST['password'], 
     ];
 
-    $Result = connect_api("{$API_Link}api/v1/customer/update-customer-password", $APIRequest);
+    $Result = connect_api("{$API_URL}customer/update-customer-password", $APIRequest);
 
     if ($Result['responseCode'] == 000) {
         echo "success";

@@ -2,6 +2,7 @@
 
 * {
     font-family: 'Prompt', sans-serif;
+    scroll-behavior: smooth;
 }
 
 :root {

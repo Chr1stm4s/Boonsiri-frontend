@@ -11,7 +11,7 @@
         "pageSize" => 0
     ];
 
-    $GetProductsDataAPIResponse = connect_api("{$API_Link}api/v1/product/list-product-all", $GetProductsDataAPIRequest);
+    $GetProductsDataAPIResponse = connect_api("{$API_URL}product/list-product-all", $GetProductsDataAPIRequest);
 
     $ProductsDataExport[] = [
         "ลำดับ", 

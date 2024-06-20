@@ -4,7 +4,7 @@
 <head>
     
     <?php
-        $page = "products";
+        $page = "all-products";
         
         require_once "./head.php";
     ?>
@@ -50,7 +50,7 @@
                                                 "whsCode" => (@$_SESSION['whsCode']) ? $_SESSION['whsCode'] : "SSK"
                                             ];
 
-                                            $CategoryMain = connect_api("{$API_Link}api/v1/category/list-category", $CategoryMainRequest);
+                                            $CategoryMain = connect_api("{$API_URL}category/list-category", $CategoryMainRequest);
 
                                             foreach ($CategoryMain['categories'] as $CategoryList) {
                                         ?>

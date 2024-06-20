@@ -4,7 +4,7 @@
 <head>
     
     <?php
-        $page = "member-profile";
+        $page = "member";
         
         require_once "../head.php";
 
@@ -12,7 +12,7 @@
             'customerId' => $_SESSION['id'],
         ];
 
-        $ListAddressResponse = connect_api("{$API_Link}api/v1/address/list-address-profile", $ListAddressAPIRequest);
+        $ListAddressResponse = connect_api("{$API_URL}address/list-address-profile", $ListAddressAPIRequest);
 
         if ($ListAddressResponse['responseCode'] == 000) {
 

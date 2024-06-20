@@ -4,7 +4,7 @@
 <head>
     
     <?php
-        $page = "orders";
+        $page = "member";
         
         require_once "../head.php";
     ?>
@@ -120,18 +120,14 @@
                                             'customerId' => $_SESSION['id'],
                                         ];
 
-                                        $Response = connect_api("{$API_Link}api/v1/purchase/list-purchase", $APIRequest);
+                                        $Response = connect_api("{$API_URL}purchase/list-purchase", $APIRequest);
 
                                         if ($Response['responseCode'] == 000 && $Response['purchases']) {
                                             foreach ($Response['purchases'] as $OrderData) {
                                     ?>
 
                                         <tr>
-                                            <th class="text-end">
-                                                <p class="mb-0">
-                                                    <?=($OrderData['shippingType'] == 2) ? '<i class="fa-solid fa-shop p-2 rounded-2 bg-theme-2 text-white btn-tooltip d-inline me-2" data-bs-title="รับสินค้าเองที่ร้าน"></i>' : ""; ?><?=$OrderData['orderNo'];?>
-                                                </p>    
-                                            </th>
+                                            <th class="text-end"><?=($OrderData['shippingType'] == 2) ? '<i class="fa-solid fa-shop p-2 rounded-2 bg-theme-2 text-white btn-tooltip" data-bs-title="รับสินค้าเองที่ร้าน"></i>' : ""; ?><?=$OrderData['orderNo'];?></th>
                                             <td><p class="mb-0 text-overflow btn-tooltip" data-bs-title="คุณ <?=$OrderData['fname'];?> <?=$OrderData['lname'];?>">คุณ <?=$OrderData['fname'];?> <?=$OrderData['lname'];?></p></td>
                                             <td><?=$OrderData['phone'];?></td>
                                             <td class="fit"><?=$badge[$OrderData['status']];?></td>
@@ -232,7 +228,7 @@
                                             'customerId' => $_SESSION['id'],
                                         ];
 
-                                        $Response = connect_api("{$API_Link}api/v1/preorder/list-preorder", $APIRequest);
+                                        $Response = connect_api("{$API_URL}preorder/list-preorder", $APIRequest);
 
                                         $id = 1;
 
@@ -430,7 +426,7 @@
                         body: JSON.stringify(ConfirmData)
                     };
 
-                    fetch("{$API_Link}api/v1/purchase/internal-update-purchase-status", requestOptions)
+                    fetch("<?=$API_URL;?>purchase/internal-update-purchase-status", requestOptions)
                     .then(response => response.json())
                     .then(
                         obj => {

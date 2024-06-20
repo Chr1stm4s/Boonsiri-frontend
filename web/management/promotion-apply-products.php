@@ -11,7 +11,7 @@
         $id = $_GET['id'];
         $category = $_GET['category'];
 
-        $PromotionAPIURL = "{$API_Link}api/v1/promotion/get-promotion";
+        $PromotionAPIURL = "{$API_URL}promotion/get-promotion";
 
         $PromotionAPIDataRequest = [
             'id' => $id, 
@@ -38,7 +38,7 @@
             'pageSize' => 0, 
         ];
 
-        $APIURL = "{$API_Link}api/v1/product/get-product-by-category-id-all";
+        $APIURL = "{$API_URL}product/get-product-by-category-id-all";
 
         function calculateDiscount($type, $discount, $price) {
             if ($type == 0) {
