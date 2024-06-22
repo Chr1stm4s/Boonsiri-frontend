@@ -44,7 +44,7 @@
         <div class="container">
             <div class="row g-4">
                 <div class="col-12 col-md-5 mx-auto">
-                    <img src="https://img.freepik.com/free-photo/close-up-japanese-street-food_23-2149287814.jpg?w=1380&t=st=1690377343~exp=1690377943~hmac=2b75354dde517fa26946c84b9eb732ac3eb32373e7ca03187cd99a12e389eda0" alt="เกี่ยวกับบุญศิริ" class="w-100 rounded-4 sticky-about">
+                    <img src="<?=rootURL();?>images/about.png" alt="เกี่ยวกับบุญศิริ" class="w-100 rounded-4 sticky-about">
                 </div>
                 <div class="col-12 col-md-5 mx-auto">
                     <h2 class="fs-1">เกี่ยวกับบุญศิริ</h2>
@@ -70,7 +70,7 @@
                     <p>ห้องเย็นที่เถ้าแก่สร้างเอาไว้ มีขนาดบรรจุใหญ่กว่าของที่เดิม และอยู่ในทำเลที่ดี และนี่คือจุดเริ่มต้นของการเปลี่ยนแปลงที่พลิกชีวิตธุรกิจบุญศิริห้องเย็นที่ไร้ระบบ สามารถขยายสาขากว่า 6 แห่งครอบคลุมพื้นที่ภาคอีสาน ภายใน 7 ปี และหลังจากนั้นได้มีการขยายธุรกิจอย่างต่อเนื่องจนปัจจุบัน “ห้องเย็นบุญศิริ” ได้กลายเป็น บริษัท บุญศิริ โฟรเซ่นโปรดักส์ จำกัด ที่มีสาขาให้บริการครอบคลุมถึง 11 สาขา ในปัจจุบัน</p>
                 </div>
                 <div class="col-12 col-md-5 mx-auto">
-                    <img src="https://img.freepik.com/free-photo/raw-fish-market_1398-2423.jpg?w=1380&t=st=1690377448~exp=1690378048~hmac=6dc4ac052de56fd818e3265ecdd24a7766e3733ebea3141cae09c87d1f41c71e" alt="เกี่ยวกับบุญศิริ" class="w-100 rounded-4 sticky-about">
+                    <img src="<?=rootURL();?>images/history.png" alt="เกี่ยวกับบุญศิริ" class="w-100 rounded-4 sticky-about">
                 </div>
             </div>
         </div>
@@ -80,7 +80,7 @@
         <div class="container">
             <div class="row mb-4">
                 <div class="col-10 col-md-4 mx-auto">
-                    <img src="https://img.freepik.com/free-photo/fresh-prawns_1398-806.jpg?w=1380&t=st=1690377607~exp=1690378207~hmac=727af0c0d4be537da33cfe68581b6a457ed03f5704171e51cb922f57d3624fde" alt="" class="w-100 rounded-4">
+                    <img src="<?=rootURL();?>images/advantage.png" alt="ความแตกต่างเหนือคู่แข่ง" class="w-100 rounded-4">
                 </div>
             </div>
             <div class="row">

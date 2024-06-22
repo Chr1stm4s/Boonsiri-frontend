@@ -21,9 +21,9 @@
                 <div class="col">
                     <h1 class="mb-0">Branches</h1>
                 </div>
-                <div class="col-auto">
+                <!-- <div class="col-auto">
                     <a href="./branches-dashboard.php" class="btn btn-primary">Dashboard</a>
-                </div>
+                </div> -->
             </div>
             
             <div class="row">

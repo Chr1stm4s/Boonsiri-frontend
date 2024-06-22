@@ -82,7 +82,7 @@
 }
 
 .header-about {
-    background-image: linear-gradient(to bottom, #6d98acd2 0%, #6d98acd2 100%), url('https://img.freepik.com/free-photo/supermarket-worker-arranging-frozen-fish-sale_342744-1070.jpg?w=1380&t=st=1690372615~exp=1690373215~hmac=e15a7a92a19446fd5ee43f548761ca03a6ff0a56b50d7525dcca90a0797aa821');
+    background-image: url('./images/about-cover.png');
     background-size: cover;
     background-position: center;
 }
@@ -142,13 +142,13 @@
 }
 
 .header-contact {
-    background-image: linear-gradient(to bottom, #6d98acd2 0%, #6d98acd2 100%), url('https://img.freepik.com/free-photo/industrial-park-factory-building-warehouse_1417-1928.jpg?w=1380&t=st=1690465834~exp=1690466434~hmac=d77181709c0f47f623a46c6a7c4d3f4994672f79d8ba6aa9e34f192a95a0066f');
+    background-image: url('./images/contact-cover.png');
     background-size: cover;
     background-position: center;
 }
 
 .header-jobs {
-    background-image: linear-gradient(to bottom, #6d98acd2 0%, #6d98acd2 100%), url('https://img.freepik.com/free-photo/hr-handshaking-successful-candidate-getting-hired-new-job-closeup_1163-4688.jpg?w=1380&t=st=1690642659~exp=1690643259~hmac=97ba854a23f228202321481238f6c7f30c0aca81d96ad44f10a3be129876e0c7');
+    background-image: url('./images/jobs-cover.png');
     background-size: cover;
     background-position: center;
 }

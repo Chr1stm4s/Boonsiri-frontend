@@ -44,7 +44,7 @@
         <div class="container">
             <div class="row g-4">
                 <div class="col-12 col-md-6 my-auto">
-                    <img src="https://img.freepik.com/free-photo/logistic-center-with-desk-chairs_23-2148943357.jpg?w=826&t=st=1690486563~exp=1690487163~hmac=b01e605f09fa7315962eaad7b378ed1b6cabeb429fa0d81e7cdc980e04530555" alt="" class="img-thumbnail w-100 rounded-4 p-3">
+                    <img src="<?=rootURL();?>images/contact.png" alt="ฟอร์มติดต่อบุญศิริ" class="img-thumbnail w-100 rounded-4 p-3">
                 </div>
                 <div class="col-12 col-md-4 mx-auto py-3 py-md-5">
                     <div class="row mx-0 mb-4">
