@@ -254,12 +254,12 @@ RewriteRule ^ /ค้นหาสินค้าบุญศิริ/? [R=301,L
 RewriteRule ^ค้นหาสินค้าบุญศิริ/$ /product-search.php [L]
 
 #Product Category
-RewriteRule ^หมวดหมู่สินค้าบุญศิริ/(.*)/([0-9]+)/$ product-category.php?title=$1&id=$2 [L]
-RewriteRule ^หมวดหมู่สินค้าบุญศิริ/(.*)/([0-9]+)$ /หมวดหมู่สินค้าบุญศิริ/$2/$1/ [L]
+RewriteRule ^หมวดหมู่สินค้าบุญศิริ/(.*)/([0-9]+)/$ product-category.php?id=$2&title=$1 [L]
+RewriteRule ^หมวดหมู่สินค้าบุญศิริ/(.*)/([0-9]+)$ /หมวดหมู่สินค้าบุญศิริ/$1/$2/ [L]
 
 #Product Category ID
-RewriteRule ^สินค้าบุญศิริ/(.*)/([0-9]+)/$ product-category-id.php?title=$2&id=$1 [L]
-RewriteRule ^สินค้าบุญศิริ/(.*)/([0-9]+)$ /สินค้าบุญศิริ/$2/$1/ [L]
+RewriteRule ^สินค้าบุญศิริ/(.*)/([0-9]+)/$ product-category-id.php?id=$2&title=$1 [L]
+RewriteRule ^สินค้าบุญศิริ/(.*)/([0-9]+)$ /สินค้าบุญศิริ/$1/$2/ [L]
 
 #Product details
 RewriteRule ^ข้อมูลสินค้าบุญศิริ/([0-9]+)/(.*)/$ product.php?id=$1&title=$2 [L]

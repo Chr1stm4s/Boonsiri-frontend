@@ -117,12 +117,12 @@
             redirect(rootURL());
         }
 	} elseif ($page == "products") {
-        $CategoryID = $_GET['title'];
+        $CategoryID = $_GET['id'];
         $WhsCode = (@$_SESSION['whsCode']) ? $_SESSION['whsCode'] : "SSK";
 
         $CategoryAPIDataRequest = [
             "whsCode" => $WhsCode, 
-            'categoryId' => $_GET['id']
+            'categoryId' => $CategoryID
         ];
 
         $CategoryMain = connect_api("{$API_URL}category/get-category-by-id", $CategoryAPIDataRequest);
