@@ -88,4 +88,8 @@
         width: 80%;
         padding: 0rem;
     }
+
+    #RegisterFormWizard input.input-otp {
+        width: 100%;
+    }
 }

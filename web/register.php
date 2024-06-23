@@ -66,23 +66,23 @@
                         <p class="mb-0">รหัสยืนยัน (OTP) ได้ส่งไปยัง <span id="OtpNumber"></span></p>
                     </div>
                 </div>
-                <div class="step-1-element row my-4">
-                    <div class="col-2">
+                <div class="step-1-element row my-4 mx-0">
+                    <div class="col-2 px-1 px-md-2">
                         <input type="text" class="form-control mx-auto input-otp" maxlength="1" placeholder="9" oninput="this.value=this.value.replace(/[^0-9]/g,'');" onfocus="this.select()" name="OTP1" id="OTP1" inputmode="numeric" onkeyup="focusNext(this, 'OTP2')">
                     </div>
-                    <div class="col-2">
+                    <div class="col-2 px-1 px-md-2">
                         <input type="text" class="form-control mx-auto input-otp" maxlength="1" placeholder="9" oninput="this.value=this.value.replace(/[^0-9]/g,'');" onfocus="this.select()" name="OTP2" id="OTP2" inputmode="numeric" onkeyup="focusNext(this, 'OTP3')">
                     </div>
-                    <div class="col-2">
+                    <div class="col-2 px-1 px-md-2">
                         <input type="text" class="form-control mx-auto input-otp" maxlength="1" placeholder="9" oninput="this.value=this.value.replace(/[^0-9]/g,'');" onfocus="this.select()" name="OTP3" id="OTP3" inputmode="numeric" onkeyup="focusNext(this, 'OTP4')">
                     </div>
-                    <div class="col-2">
+                    <div class="col-2 px-1 px-md-2">
                         <input type="text" class="form-control mx-auto input-otp" maxlength="1" placeholder="9" oninput="this.value=this.value.replace(/[^0-9]/g,'');" onfocus="this.select()" name="OTP4" id="OTP4" inputmode="numeric" onkeyup="focusNext(this, 'OTP5')">
                     </div>
-                    <div class="col-2">
+                    <div class="col-2 px-1 px-md-2">
                         <input type="text" class="form-control mx-auto input-otp" maxlength="1" placeholder="9" oninput="this.value=this.value.replace(/[^0-9]/g,'');" onfocus="this.select()" name="OTP5" id="OTP5" inputmode="numeric" onkeyup="focusNext(this, 'OTP6')">
                     </div>
-                    <div class="col-2">
+                    <div class="col-2 px-1 px-md-2">
                         <input type="text" class="form-control mx-auto input-otp" maxlength="1" placeholder="9" oninput="this.value=this.value.replace(/[^0-9]/g,'');" onfocus="this.select()" name="OTP6" id="OTP6" inputmode="numeric" onkeyup="focusNext(this, 'ConfirmOTP')">
                     </div>
                 </div>

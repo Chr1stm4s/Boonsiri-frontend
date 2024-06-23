@@ -122,7 +122,7 @@
 
         $CategoryAPIDataRequest = [
             "whsCode" => $WhsCode, 
-            'categoryId' => $CategoryID
+            'categoryId' => $_GET['id']
         ];
 
         $CategoryMain = connect_api("{$API_URL}category/get-category-by-id", $CategoryAPIDataRequest);

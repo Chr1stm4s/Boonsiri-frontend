@@ -3,7 +3,7 @@
 
     $id = $_POST['id'];
     $itemCode = $_POST['itemCode'];
-    $folder = str_replace("/", "", $ProductData['itemCode']);
+    $folder = str_replace("/", "", $_POST['itemCode']);
     $title = $_POST['title'];
 
     // Count # of uploaded files in array
@@ -31,7 +31,7 @@
 
             //Upload the file into the temp dir
             if (move_uploaded_file($tmpFilePath, $newFilePath)) {
-                $APIURL = "{$API_Link}api/v1/product/insert-product-image";
+                $APIURL = "{$API_URL}product/insert-product-image";
                     
                 $ProductAPIDataRequest = [
                     'itemCode' => $itemCode, 

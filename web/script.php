@@ -17,7 +17,7 @@
                     <?php
                     require_once "./functions.php";
 
-                    $apiUrl = "{$API_Link}api/v1/product/list-product-all";
+                    $apiUrl = "{$API_URL}product/list-product-all";
 
                     $requestData = [
                         "itemSize" => "",
@@ -56,7 +56,7 @@
                                         $images = glob($filename . "*.*");
 
                                         foreach($images as $image) {
-                                            $InsertImageURL = "{$API_Link}api/v1/product/insert-product-image";
+                                            $InsertImageURL = "{$API_URL}product/insert-product-image";
                                             $explode = explode("/", $image);
 
                                             $image_file_name = end($explode);
