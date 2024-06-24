@@ -71,19 +71,19 @@
         $Response = connect_api("{$API_URL}article/get-article", $APIRequest);
 
         if ($Response['responseCode'] == 000) {
-            $Data = $Response['article'];
+            $Article = $Response['article'];
 
-			$ogImg = ($Data['thumbnail'] && file_exists("articles/{$Data['id']}/{$Data['thumbnail']}")) ? rootURL()."articles/{$Data['id']}/{$Data['thumbnail']}" : rootURL()."images/logo.png";
-			$title = $Data["title"];
-			$ogTitle = $Data["metaTitle"];
-			$ogDesc = $Data["metaDescription"];
-			$keywords = $Data["keywords"];
+			$ogImg = ($Article['thumbnail'] && file_exists("articles/{$Article['id']}/{$Article['thumbnail']}")) ? rootURL()."articles/{$Article['id']}/{$Article['thumbnail']}" : rootURL()."images/logo.png";
+			$title = $Article["title"];
+			$ogTitle = $Article["metaTitle"];
+			$ogDesc = $Article["metaDescription"];
+			$keywords = $Article["keywords"];
         } else {
             redirect(rootURL());
         }
 
         $RequestAPI = [
-            "id" => $Data['categoryId']
+            "id" => $Article['categoryId']
         ];
 
 		$ResultAPI = connect_api("{$API_URL}article-category/get-article-category", $RequestAPI);

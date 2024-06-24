@@ -81,7 +81,7 @@
 
                         <div class="img-gallery" id="GalleryImg<?= $product['id']; ?>">
                             <button type="button" class="btn btn-danger btn-remove" data-id="<?= $product['id']; ?>"><i class="fa-solid fa-trash"></i></button>
-                            <img src="../products/gallery/<?= $data['itemCode']; ?>/<?= $product['image']; ?>">
+                            <img src="../products/gallery/<?= str_replace("/", "", $data['itemCode']); ?>/<?= $product['image']; ?>">
                         </div>
 
                     <?php
