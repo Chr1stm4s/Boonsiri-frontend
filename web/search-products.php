@@ -40,7 +40,7 @@
 
     $ProductAPIDataResponse = connect_api($APIURL, $ProductAPIDataRequest);
 
-    if ($ProductAPIDataResponse['responseCode'] == 000) {
+    if ($ProductAPIDataResponse['responseCode'] == "000") {
         foreach ($ProductAPIDataResponse[$ResponseKey] as $product) {
             $thumbnail = (file_exists("products/".$product['thumbnail'])) ? rootURL()."products/".$product['thumbnail'] : rootURL()."images/logo.png";
             $placeholder = (file_exists("products/".$product['thumbnail'])) ? "" : "thumbnail-placeholder";

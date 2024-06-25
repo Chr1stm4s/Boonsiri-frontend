@@ -88,7 +88,7 @@
                                     <img src='<?=$image;?>' class='product-thumbnail' data-bs-toggle='modal' data-bs-target='#ThumbnailModal' data-bs-id='<?=$product['id'];?>' data-bs-img='<?=$image;?>' data-bs-title='<?=$product['title'];?>' >
                                 </td>
                                 <td> <p class='mb-0 btn-tooltip' data-bs-title='<?=$product['title'];?>'><?=$product['title'];?></p> </td>
-                                <td> <p class='mb-0 btn-tooltip' data-bs-title='<?=$product['sku'];?>'><?=$product['sku'];?></p> </td>
+                                <td> <p class='mb-0 btn-tooltip' data-bs-title='<?=$product['itemCode'];?>'><?=$product['itemCode'];?></p> </td>
                                 <td class="text-end"><?=$product['weight'];?> กิโลกรัม</td>
                                 <td class="text-end"><?=number_format($product['price']);?> บาท</td>
                                 <td class="text-center"><?=time_ago("th", $product['updates']);?></td>

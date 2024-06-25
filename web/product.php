@@ -41,7 +41,7 @@
                     <nav style="--bs-breadcrumb-divider: url(&#34;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8'%3E%3Cpath d='M2.5 0L1 1.5 3.5 4 1 6.5 2.5 8l4-4-4-4z' fill='%236c757d'/%3E%3C/svg%3E&#34;);" aria-label="breadcrumb">
                         <ol class="breadcrumb mb-0">
                             <li class="breadcrumb-item"><a href="<?=rootURL();?>" class="text-theme-1">หน้าหลัก</a></li>
-                            <li class="breadcrumb-item"><a href="<?=rootURL();?>สินค้าทั้งหมดของบุญศิริ/" class="text-theme-1 btn-hyper-link" data-url="">สินค้าทั้งหมดของบุญศิริ</a></li>
+                            <li class="breadcrumb-item"><a href="#" class="text-theme-1 product-link" data-url="<?=rootURL();?>สินค้าทั้งหมดของบุญศิริ/">สินค้าทั้งหมดของบุญศิริ</a></li>
                             <li class="breadcrumb-item"><a href="<?=rootURL();?>หมวดหมู่สินค้าทั้งหมด/" class="text-theme-1 btn-hyper-link" data-url="">หมวดหมู่สินค้าทั้งหมด</a></li>
 
                         <?php
