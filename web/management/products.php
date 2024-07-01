@@ -107,6 +107,7 @@
                                         data-keywords='<?=$product['keywords'];?>' 
                                         data-sku='<?=$product['sku'];?>' 
                                         data-title='<?=$product['title'];?>' 
+                                        data-itemCode='<?=$product['itemCode'];?>' 
                                         data-description='<?=$product['description'];?>' 
                                         data-url='<?=$product['url'];?>' 
                                         data-price='<?=$product['price'];?>' 
@@ -143,6 +144,7 @@
                         <input type="hidden" name="thumbnail" id="thumbnail">
                         <input type="hidden" name="weight" id="weight">
                         <input type="hidden" name="price" id="price">
+                        <input type="hidden" name="itemCode" id="itemCode">
                         <div class="row mb-3">
                             <div class="col-3">
                                 <label for="meta_title" class="col-form-label">Meta Title:</label>
@@ -292,6 +294,7 @@
                 const sku = button.getAttribute('data-sku')
                 const description = button.getAttribute('data-description')
                 const getURL = button.getAttribute('data-url')
+                const itemCode = button.getAttribute('data-itemCode')
 
                 const url = (getURL) ? getURL : title;
 
@@ -311,6 +314,7 @@
                 const modalBodyInputDescription = EditProductModal.querySelector('#description')
                 const modalBodyInputURL = EditProductModal.querySelector('#url')
                 const ProductURLLabel = EditProductModal.querySelector('#ProductURLLabel')
+                const modalBodyInputItemCode = EditProductModal.querySelector('#itemCode')
 
                 // To remove later
                 const modalBodyInputThumbnail = EditProductModal.querySelector('#thumbnail')
@@ -321,6 +325,7 @@
                 modalTitle.textContent = `แก้ไขข้อมูลสินค้า ${title}`
                 modalBodyInputID.value = id
                 modalBodyInputTitle.value = title
+                modalBodyInputItemCode.value = itemCode
                 modalBodyInputMetaTitle.value = meta_title
                 modalBodyInputMetaDescription.value = meta_description
                 modalBodyInputKeywords.value = keywords
@@ -330,7 +335,7 @@
                 ProductURLLabel.textContent = `<?=rootURL();?>ข้อมูลสินค้าบุญศิริ/${id}/`
 
                 // To remove later
-                modalBodyInputThumbnail.value = price
+                modalBodyInputThumbnail.value = thumbnail
                 modalBodyInputPrice.value = price
                 modalBodyInputWeight.value = weight
                 // To remove later
@@ -378,7 +383,7 @@
             });
 
             $.ajax({
-                url: '<?=$API_URL;?>product/update-product',
+                url: '<?=$API_URL;?>product/update-product-by-item-code',
                 type: 'POST',
                 data: JSON.stringify(indexed_array),
                 contentType: "application/json", 
@@ -411,9 +416,12 @@
             var formData = new FormData(this);
 
             Swal.fire({
-                title: 'Processing...',
+                title: 'กำลังดำเนินการ...',
+                showDenyButton: false,
+                showConfirmButton: false,
+                showCancelButton: false,
                 allowOutsideClick: false,
-                onBeforeOpen: () => {
+                didOpen: () => {
                     Swal.showLoading();
                 }
             });

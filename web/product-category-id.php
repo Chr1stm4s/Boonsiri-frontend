@@ -78,7 +78,7 @@
 
                         $CategoryAPIDataResponse = connect_api($APIURL, $ProductAPIDataRequest);
 
-                        if ($CategoryAPIDataResponse['responseCode'] == 000) {
+                        if ($CategoryAPIDataResponse['responseCode'] == "000") {
                             $TotalPage = $CategoryAPIDataResponse['totalPage'];
                     ?>
 

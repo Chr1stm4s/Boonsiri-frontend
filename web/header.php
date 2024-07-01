@@ -30,6 +30,10 @@
     }
 ?>
 
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PKZ9Q97C" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+
 <section class="bg-header py-2">
     <div class="container-fluid">
         <div class="row">
