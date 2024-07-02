@@ -226,8 +226,8 @@ RewriteRule ^เกี่ยวกับบุญศิริ/$ /about.php [L]
 
 #Policy
 RewriteCond %{THE_REQUEST} \s/local-policy\.php\s [NC]
-RewriteRule ^ /เงื่อนไขการสั่งซื้อและจัดส่ง/? [R=301,L]
-RewriteRule ^เงื่อนไขการสั่งซื้อและจัดส่ง/$ /local-policy.php [L]
+RewriteRule ^ /นโยบายคุ้มครองข้อมูลส่วนบุคคล/? [R=301,L]
+RewriteRule ^นโยบายคุ้มครองข้อมูลส่วนบุคคล/$ /local-policy.php [L]
 
 #jobs
 RewriteCond %{THE_REQUEST} \s/jobs\.php\s [NC]

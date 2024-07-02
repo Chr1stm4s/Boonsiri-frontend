@@ -16,7 +16,7 @@
                 <ul class="list-unstyled mb-0">
                     <li><a href="<?=rootURL();?>เกี่ยวกับบุญศิริ/" class="text-white text-decoration-none fw-light">เกี่ยวกับบุญศิริ</a></li>
                     <li><a href="<?=rootURL();?>หมวดหมู่สินค้าทั้งหมด/" class="text-white text-decoration-none fw-light">สินค้าบุญศิริ</a></li>
-                    <li><a href="<?=rootURL();?>เงื่อนไขการสั่งซื้อและจัดส่ง/" class="text-white text-decoration-none fw-light">เงื่อนไขการสั่งซื้อและจัดส่ง</a></li>
+                    <li><a href="<?=rootURL();?>นโยบายคุ้มครองข้อมูลส่วนบุคคล/" class="text-white text-decoration-none fw-light">นโยบายคุ้มครองข้อมูลส่วนบุคคล</a></li>
                     <li><a href="<?=rootURL();?>ร่วมงานกับเรา/" class="text-white text-decoration-none fw-light">ร่วมงานกับเรา</a></li>
                 </ul>
             </div>
