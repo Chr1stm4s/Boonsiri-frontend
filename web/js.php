@@ -9,7 +9,7 @@
                 <p class="mb-0 text-white">เว็บไซต์นี้มีการใช้งานคุกกี้เพื่อเพิ่มประสิทธิภาพและประสบการณ์ที่ดีในการใช้งานเว็บไซต์ของท่าน</p>
             </div>
             <div class="col col-md-auto pe-0 ps-md-0">
-                <a href="<?=rootURL();?>เงื่อนไขการสั่งซื้อและจัดส่ง/" class="btn btn-warning w-100">เงื่อนไขการสั่งซื้อและจัดส่ง</a>
+                <a href="<?=rootURL();?>นโยบายคุ้มครองข้อมูลส่วนบุคคล/" class="btn btn-warning w-100">นโยบายคุ้มครองข้อมูลส่วนบุคคล</a>
             </div>
             <div class="col-auto">
                 <button type="button" class="btn btn-primary" onclick="AcceptPDPA();">ยอมรับทั้งหมด</button>
