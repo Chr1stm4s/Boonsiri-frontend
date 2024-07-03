@@ -104,7 +104,7 @@
 </div>
 
 <?php
-        if ((@$_SESSION['address_id'] == 0) && $page != "member-address") {
+        if ((@$_SESSION['address_id'] == 0) && !in_array($page, ["member", "policy", "about", "articles", "article", "contact", "branches", "jobs", "job-details"])) {
 ?>
 
 <!--Modal JS Script -->

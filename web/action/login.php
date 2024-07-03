@@ -11,6 +11,7 @@
         $_SESSION['email'] = $_POST['email'];
         $_SESSION['phone'] = $_POST['phone'];
         $_SESSION['line'] = $_POST['line'];
+        $_SESSION['address_id'] = $_POST['address_id'];
 
         $DataAPI = [
             "customerId"=> $_POST['id'], 

@@ -38,7 +38,7 @@
     <div class="container-fluid">
         <div class="row">
             <div class="my-auto col-12 col-md d-flex">
-                <marquee behavior="sliding" direction="left" class="my-auto text-white">คิดถึงบุญศิริ คิดถึงแหล่งอาหารปลอดภัย รอยยิ้มสดใส ส่งทันใจ คู่ค้าโตไปด้วยกัน</marquee>
+                <marquee behavior="sliding" direction="left" class="my-auto text-white">ทุกการเติบโตของคุณ คือคุณค่าของเรา</marquee>
             </div>
             <!-- <div class="my-auto col-12 col-md-auto">
                 <div class="row mx-0">

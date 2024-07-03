@@ -186,7 +186,7 @@
                 
                                 $ListAddressResponse = connect_api("{$API_URL}address/list-address-profile", $ListAddressAPIRequest);
                 
-                                if ($ListAddressResponse['responseCode'] == 000) {
+                                if ($ListAddressResponse['responseCode'] == "000") {
                                     $count = 1;
 
                                     foreach ($ListAddressResponse['addressProfile'] as $AddressProfileResult) {

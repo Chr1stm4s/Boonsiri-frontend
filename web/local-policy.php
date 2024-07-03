@@ -4,10 +4,39 @@
 <head>
 
 	<?php
-	$page = "policy";
+		$page = "policy";
 
-	require_once "./head.php";
+		require_once "./head.php";
 	?>
+
+	<style>
+		ol {
+			list-style-type: none;
+			counter-reset: item;
+			margin: 0;
+			padding: 0;
+		}
+
+		ol>li {
+			display: table;
+			counter-increment: item;
+			margin-bottom: 0.6em;
+		}
+
+		ol>li:before {
+			content: counters(item, ".") ". ";
+			display: table-cell;
+			padding-right: 0.6em;
+		}
+
+		li ol>li {
+			margin: 0;
+		}
+
+		li ol>li:before {
+			content: counters(item, ".") " ";
+		}
+	</style>
 
 </head>
 

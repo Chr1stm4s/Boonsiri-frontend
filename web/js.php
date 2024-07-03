@@ -40,12 +40,6 @@
         img.addEventListener('dragstart', event => event.preventDefault());
     });
 
-    $("#ButtonAcceptPDPA").on("click", function() {
-        sessionStorage.setItem("pdpa", "accepted");
-
-        $(".pdpa").remove();
-    });
-
     function AcceptPDPA() {
         $.ajax({
             url: "<?=rootURL();?>action/accept-pdpa/", 
