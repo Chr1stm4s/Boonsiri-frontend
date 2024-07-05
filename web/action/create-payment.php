@@ -14,6 +14,8 @@
         $data = connect_api("{$API_URL}purchase/internal-update-purchase-status", $requestData);
 
         if ($data['responseCode'] === "000") {
+            
+
             echo "success";
         } else {
             echo "create";

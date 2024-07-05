@@ -153,19 +153,29 @@
                     <?php
                         
                         if ($ProductData['promotionType'] !== null && ($ProductData['promotionType'] == 0 || $ProductData['promotionType'] == 1)) {
+                            if ($ProductData['discount'] == 0) {
                     ?>
 
-                        <p class="my-4 fs-3">
-                            <span class="text-danger"><?=number_format($ProductData['lastPrice']);?> บาท </span>
-                            &nbsp; 
-                            <small class="text-decoration-line-through fs-6">
-                                <?=number_format($ProductData['price']);?> บาท
-                            </small>
-                            <br>
-                            <span class="bdage text-bg-danger py-1 px-2 save-text fw-bold">ประหยัด <?=number_format($ProductData['discount']);?> บาท</span>
-                        </p>
+                    <p class="my-4 fs-3">
+                        <span class="text-danger fw-bold"><?=number_format($ProductData['lastPrice']);?> บาท </span>
+                    </p>
 
                     <?php
+                            } else {
+                    ?>
+
+                    <p class="my-4 fs-3">
+                        <span class="text-danger"><?=number_format($ProductData['lastPrice']);?> บาท </span>
+                        &nbsp; 
+                        <small class="text-decoration-line-through fs-6">
+                            <?=number_format($ProductData['price']);?> บาท
+                        </small>
+                        <br>
+                        <span class="bdage text-bg-danger py-1 px-2 save-text fw-bold">ประหยัด <?=number_format($ProductData['discount']);?> บาท</span>
+                    </p>
+
+                    <?php
+                            }
                         } else {
                     ?>
 
@@ -270,9 +280,14 @@
                     if ($APIDataResponse['responseCode'] == "000") {
                         if (count($APIDataResponse[$ResponseKey]) > 1) {
                             foreach ($APIDataResponse[$ResponseKey] as $FeaturedProducts) {
-                                $thumbnail = (file_exists("products/".$FeaturedProducts['thumbnail'])) ? rootURL()."products/".$FeaturedProducts['thumbnail'] : rootURL()."images/logo.png";
-                                $placeholder = (file_exists("products/".$FeaturedProducts['thumbnail'])) ? "" : "thumbnail-placeholder";
-    
+                                if (file_exists("products/".$FeaturedProducts['thumbnail'])) {
+                                    $thumbnail = rootURL()."products/".$FeaturedProducts['thumbnail'];
+                                    $placeholder = "";
+                                } else {
+                                    $thumbnail = rootURL()."images/logo.png";
+                                    $placeholder = "thumbnail-placeholder";
+                                }
+
                                 if ($FeaturedProducts['id'] != $id) {
                 ?>
 
@@ -291,23 +306,35 @@
                             ?>
 
                             <img src="<?=rootURL();?>images/watermark.png" alt="บุญศิริ โฟรเซ่น" class="watermark">
-                            <img src="<?=$thumbnail;?>" alt="<?=$FeaturedProducts['title'];?>" class="card-img-top">
+                            <img src="<?=$thumbnail;?>" alt="<?=$FeaturedProducts['title'];?>" class="card-img-top <?=$placeholder;?>">
                         </a>
                         <div class="card-body">
                             <h5 class="card-title text-dark"><?=$FeaturedProducts['title'];?></h5>
                             
                             <?php
                                 if ($FeaturedProducts['promotionType'] !== null && ($FeaturedProducts['promotionType'] == 0 || $FeaturedProducts['promotionType'] == 1)) {
+                                    if ($FeaturedProducts['discount'] == 0) {
                             ?>
 
-                            <p class="card-text text-theme-4 mb-0">
-                                <small class="text-decoration-line-through text-theme-3"><?=number_format($FeaturedProducts['price']);?> บาท</small> 
+                            <p class="card-text text-theme-4 discount-text mb-0 text-end">
+                                <span class="fs-3 fw-bold text-danger"><?=number_format($FeaturedProducts['lastPrice']);?> บาท</span>
+                            </p>
+
+                                <?php
+                                    } else {
+                                ?>
+
+                            <p class="card-text text-theme-4 discount-text mb-0 text-end">
+                                <span class="text-decoration-line-through"><?=number_format($FeaturedProducts['price']);?> บาท</span> 
                                 &nbsp;
                                 <br class="d-block d-lg-none"> 
-                                <?=number_format($FeaturedProducts['lastPrice']);?> บาท
+                                <span class="fs-3 fw-bold text-danger"><?=number_format($FeaturedProducts['lastPrice']);?> บาท</span>
+                                <br>
+                                <span class="bdage text-bg-danger py-1 px-2 save-text fw-bold">ประหยัด <?=number_format($FeaturedProducts['discount']);?> บาท</span>
                             </p>
 
                             <?php
+                                    }
                                 } else {
                             ?>
 

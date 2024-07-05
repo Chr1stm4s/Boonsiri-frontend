@@ -19,7 +19,7 @@
         if ($Response['responseCode'] == 000) {
             $OrderData = $Response['purchase'];
         } else {
-            exit();
+            var_dump($Response);
         }
 
         $BackBTN = (@$_GET['customer']) ? "./customer-purchase.php?id=".$_GET['customer'] : "./orders.php";
@@ -70,8 +70,14 @@
                             $count = 1;
 
                             foreach ($OrderData['listItem'] as $items) {
-                                $thumbnail = (file_exists("../products/".$items['image'])) ? rootURL()."products/".$items['image'] : rootURL()."images/logo.png";
-                                $placeholder = (file_exists("../products/".$items['image'])) ? "" : "thumbnail-placeholder";
+                                if (file_exists("products/".$items['thumbnail'])) {
+                                    $thumbnail = rootURL()."products/".$items['thumbnail'];
+                                    $placeholder = "";
+                                } else {
+                                    $thumbnail = rootURL()."images/logo.png";
+                                    $placeholder = "thumbnail-placeholder";
+                                }
+
                                 $quantity = ($items['uomCode']) ? $items['uomCode'] : "ชิ้น";
                         ?>
 

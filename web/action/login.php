@@ -14,8 +14,8 @@
         $_SESSION['address_id'] = $_POST['address_id'];
 
         $DataAPI = [
-            "customerId"=> $_POST['id'], 
-            "id"=> $_POST['address_id']
+            "customerId" => $_POST['id'], 
+            "id" => $_POST['address_id']
         ];
 
         $API = connect_api("{$API_URL}address/set-address-profile", $DataAPI);

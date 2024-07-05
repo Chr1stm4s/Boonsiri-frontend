@@ -236,14 +236,20 @@
 
                             <?php
                                 foreach ($HomeProductsPromotion['product'] as $HomeProductsPromotion) {
-                                    $thumbnail = (file_exists("products/".$HomeProductsPromotion['thumbnail'])) ? rootURL()."products/".$HomeProductsPromotion['thumbnail'] : rootURL()."images/logo.png";
-                                    $placeholder = (file_exists("products/".$HomeProductsPromotion['thumbnail'])) ? "" : "thumbnail-placeholder";
+                                    if (file_exists("products/".$HomeProductsPromotion['thumbnail'])) {
+                                        $thumbnail = rootURL()."products/".$HomeProductsPromotion['thumbnail'];
+                                        $placeholder = "";
+                                    } else {
+                                        $thumbnail = rootURL()."images/logo.png";
+                                        $placeholder = "thumbnail-placeholder";
+                                    }
                             ?>
 
                             <!-- Slides -->
                             <div class="swiper-slide">
                                 <a href="<?=rootURL();?>ข้อมูลสินค้าบุญศิริ/<?=$HomeProductsPromotion['id'];?>/<?=str_replace(" ", "-", $HomeProductsPromotion['title']);?>/" class="text-decoration-none">
-                                    <div class="card h-100">
+                                    <div class="card h-100 products-card">
+                                        <img src="<?=rootURL();?>images/watermark.png" alt="บุญศิริ โฟรเซ่น" class="watermark">
                                         <img src="<?=$thumbnail;?>" alt="<?=$HomeProductsPromotion['title'];?>" class="card-img-top <?=$placeholder;?>" loading="lazy">
                                         <div class="card-body">
                                             <h5 class="card-title text-dark mb-0"><?=$HomeProductsPromotion['title'];?></h5>
@@ -259,6 +265,15 @@
                                         <?php
                                             } else {
                                                 if (in_array($HomeProductsPromotion['promotionType'], [0,1])) {
+                                                    if ($HomeProductsPromotion['discount'] == 0) {
+                                        ?>
+
+                                            <p class="card-text mb-0 discount-text">
+                                                <span class="fs-3 fw-bold text-danger"><?=number_format($HomeProductsPromotion['lastPrice']);?> บาท</span>
+                                            </p>
+
+                                        <?php
+                                                    } else {
                                         ?>
 
                                             <p class="card-text mb-0 discount-text">
@@ -271,6 +286,7 @@
                                             </p>
 
                                             <?php
+                                                    }
                                                 } else {
                                             ?>
 

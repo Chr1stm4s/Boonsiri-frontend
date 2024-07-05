@@ -92,4 +92,8 @@
     #RegisterFormWizard input.input-otp {
         width: 100%;
     }
+
+    .pdpa a, .pdpa button {
+        font-size: 14px;
+    }
 }

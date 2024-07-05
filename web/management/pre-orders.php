@@ -95,6 +95,7 @@
                                 <td class="fit">
                                     <a href="<?=rootURL();?>ข้อมูลสินค้าบุญศิริ/<?=$preOrder['productId'];?>/<?=str_replace(" ", "-", $preOrder['title']);?>/" class="btn btn-primary rounded-0 btn-edit btn-tooltip" data-bs-title="ดูรายละเอียดสินค้า"><i class="fa-solid fa-eye"></i></a>
                                     <button class="btn btn-success rounded-0 btn-tooltip btn-pre-order" data-bs-toggle="modal" data-bs-target="#CreatePurchaseModal" data-bs-id="<?=$preOrder['id'];?>" data-bs-title="สร้างคำสั่งซื้อ"><i class="fa-solid fa-file-invoice-dollar"></i></button>
+                                    <button class="btn btn-danger rounded-0 btn-tooltip btn-pre-order" data-bs-toggle="modal" data-bs-target="#CancelPurchaseModal" data-bs-id="<?=$preOrder['id'];?>" data-bs-title="ยกเลิกคำสั่งซื้อ"><i class="fa-solid fa-xmark"></i></button>
                                 </td>
                             </tr>
 
@@ -136,7 +137,32 @@
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">ยกเลิก</button>
-                        <button type="button" class="btn btn-primary" id="CreatePurchase">สร้างคำสั่งซื้อ</button>
+                        <button type="submit" class="btn btn-primary" id="CreatePurchase">สร้างคำสั่งซื้อ</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+
+    <form method="post" id="CancelPurchaseModalForm">
+        <div class="modal fade" id="CancelPurchaseModal" tabindex="-1" aria-labelledby="CancelPurchaseModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="CancelPurchaseModalLabel">ยกเลิกคำสั่งซื้อ</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <input type="hidden" name="id" id="cancelPreOrderId">
+                        <input type="hidden" name="status" id="status" value="8">
+                        <div class="mb-3">
+                            <label for="note" class="col-form-label">หมายเหตุ:</label>
+                            <input type="text" name="note" class="form-control" id="note" required aria-required="true">
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">ยกเลิก</button>
+                        <button type="submit" class="btn btn-primary" id="CancelPurchase">ยกเลิกคำสั่งซื้อ</button>
                     </div>
                 </div>
             </div>
@@ -200,7 +226,9 @@
             })
         }
 
-        $('#CreatePurchase').click(function () {
+        $('#CreatePurchaseModalForm').on("submit", function (event) {
+            event.preventDefault();
+
             var unindexed_array = $("#CreatePurchaseModalForm").serializeArray();
             var indexed_array = {};
 
@@ -257,6 +285,77 @@
                 }
             });
         });
+
+        const CancelPurchaseModal = document.getElementById('CancelPurchaseModal')
+        if (CancelPurchaseModal) {
+            CancelPurchaseModal.addEventListener('show.bs.modal', event => {
+                // Button that triggered the modal
+                const button = event.relatedTarget
+                // Extract info from data-bs-* attributes
+                const id = button.getAttribute('data-bs-id')
+                // If necessary, you could initiate an Ajax request here
+                // and then do the updating in a callback.
+
+                // Update the modal's content.
+                const modalBodyInput = CancelPurchaseModal.querySelector('#cancelPreOrderId')
+
+                modalBodyInput.value = id
+            })
+        }
+
+        // $('#CancelPurchaseModalForm').on("submit", function (event) {
+        //     event.preventDefault();
+
+        //     var unindexed_array = $("#CancelPurchaseModalForm").serializeArray();
+        //     var indexed_array = {};
+
+        //     $.map(unindexed_array, function(n, i){
+        //         indexed_array[n['name']] = n['value'];
+        //     });
+
+        //     const url = '<?=$API_URL;?>purchase/internal-update-purchase-status';
+
+        //     Swal.fire({
+        //         title: 'กำลังดำเนินการ...',
+        //         showDenyButton: false,
+        //         showConfirmButton: false,
+        //         showCancelButton: false,
+        //         allowOutsideClick: false,
+        //         didOpen: () => {
+        //             Swal.showLoading();
+
+        //             $.ajax({
+        //                 url: url,
+        //                 type: 'POST',
+        //                 data: JSON.stringify(indexed_array),
+        //                 contentType: "application/json", 
+        //                 success: function(response) {
+        //                     if (response.responseCode == "000") {
+        //                         Swal.fire(
+        //                             'ยกเลิกคำสั่งซื้อสำเร็จ',
+        //                             '',
+        //                             'success'
+        //                         ).then(() => {
+        //                             location.reload();
+        //                         });
+        //                     } else {
+        //                         Swal.fire(
+        //                             'ล้มเหลว!',
+        //                             response.responseDesc,
+        //                             'error'
+        //                         );
+
+        //                         console.log(response.responseCode)
+        //                         console.log(response.responseDesc)
+        //                     }
+        //                 }, 
+        //                 error: function(response) {
+        //                     console.log(response);
+        //                 }
+        //             });
+        //         }
+        //     });
+        // });
     </script>
 
 </body>

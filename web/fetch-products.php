@@ -42,8 +42,13 @@
     
     if ($ProductAPIDataResponse['responseCode'] == 000) {
         foreach ($ProductAPIDataResponse[$ResponseKey] as $product) {
-            $thumbnail = (file_exists("products/".$product['thumbnail'])) ? rootURL()."products/".$product['thumbnail'] : rootURL()."images/logo.png";
-            $placeholder = (file_exists("products/".$product['thumbnail'])) ? "" : "thumbnail-placeholder";
+            if (file_exists("products/".$product['thumbnail'])) {
+                $thumbnail = rootURL()."products/".$product['thumbnail'];
+                $placeholder = "";
+            } else {
+                $thumbnail = rootURL()."images/logo.png";
+                $placeholder = "thumbnail-placeholder";
+            }
 ?>
 
 <div class="col-6 col-md-4 col-lg-3 p-1 p-md-2">
@@ -69,6 +74,15 @@
 
                 <?php
                     if ($product['promotionType'] !== null && ($product['promotionType'] == 0 || $product['promotionType'] == 1)) {
+                        if ($product['discount'] == 0) {
+                ?>
+
+                <p class="card-text discount-text">
+                    <span class="fs-3 fw-bold text-danger"><?=number_format($product['lastPrice']);?> บาท</span>
+                </p>
+
+                <?php
+                        } else {
                 ?>
 
                 <p class="card-text discount-text">
@@ -81,6 +95,7 @@
                 </p>
                 
                 <?php
+                        }
                     } else {
                 ?>
                 

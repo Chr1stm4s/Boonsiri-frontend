@@ -119,8 +119,13 @@
                                 $count = 1;
 
                                 foreach ($ShoppingCart as $cart) {
-                                    $thumbnail = (file_exists("products/".$cart['thumbnail'])) ? rootURL()."products/".$cart['thumbnail'] : rootURL()."images/logo.png";
-                                    $placeholder = (file_exists("products/".$cart['thumbnail'])) ? "" : "thumbnail-placeholder";
+                                    if (file_exists("products/".$cart['thumbnail'])) {
+                                        $thumbnail = rootURL()."products/".$cart['thumbnail'];
+                                        $placeholder = "";
+                                    } else {
+                                        $thumbnail = rootURL()."images/logo.png";
+                                        $placeholder = "thumbnail-placeholder";
+                                    }
                     ?>
 
                     <div class="card my-2 rounded-1" id="itemID<?=$cart['id'];?>">

@@ -76,7 +76,7 @@
                 <div class="col-auto col-lg my-auto">
                     <h1 class="fs-3 mb-0"><?=$CategoryData['title'];?></h1>
                 </div>
-                <div class="col col-lg-auto my-auto">
+                <!-- <div class="col col-lg-auto my-auto">
                     <form action="<?=rootURL();?>ค้นหาสินค้าบุญศิริ/" method="GET">
                         <input type="hidden" name="categoryId" value="<?=$CategoryID;?>">
                         <div class="input-group">
@@ -84,7 +84,7 @@
                             <button type="submit" class="btn btn-outline-dark" id="ButtonSearch"><i class="fa-solid fa-magnifying-glass"></i> &nbsp;ค้นหา</button>
                         </div>
                     </form>
-                </div>
+                </div> -->
             </div>
             <div class="row">
             

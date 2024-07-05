@@ -6,7 +6,7 @@
     date_default_timezone_set("Asia/Bangkok");
 
     // Full Thai Date
-    function thai_date($strDate, $time) {
+    function thai_date($strDate, $time = "no") {
         $strYear = date("Y", strtotime($strDate)) + 543;
         $strMonth = date("n", strtotime($strDate));
         $strDay = date("j", strtotime($strDate));
@@ -237,4 +237,38 @@
         curl_close($curl);
         
         return json_decode($response, true);
+    }
+
+    function line_notify() {
+        $name = $_SESSION['name'];
+        $phone = $_SESSION['phone'];
+
+        $sMessage = "\n# *มีคำสั่งซื้อจากลูกค้า* #\nชื่อ: *$name* \nเบอร์โทร: *$phone* \n\nข้อความ **";
+
+        ini_set('display_errors', 1);
+        ini_set('display_startup_errors', 1);
+        error_reporting(E_ALL);
+        date_default_timezone_set("Asia/Bangkok");
+
+        $sToken = "3NyJM0kBXFVw3j57T0A8QO7DCV2i3Sj1zCtvibcTHQ3";
+
+        $chOne = curl_init();
+        curl_setopt($chOne, CURLOPT_URL, "https://notify-api.line.me/api/notify");
+        curl_setopt($chOne, CURLOPT_SSL_VERIFYHOST, 0);
+        curl_setopt($chOne, CURLOPT_SSL_VERIFYPEER, 0);
+        curl_setopt($chOne, CURLOPT_POST, 1);
+        curl_setopt($chOne, CURLOPT_POSTFIELDS, "message=" . $sMessage);
+        $headers = array('Content-type: application/x-www-form-urlencoded', 'Authorization: Bearer ' . $sToken . '',);
+        curl_setopt($chOne, CURLOPT_HTTPHEADER, $headers);
+        curl_setopt($chOne, CURLOPT_RETURNTRANSFER, 1);
+        $result = curl_exec($chOne);
+
+        //Result error 
+        if (curl_error($chOne)) {
+            echo 'error:' . curl_error($chOne);
+        } else {
+            // $result_ = json_decode($result, true); 
+            curl_close($chOne);
+            echo "success";
+        }
     }

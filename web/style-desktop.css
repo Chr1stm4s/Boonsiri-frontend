@@ -131,7 +131,7 @@
     object-fit: cover;
 }
 
-.products-card>img.thumbnail-placeholder {
+.products-card img.thumbnail-placeholder {
     object-fit: contain;
     object-position: center;
 }
@@ -357,8 +357,11 @@ body.member-form {
 }
 
 .home-products-promotion .card img {
-    padding: 0.5rem;
     height: 120px;
+    object-fit: cover;
+}
+
+.home-products-promotion .card img.thumbnail-placeholder {
     object-fit: contain;
 }
 

@@ -63,8 +63,13 @@
                         
                         <?php
                             foreach ($PromotionAPIDataResponse['product'] as $product) {
-                                $thumbnail = (file_exists("products/".$product['thumbnail'])) ? rootURL()."products/".$product['thumbnail'] : rootURL()."images/logo.png";
-                                $placeholder = (file_exists("products/".$product['thumbnail'])) ? "" : "thumbnail-placeholder";
+                                if (file_exists("products/".$product['thumbnail'])) {
+                                    $thumbnail = rootURL()."products/".$product['thumbnail'];
+                                    $placeholder = "";
+                                } else {
+                                    $thumbnail = rootURL()."images/logo.png";
+                                    $placeholder = "thumbnail-placeholder";
+                                }
                         ?>
 
                         <div class="col-6 col-md-4 col-lg-3 p-1 p-md-2">
@@ -86,13 +91,29 @@
                                     <div class="card-body">
                                         <h5 class="card-title text-dark"><?=$product['title'];?></h5>
                                     </div>
-                                    <div class="card-footer bg-white border-0 text-end">
+                                    <div class="card-footer bg-white border-0 p-2 text-end">
 
-                                    <?php
-                                        if ($product['promotionType'] !== null && ($product['promotionType'] == 0 || $product['promotionType'] == 1)) {
-                                    ?>
+                                        <?php
+                                            if ($product['preOrder'] == 1) {
+                                        ?>
 
-                                        <p class="card-text discount-text">
+                                        <p class="card-text text-theme-5 fw-bold mb-0 price-preorder">สินค้าชั่งน้ำหนัก</p>
+
+                                        <?php
+                                            } else {
+                                                if (in_array($product['promotionType'], [0,1])) {
+                                                    if ($product['discount'] == 0) {
+                                        ?>
+
+                                        <p class="card-text mb-0 discount-text">
+                                            <span class="fs-3 fw-bold text-danger"><?=number_format($product['lastPrice']);?> บาท</span>
+                                        </p>
+
+                                                <?php
+                                                    } else {
+                                                ?>
+
+                                        <p class="card-text mb-0 discount-text">
                                             <span class="text-decoration-line-through"><?=number_format($product['price']);?> บาท</span> 
                                             &nbsp;
                                             <br class="d-block d-lg-none"> 
@@ -101,15 +122,19 @@
                                             <span class="bdage text-bg-danger py-1 px-2 save-text fw-bold">ประหยัด <?=number_format($product['discount']);?> บาท</span>
                                         </p>
 
-                                    <?php
-                                        } else {
-                                    ?>
+                                            <?php
+                                                    }
+                                                } else {
+                                            ?>
 
-                                        <p class="card-text fs-3 fw-bold"><?=number_format($product['price']);?> บาท</p>
+                                        <p class="card-text mb-0">
+                                            <span class="text-theme-5 price-discount"><?=number_format($product['price']);?></span> บาท
+                                        </p>
 
-                                    <?php
-                                        }
-                                    ?>
+                                        <?php
+                                                }
+                                            }
+                                        ?>
 
                                     </div>
                                     <div class="card-footer p-0 p-md-2">

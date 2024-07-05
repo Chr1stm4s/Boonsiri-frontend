@@ -72,7 +72,7 @@
         
                 $requestData = [
                     "id" => $purchaseId,
-                    "status" => 8,
+                    "status" => 12,
                 ];
             
                 $data = connect_api("{$API_URL}purchase/internal-update-purchase-status", $requestData);

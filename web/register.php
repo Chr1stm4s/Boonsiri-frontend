@@ -738,7 +738,7 @@
                             "phone2": "",
                             "email": indexFormValue.email,
                             "shippingType": "1",
-                            "userResponsible": "012265",
+                            "userResponsible": "E-Commerce",
                             "branchId": 1,
                             "whsGrpCode": "SSK",
                             "whsGrpName": "สาขาศรีสะเกษ",

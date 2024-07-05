@@ -9,9 +9,26 @@
         require_once "./head.php";
     ?>
 
+    <style>
+        .loading {
+            position: fixed;
+            top: 0;
+            left: 0;
+            background-color: rgba(0, 0, 0, 0.5);
+            display: flex;
+            width: 100vw;
+            height: 100vh;
+            z-index: 1;
+        }
+    </style>
+
 </head>
 
 <body>
+
+    <div class="loading">
+        <i class="fa-solid fa-spinner fa-pulse m-auto fs-1 text-white"></i>
+    </div>
     
     <?php require_once "./header.php"; ?>
 
@@ -21,8 +38,11 @@
                 <div class="col">
                     <h1 class="mb-0">Customer</h1>
                 </div>
-                <div class="col-auto">
+                <div class="col-auto px-0">
                     <button type="button" class="btn btn-primary"data-bs-toggle="modal" data-bs-target="#CustomerModal" data-bs-id="0">เพิ่มบัญชีสมาชิก</button>
+                </div>
+                <div class="col-auto">
+                    <button type="button" class="btn btn-success" id="Export">Export &nbsp; <i class="fa-solid fa-file-export"></i></button>
                 </div>
             </div>
             
@@ -200,7 +220,52 @@
             window.location.replace(`./customer-purchase.php?id=${id}`);
         });
 
+        $("#Export").click(function() {
+            Swal.fire({
+                title: 'กำลังดำเนินการ...',
+                showDenyButton: false,
+                showConfirmButton: false,
+                showCancelButton: false,
+                allowOutsideClick: false,
+                didOpen: () => {
+                    Swal.showLoading();
+                }
+            });
+
+            $.post(
+                "./generate-customers.php", 
+                function(response) {
+                    const data = JSON.parse(response);
+
+                    if (data.response == "success") {
+                        Swal.fire({
+                            title: 'สร้างรายงานสำเร็จ',
+                            icon: 'success',
+                            showCancelButton: false,
+                            showDenyButton: false,
+                            confirmButtonColor: '#3085d6',
+                            confirmButtonText: 'ดาวน์โหลด'
+                        }).then((result) => {
+                            if (result.isConfirmed) {
+                                window.location.href = `./report/${data.file}`; // Replace with your link
+                            }
+                        })
+                    } else {
+                        Swal.fire(
+                            'สร้างรายงานไม่สำเร็จ',
+                            'กรุณาติดต่อเจ้าหน้าที่',
+                            'error'
+                        );
+
+                        console.log(data)
+                    }
+                }
+            )
+        });
+
         document.addEventListener('DOMContentLoaded', function() {
+            $(".loading").fadeOut();
+
             let table = new DataTable('#DataTables');
 
             const CustomerModal = document.getElementById('CustomerModal')

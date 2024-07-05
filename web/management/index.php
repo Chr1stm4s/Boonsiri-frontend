@@ -8,9 +8,12 @@
 
         require_once "./head.php";
 
+        $startDate = (@$_GET['startDate']) ? date("Y-m-d", strtotime($_GET['startDate'])) : date("Y-m-d");
+        $endDate = (@$_GET['endDate']) ? date("Y-m-d", strtotime($_GET['endDate'])) : date("Y-m-d");
+
         $DataDashboardRequest = [
-            "startDate" => date("Y-m-d"), 
-            "endDate" => date("Y-m-d", strtotime(date("Y-m-d") . "+1 days"))
+            "startDate" => $startDate, 
+            "endDate" => $endDate
         ];
 
         $DataDashboardAPI = connect_api("{$API_URL}dashboard/get-dashboard", $DataDashboardRequest);
@@ -42,16 +45,16 @@
                 $DataSaleChart[$month] = [
                     "month" => $month,
                     "monthName" => thai_month($month),
-                    "totalOrders" => "0",
-                    "totalIncome" => "0"
+                    "totalOrders" => $DataSaleChart["totalOrders"],
+                    "totalIncome" => $DataSaleChart["totalIncome"]
                 ];
             }
         }
 
         $DataPieChartRequest = [
             "topSales" => 5,
-            "startDate" => date("Y-m-01"), 
-            "endDate" => date("Y-m-01", strtotime("+1 month", strtotime(date("Y-m-01"))))
+            "startDate" => $startDate, 
+            "endDate" => $endDate
         ];
 
         $DataPieChartAPI = connect_api("{$API_URL}dashboard/get-circle-sales-graph", $DataPieChartRequest);
@@ -114,7 +117,7 @@
             );
 
             var options = {
-                'title': 'อัตราส่วนยอดขายราย SKU ประจำเดือน (<?=thai_month(date("n"));?>)', 
+                'title': 'อัตราส่วนยอดขายราย SKU', 
                 'width': "100%", 
                 'height': "100%" 
             };
@@ -146,7 +149,7 @@
             );
 
             var options = {
-                'title': 'อัตราส่วนยอดขายตามหมวดหมู่ประจำเดือน (<?=thai_month(date("n"));?>)', 
+                'title': 'อัตราส่วนยอดขายตามหมวดหมู่ประจำเดือน', 
                 'width': "100%", 
                 'height': "100%" 
             };
@@ -236,7 +239,16 @@
                     <h1 class="mb-0">Dashboard</h1>
                 </div>
                 <div class="col-auto my-auto">
-                    <h5 class="mb-0 badge text-bg-dark fs-3"><?=date("d M Y");?></h5>
+                    <!-- <h5 class="mb-0 badge text-bg-dark fs-3"><?=date("d M Y");?></h5> -->
+                    <form action="./" method="get">
+                        <div class="input-group">
+                            <span class="input-group-text">วันที่เริ่ม</span>
+                            <input type="date" class="form-control" name="startDate" placeholder="วันที่เริ่ม" aria-label="วันที่เริ่ม" aria-describedby="generateReport" value="<?=$startDate; ?>">
+                            <span class="input-group-text">วันที่สิ้นสุด</span>
+                            <input type="date" class="form-control" name="endDate" placeholder="วันที่สิ้นสุด" aria-label="วันที่สิ้นสุด" aria-describedby="generateReport" value="<?=$endDate; ?>">
+                            <button class="btn btn-primary" type="submit" id="generateReport">ดูรายงาน</button>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
