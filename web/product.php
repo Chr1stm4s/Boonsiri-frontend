@@ -4,25 +4,9 @@
 <head>
     
     <?php
-        $id = $_GET['id'];
-
         $page = "product";
         
         require_once "./head.php";
-        
-        if ($_SESSION['id']) {
-            $UserID = $_SESSION['id'];
-        } else {
-            redirect(rootURL()."ลงชื่อเข้าใช้งาน/");
-        }
-        
-        $requestData = [
-            "productId" => $id,
-        ];
-
-        $data = connect_api("{$API_URL}product/get-product-by-id", $requestData);
-
-        $ProductData = $data['product'];
 
         $thumbnail = (file_exists("products/".$ProductData['thumbnail'])) ? rootURL()."products/".$ProductData['thumbnail'] : rootURL()."images/logo.png";
         $quantity = ($ProductData['uomCode']) ? $ProductData['uomCode'] : "ชิ้น";
@@ -266,7 +250,7 @@
                     $APIDataRequest = [
                         'categoryId' => $ProductData['categoryId'], 
                         'itemSize' => $ProductData['itemSize'], 
-                        'whsCode' => $_SESSION['whsCode'], 
+                        'whsCode' => @$_SESSION['whsCode'], 
                         'orderByColumn' => '',  
                         'orderBy' => '', 
                         'pageNo' => 1, 
@@ -338,7 +322,7 @@
                                 } else {
                             ?>
 
-                            <p class="card-text text-theme-4 mb-0"><?=number_format($FeaturedProducts['price']);?> บาท</p>
+                            <p class="fs-3 card-text text-theme-4 mb-0 text-end"><?=number_format($FeaturedProducts['price']);?> บาท</p>
 
                             <?php
                                 }

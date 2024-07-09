@@ -96,4 +96,9 @@
     .pdpa a, .pdpa button {
         font-size: 14px;
     }
+
+    .social-icon-widget {
+        bottom: 80px;
+        right: 30px;
+    }
 }

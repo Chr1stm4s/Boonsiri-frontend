@@ -14,6 +14,11 @@ RewriteCond %{THE_REQUEST} \s/action\/clear-orders\.php\s [NC]
 RewriteRule ^ /action/clear-orders/? [R=301,L]
 RewriteRule ^action/clear-orders/$ /action/clear-orders.php [L]
 
+#API - Clear shipments
+RewriteCond %{THE_REQUEST} \s/action\/clear-shipments\.php\s [NC]
+RewriteRule ^ /action/clear-shipments/? [R=301,L]
+RewriteRule ^action/clear-shipments/$ /action/clear-shipments.php [L]
+
 #API - Clear promotion
 RewriteCond %{THE_REQUEST} \s/action\/clear-promotion\.php\s [NC]
 RewriteRule ^ /action/clear-promotion/? [R=301,L]

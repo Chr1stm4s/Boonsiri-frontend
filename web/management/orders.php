@@ -82,7 +82,7 @@
                                 <thead>
                                     <tr>
                                         <th class="fit">เลขที่คำสั่งซื้อ</th>
-                                        <th>ชื่อผู้สั่งซื้อ</th>
+                                        <th style="min-width: 1%;">ชื่อผู้สั่งซื้อ</th>
                                         <th>ที่อยู่</th>
                                         <th class="fit">เบอร์ติดต่อ</th>
                                         <th class="fit text-end">ราคาสินค้า</th>
@@ -152,25 +152,26 @@
                                         <td class="fit text-center"><?= time_ago("th", $purchase['updates']); ?></td>
                                         <td class="fit">
                                             <a href="./order-details.php?id=<?= $purchase['id']; ?>" class="btn btn-outline-dark btn-tooltip" data-bs-title="ดูรายการสินค้า"><i class="fa-solid fa-list"></i></a>
+                                            <button title="แก้ไขสถานะคำสั่งซื้อ" type="button" class="btn btn-info btn-tooltip" data-bs-toggle="modal" data-bs-target="#CancelPurchaseModal" data-bs-id="<?=$purchase['id'];?>" data-bs-title="แก้ไขสถานะคำสั่งซื้อ"><i class="fa-solid fa-shuffle"></i></button>
 
                                             <?php
                                                 if ($purchase['status'] == 2) {
                                             ?>
 
-                                            <button class="btn btn-success btn-tooltip btn-confirm" data-id="<?= $purchase['id']; ?>" data-status="3" data-bs-title="ยืนยันการชำระเงิน"><i class="fa-solid fa-check"></i></button>
+                                            <button title="ยืนยันการชำระเงิน" type="button" class="btn btn-success btn-tooltip btn-confirm" data-id="<?= $purchase['id']; ?>" data-status="3" data-bs-title="ยืนยันการชำระเงิน"><i class="fa-solid fa-check"></i></button>
 
                                             <?php
                                                 } elseif ($purchase['status'] == 3) {
                                             ?>
 
-                                            <button type="button" class="btn btn-outline-warning btn-tooltip btn-packing" data-id="<?= $purchase['id']; ?>" data-status="4" data-bs-title="กำลังเตรียมสินค้า"><i class="fa-solid fa-box-open"></i></button>
-                                            <button type="button" class="btn btn-outline-primary btn-tooltip btn-shipping" data-id="<?= $purchase['id']; ?>" data-status="5" data-bs-title="แจ้งเลขขนส่ง"><i class="fa-solid fa-truck-fast"></i></button>
+                                            <button title="กำลังเตรียมสินค้า" type="button" class="btn btn-outline-warning btn-tooltip btn-packing" data-id="<?= $purchase['id']; ?>" data-status="4" data-bs-title="กำลังเตรียมสินค้า"><i class="fa-solid fa-box-open"></i></button>
+                                            <button title="แจ้งเลขขนส่ง" type="button" class="btn btn-outline-primary btn-tooltip btn-shipping" data-id="<?= $purchase['id']; ?>" data-status="5" data-bs-title="แจ้งเลขขนส่ง"><i class="fa-solid fa-truck-fast"></i></button>
 
                                             <?php
                                                 } elseif ($purchase['status'] == 4) {
                                             ?>
 
-                                            <button type="button" class="btn btn-outline-primary btn-tooltip btn-shipping" data-id="<?= $purchase['id']; ?>" data-status="5" data-bs-title="แจ้งเลขขนส่ง"><i class="fa-solid fa-truck-fast"></i></button>
+                                            <button title="แจ้งเลขขนส่ง" type="button" class="btn btn-outline-primary btn-tooltip btn-shipping" data-id="<?= $purchase['id']; ?>" data-status="5" data-bs-title="แจ้งเลขขนส่ง"><i class="fa-solid fa-truck-fast"></i></button>
 
                                             <?php
                                                 } elseif ($purchase['status'] == 7) {
@@ -234,6 +235,42 @@
             </div>
         </div>
     </section>
+
+    <div class="modal fade" id="CancelPurchaseModal" tabindex="-1" aria-labelledby="CancelPurchaseModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="CancelPurchaseModalLabel">ยกเลิกคำสั่งซื้อ</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <input type="hidden" name="id" id="cancelPreOrderId">
+                    <select class="form-select" aria-label="เลือกสถานะคำสั่ง" name="status" id="status">
+                        <option selected disabled>เลือกสถานะคำสั่ง</option>
+                        <option value="1">รอชำระเงิน</option>
+                        <option value="2">รอยืนยันชำระเงิน</option>
+                        <option value="3">ชำระเงินแล้ว</option>
+                        <option value="4">กำลังเตรียมสินค้า</option>
+                        <option value="5">กำลังจัดส่ง</option>
+                        <option value="6">รับสินค้าแล้ว</option>
+                        <option value="8">ยกเลิกคำสั่งซื้อ</option>
+                        <option value="9">เคลมแล้ว</option>
+                        <option value="10">เสร็จสมบูรณ์</option>
+                        <option value="11">เกินกำหนดชำระ</option>
+                        <option value="12">มีสินค้าแจ้งเคลม</option>
+                    </select>
+                    <div class="mb-3">
+                        <label for="note" class="col-form-label">หมายเหตุ:</label>
+                        <input type="text" name="note" class="form-control" id="note" required aria-required="true">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">ยกเลิก</button>
+                    <button type="button" class="btn btn-primary" id="CancelPurchase">ยกเลิกคำสั่งซื้อ</button>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <?php require_once "./js.php"; ?>
 
@@ -326,7 +363,6 @@
             });
         }, false);
 
-
         $("#Export").click(function() {
             const ReportStartDate = $("#ReportStartDate").val();
             const ReportEndDate = $("#ReportEndDate").val();
@@ -374,6 +410,39 @@
                     }
                 }
             )
+        });
+
+        const CancelPurchaseModal = document.getElementById('CancelPurchaseModal')
+        if (CancelPurchaseModal) {
+            CancelPurchaseModal.addEventListener('show.bs.modal', event => {
+                // Button that triggered the modal
+                const button = event.relatedTarget
+                // Extract info from data-bs-* attributes
+                const id = button.getAttribute('data-bs-id')
+                // If necessary, you could initiate an Ajax request here
+                // and then do the updating in a callback.
+
+                // Update the modal's content.
+                const modalBodyInput = CancelPurchaseModal.querySelector('#cancelPreOrderId')
+
+                modalBodyInput.value = id
+            })
+        }
+
+        $("#CancelPurchase").click(function() {
+            const id = $("#cancelPreOrderId").val();
+            const status = $("#status").val();
+            const note = $("#note").val();
+
+            if (!status) {
+                Swal.fire(
+                    `ยืนยันการเปลี่ยนสถานะคำสั่งซื้อนี้ไม่สำเร็จ!`,
+                    `กรุณาลองใหม่ หรือติดต่อเจ้าหน้าที่`,
+                    'error'
+                );
+            } else {
+                purchase_status(id, status, 'ยืนยันการเปลี่ยนสถานะคำสั่งซื้อ', note);
+            }
         });
 
         $(".btn-confirm").click(function() {
@@ -493,7 +562,7 @@
             });
         });
 
-        function purchase_status(id, status, action) {
+        function purchase_status(id, status, action, note = "") {
             Swal.fire({
                 title: `ต้องการ${action}นี้ใช่ไหม?`,
                 icon: 'warning',
@@ -516,8 +585,9 @@
                     });
 
                     const ConfirmData = {
-                        "id": id,
-                        "status": status
+                        "id": id, 
+                        "status": status, 
+                        "note": note
                     };
 
                     const headers = {
@@ -536,7 +606,7 @@
                             obj => {
                                 if (obj.responseCode === "000") {
                                     Swal.fire(
-                                        `ยืนยัน${action}นี้สำเร็จ!`,
+                                        `${action}นี้สำเร็จ!`,
                                         ``,
                                         'success'
                                     ).then(function() {
@@ -544,7 +614,7 @@
                                     });
                                 } else {
                                     Swal.fire(
-                                        `ยืนยัน${action}นี้ไม่สำเร็จ!`,
+                                        `${action}นี้ไม่สำเร็จ!`,
                                         `กรุณาลองใหม่ หรือติดต่อเจ้าหน้าที่`,
                                         'error'
                                     );

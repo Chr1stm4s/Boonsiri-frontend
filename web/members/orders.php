@@ -164,7 +164,7 @@
                                                 <button type="button" class="btn btn-danger rounded-0 btn-tooltip btn-claim" data-id="<?=$OrderData['id'];?>" data-bs-title="แจ้งเคลมสินค้า"><i class="fa-solid fa-heart-crack"></i></button>
 
                                                 <?php
-                                                    } elseif ($OrderData['status'] == 8) {
+                                                    } elseif ($OrderData['status'] == 12) {
                                                 ?>
     
                                                 <button type="button" class="btn btn-danger rounded-0 btn-tooltip btn-claim" data-id="<?=$OrderData['id'];?>" data-bs-title="แจ้งเคลมสินค้า"><i class="fa-solid fa-heart-crack"></i></button>

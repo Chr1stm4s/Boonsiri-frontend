@@ -70,8 +70,8 @@
                             $count = 1;
 
                             foreach ($OrderData['listItem'] as $items) {
-                                if (file_exists("products/".$items['thumbnail'])) {
-                                    $thumbnail = rootURL()."products/".$items['thumbnail'];
+                                if (file_exists("products/".$items['image'])) {
+                                    $thumbnail = rootURL()."products/".$items['image'];
                                     $placeholder = "";
                                 } else {
                                     $thumbnail = rootURL()."images/logo.png";

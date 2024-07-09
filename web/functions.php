@@ -24,6 +24,8 @@
     }
 
     function redirect($path) {
+        header_remove(); 
+        
         header("Location: $path");
     }
 
@@ -235,7 +237,7 @@
         }
         
         curl_close($curl);
-        
+
         return json_decode($response, true);
     }
 

@@ -117,8 +117,12 @@
             redirect(rootURL());
         }
 	} elseif ($page == "products") {
-        $CategoryID = $_GET['id'];
-        $WhsCode = (@$_SESSION['whsCode']) ? $_SESSION['whsCode'] : "SSK";
+        if (@$_SESSION['id'] && @$_GET['id']) {
+			$CategoryID = $_GET['id'];
+			$WhsCode = (@$_SESSION['whsCode']) ? $_SESSION['whsCode'] : "SSK";
+        } else {
+            redirect(rootURL()."ลงชื่อเข้าใช้งาน/");
+        }
 
         $CategoryAPIDataRequest = [
             "whsCode" => $WhsCode, 
@@ -135,6 +139,36 @@
 			$ogTitle = $CategoryData["metaTitle"];
 			$ogDesc = $CategoryData["metaDescription"];
 			$keywords = $CategoryData["keywords"];
+        } else {
+            echo $CategoryMain['responseCode'];
+
+            exit();
+        }
+	} elseif ($page == "product") {
+        if (@$_SESSION['id'] && @$_GET['id']) {
+			$id = $_GET['id'];
+            $UserID = $_SESSION['id'];
+			$WhsCode = (@$_SESSION['whsCode']) ? $_SESSION['whsCode'] : "SSK";
+        } else {
+            redirect(rootURL()."ลงชื่อเข้าใช้งาน/");
+        }
+        
+        $requestData = [
+            "productId" => $id,
+        ];
+
+        $data = connect_api("{$API_URL}product/get-product-by-id", $requestData);
+
+        $ProductData = $data['product'];
+
+        if ($data['responseCode'] == 000) {
+            $ProductData = $CategoryMain['product'];
+
+			$ogImg = ($ProductData['image'] && file_exists("products/category/".$ProductData['image'])) ? rootURL()."products/category/".$ProductData['image'] : rootURL()."images/logo.png";
+			$title = $ProductData["title"];
+			$ogTitle = $ProductData["metaTitle"];
+			$ogDesc = $ProductData["metaDescription"];
+			$keywords = $ProductData["keywords"];
         } else {
             echo $CategoryMain['responseCode'];
 

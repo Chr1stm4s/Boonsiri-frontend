@@ -498,8 +498,6 @@
                     Swal.showLoading();
                 }
             });
-
-            console.log(shipping_type);
             
             $.ajax({
                 type: "POST",  

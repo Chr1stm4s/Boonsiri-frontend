@@ -72,8 +72,8 @@
                                         $count = 1;
 
                                         foreach ($PurchaseData['listItem'] as $cart) {
-                                            if (file_exists("products/".$cart['thumbnail'])) {
-                                                $thumbnail = rootURL()."products/".$cart['thumbnail'];
+                                            if (file_exists("products/".$cart['image'])) {
+                                                $thumbnail = rootURL()."products/".$cart['image'];
                                                 $placeholder = "";
                                             } else {
                                                 $thumbnail = rootURL()."images/logo.png";

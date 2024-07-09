@@ -8,15 +8,25 @@
 
         $requestData = [
             "id" => $purchaseId,
-            "status" => 2, 
         ];
 
-        $data = connect_api("{$API_URL}purchase/internal-update-purchase-status", $requestData);
+        $data = connect_api("{$API_URL}purchase/get-purchase", $requestData);
 
-        if ($data['responseCode'] === "000") {
+        if (in_array($data['purchase']['status'], [3,4,5,6,7])) {
             echo "success";
         } else {
-            echo "check";
+            $requestData = [
+                "id" => $purchaseId,
+                "status" => 2, 
+            ];
+    
+            $data = connect_api("{$API_URL}purchase/internal-update-purchase-status", $requestData);
+    
+            if ($data['responseCode'] === "000") {
+                echo "success";
+            } else {
+                echo "check";
+            }
         }
     } else {
         echo "login";

@@ -69,6 +69,8 @@
                                             $status = '<span class="badge text-bg-light w-100">รอแอดมินสรุปยอด</span>';
                                         } elseif ($preOrder['status'] == 2) {
                                             $status = '<span class="badge text-bg-success w-100">สรุปยอดแล้ว</span>';
+                                        } elseif ($preOrder['status'] == 3) {
+                                            $status = '<span class="badge text-bg-danger w-100">ยกเลิก</span>';
                                         } else {
                                             $status = '<span class="badge text-bg-secondary w-100">รอแอดมินสรุปยอด</span>';
                                         }
@@ -95,7 +97,28 @@
                                 <td class="fit">
                                     <a href="<?=rootURL();?>ข้อมูลสินค้าบุญศิริ/<?=$preOrder['productId'];?>/<?=str_replace(" ", "-", $preOrder['title']);?>/" class="btn btn-primary rounded-0 btn-edit btn-tooltip" data-bs-title="ดูรายละเอียดสินค้า"><i class="fa-solid fa-eye"></i></a>
                                     <button class="btn btn-success rounded-0 btn-tooltip btn-pre-order" data-bs-toggle="modal" data-bs-target="#CreatePurchaseModal" data-bs-id="<?=$preOrder['id'];?>" data-bs-title="สร้างคำสั่งซื้อ"><i class="fa-solid fa-file-invoice-dollar"></i></button>
+
+                                    <?php
+                                        if ($preOrder['status'] != 3) {
+                                    ?>
+
                                     <button class="btn btn-danger rounded-0 btn-tooltip btn-pre-order" data-bs-toggle="modal" data-bs-target="#CancelPurchaseModal" data-bs-id="<?=$preOrder['id'];?>" data-bs-title="ยกเลิกคำสั่งซื้อ"><i class="fa-solid fa-xmark"></i></button>
+
+                                    <?php
+                                        }
+                                    ?>
+
+                                    <?php
+                                        if ($preOrder['note']) {
+                                    ?>
+
+                                    <button class="btn btn-info rounded-0 btn-tooltip btn-note" data-bs-title="หมายเหตุ : <?=$preOrder['note'];?>"><i class="fa-solid fa-comment"></i></button>
+                                    <!-- <button class="btn btn-info rounded-0 btn-tooltip btn-note" data-bs-toggle="modal" data-bs-target="#NoteModal" data-bs-note="<?=$preOrder['note'];?>" data-bs-title="หมายเหตุ"><i class="fa-solid fa-comment"></i></button> -->
+
+                                    <?php
+                                        }
+                                    ?>
+
                                 </td>
                             </tr>
 
@@ -153,8 +176,8 @@
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                        <input type="hidden" name="id" id="cancelPreOrderId">
-                        <input type="hidden" name="status" id="status" value="8">
+                        <input type="hidden" name="preOrderId" id="cancelPreOrderId">
+                        <input type="hidden" name="status" id="status" value="3">
                         <div class="mb-3">
                             <label for="note" class="col-form-label">หมายเหตุ:</label>
                             <input type="text" name="note" class="form-control" id="note" required aria-required="true">
@@ -303,59 +326,59 @@
             })
         }
 
-        // $('#CancelPurchaseModalForm').on("submit", function (event) {
-        //     event.preventDefault();
+        $('#CancelPurchaseModalForm').on("submit", function (event) {
+            event.preventDefault();
 
-        //     var unindexed_array = $("#CancelPurchaseModalForm").serializeArray();
-        //     var indexed_array = {};
+            var unindexed_array = $("#CancelPurchaseModalForm").serializeArray();
+            var indexed_array = {};
 
-        //     $.map(unindexed_array, function(n, i){
-        //         indexed_array[n['name']] = n['value'];
-        //     });
+            $.map(unindexed_array, function(n, i){
+                indexed_array[n['name']] = n['value'];
+            });
 
-        //     const url = '<?=$API_URL;?>purchase/internal-update-purchase-status';
+            const url = '<?=$API_URL;?>preorder/update-preorder';
 
-        //     Swal.fire({
-        //         title: 'กำลังดำเนินการ...',
-        //         showDenyButton: false,
-        //         showConfirmButton: false,
-        //         showCancelButton: false,
-        //         allowOutsideClick: false,
-        //         didOpen: () => {
-        //             Swal.showLoading();
+            Swal.fire({
+                title: 'กำลังดำเนินการ...',
+                showDenyButton: false,
+                showConfirmButton: false,
+                showCancelButton: false,
+                allowOutsideClick: false,
+                didOpen: () => {
+                    Swal.showLoading();
 
-        //             $.ajax({
-        //                 url: url,
-        //                 type: 'POST',
-        //                 data: JSON.stringify(indexed_array),
-        //                 contentType: "application/json", 
-        //                 success: function(response) {
-        //                     if (response.responseCode == "000") {
-        //                         Swal.fire(
-        //                             'ยกเลิกคำสั่งซื้อสำเร็จ',
-        //                             '',
-        //                             'success'
-        //                         ).then(() => {
-        //                             location.reload();
-        //                         });
-        //                     } else {
-        //                         Swal.fire(
-        //                             'ล้มเหลว!',
-        //                             response.responseDesc,
-        //                             'error'
-        //                         );
+                    $.ajax({
+                        url: url,
+                        type: 'POST',
+                        data: JSON.stringify(indexed_array),
+                        contentType: "application/json", 
+                        success: function(response) {
+                            if (response.responseCode == "000") {
+                                Swal.fire(
+                                    'ยกเลิกคำสั่งซื้อสำเร็จ',
+                                    '',
+                                    'success'
+                                ).then(() => {
+                                    location.reload();
+                                });
+                            } else {
+                                Swal.fire(
+                                    'ล้มเหลว!',
+                                    response.responseDesc,
+                                    'error'
+                                );
 
-        //                         console.log(response.responseCode)
-        //                         console.log(response.responseDesc)
-        //                     }
-        //                 }, 
-        //                 error: function(response) {
-        //                     console.log(response);
-        //                 }
-        //             });
-        //         }
-        //     });
-        // });
+                                console.log(response.responseCode)
+                                console.log(response.responseDesc)
+                            }
+                        }, 
+                        error: function(response) {
+                            console.log(response);
+                        }
+                    });
+                }
+            });
+        });
     </script>
 
 </body>

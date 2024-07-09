@@ -28,6 +28,7 @@
 <script src="<?=rootURL();?>select2/js/select2.min.js"></script>
 
 <?php require_once "modal-member.php"; ?>
+<?php require_once "cta-widget.php"; ?>
 
 <script>
     document.addEventListener('contextmenu', event => {
