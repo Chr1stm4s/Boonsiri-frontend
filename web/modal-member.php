@@ -7,7 +7,7 @@
     <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
         <div class="modal-content">
             <div class="modal-header">
-                <h1 class="modal-title fs-5" id="SelectAddressProfileModalLabel">เลือกที่อยู่จัดส่งสำหรับซื้อสินค้า</h1>
+                <h5 class="modal-title fs-5" id="SelectAddressProfileModalLabel">เลือกที่อยู่จัดส่งสำหรับซื้อสินค้า</h5>
 
                 <?php
                     if (@$_SESSION['address_id']) {

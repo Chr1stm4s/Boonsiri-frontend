@@ -159,18 +159,16 @@
 
         $data = connect_api("{$API_URL}product/get-product-by-id", $requestData);
 
-        $ProductData = $data['product'];
-
         if ($data['responseCode'] == 000) {
-            $ProductData = $CategoryMain['product'];
+			$ProductData = $data['product'];
 
-			$ogImg = ($ProductData['image'] && file_exists("products/category/".$ProductData['image'])) ? rootURL()."products/category/".$ProductData['image'] : rootURL()."images/logo.png";
+			$ogImg = ($ProductData['thumbnail'] && file_exists("products/".$ProductData['thumbnail'])) ? rootURL()."products/".$ProductData['thumbnail'] : rootURL()."images/logo.png";
 			$title = $ProductData["title"];
 			$ogTitle = $ProductData["metaTitle"];
 			$ogDesc = $ProductData["metaDescription"];
 			$keywords = $ProductData["keywords"];
         } else {
-            echo $CategoryMain['responseCode'];
+            echo $ProductData['responseCode'];
 
             exit();
         }
