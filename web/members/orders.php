@@ -38,7 +38,7 @@
 
         .rating input:checked ~ label:hover,
         .rating input:checked ~ label:hover ~ label {
-            color: #ccc;
+            color: #ffcc00;
         }
     </style>
 
@@ -300,7 +300,7 @@
             <div class="modal-dialog modal-dialog-centered">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h1 class="modal-title fs-5" id="ReviewModalLabel">New message</h1>
+                        <h1 class="modal-title fs-5" id="ReviewModalLabel">รีวิวคำสั่งซื้อ</h1>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
@@ -309,7 +309,7 @@
                         <div class="row mb-3">
                             <div class="col-auto">
                                 <div class="rating">
-                                    <input type="radio" id="QualityStar5" name="quality" value="5"><label for="QualityStar5"><i class="fas fa-star"></i></label>
+                                    <input type="radio" id="QualityStar5" name="quality" value="5" required aria-required="true"><label for="QualityStar5"><i class="fas fa-star"></i></label>
                                     <input type="radio" id="QualityStar4" name="quality" value="4"><label for="QualityStar4"><i class="fas fa-star"></i></label>
                                     <input type="radio" id="QualityStar3" name="quality" value="3"><label for="QualityStar3"><i class="fas fa-star"></i></label>
                                     <input type="radio" id="QualityStar2" name="quality" value="2"><label for="QualityStar2"><i class="fas fa-star"></i></label>
@@ -317,11 +317,11 @@
                                 </div>
                             </div>
                         </div>
-                        <label for="quality" class="col-form-label">บริการผู้ขาย:</label>
+                        <label for="services" class="col-form-label">บริการผู้ขาย:</label>
                         <div class="row mb-3">
                             <div class="col-auto">
                                 <div class="rating">
-                                    <input type="radio" id="ServicesStar5" name="services" value="5"><label for="ServicesStar5"><i class="fas fa-star"></i></label>
+                                    <input type="radio" id="ServicesStar5" name="services" value="5" required aria-required="true"><label for="ServicesStar5"><i class="fas fa-star"></i></label>
                                     <input type="radio" id="ServicesStar4" name="services" value="4"><label for="ServicesStar4"><i class="fas fa-star"></i></label>
                                     <input type="radio" id="ServicesStar3" name="services" value="3"><label for="ServicesStar3"><i class="fas fa-star"></i></label>
                                     <input type="radio" id="ServicesStar2" name="services" value="2"><label for="ServicesStar2"><i class="fas fa-star"></i></label>
@@ -329,11 +329,11 @@
                                 </div>
                             </div>
                         </div>
-                        <label for="quality" class="col-form-label">บริการผู้ส่ง:</label>
+                        <label for="delivery" class="col-form-label">บริการผู้ส่ง:</label>
                         <div class="row mb-3">
                             <div class="col-auto">
                                 <div class="rating">
-                                    <input type="radio" id="DeliveryStar5" name="delivery" value="5"><label for="DeliveryStar5"><i class="fas fa-star"></i></label>
+                                    <input type="radio" id="DeliveryStar5" name="delivery" value="5" required aria-required="true"><label for="DeliveryStar5"><i class="fas fa-star" ></i></label>
                                     <input type="radio" id="DeliveryStar4" name="delivery" value="4"><label for="DeliveryStar4"><i class="fas fa-star"></i></label>
                                     <input type="radio" id="DeliveryStar3" name="delivery" value="3"><label for="DeliveryStar3"><i class="fas fa-star"></i></label>
                                     <input type="radio" id="DeliveryStar2" name="delivery" value="2"><label for="DeliveryStar2"><i class="fas fa-star"></i></label>
@@ -613,9 +613,17 @@
                         );
 
                         console.log(response)
-                    } else if (response == "upload") {
+                    } else if (response == "image") {
                         Swal.fire(
-                            'ไม่สามารถส่งไฟล์ได้!',
+                            'ไม่สามารถส่งไฟล์ภาพได้!',
+                            'กรุณาติดต่อเจ้าหน้าที่',
+                            'error'
+                        );
+
+                        console.log(response)
+                    } else if (response == "video") {
+                        Swal.fire(
+                            'ไม่สามารถส่งไฟล์วิดีโอได้!',
                             'กรุณาติดต่อเจ้าหน้าที่',
                             'error'
                         );

@@ -75,11 +75,11 @@
                     </div>
                     <div class="my-3">
                         <label for="metaTitle" class="col-form-label">Meta Title</label>
-                        <input type="metaTitle" class="form-control" id="metaTitle" name="metaTitle" placeholder="Meta Title" value="<?=$Meta['metaTitle'];?>">
+                        <input type="metaTitle" class="form-control" id="metaTitle" name="metaTitle" placeholder="Meta Title" value='<?=$Meta['metaTitle'];?>'>
                     </div>
                     <div class="my-3">
                         <label for="metaDescription" class="col-form-label">Meta Description</label>
-                        <input type="metaDescription" class="form-control" id="metaDescription" name="metaDescription" placeholder="Meta Description" value="<?=$Meta['metaDescription'];?>">
+                        <input type="metaDescription" class="form-control" id="metaDescription" name="metaDescription" placeholder="Meta Description" value='<?=$Meta['metaDescription'];?>'>
                     </div>
                     <div>
                         <label for="keywords" class="col-form-label">Keywords</label>

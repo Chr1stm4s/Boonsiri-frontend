@@ -1,7 +1,7 @@
 <?php
     require_once "../functions.php";
 
-    header('Access-Control-Allow-Origin: *');
+    // header('Access-Control-Allow-Origin: *');
     
     $purchaseId = $_POST['purchaseId'];
     $quality = $_POST['quality'];
@@ -31,16 +31,16 @@
         $data = connect_api("{$API_URL}purchase/internal-update-purchase-status", $requestData);
 
         if ($data['responseCode'] === "000") {
-            if ($_FILES['review']['name']) {
+            if ($_FILES['review']['name'][0]) {
+                if (!file_exists("../reviews/$review_id")) {
+                    mkdir("../reviews/$review_id", 0777, true);
+                }
+
                 foreach($_FILES["review"]["tmp_name"] as $key=>$tmp_name) {
                     $file_name=$_FILES["review"]["name"][$key];
                     $ext = pathinfo($file_name, PATHINFO_EXTENSION);
                     
                     $review_image = "review-$review_id-$key.$ext";
-
-                    if (!file_exists("../reviews/$review_id")) {
-                        mkdir("../reviews/$review_id", 0777, true);
-                    }
                 
                     $upload = move_uploaded_file($_FILES['review']['tmp_name'][$key], "../reviews/$review_id/$review_image");
 
@@ -53,10 +53,10 @@
                         $data = connect_api("{$API_URL}reviews-image/insert-reviews-image", $requestData);
                         
                         if ($data['responseCode'] !== "000") {
-                            exit();
+                            echo "image";
                         }
                     } else {
-                        exit();
+                        echo "image";
                     }
                 }
             }
@@ -82,10 +82,10 @@
                     $data = connect_api("{$API_URL}reviews-image/insert-reviews-image", $requestData);
                     
                     if ($data['responseCode'] !== "000") {
-                        exit();
+                        echo "video";
                     }
                 } else {
-                    exit();
+                    echo "video ";
                 }
             }
 
