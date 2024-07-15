@@ -172,7 +172,7 @@
 
     <section class="pb-5">
         <div class="container">
-            <div class="row home-products-recommended g-3 g-md-4">
+            <div class="row g-3 g-md-4">
 
             <?php
                 $FeaturedAPIRequest = [
@@ -184,11 +184,9 @@
                 foreach ($FeaturedAPIData['featureds'] as $featured) {
             ?>
 
-                <div class="col-6 col-md-4">
-                    <a href="<?=$featured['url'];?>" class="text-decoration-none text-theme-4">
-                        <div class="card">
-                            <img src="<?=rootURL();?>featured/<?=$featured['image'];?>" alt="<?=$featured['altText'];?>" class="card-img-top">
-                        </div>
+                <div class="col-12 col-md-4">
+                    <a href="<?=$featured['url'];?>">
+                        <img src="<?=rootURL();?>featured/<?=$featured['image'];?>" alt="<?=$featured['altText'];?>" class="w-100 rounded-4">
                     </a>    
                 </div>
 
