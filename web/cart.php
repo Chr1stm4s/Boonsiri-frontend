@@ -386,16 +386,20 @@
             $(".btn-remove-cart").prop("disabled", true);
             $(".create-order-loading").show();
 
-            if (amount <= 0 ) {
+
+            if (action == "increase") {
+                var newAmount = parseInt(amount) + 1;
+            } else if (action == "decrease") {
+                var newAmount = parseInt(amount) - 1;
+            } else {
+                var newAmount = parseInt(amount);
+            }
+
+            console.log(`Amount: ${newAmount}`);
+
+            if (newAmount <= 0) {
                 RemoveCartItem(product);
             } else {
-                if (action == "increase") {
-                    var newAmount = parseInt(amount) + 1;
-                } else if (action == "decrease") {
-                    var newAmount = parseInt(amount) - 1;
-                } else {
-                    var newAmount = parseInt(amount);
-                }
 
                 $(input).val(newAmount);
 

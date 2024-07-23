@@ -6,6 +6,8 @@
     if ($_FILES['claim']) {
         $customerId = $_SESSION['id'];
         $purchaseId = $_POST['purchaseId'];
+        $orderNo = $_POST['orderNo'];
+        $whsCode = $_POST['whsCode'];
         $itemId = $_POST['itemId'];
         $title = $_POST['title'];
         $description = $_POST['description'];
@@ -78,7 +80,17 @@
                 $data = connect_api("{$API_URL}purchase/internal-update-purchase-status", $requestData);
 
                 if ($data['responseCode'] == "000") {
-                    echo "success";
+                    $MessageRequest = [
+                        "message" => "มีสินค้าแจ้งเคลมจากสาขา $whsCode\nเลขที่คำสั่งซื้อ $orderNo"
+                    ];
+        
+                    $MessageData = connect_api("{$API_URL}boonsiri/universal-line-notify", $MessageRequest);
+        
+                    if ($MessageData['responseCode'] === "000") {
+                        echo "success";
+                    } else {
+                        echo json_encode($MessageData);
+                    }
                 } else {
                     var_dump($requestData);
                     var_dump($data);

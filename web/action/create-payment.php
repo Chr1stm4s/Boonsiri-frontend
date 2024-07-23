@@ -14,14 +14,19 @@
         $data = connect_api("{$API_URL}purchase/internal-update-purchase-status", $requestData);
 
         if ($data['responseCode'] === "000") {
-            
+            $MessageRequest = [
+                "message" => "มีคำสั่งซื้อจากสาขา {$_SESSION['whsCode']}"
+            ];
 
-            echo "success";
+            $MessageData = connect_api("{$API_URL}boonsiri/universal-line-notify", $MessageRequest);
+
+            if ($MessageData['responseCode'] === "000") {
+                echo "success";
+            } else {
+                echo json_encode($MessageData);
+            }
         } else {
-            echo "create";
-
-            var_dump($requestData);
-            var_dump($data);
+            echo json_encode($data);
         }
     } else {
         echo "login";

@@ -72,6 +72,8 @@
     $(".pre-order").on("click", function() {
         const id = $(this).data("id");
         const amount = ($(this).data("amount")) ? $(this).data("amount") : $("#amount").val();
+        const product = $("#product_name").val();
+        const uom_code = $("#product_uom_code").val();
 
         Swal.fire({
             title: 'กำลังดำเนินการ...',
@@ -91,6 +93,8 @@
                 data: {
                     id: id, 
                     amount: amount, 
+                    product: product, 
+                    uom_code: uom_code, 
                 },  
                 success: function(response) {  
                     if (response == "Success") {

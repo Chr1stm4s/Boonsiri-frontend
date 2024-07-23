@@ -131,6 +131,9 @@
 
                 </div>
                 <div class="col-12 col-md-5 mx-auto">
+                    <input type="hidden" name="product_name" id="product_name" value="<?=$ProductData['title'];?>">
+                    <input type="hidden" name="product_uom_code" id="product_uom_code" value="<?=$ProductData['uomCode'];?>">
+
                     <h1 class="fs-5"><?=$ProductData['title'];?></h1>
                     <small>SKU: <?=$ProductData['itemCode'];?></small>
 

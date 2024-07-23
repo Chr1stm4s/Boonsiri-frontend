@@ -1,7 +1,7 @@
 <?php
     require_once "../functions.php";
 
-    // header('Access-Control-Allow-Origin: *');
+    header('Access-Control-Allow-Origin: *');
     
     $purchaseId = $_POST['purchaseId'];
     $quality = $_POST['quality'];

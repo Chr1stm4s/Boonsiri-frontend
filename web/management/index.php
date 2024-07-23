@@ -22,11 +22,13 @@
             $DataDashboard = $DataDashboardAPI['getDashBoard'];
 
             $totalOrder = $DataDashboard['totalOrder'];
+            $totalUnpaid = $DataDashboard['totalUnpaid'];
             $totalWaitingPayment = $DataDashboard['totalWaitingPayment'];
             $totalClaim = $DataDashboard['totalClaim'];
             $totalEarn = number_format($DataDashboard['totalEarn']);
         } else {
             $totalOrder = 0;
+            $totalUnpaid = 0;
             $totalWaitingPayment = 0;
             $totalClaim = 0;
             $totalEarn = 0;
@@ -106,7 +108,7 @@
                     ?>
 
                     [
-                        '<?=$DataPieChartCategory['itemCode'];?>', 
+                        '<?=$DataPieChartCategory['title'];?>', 
                         <?=$DataPieChartCategory['amount'];?>
                     ], 
 
@@ -257,7 +259,7 @@
     <section class="pb-5">
         <div class="container">
             <div class="row my-5">
-                <div class="col-6 col-md-3 my-3">
+                <div class="col-6 col-md my-3">
                     <div class="card text-bg-primary">
                         <div class="card-body text-center">
                             <p class="card-title">จำนวนคำสั่งซื้อ</p>
@@ -265,7 +267,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-6 col-md-3 my-3">
+                <div class="col-6 col-md my-3">
                     <div class="card text-bg-warning">
                         <div class="card-body text-center">
                             <p class="card-title">จำนวนคำสั่งซื้อที่รอจ่ายเงิน</p>
@@ -273,7 +275,15 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-6 col-md-3 my-3">
+                <div class="col-6 col-md my-3">
+                    <div class="card text-bg-primary">
+                        <div class="card-body text-center">
+                            <p class="card-title">จำนวนคำสั่งซื้อที่ไม่ชำระเงิน</p>
+                            <h1><?=$totalUnpaid;?> รายการ</h1>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-6 col-md my-3">
                     <div class="card text-bg-info">
                         <div class="card-body text-center">
                             <p class="card-title">จำนวนรายการเคลม</p>
@@ -281,7 +291,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-6 col-md-3 my-3">
+                <div class="col-6 col-md my-3">
                     <div class="card text-bg-danger">
                         <div class="card-body text-center">
                             <p class="card-title">ยอดขาย</p>

@@ -170,6 +170,8 @@
                     </div>
                     <div class="modal-body">
                         <input type="hidden" name="purchaseId" id="purchaseId" value="<?=$id;?>">
+                        <input type="hidden" name="orderNo" id="orderNo" value="<?=$OrderData['orderNo'];?>">
+                        <input type="hidden" name="whsCode" id="whsCode" value="<?=$OrderData['whsCode'];?>">
                         <input type="hidden" name="itemId" id="itemId">
                         <div class="mb-3">
                             <label for="title" class="col-form-label">เหตุผลที่เคลม:</label>
