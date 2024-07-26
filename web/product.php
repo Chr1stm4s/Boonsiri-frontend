@@ -131,8 +131,8 @@
 
                 </div>
                 <div class="col-12 col-md-5 mx-auto">
-                    <input type="hidden" name="product_name" id="product_name" value="<?=$ProductData['title'];?>">
-                    <input type="hidden" name="product_uom_code" id="product_uom_code" value="<?=$ProductData['uomCode'];?>">
+                    <input type="text" class="d-none" name="product_name" id="product_name" value="<?=$ProductData['title'];?>">
+                    <input type="text" class="d-none" name="product_uom_code" id="product_uom_code" value="<?=$ProductData['uomCode'];?>">
 
                     <h1 class="fs-5"><?=$ProductData['title'];?></h1>
                     <small>SKU: <?=$ProductData['itemCode'];?></small>
@@ -179,7 +179,7 @@
                     </p>
 
                     <div class="row">
-                        <div class="col col-lg-5">
+                        <div class="col-12 col-md-5 mb-3 mb-md-0">
                             <div class="input-group">
                                 <button class="btn btn-outline-secondary btn-sm btn-amount-adjust rounded-0" type="button" data-action="decrease">
                                     <i class="fa-solid fa-minus"></i>
@@ -191,7 +191,7 @@
                                 </button>
                             </div>
                         </div>
-                        <div class="col-auto ps-1">
+                        <div class="col-12 col-md-auto ps-md-1 text-center">
 
                         <?php
                             if ($ProductData['preOrder'] === 1) {

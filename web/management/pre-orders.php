@@ -96,12 +96,12 @@
                                 <td class="fit text-center"><?=time_ago("th", $preOrder['updates']);?></td>
                                 <td class="fit">
                                     <a href="<?=rootURL();?>ข้อมูลสินค้าบุญศิริ/<?=$preOrder['productId'];?>/<?=str_replace(" ", "-", $preOrder['title']);?>/" class="btn btn-primary rounded-0 btn-edit btn-tooltip" data-bs-title="ดูรายละเอียดสินค้า"><i class="fa-solid fa-eye"></i></a>
-                                    <button class="btn btn-success rounded-0 btn-tooltip btn-pre-order" data-bs-toggle="modal" data-bs-target="#CreatePurchaseModal" data-bs-id="<?=$preOrder['id'];?>" data-bs-title="สร้างคำสั่งซื้อ"><i class="fa-solid fa-file-invoice-dollar"></i></button>
 
                                     <?php
                                         if ($preOrder['status'] != 3) {
                                     ?>
 
+                                    <button class="btn btn-success rounded-0 btn-tooltip btn-pre-order" data-bs-toggle="modal" data-bs-target="#CreatePurchaseModal" data-bs-id="<?=$preOrder['id'];?>" data-bs-title="สร้างคำสั่งซื้อ"><i class="fa-solid fa-file-invoice-dollar"></i></button>
                                     <button class="btn btn-danger rounded-0 btn-tooltip btn-pre-order" data-bs-toggle="modal" data-bs-target="#CancelPurchaseModal" data-bs-id="<?=$preOrder['id'];?>" data-bs-title="ยกเลิกคำสั่งซื้อ"><i class="fa-solid fa-xmark"></i></button>
 
                                     <?php
@@ -226,7 +226,7 @@
                 ],
                 order: [
                     [
-                        9, 'asc'
+                        9, 'desc'
                     ]
                 ]
             } );
